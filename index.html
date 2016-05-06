@@ -38,7 +38,17 @@
 
 <h3>
 <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recent Posts</h3>
-<p>최근글</p>
+<p style="font-family:Arial, 'Malgun Gothic';">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://www.msjo.kr/api/read/json?tagged=msjo+cc+all"></script>
+<ul>
+	<script type="text/javascript"> 
+		for (var i = 0; i < 20; i++) { 
+			document.write('<li><a style="color:#3776ab" href="' + tumblr_api_read['posts'][i]['url'] + '">' + tumblr_api_read['posts'][i]['regular-title'] + '');
+		}
+	</script>
+</ul>	
+</p>
 
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h3>
