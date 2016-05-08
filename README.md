@@ -27,4 +27,4 @@ H3 CSS 수정할 목록
 
 ##### 메인 홈페이지에 연결할 목록
 * http://www.msjo.kr
-* http://lab.msjo.kr
+* http://git.msjo.kr
