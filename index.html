@@ -14,6 +14,13 @@
     <![endif]-->
 
     <title>MSJO.kr</title>
+	<script type="text/javascript">
+		$(document).ready(function () {
+  			$('#msjo-kr').rssfeed('http://www.msjo.kr/rss', {
+    			limit: 20, date:false, content:false
+			});
+		});
+	</script>	  
   </head>
 
   <body>
@@ -39,7 +46,9 @@
 <h3>
 <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recent Posts</h3>
 <p style="font-family:Arial, 'Malgun Gothic';">
-<img src="http://community.embarcadero.com/uploads/390/roadmap2016.png" />
+<div id="msjo-kr" style="font-family: 'Malgun Gothic';">
+</div>	
+<!--<img src="http://community.embarcadero.com/uploads/390/roadmap2016.png" />-->
 <!--<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="http://www.msjo.kr/api/read/json?tagged=msjo+cc+all"></script>
 <ul>
