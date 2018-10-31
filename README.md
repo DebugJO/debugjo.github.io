@@ -2,6 +2,20 @@
 
 * [git.msjo.kr](http://git.msjo.kr) (debugjo.github.io)
 
+##### 게시물 목록 가져오기
+```
+<script type="text/javascript" src="http://www.msjo.kr/api/read/json"></script>
+<ul>
+<script type="text/javascript">
+	for (var i = 0; i < 20; i++) {
+		document.write('<li><a style="font-family:Arial, Malgun Gothic;font-size:14px;" 
+			href="' + tumblr_api_read['posts'][i]['url'] + '">' 
+		+ tumblr_api_read['posts'][i]['regular-title'] + '</a></li>');
+	}
+</script>
+</ul>
+```
+
 H3 CSS 수정할 목록
 ```
 <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
