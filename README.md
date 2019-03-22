@@ -9,7 +9,8 @@
 $.getJSON("https://www.msjo.kr/api/read/json?start=0&num=10&callback=?", function(data) {
 	$("#xxx").empty();
 	$.each(data.posts, function(i, posts) {
-		$("#xxx").append("<li style='list-style-type:none; margin:0; padding:0; line-height:22px;'><a href='" + this["url"] + "'>ㆍ" + cutStr(this["regular-title"], 22) + " ⋅⋅</a></li>"); });
+		$("#xxx").append("<li style='list-style-type:none; margin:0; padding:0; line-height:22px;'><a href='" + this["url"] 
+			+ "'>ㆍ" + cutStr(this["regular-title"], 22) + " ⋅⋅</a></li>"); });
 });	
 </script>
 ```
