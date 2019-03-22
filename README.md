@@ -4,42 +4,14 @@
 
 #### 게시물 목록 가져오기 (페이징)
 ```html
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-	<script src="https://static.tumblr.com/4dhjtvt/Pq3n1hjxj/jquery.fitvids.js" type="text/javascript"></script>
-	<script src="https://static.tumblr.com/wgijwsy/jgemkyt9x/jquery.photoset-grid.min.js"></script>
-	<script src="https://static.tumblr.com/4dhjtvt/3b8ne0q9n/jquery.placeholder.js"></script>
-	<script type="text/javascript">
-        $.getJSON("https://www.msjo.kr/api/read/json?start=0&num=10&callback=?", function(data) {
-        $("#xxx").empty();
-		$.each(data.posts, function(i, posts) {
-			$("#xxx").append("<li style='list-style-type:none; margin:0; padding:0; line-height:22px;'><a href='" + this["url"] + "'>ㆍ" + cutStr(this["regular-title"], 22) + " ⋅⋅</a></li>"); });
-	    });	
-	    
-        $.getJSON("https://www.msjo.kr/api/read/json?start=0&num=20&callback=?", function(data) {
-        $("#all_list").empty();
-		$.each(data.posts, function(i, posts) {
-			$("#all_list").append("<li style='padding-bottom:4px;'><a href='" + this["url"] + "'>" + this["regular-title"] + "</a></li>"); });
-	    });	
-	    
-        $.getJSON("https://www.msjo.kr/api/read/json?start=20&num=20&callback=?", function(data) {
-        $("#all_list2").empty();
-		$.each(data.posts, function(i, posts) {
-			$("#all_list2").append("<li style='padding-bottom:4px;'><a href='" + this["url"] + "'>" + this["regular-title"] + "</a></li>"); });
-	    });	
-	    
-        $.getJSON("https://www.msjo.kr/api/read/json?start=40&num=20&callback=?", function(data) {
-        $("#all_list3").empty();
-		$.each(data.posts, function(i, posts) {
-			$("#all_list3").append("<li style='padding-bottom:4px;'><a href='" + this["url"] + "'>" + this["regular-title"] + "</a></li>"); });
-	    });		    
-	
-		$(document).ready(function(){
-	        $(".video-player").fitVids();
-			$(".audio-embed").fitVids({ customSelector: "iframe[src^='https://w.soundcloud.com']"});
-			$('.photoset-grid').photosetGrid();
-			$('input').placeholder();
-		});
-	</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$.getJSON("https://www.msjo.kr/api/read/json?start=0&num=10&callback=?", function(data) {
+	$("#xxx").empty();
+	$.each(data.posts, function(i, posts) {
+		$("#xxx").append("<li style='list-style-type:none; margin:0; padding:0; line-height:22px;'><a href='" + this["url"] + "'>ㆍ" + cutStr(this["regular-title"], 22) + " ⋅⋅</a></li>"); });
+});	
+</script>
 ```
 
 ##### 게시물 목록 가져오기
