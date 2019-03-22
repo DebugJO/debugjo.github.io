@@ -3,7 +3,7 @@
 * [git.msjo.kr](http://git.msjo.kr) (debugjo.github.io)
 
 ##### 게시물 목록 가져오기
-```html
+```
 <script type="text/javascript" src="http://www.msjo.kr/api/read/json"></script>
 <ul>
 <script type="text/javascript">
@@ -28,7 +28,7 @@ H3 CSS 수정할 목록
 }
 
 #main-content h3 {
-	margin-top: 24px;
+    margin-top: 24px;
     margin-bottom: 8px;
     font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
     font-size: 18px;
