@@ -3,7 +3,7 @@
 * [git.msjo.kr](http://git.msjo.kr) (debugjo.github.io)
 
 ##### 게시물 목록 가져오기
-```
+```html
 <script type="text/javascript" src="http://www.msjo.kr/api/read/json"></script>
 <ul>
 <script type="text/javascript">
@@ -17,7 +17,7 @@
 ```
 
 H3 CSS 수정할 목록
-```
+```html
 <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 <style>
 #main-content h3:before {
