@@ -19,11 +19,9 @@ $.getJSON("https://www.msjo.kr/api/read/json?start=0&num=10&callback=?", functio
 <script type="text/javascript" src="http://www.msjo.kr/api/read/json"></script>
 <ul>
 <script type="text/javascript">
-	for (var i = 0; i < 20; i++) {
-		document.write('<li><a style="font-family:Arial, Malgun Gothic;font-size:14px;" 
-			href="' + tumblr_api_read['posts'][i]['url'] + '">' 
-		+ tumblr_api_read['posts'][i]['regular-title'] + '</a></li>');
-	}
+for (var i = 0; i < 20; i++) {
+	document.write('<li><a style="font-family:Arial, Malgun Gothic;font-size:14px;" href="' + tumblr_api_read['posts'][i]['url'] + '">' + tumblr_api_read['posts'][i]['regular-title'] + '</a></li>');
+}
 </script>
 </ul>
 ```
