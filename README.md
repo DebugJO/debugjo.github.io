@@ -14,8 +14,8 @@ $.getJSON("https://www.msjo.kr/api/read/json?start=0&num=10&callback=?", functio
 </script>
 ```
 
-##### 게시물 목록 가져오기
-```
+#### 게시물 목록 가져오기
+```html
 <script type="text/javascript" src="http://www.msjo.kr/api/read/json"></script>
 <ul>
 <script type="text/javascript">
