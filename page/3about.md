@@ -14,9 +14,10 @@ type: page
 * Email : me@msjo.kr
 * Telegram : @debug
 
-## 제목2
-1. 테스트3
-2. 테스트4
+## SNS(Social Networking Service)
+* GitHub : [git.msjo.kr](https://git.msjo.kr) : `github.com/debugjo`
+* Slack : [msjokr.slack.com](https://msjokr.slack.com/) : `me@msjo.kr`
+* Trello : [trello.com/debugjo](https://trello.com/debugjo) : `me@msjo.kr`
 
 ## 내용
 가나다
