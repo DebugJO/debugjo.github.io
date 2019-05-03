@@ -25,3 +25,10 @@ type: page
 * **데이터베이스** : Oracle, SQL Server, PostgreSQL, MySQL, SQLite : Data Modeling
 * **개발언어** : C#, C++, Java, Swift, Pascal, Python, PHP, Spring, ASP.NET MVC
 * 웹스크립트 : HTML, CSS, JavaScript, JSON, XML
+
+## IT Carrier
+* **현재** : 기술이사(CTO), 프리랜서
+* 강의 : 대기업, 공공기관, 대학 : Linux, OSS 강의
+* 집필 : 대학교재, 학원교재, IT잡지기고, 교육기관PPT
+* **개발** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
+* 지원 : 지자체, 대학, 공공기관 : Linux / Unix Server, MPI, Database
