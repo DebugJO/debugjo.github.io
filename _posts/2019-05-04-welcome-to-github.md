@@ -2,7 +2,7 @@
 layout: post
 title:  "Webcome to Github Pages"
 date:   2019-05-04 04:06:00
-categories: github
+categories: Github
 tags: github
 excerpt: Github 페이지 생성
 mathjax: true
