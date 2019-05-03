@@ -10,7 +10,7 @@ remote_theme : Gaohaoyang/gaohaoyang.github.io
 title: MSJO.kr
 brief-intro: Software Engineer/Developer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://debugjo.github.io" # the base hostname & protocol for your site
+url: "https://git.msjo.kr" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
