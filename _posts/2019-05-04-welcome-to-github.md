@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Github 페이지 만들기"
-categories: .NET_C#_Programming
+categories: [.NET C# Programming]
 tags: c#
 ---
 
