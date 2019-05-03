@@ -18,7 +18,7 @@ type: page
 * Telegram : @debug
 
 ## SNS(Social Network Service)
-* GitHub : [git.msjo.kr](https://git.msjo.kr) : `github.com/debugjo`
+* Facebook : [facebook.com/debugjo](https://www.facebook.com/debugjo) : `debugjo`
 * Slack : [msjokr.slack.com](https://msjokr.slack.com/) : `me@msjo.kr`
 * Trello : [trello.com/debugjo](https://trello.com/debugjo) : `me@msjo.kr`
 
