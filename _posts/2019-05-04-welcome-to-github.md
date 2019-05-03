@@ -4,7 +4,7 @@ title:  "Webcome to Github Pages"
 date:   2019-05-04 04:06:00
 categories: github
 tags: github
-excerpt: 当年创建 jekyll 时默认的一篇文章，没什么意义，我也一直没删除，留个纪念吧。
+excerpt: Github 페이지 생성
 mathjax: true
 ---
 
