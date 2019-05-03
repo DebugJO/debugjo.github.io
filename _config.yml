@@ -14,7 +14,7 @@ url: "https://git.msjo.kr" # the base hostname & protocol for your site
 permalink: /:year/:month/:day/:title/
 
 # other links
-twitter_username: debugjo
+# twitter_username: debugjo
 facebook_username: debugjo
 github_username:  DebugJO
 email: me@msjo.kr
