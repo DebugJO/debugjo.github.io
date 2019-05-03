@@ -14,7 +14,7 @@ type: page
 * Email : me@msjo.kr
 * Telegram : @debug
 
-## SNS(Social Networking Service)
+## SNS(Social Network Service)
 * GitHub : [git.msjo.kr](https://git.msjo.kr) : `github.com/debugjo`
 * Slack : [msjokr.slack.com](https://msjokr.slack.com/) : `me@msjo.kr`
 * Trello : [trello.com/debugjo](https://trello.com/debugjo) : `me@msjo.kr`
