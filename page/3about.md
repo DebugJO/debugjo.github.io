@@ -9,9 +9,10 @@ type: page
 * content
 {:toc}
 
-## 제목1
-* 테스트1
-* 테스트2
+## CONTACT
+* **MSJO**™ UTC +08:00
+* Email : me@msjo.kr
+* Telegram : @debug
 
 ## 제목2
 1. 테스트3
