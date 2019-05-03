@@ -9,6 +9,8 @@ type: page
 * content
 {:toc}
 
+홈페이지를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.
+
 ## CONTACT
 * **MSJO**™ UTC +08:00
 * Email : me@msjo.kr
