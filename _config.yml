@@ -14,10 +14,10 @@ url: "https://git.msjo.kr" # the base hostname & protocol for your site
 permalink: /:year/:month/:day/:title/
 
 # other links
-# twitter_username: gaohaoyang126
-# facebook_username: gaohaoyang.water
-# github_username:  Gaohaoyang
-# email: gaohaoyang126@126.com
+twitter_username: debugjo
+facebook_username: debugjo
+github_username:  DebugJO
+email: me@msjo.kr
 # weibo_username: 3115521wh
 # zhihu_username: gaohaoyang
 # linkedIn_username: gaohaoyang
