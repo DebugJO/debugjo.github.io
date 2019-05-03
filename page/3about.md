@@ -9,7 +9,8 @@ type: page
 * content
 {:toc}
 
-홈페이지를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.
+홈페이지를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.<br>
+GitHub [https://github.com/debugjo](https://github.com/debugjo) 메인 페이지 입니다.
 
 ## CONTACT
 * **MSJO**™ UTC +08:00
@@ -34,6 +35,3 @@ type: page
 * 집필 : 대학교재, 학원교재, IT잡지기고, 교육기관PPT
 * **개발** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
 * 지원 : 지자체, 대학, 공공기관 : Linux / Unix Server, MPI, Database
-
-## Welcome to GitHub Pages.
-GitHub [https://github.com/debugjo](https://github.com/debugjo) 메인 페이지 입니다.
