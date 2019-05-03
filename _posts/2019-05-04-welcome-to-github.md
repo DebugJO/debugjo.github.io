@@ -2,7 +2,7 @@
 layout: post
 title:  "Github 페이지 만들기"
 date:   2019-05-04 04:06:00
-categories: .NET_C#_Programming
+categories: ".NET C# Programming"
 tags: .net c#
 mathjax: true
 ---
