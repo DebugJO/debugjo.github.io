@@ -19,18 +19,9 @@ type: page
 * Slack : [msjokr.slack.com](https://msjokr.slack.com/) : `me@msjo.kr`
 * Trello : [trello.com/debugjo](https://trello.com/debugjo) : `me@msjo.kr`
 
-## 내용
-가나다
-**마바사**
-
-### H3
-h3
-
-#### h4
-h4
-
-##### h5
-h5
-
-###### h6
-h6
+## Software Engineer / Developer
+* 운영체제 : macOS, UNIX, Linux, Windows Server : MPI
+* 개발툴 : IntelliJ IDEA, QT Creator, Visual Studio.NET, Delphi / C++Builder, Xcode
+* **데이터베이스** : Oracle, SQL Server, PostgreSQL, MySQL, SQLite : Data Modeling
+* **개발언어** : C#, C++, Java, Swift, Pascal, Python, PHP, Spring, ASP.NET MVC
+* 웹스크립트 : HTML, CSS, JavaScript, JSON, XML
