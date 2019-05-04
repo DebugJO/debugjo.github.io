@@ -10,12 +10,13 @@
 * https://github.com/kakao/kakao.github.io
 
 #### Categories
-* \[C# .NET Programming\]
 * \[GitHub\]
-* \[Web Development\]
-* \[Delphi, C/C++, QT\]
-* \[Database, Modeling\]
 * \[Server Technology\]
 * \[Development Tools\]
+* \[Database, Modeling\]
+* \[C# .NET Programming\]
+* \[Delphi, C/C++, QT\]
 * \[Java, Spring Boot\]
-* \[Python, Script Language\]
+* \[Python, Swift, Etc\]
+* \[Web Development\]
+
