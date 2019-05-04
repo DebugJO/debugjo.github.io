@@ -21,6 +21,22 @@
 * \[macOS, iOS, Swift\]
 * \[Liberal Arts\]
 
+##### Default Contents
+```
+---
+layout: post
+title:  "예전 홈페이지에 있던 자료"
+categories: [GitHub]
+tags: github, source
+author: MsJ
+---
+
+* content
+{:toc}
+
+#### 주제
+```
+
 ##### Font Size (16px)
 ```css
 h1 {
