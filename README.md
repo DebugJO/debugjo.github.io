@@ -18,3 +18,4 @@
 * \[Server Technology\]
 * \[Development Tools\]
 * \[Java, Spring Boot\]
+* \[Python, Script Language\]
