@@ -6,5 +6,8 @@
 ##### Theme
 * https://github.com/Gaohaoyang/gaohaoyang.github.io
 
+##### Reference
+* https://github.com/kakao/kakao.github.io
+
 #### Categories
 * \[C# .NET Programming\]
