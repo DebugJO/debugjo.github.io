@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "블로그에 사용하는 각주(출처) 스타일 예"
+categories: [Liberal Arts]
+tags: 참고문헌
+author: MsJ
+---
+
+* content
+{:toc}
+
+* 저서 : 글쓴이, 책이름, 출판사, 출판연도, 인용한 쪽 수
+* 번역서 : 글쓴이, 책이름, 옮긴이, 출판사, 출판연도, 인용한 쪽 수
+* 신문기사 : 기사제목, 신문이름, 날짜, 면 수
+* 논문 : 글쓴이, 논문제목, 논문기재 책(잡지), 잡지 권(호)수, (출판사), 출판연도, 인용한 쪽 수
+* 인터넷기사 : 기사제목, 매체이름, 작성일시, URL, 접속일자
+* 사전 : 단어(항목), 사전이름, 출판사, 출판연도
+* 인터넷 사전(검색어) : 사이트 이름, 검색어(항목), URL, 참고한 날짜
+* 바로 위 참고 : ibid, p.100.
+* 본문 내 다시 참고 : 글쓴이, op. cit, p.100.
+* 참고문헌 작성법 안내 : [부산대학교](https://lib.pusan.ac.kr/research/thesis-guide/guide-reference/) | [서울대학교](http://libguide.snu.ac.kr/citation) | [University of Pittsburgh](https://pitt.libguides.com/citationhelp)
