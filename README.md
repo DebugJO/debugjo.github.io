@@ -15,3 +15,4 @@
 * \[Web Development\]
 * \[Delphi, C/C++, QT\]
 * \[Database\]
+* \[Server Technology\]
