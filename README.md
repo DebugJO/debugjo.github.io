@@ -19,4 +19,4 @@
 * \[Java, Spring Boot\]
 * \[Python, Swift, Etc\]
 * \[Web Development\]
-
+* \[Liberal Arts\]
