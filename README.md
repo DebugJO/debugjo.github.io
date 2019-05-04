@@ -13,5 +13,5 @@
 * \[C# .NET Programming\]
 * \[GitHub\]
 * \[Web Development\]
-* \[Delphi & C++ Builder\]
+* \[Delphi, C/C++, QT\]
 * \[Database\]
