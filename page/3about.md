@@ -36,7 +36,7 @@ type: page
 * **개발** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
 * 지원 : 지자체, 대학, 공공기관 : Linux / Unix Server, MPI, Database
 
-## philosophical religion
+## Philosophical Religion
 * Ἐν ἀρχῇ ἦν ὁ Λόγος.
 * 諸法無我-傳識成智.
 * 道可道非常道-不言之敎.
