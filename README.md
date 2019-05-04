@@ -21,7 +21,7 @@
 * \[macOS, iOS, Swift\]
 * \[Liberal Arts\]
 
-##### Font Size
+##### Font Size (16px)
 ```css
 h1 {
     font-size: 30px;
