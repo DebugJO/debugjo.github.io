@@ -14,3 +14,4 @@
 * \[GitHub\]
 * \[Web Development\]
 * \[Delphi & C++ Builder\]
+* \[Database\]
