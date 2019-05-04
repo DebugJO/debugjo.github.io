@@ -22,7 +22,7 @@ type: page
 * Slack : [msjokr.slack.com](https://msjokr.slack.com/) : `me@msjo.kr`
 * Trello : [trello.com/debugjo](https://trello.com/debugjo) : `me@msjo.kr`
 
-## Software Engineer/Developer
+## Software Engineer / Developer
 * 운영체제 : macOS, UNIX, Linux, Windows Server : MPI
 * 개발툴 : IntelliJ IDEA, QT Creator, Visual Studio.NET, Delphi / C++Builder, Xcode
 * **데이터베이스** : Oracle, SQL Server, PostgreSQL, MySQL, SQLite : Data Modeling
