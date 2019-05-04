@@ -17,3 +17,4 @@
 * \[Database, Modeling\]
 * \[Server Technology\]
 * \[Development Tools\]
+* \[Java, Spring Boot\]
