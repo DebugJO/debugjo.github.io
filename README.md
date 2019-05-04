@@ -14,6 +14,6 @@
 * \[GitHub\]
 * \[Web Development\]
 * \[Delphi, C/C++, QT\]
-* \[Database\]
+* \[Database, Modeling\]
 * \[Server Technology\]
 * \[Development Tools\]
