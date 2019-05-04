@@ -17,6 +17,6 @@
 * \[C# .NET Programming\]
 * \[Delphi, C/C++, QT\]
 * \[Java, Spring Boot\]
-* \[Python, Script ETC\]
+* \[Python, Script, Etc.\]
 * \[macOS, iOS, Swift\]
 * \[Liberal Arts\]
