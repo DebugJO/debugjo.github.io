@@ -13,12 +13,12 @@
 * \[GitHub\]
 * \[Server Technology\]
 * \[Development Tools\]
-* \[Database, Modeling\]
+* \[Database. Modeling\]
 * \[C# .NET Programming\]
-* \[Delphi, C/C++, QT\]
-* \[Java, Spring Boot\]
-* \[Python, Script, Etc.\]
-* \[macOS, iOS, Swift\]
+* \[Delphi. C/C++. QT\]
+* \[Java. Spring Boot\]
+* \[Python. Script. Etc.\]
+* \[macOS. iOS. Swift\]
 * \[Liberal Arts\]
 
 ##### Default Contents
