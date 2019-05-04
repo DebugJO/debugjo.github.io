@@ -12,5 +12,5 @@
 #### Categories
 * \[C# .NET Programming\]
 * \[GitHub\]
-* \[.NET Web Development\]
+* \[Web Development\]
 * \[Delphi & C++ Builder\]
