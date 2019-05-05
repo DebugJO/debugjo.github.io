@@ -41,7 +41,7 @@ author: MsJ
 * https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 
 ##### Font Size (16px)
-```css
+```
 h1 : 30px : normal
 
 h2 : 26px : normal : hr
