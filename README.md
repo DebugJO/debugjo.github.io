@@ -41,29 +41,15 @@ author: MsJ
 * https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
 
 ##### Font Size (16px)
-```css
-h1 {
-    font-size: 30px;
-}
-h2 {
-    font-size: 26px;
-    border-bottom: 1px solid #eee;
-    margin: 50px 0 25px;
-}
-h3 {
-    font-size: 23px;
-    margin: 50px 0 20px;
-}
-h4 {
-    font-size: 19px;
-    margin: 30px 0 10px;
-}
-h5 {
-    font-size: 17px;
-    margin: 20px 0 10px;
-}
-h6 {
-    font-size: 16px;
-    margin: 10px 0 5px;
-}
 ```
+h1 : 30px : normal
+
+h2 : 26px : normal : hr
+
+h3 : 23px : normal
+
+h4 : 19px : bold
+
+h5 : 17px : bold
+
+h6 : 16px : bold
