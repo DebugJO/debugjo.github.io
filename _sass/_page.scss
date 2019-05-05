@@ -55,6 +55,14 @@
                         color: #9e9d9d;
                     }
                     a {
+                        color: #4d6dad;
+                        transition: 0.5s ease;
+                        &:hover {
+                            color: #223253;
+                        }
+                    }                    
+                    /*
+                    a {
                         padding: 0 5px;
                         background-color: #9e9d9d;
                         color: #fff;
@@ -64,6 +72,7 @@
                             background-color: #b6b6b9;
                         }
                     }
+                    */
                 }
                 .pageTag {
                     i {
