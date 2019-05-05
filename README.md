@@ -37,6 +37,9 @@ author: MsJ
 #### 주제
 ```
 
+##### Languages (code)
+* https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+
 ##### Font Size (16px)
 ```css
 h1 {
