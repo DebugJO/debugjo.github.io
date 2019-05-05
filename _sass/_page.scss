@@ -79,6 +79,14 @@
                         color: #c6cbe9;
                     }
                     a {
+                        color: #4d6dad;
+                        transition: 0.5s ease;
+                        &:hover {
+                            color: #223253;
+                        }
+                    }                     
+                    /*
+                    a {
 
                         // border: 1px solid #aaa;
                         padding: 0 5px;
@@ -91,6 +99,7 @@
                             background-color: #c0ddc7;
                         }
                     }
+                    */
                 }
             }
         }
