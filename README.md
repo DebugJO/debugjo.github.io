@@ -48,9 +48,9 @@ h2 : 26px : normal : hr
 
 h3 : 23px : normal
 
-h4 : 19px : bold
+h4 : 19px : normal
 
-h5 : 17px : bold
+h5 : 17px : normal
 
-h6 : 16px : bold
+h6 : 16px : normal
 ```
