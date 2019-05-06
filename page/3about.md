@@ -13,7 +13,7 @@ type: page
 \- GitHub [https://github.com/debugjo](https://github.com/debugjo) 메인 페이지 입니다.
 
 ## CONTACT
-* **MSJO**™ UTC +08:00
+* **MSJO**™ UTC +08:00, DaeHanMinGuk, Corea
 * Email : me@msjo.kr
 * Telegram : @debug
 
