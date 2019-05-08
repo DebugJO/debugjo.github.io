@@ -29,6 +29,7 @@ title:  "예전 홈페이지에 있던 자료"
 categories: [GitHub]
 tags: github source
 author: MsJ
+mathjax: true
 ---
 
 * content
