@@ -74,7 +74,7 @@ layout: default
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     Recent Posts
                 </div>
-                <ul class="content-ul" recent>
+                <ul class="content-ul" recent style="word-break: keep-all;">
                     {% for post in site.posts offset: 0 limit: 10  %}
                         <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
                     {% endfor %}
