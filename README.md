@@ -11,7 +11,7 @@
 
 #### Categories
 * \[GitHub\]
-* \[Server ITC Technology\]
+* \[Server IT Technology\]
 * \[Development Tools\]
 * \[Database. Modeling\]
 * \[C# .NET Programming\]
