@@ -12,13 +12,11 @@
 #### Categories
 * \[GitHub\]
 * \[Server IT Technology\]
-* \[Development Tools\] --> 미사용 중
 * \[Database. Modeling\]
 * \[C# .NET Programming\]
 * \[Delphi. C/C++. QT\]
 * \[Java. Spring Boot\]
 * \[Python. Script. Etc.\]
-* \[macOS. iOS. Swift\] --> 미사용 중
 * \[Liberal Arts\]
 
 ##### Default Contents
