@@ -18,7 +18,7 @@
 * \[Java. Spring Boot\]
 * \[Python. Script. Etc.\]
 * \[Liberal Arts\]
-* \[macOS, iOS, Swift\]
+* \[macOS. iOS. Swift\]
 
 ##### Default Contents
 ```
