@@ -29,13 +29,25 @@ title:  "예전 홈페이지에 있던 자료"
 categories: [GitHub]
 tags: github source
 author: MsJ
-mathjax: true
 ---
 
 * content
 {:toc}
 
 #### 주제
+```
+
+```
+---
+mathjax: true
+---
+
+Block Mathjax 
+$$
+f(x) = ax + b
+$$
+
+Inline Mathjax $a \neq b$
 ```
 
 ##### Languages (code)
