@@ -68,3 +68,13 @@ h5 : 17px : normal
 
 h6 : 16px : normal
 ```
+
+이미지
+```markdown
+![Alt text](/path/to/img.jpg)
+```
+
+동영상
+```liquid
+{% youtube http://youtu.be/2NI27q3xNyI %}
+```
