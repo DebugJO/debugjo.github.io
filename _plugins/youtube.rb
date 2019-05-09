@@ -3,7 +3,7 @@ class YouTube < Liquid::Tag
 
   def initialize(tagName, markup, tokens)
     super
-
+    @content = markup
     if markup =~ Syntax then
       @id = $1
 
@@ -20,6 +20,7 @@ class YouTube < Liquid::Tag
   end
 
   def render(context)
+  @id = "#{context[@content.strip]}"
     # "<iframe width=\"#{@width}\" height=\"#{@height}\" src=\"http://www.youtube.com/embed/#{@id}\" frameborder=\"0\"allowfullscreen></iframe>"
     "<iframe width=\"#{@width}\" height=\"#{@height}\" src=\"http://www.youtube.com/embed/#{@id}?color=white&theme=light\"></iframe>"
   end
