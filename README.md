@@ -76,6 +76,5 @@ h6 : 16px : normal
 
 동영상
 ```
-<iframe width="668px" height="376px" src="https://www.youtube.com/embed/ID?start=1" frameborder="0" allowfullscreen>
-</iframe>
+<iframe width="668px" height="376px" src="https://www.youtube.com/embed/ID?start=1" frameborder="0" allowfullscreen></iframe>
 ```
