@@ -70,11 +70,11 @@ h6 : 16px : normal
 ```
 
 이미지
-```markdown
+```
 ![Alt text](/path/to/img.jpg)
 ```
 
 동영상
-```liquid
-{% youtube http://youtu.be/2NI27q3xNyI %}
+```
+<iframe width="668px" height="376px" src="https://www.youtube.com/embed/zBxpRenQEV4" frameborder="0" allowfullscreen></iframe>
 ```
