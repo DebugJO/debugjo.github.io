@@ -25,6 +25,14 @@
       </script>
       <gcse:searchbox-only></gcse:searchbox-only>  
     </div>
-
+    <div>
+      <script>
+        $(document).ready(function(){
+          var txt_title = "'" + decodeURIComponent(getUrlVars()['q']) + "' - 검색 결과"
+          $("#page_title").text(txt_title);
+          document.title = txt_title;
+        });
+      </script>
+    </div>
   </body>
 </html>  
