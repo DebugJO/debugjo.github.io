@@ -10,7 +10,7 @@ type: page
 {:toc}
 
 블로그(WebSite)를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.<br>
-￭ Follow me on <i class="fa fa-github" aria-hidden="true"></i>[**GitHub**](https://github.com/debugjo)
+<i class="fa fa-github" aria-hidden="true"></i> Follow me on [**GitHub**](https://github.com/debugjo)
 
 ##### CONTACT
 * **MSJO**™ UTC +08:00, DaeHanMinGuk, Corea
