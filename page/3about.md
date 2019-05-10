@@ -14,8 +14,8 @@ type: page
 
 ##### CONTACT
 * **MSJO**™ UTC +08:00, DaeHanMinGuk, Corea
-* Email : me@msjo.kr
-* Telegram : @debug
+* <i class="fa fa-envelope-o" aria-hidden="true"></i> me@msjo.kr
+* <i class="fa fa-telegram" aria-hidden="true"></i> @debug
 
 ##### SNS(Social Network Service)
 * Facebook : [facebook.com/debugjo](https://www.facebook.com/debugjo) : `debugjo`
