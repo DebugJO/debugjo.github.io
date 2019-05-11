@@ -14,13 +14,14 @@ type: page
 
 ##### CONTACT
 * **MSJO**™ UTC +08:00, DaeHanMinGuk, Corea
-* <i class="fa fa-envelope-o" aria-hidden="true"></i> me@msjo.kr
-* <i class="fa fa-telegram" aria-hidden="true"></i> @debug
+* <i class="fa fa-envelope" aria-hidden="true"></i> me@msjo.kr
+* <i class="fa fa-telegram" aria-hidden="true"></i> @debug : [t.me/debug](https://t.me/debug)
 
 ##### SNS(Social Network Service)
-* Facebook : [facebook.com/debugjo](https://www.facebook.com/debugjo) : `debugjo`
-* Slack : [msjokr.slack.com](https://msjokr.slack.com/) : `me@msjo.kr`
-* Trello : [trello.com/debugjo](https://trello.com/debugjo) : `me@msjo.kr`
+* <i class="fa fa-twitter" aria-hidden="true"></i> [twitter.com/debugjo](https://twitter.com/debugjo)
+* <i class="fa fa-facebook-official" aria-hidden="true"></i> [facebook.com/debugjo](https://www.facebook.com/debugjo)
+* <i class="fa fa-slack" aria-hidden="true"></i> [msjokr.slack.com](https://msjokr.slack.com/)
+* <i class="fa fa-trello" aria-hidden="true"></i> [trello.com/debugjo](https://trello.com/debugjo)
 
 ##### Software Engineer / Developer
 * 운영체제 : macOS, UNIX, Linux, Windows Server : MPI
