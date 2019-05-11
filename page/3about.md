@@ -1,7 +1,8 @@
 ---
 layout: page
-title: <i class="fa fa-heart" aria-hidden="true"></i> About
+title: About
 permalink: /about/
+icon: heart
 type: page
 ---
 
