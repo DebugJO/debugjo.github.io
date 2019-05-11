@@ -8,8 +8,7 @@ type: page
 * content
 {:toc}
 
-블로그(WebSite)를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.<br>
-<i class="fa fa-github" aria-hidden="true"></i> Follow me on [**GitHub**](https://github.com/debugjo)
+블로그(WebSite)를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.
 
 ##### CONTACT
 * **MSJO**™ UTC +08:00, DaeHanMinGuk, Corea
@@ -17,6 +16,7 @@ type: page
 * <i class="fa fa-telegram" aria-hidden="true"></i> @debug : [t.me/debug](https://t.me/debug)
 
 ##### SNS(Social Network Service)
+* <i class="fa fa-github" aria-hidden="true"></i> [github.com/DebugJO](https://github.com/DebugJO)
 * <i class="fa fa-twitter" aria-hidden="true"></i> [twitter.com/debugjo](https://twitter.com/debugjo)
 * <i class="fa fa-facebook-official" aria-hidden="true"></i> [facebook.com/debugjo](https://www.facebook.com/debugjo)
 * <i class="fa fa-slack" aria-hidden="true"></i> [msjokr.slack.com](https://msjokr.slack.com/)
