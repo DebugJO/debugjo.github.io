@@ -83,3 +83,12 @@ Font Awesome
 ```
 https://fontawesome.com/v4.7.0/icons/
 ```
+
+Table
+```
+| A | B | C | D |
+|:-:|:-:|:-:|:-:|
+| 1 | a | b | c |
+| 2 | a | b | c |
+| 3 | a | b | c |
+```
