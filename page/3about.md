@@ -12,7 +12,7 @@ type: page
 블로그(WebSite)를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.
 
 ##### CONTACT
-* **MSJO**™ UTC +08:00, DaeHanMinGuk, Corea
+* **MSJO**™(Debug JO) UTC +08:00, DaeHanMinGuk, Corea
 * <i class="fa fa-envelope" aria-hidden="true"></i> me@msjo.kr
 * <i class="fa fa-telegram" aria-hidden="true"></i> @debug : [t.me/debug](https://t.me/debug)
 
