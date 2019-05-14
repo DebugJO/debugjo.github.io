@@ -61,13 +61,33 @@
       .gsib_a {  padding: 0 !important; } 
       .gsib_a input { background-image: none !important; height: 26px !important; margin: 0 !important; } 
       .gsc-cursor-box { border: 0 !important; }
+	    #queries {
+		    font-size: 13px;
+		    font-family: 'Noto Sans KR','Malgun Gothic';
+		    width: 800px;
+		    word-break: keep-all;
+		    padding: 0 0 14px 14px;
+		    word-spacing: 10px;
+	    }
+	    #queries > a {
+		    color: #6a87ea;
+		    text-decoration: none;
+	    }
+      .qrySearch {
+		    margin-left: 14px;
+		    font-family: 'Noto Sans KR','Malgun Gothic';
+		    color: #333;
+		    font-size: 16px;
+		    border-bottom: 1px solid #eaeaea;
+		    width: 800px;
+	    }
     </style>
   </head>
   <body>
     <div class="msjo">
       <a href ="https://msjo.kr"><font color="#c7553e">M</font><font color="#e9bb35">S</font><font color="#6aa158">J</font><font color="#5c86ef">O</font><font color="#777777">.kr</font></a>
     </div>
-    <div>
+	<div>
       <script>
         (function() {
           var cx = '016605176942684846627:rwgjkmtagf8';
@@ -81,8 +101,19 @@
       </script>
       <gcse:search linkTarget="_parent"></gcse:search>
     </div>
-    <div style="padding-left: 14px; padding-bottom: 20px;">
+    <!-- 
+	<div style="padding-left: 14px; padding-bottom: 20px;">
       <a class="butn" href="https://msjo.kr">HOME</a>  
-    </div>  
+    </div> 
+	-->
+	<div class="qrySearch">
+		인기검색어 (Popular Searches) <span style="font-size:12px;color:#777;"> - weekly updates</span>
+	</div>
+	<div id="queries"></div>
+	<script src="https://cse.google.com/query_renderer.js"></script>
+	<script src="https://cse.google.com/api/016605176942684846627:rwgjkmtagf8/popularqueryjs?view=overall&callback=(new+PopularQueryRenderer(document.getElementById(%22queries%22))).render"></script>
+	<div style="width:800px;padding-left:14px;text-align:center;padding-bottom:20px;">
+		<span style="font-family:'Noto Sans KR','Malgun Gothic';font-size:12px;">&copy; 2016 MSJO.kr</span>
+	</div>
   </body>
 </html>  
