@@ -13,10 +13,10 @@
 * \[GitHub\]
 * \[Server IT Technology\]
 * \[DatabaseㆍModeling\]
-* \[C# .NET Programming\]
+* \[C#ㆍ.NET Programming\]
 * \[DelphiㆍC/C++ㆍQT\]
-* \[Java. Spring Boot\]
-* \[PythonㆍScriptㆍEtc.\]
+* \[JavaㆍSpring Boot\]
+* \[PythonㆍScriptㆍEtc\]
 * \[Liberal Arts\]
 * \[macOSㆍiOSㆍSwift\]
 
