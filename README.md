@@ -14,7 +14,7 @@
 * \[ServerㆍIT Technology\]
 * \[DatabaseㆍModeling\]
 * \[C#ㆍ.NET Programming\]
-* \[Delphi/PascalㆍC/C++ㆍQT\]
+* \[DelphiㆍC/C++ㆍQT\]
 * \[JavaㆍSpring Boot\]
 * \[PythonㆍScriptㆍEtc\]
 * \[Liberal Arts\]
