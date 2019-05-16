@@ -11,7 +11,7 @@
 
 #### Categories
 * \[GitHub\]
-* \[Server IT Technology\]
+* \[ServerㆍIT Technology\]
 * \[DatabaseㆍModeling\]
 * \[C#ㆍ.NET Programming\]
 * \[DelphiㆍC/C++ㆍQT\]
