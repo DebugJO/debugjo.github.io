@@ -12,13 +12,13 @@
 #### Categories
 * \[GitHub\]
 * \[Server IT Technology\]
-* \[Database. Modeling\]
+* \[DatabaseㆍModeling\]
 * \[C# .NET Programming\]
-* \[Delphi. C/C++. QT\]
+* \[DelphiㆍC/C++ㆍQT\]
 * \[Java. Spring Boot\]
-* \[Python. Script. Etc.\]
+* \[PythonㆍScriptㆍEtc.\]
 * \[Liberal Arts\]
-* \[macOS. iOS. Swift\]
+* \[macOSㆍiOSㆍSwift\]
 
 ##### Default Contents
 ```
