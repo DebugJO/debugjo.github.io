@@ -1,13 +1,13 @@
 <div class="post-recent">
     <div class="pre">
         {% if page.previous %}
-        <p><i class="fa fa-caret-left" aria-hidden="true"></i> <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
+        <p><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
         {% endif %}
     </div>
     <div class="nex">
 
         {% if page.next %}
-        <p><i class="fa fa-caret-right" aria-hidden="true"></i> <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
+        <p><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
         {% endif %}
     </div>
 </div>
