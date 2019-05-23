@@ -9,7 +9,8 @@ type: page
 * content
 {:toc}
 
-블로그(WebSite)를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.
+블로그를 찾아 주셔서 감사합니다. 용무가 있는 분은 언제든지 연락 주시기 바랍니다.<br>
+Thank you for visiting our WebSite. Please do not hesitate to contact me with any questions you may have.
 
 ##### CONTACT
 * **MSJO**™(*DebugJO*) UTC +08:00, DaeHanMinGuk, Corea
