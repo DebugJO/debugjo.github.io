@@ -117,8 +117,8 @@ table {
 p {
     margin: 0 0 14px;
 }
-div > .left > ul > li > .excerpt > p { text-align: justify; }
-div > .left > article > p { text-align: justify; }
+div > .left > ul > li > .excerpt > p { text-align: justify; word-break: break-all; }
+div > .left > article > p { text-align: justify; word-break: break-all; }
 img {
     max-width: 100%;
 }
