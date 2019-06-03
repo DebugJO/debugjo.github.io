@@ -33,7 +33,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 ##### IT Carrier
 * **현재** : 기술이사(CTO), 프리랜서
 
-	| 최근 |     Projects      |       IDE       |  Database  |
+	| Latest |     Projects      |       IDE       |  Database  |
 	| :--: | :---------------: | :-------------: | :--------: |
 	|  1   |   대학 학사관리   | C#, ASP.NET MVC | SQL Server |
 	|  2   |  금융권 정산관리  |     Delphi,  Spring Framework |   Oracle   |
