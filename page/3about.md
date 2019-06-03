@@ -32,6 +32,11 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 ##### IT Carrier
 * **현재** : 기술이사(CTO), 프리랜서
+	| 최근 |     Projects      |       IDE       |  Database  |
+	| :--: | :---------------: | :-------------: | :--------: |
+	|  1   |   대학 학사관리   | C#, ASP.NET MVC | SQL Server |
+	|  2   |  금융권 정산관리  |     Delphi,  Spring Framework |   Oracle   |
+	|  3   | 의료기관 검체관리 |        Delphi, C#        | SQL Server |
 * 강의 : 대기업, 공공기관, 대학 : Linux, OSS 강의
 * 집필 : 대학교재, 학원교재, IT잡지기고, 교육기관PPT
 * **개발** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
