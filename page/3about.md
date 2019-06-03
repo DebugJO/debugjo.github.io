@@ -41,7 +41,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	
 * 강의 : 대기업, 공공기관, 대학 : Linux, OSS 강의
 * 집필 : 대학교재, 학원교재, IT잡지기고, 교육기관PPT
-* **개발** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관 : 업무용(DB) 애플리케이션
+* **개발** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관 : **업무용(DB) 애플리케이션**
 * 지원 : 지자체, 대학, 공공기관 : Linux / Unix Server, MPI, Database
 
 ##### Philosophical Religion
