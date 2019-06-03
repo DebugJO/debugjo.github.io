@@ -35,9 +35,9 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| Latest |     Projects      |       IDE       |  Database  |
 	| :--: | :---------------: | :-------------: | :--------: |
-	| 2018 1-4Q |   대학교 학사관리   | C#, ASP.NET MVC | SQL Server |
-	| 2019 1-1Q |  금융권 정산관리  |     Delphi,  Spring Framework |   Oracle   |
-	| 2019 2-3Q | 의료기관 검체관리 |        Delphi, C#        | SQL Server |
+	| 2018.1-4Q |   대학교 학사관리   | C#, ASP.NET MVC | SQL Server |
+	| 2019.1-1Q |  금융권 정산관리  |     Delphi,  Spring Framework |   Oracle   |
+	| 2019.2-3Q | 의료기관 검체관리 |        Delphi, C#        | SQL Server |
 	
 * 강의 : 대기업, 공공기관, 대학 : Linux, OSS 강의
 * 집필 : 대학교재, 학원교재, IT잡지기고, 교육기관PPT
