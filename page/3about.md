@@ -35,7 +35,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| Latest |     Projects      |       IDE       |  Database  |
 	| :--: | :---------------: | :-------------: | :--------: |
-	|  1   |   대학 학사관리   | C#, ASP.NET MVC | SQL Server |
+	|  1   |   대학교 학사관리   | C#, ASP.NET MVC | SQL Server |
 	|  2   |  금융권 정산관리  |     Delphi,  Spring Framework |   Oracle   |
 	|  3   | 의료기관 검체관리 |        Delphi, C#        | SQL Server |
 	
