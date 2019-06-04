@@ -8,8 +8,7 @@ type: page
 
 * content
 {:toc}
-
-Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have.
+`foreach (DebugJO MsJ in MSJOkr) { MsJ.Welcome(); }`<br>Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have.
 
 ##### CONTACT
 * **MSJO**™(*DebugJO*) UTC +08:00, DaeHanMinGuk, Corea
