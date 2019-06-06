@@ -9,7 +9,7 @@ type: page
 * content
 {:toc}
 
-Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have.
+Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have. - <i class="fa fa-user" aria-hidden="true"></i> MsJ 
 
 ##### CONTACT
 * **MSJO**™(*DebugJO*) UTC +08:00, DaeHanMinGuk, Corea
