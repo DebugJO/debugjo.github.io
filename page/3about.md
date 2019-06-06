@@ -9,10 +9,10 @@ type: page
 * content
 {:toc}
 
-Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have. - <i class="fa fa-user" aria-hidden="true"></i> MsJ 
+Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have. 
 
 ##### CONTACT
-* **MSJO**™(*DebugJO*) UTC +08:00, DaeHanMinGuk, Corea
+* <i class="fa fa-user" aria-hidden="true"></i> **MSJO**™(*DebugJO*) UTC +08:00, DaeHanMinGuk, Corea
 * <i class="fa fa-envelope" aria-hidden="true"></i> me@msjo.kr
 * <i class="fa fa-telegram" aria-hidden="true"></i> @debug [(t.me/debug)](https://t.me/debug)
 
