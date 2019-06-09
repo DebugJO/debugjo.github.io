@@ -45,7 +45,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 지원 : 지자체, 대학, 공공기관 : Linux / Unix Server, MPI, Database
 
 ##### Philosophical Religion
-* Ἐν ἀρχῇ ἦν ὁ Λόγος.
+* Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος
 * 諸法無我-傳識成智.
 * 道可道非常道-不言之敎.
 * 執其兩端-中庸不可能也.
