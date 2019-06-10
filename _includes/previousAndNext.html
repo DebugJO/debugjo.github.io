@@ -1,12 +1,9 @@
-<div class="post-recent" style="line-height: 10px; font-size:14px;">
-    <div class="pre">
-        {% if page.previous %}
-        <p>Prev ▪ <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
-        {% endif %}
-    </div>
-    <div class="nex">
-        {% if page.next %}
-        <p>Next ▪ <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
-        {% endif %}
-    </div>
+<div class="post-recent" style="text-align:center">
+    {% if page.previous %}
+    <a href="{{ page.previous.url | prepend: site.baseurl }}"><i class="fa fa-backward" aria-hidden="true"></i> 이전글</a>
+    {% endif %}
+    <span style="padding-left:10px;padding-right:10px;">&nbsp;</span>
+    {% if page.next %}
+    <a href="{{ page.next.url | prepend: site.baseurl }}"><i class="fa fa-forward" aria-hidden="true"></i> 다음글</a>
+    {% endif %}
 </div>
