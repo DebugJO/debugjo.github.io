@@ -1,13 +1,12 @@
-<div class="post-recent">
+<div class="post-recent" style="line-height: 0px;">
     <div class="pre">
         {% if page.previous %}
-        <p><i style="color:#6a6969;" class="fa fa-chevron-circle-left" aria-hidden="true"></i> <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
+        <p>Prev : <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
         {% endif %}
     </div>
     <div class="nex">
-
         {% if page.next %}
-        <p><i style="color:#6a6969;" class="fa fa-chevron-circle-right" aria-hidden="true"></i> <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
+        <p>Next : <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
         {% endif %}
     </div>
 </div>
