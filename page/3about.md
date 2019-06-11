@@ -31,7 +31,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 웹스크립트 : HTML, CSS, JavaScript, JSON, XML
 
 ##### IT Carrier
-* **현재** : 기술이사(CTO), 프리랜서
+* 최근 프로젝트
 
 	| Latest | Projects | IDE | Database |
 	| ------ | -------- | --- | -------- |
