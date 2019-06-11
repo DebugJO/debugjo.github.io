@@ -40,7 +40,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| 2019.2-3Q | 병의원 검체관리 | Delphi, C# | SQL Server |
 	
 * 주요 프로젝트
-* **업무용(DB) 애플리케이션** : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
+* 기타 업무용(DB) 애플리케이션 : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
 
 ##### Philosophical Religion
 * Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος
