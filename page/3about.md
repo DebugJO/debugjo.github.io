@@ -43,7 +43,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| --- | -------- | --- | -------- |
-	| Σ ~ 2018 |  |  |  |
+	| Σ ~ 2018 | 조직세포병리 LIS | Delphi, C#, ASP.NET | SQL Server |
 	| Σ ~ 2017 |  |  |  |
 	| Σ ~ 2016 |  |  |  |
 
