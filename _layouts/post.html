@@ -6,20 +6,16 @@ layout: default
     <div class="left">
         <h1 style="font-size:26px;">{{page.title}}</h1>
         <div class="label">
-
             <div class="label-card">
                 <i class="fa fa-calendar"></i>{{ page.date | date: "%F" }}
             </div>
-
             <div class="label-card">
                 {% if page.author %}<i class="fa fa-user"></i>{{ page.author }}
                 {% endif %}
             </div>
-
             <div class="label-card">
             {% include tag.html %}
             </div>
-
         </div>
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
