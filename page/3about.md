@@ -43,9 +43,9 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| --- | -------- | --- | -------- |
-	| Σ ~ 2018 | 조직세포병리 LIS | Delphi, C#, ASP.NET | SQL Server |
-	| Σ ~ 2017 | 병의원 검사결과 API | C#, Delphi, C++, (XML, JSON) | SQL Server, Oracle |
-	| Σ ~ 2016 | 전기제어 DSP | C++, QT/Embedded | SQLite |
+	| Σ ~ 2017 | 조직세포병리 LIS | Delphi, C#, ASP.NET | SQL Server |
+	| Σ ~ 2016 | 병의원 검사결과 API | C#, Delphi, C++, (XML, JSON) | SQL Server, Oracle |
+	| Σ ~ 2015 | 전기제어 DSP | C++, QT/Embedded | SQLite |
 	| L.T.A | 영상 콘텐츠 관리 | PHP, Python, Delphi  | MySQL, Oracle |
 	| L.T.A | DB 마이그레이션 | DB 성능튜닝/모델링 포함 | Oracle, SQL Server |
 	| OCC | MPI(CH) | Server OS, Fortran, C/C++ | -Preferences |
