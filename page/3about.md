@@ -51,7 +51,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| OCC | MPI(CH) | Server OS, Fortran, C/C++ | -Preferences |
 	| OCC | 공공기관 제안서 | Powerpoint, Keynote | -Paper |
 
-* 기타 업무용(DB) 애플리케이션 : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
+* 기타 업무용(DB) 애플리케이션 ⋮ 의료기관, 공공기관, 방송국, 교육기관, 금융기관
 
 ##### Philosophical Religion
 * Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος
