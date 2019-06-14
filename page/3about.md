@@ -48,6 +48,8 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| Σ ~ 2016 | 전기제어 DSP | C++, QT/Embedded | SQLite |
 	| L.T.A | 영상 콘텐츠 관리 | PHP, Python, Delphi  | MySQL, Oracle |
 	| L.T.A | DB 마이그레이션 | DB 성능튜닝/모델링 포함 | Oracle, SQL Server |
+	| - | MPI(CH) | Server OS, Fortran, C/C++ | - |
+	| - | 공공기관 제안서 | powerpoint, keynote | - |
 
 * 기타 업무용(DB) 애플리케이션 : 의료기관, 공공기관, 방송국, 교육기관, 금융기관
 
