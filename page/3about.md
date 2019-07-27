@@ -54,7 +54,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 기타 업무용(DB) 애플리케이션 ⋮ 의료기관, 공공기관, 방송국, 교육기관, 금융기관
 
 ##### Philosophical Religion
-* Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος and Tao
+* Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος, Tao
 * 諸法無我-傳識成智.
 * 道可道非常道-不言之敎.
 * 執其兩端-中庸不可能也.
