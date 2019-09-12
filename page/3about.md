@@ -43,7 +43,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 주요 프로젝트
 
 	| YMD | Projects | IDE | Database |
-	| --- | -------- | --- | -------- |
+	| :---: | -------- | --- | -------- |
 	| Σ ~ 2017 | 조직세포병리 LIS | Delphi, C#, ASP.NET | SQL Server |
 	| Σ ~ 2016 | 병의원 검사결과 API | C#, Delphi, C++, (XML, JSON) | SQL Server, Oracle |
 	| Σ ~ 2015 | 전기제어 DSP | C++, QT/Embedded | SQLite |
