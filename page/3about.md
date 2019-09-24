@@ -35,7 +35,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |
-	| 2019.10 | WPF           | 프로젝트 예정 |          |
+	| 2019.10 | WPF, ML.NET | 프로젝트 예정 | 머신러닝 |
 	| 2019.04 | 병의원 검체관리 | Delphi, C# | SQL Server |
 	| 2019.01 | 금융권 정산관리 | Delphi,  Java/Spring | Oracle |
 	| 2018.01 | 대학교 학사관리 | C#, ASP.NET MVC | SQL Server |
