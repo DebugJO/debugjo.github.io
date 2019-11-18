@@ -37,7 +37,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| :---: | -------- | --- | -------- |
 	| 2019.11 | 금융권 프로젝트 | Java(Spring Boot, gRPC) | Oracle |
 	| 2019.10 | 병의원 검사조회 | C#, WPF(MVVM) | SQL Server |
-	| 2019.04 | 병의원 검체관리 | Delphi, C# | SQL Server |
+	| 2019.04 | 병의원 검체관리 | Delphi, C#(C++) | SQL Server |
 	| 2019.01 | 금융권 정산관리 | Delphi,  Java/Spring | Oracle |
 	| 2018.01 | 대학교 학사관리 | C#, ASP.NET MVC | SQL Server |
 	
