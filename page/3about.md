@@ -53,6 +53,8 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| OCC | MPI(CH) | Server OS, Fortran, C/C++ | -Preferences |
 	| OCC | 공공기관 제안서 | Powerpoint, Keynote | -Papers |
 	
+* 주요 업무용 프로그램 프로젝트
+	
 	| Database App(CS) Projects |
 	| :-------- |
 	| 의료기관, 공공기관, 방송국, 교육기관, 금융기관 + (middleware) + Oracle, SQL Server, MySQL |	
