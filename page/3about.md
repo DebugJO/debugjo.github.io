@@ -35,8 +35,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |
-	| 2020.01 | 금융권 (예정) | Java(Spring Boot, gRPC) | Oracle |
-	| 2019.11 | 주문관리 API | Delphi, C++, C# | MySQL, SQLite |
+	| 2020.01 | 주문관리 API | Delphi, C++, C# | MySQL, SQLite |
 	| 2019.10 | 병의원 검사조회 | C#, WPF(MVVM) | SQL Server |
 	| 2019.04 | 병의원 검체관리 | Delphi, C#(C++) | SQL Server |
 	| 2019.01 | 금융권 정산관리 | Delphi,  Java/Spring | Oracle |
