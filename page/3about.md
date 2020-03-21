@@ -12,7 +12,7 @@ type: page
 Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have. [ **C++, C#, Delphi, Rust, Database** ] 
 
 ##### CONTACT
-* **MSJO**™(*DebugJO*) UTC+08:00, DaeHanMinGuk, Corea
+* **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
 * <i class="fa fa-envelope" aria-hidden="true"></i> me@msjo.kr
 * <i class="fa fa-telegram" aria-hidden="true"></i> @debug [(t.me/debug)](https://t.me/debug)
 
