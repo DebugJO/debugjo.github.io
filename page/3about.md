@@ -35,7 +35,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |
-	| 2020.05 | 배달주문 API2 | Qt/C++, Rust, gRPC | MySQL, SQLite |
+	| 2020.05 | 배달주문 API 2 | Qt/C++, Rust, gRPC | MySQL, SQLite |
 	| 2020.01 | 배달주문관리 API | Delphi, C++, C# | MySQL, SQLite |
 	| 2019.10 | 병의원 검사조회 | C#, WPF(MVVM) | SQL Server |
 	| 2019.04 | 병의원 검체관리 | Delphi, C#(C++) | SQL Server |
