@@ -131,3 +131,10 @@ div > .left > article > p { text-align: justify; word-break: break-all; }
 img {
     max-width: 100%;
 }
+sup {
+    vertical-align: baseline;
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    top: -0.6em;
+}
