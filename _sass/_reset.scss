@@ -138,3 +138,9 @@ sup {
     position: relative;
     top: -0.6em;
 }
+sup:before {
+    content: "[";
+}
+sup:after {
+    content: "]";
+}
