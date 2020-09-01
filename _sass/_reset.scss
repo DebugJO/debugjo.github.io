@@ -137,10 +137,6 @@ sup {
     line-height: 0;
     position: relative;
     top: -0.6em;
-}
-sup:before {
-    content: "[";
-}
-sup:after {
-    content: "]";
+    font-weight: bold;
+    color: #4d6dad;
 }
