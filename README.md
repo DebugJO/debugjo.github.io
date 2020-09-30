@@ -14,7 +14,7 @@
 * \[DatabaseㆍModeling\]
 * \[C#ㆍ.NET Programming\]
 * \[DelphiㆍC/C++ㆍQT\]
-* \[JavaㆍSpring Boot\]
+* \[JavaㆍSpring BootㆍAndroid\]
 * \[PythonㆍScriptㆍEtc\]
 * \[Liberal Arts\]
 * \[macOSㆍiOSㆍSwift\]
