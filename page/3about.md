@@ -63,7 +63,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 ##### Philosophical Religion
 * /DEV/NULL
-<!--
+<!---
 * Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος, Tao
 * 諸法無我-傳識成智.
 * 道可道非常道-不言之敎.
@@ -71,4 +71,4 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 無無-活動運化.
 * 格物致知, 大學之道 在明明德 在親民 在止於至善.
 * 修身, 精進, 몸.
--->
+--->
