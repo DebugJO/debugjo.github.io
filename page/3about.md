@@ -34,9 +34,8 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 최근 프로젝트
 
 	| YMD | Projects | IDE | Database |
-	| :---: | -------- | --- | -------- |
-	| 2020.10 | 출입차량통제 | C#, Win32Api | SQL Server, SQLite |	
-	| 2020.09 | 배달주문 Push C/S | Dephi, C#, Qt/C++ | MQTT, MySQL |
+	| :---: | -------- | --- | -------- |	
+	| 2020.10 | 배달주문 Push C/S | Dephi, C#, Qt/C++ | MQTT, MySQL |
 	| 2020.08 | 스위치 제어관리 | C#, Delphi | SQLite |	
 	| 2020.01 | 배달주문관리 API | Delphi, C++, C# | MySQL, SQLite |
 	| 2019.10 | 병의원 검사조회 | C#, WPF(MVVM) | SQL Server |
@@ -63,6 +62,8 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| 의료기관, 공공기관, 방송국, 교육기관, 금융기관 + **(middleware)** + Oracle, SQL Server, MySQL |	
 
 ##### Philosophical Religion
+* /DEV/NULL
+<!--
 * Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος, Tao
 * 諸法無我-傳識成智.
 * 道可道非常道-不言之敎.
@@ -70,3 +71,4 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 無無-活動運化.
 * 格物致知, 大學之道 在明明德 在親民 在止於至善.
 * 修身, 精進, 몸.
+-->
