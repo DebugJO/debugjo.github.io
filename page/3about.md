@@ -9,7 +9,7 @@ type: page
 * content
 {:toc}
 
-Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have. [ **C++, C#, Delphi, Rust, Go** ] 
+Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have.
 
 ##### CONTACT
 * **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
