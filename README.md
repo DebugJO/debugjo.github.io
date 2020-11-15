@@ -1,10 +1,3 @@
----
-layout: default
-title: ReadMe
-permalink: /readme/
-icon: tags
----
-
 ### Main Page
 
 * https://msjo.kr
