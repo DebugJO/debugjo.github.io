@@ -27,7 +27,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 운영체제 ⋮ macOS, UNIX, Linux, Windows Server ‣‣‣ *MPI(CH)*
 * 개발툴 ⋮ IntelliJ IDEA, QT Creator, Visual Studio.NET, Delphi/C++Builder, Xcode
 * 데이터베이스 ⋮ Oracle, SQL Server, PostgreSQL, MySQL, MongoDB ‣‣‣ *Data Modeling*
-* 개발언어 ⋮ C#/WPF/Core, C++/Qt/(<font color="#808080">MFC</font>), Pascal, Rust, Go, Python, (<font color="#808080">Java/Spring</font>) 
+* 개발언어 ⋮ C#/WPF/Blazor, C++/Qt/<font color="#909090">MFC</font>, Pascal, Rust, <font color="#909090">Go</font>, <font color="#909090">Python</font>, <font color="#909090">Java/Spring</font> 
 * 웹스크립트 ⋮ HTML, CSS, JavaScript, JSON, XML
 
 ##### IT Carrier
