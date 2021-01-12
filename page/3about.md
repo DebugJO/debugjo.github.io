@@ -63,6 +63,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 ##### Philosophical Religion
 * /DEV/NULL
+* No one worth possessing can be quite possessed.
 <!-- * Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος, Tao -->
 <!-- * 諸法無我-傳識成智. -->
 <!-- * 道可道非常道-不言之敎. -->
