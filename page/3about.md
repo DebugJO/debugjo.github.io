@@ -35,6 +35,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |	
+	| 2021.01 | WMS Desktop | Dephi, C# | WebAPI |
 	| 2020.10 | 배달주문 Push C/S | Dephi, C#, Qt/C++ | MQTT, MySQL |
 	| 2020.08 | 스위치 제어관리 | C#, Delphi | SQLite |	
 	| 2020.01 | 배달주문관리 API | Delphi, C++, C# | MySQL, SQLite |
