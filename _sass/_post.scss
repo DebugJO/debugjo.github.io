@@ -2,9 +2,13 @@
     display: none;
 }
 
-.article { ul, ol {
+.article > ul {
     margin-top: 0px;    
-}}
+}
+
+.article > ol {
+    margin-top: 0px;    
+}
 
 .page[post] {
     .label {
