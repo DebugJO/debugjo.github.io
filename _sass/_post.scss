@@ -2,9 +2,10 @@
     display: none;
 }
 
-ul, ol {
+.article { ul, ol {
     margin-top: 0px;    
-}
+}}
+
 .page[post] {
     .label {
         margin-top: 16px;
