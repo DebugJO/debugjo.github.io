@@ -1,6 +1,10 @@
 #markdown-toc {
     display: none;
 }
+
+ul, ol {
+    margin-top: 0px;    
+}
 .page[post] {
     .label {
         margin-top: 16px;
