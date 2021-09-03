@@ -63,13 +63,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| :-------- |
 	| 의료기관, 공공기관, 방송국, 교육기관, 금융기관 + **(MiddleWare)** + Oracle, SQL Server, MySQL |	
 
-##### Philosophical Religion
-* /DEV/NULL
-<!-- * No one worth possessing can be quite possessed. -->
-<!-- * Ἐν ἀρχῇ ἦν ὁ Λόγος. vs. Ήράκλειτος, Tao -->
-<!-- * 諸法無我-傳識成智. -->
-<!-- * 道可道非常道-不言之敎. -->
-<!-- * 執其兩端-中庸不可能也. -->
-<!-- * 無無-活動運化. -->
-<!-- * 格物致知, 大學之道 在明明德 在親民 在止於至善. -->
-<!-- * 修身, 精進, 몸. -->
+##### Philosophical Religion => /DEV/NULL
+```cs
+foreach (Person person in peopleModels) { person.toHappy(); }
+```
