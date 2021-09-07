@@ -11,6 +11,10 @@ brief-intro: Software Engineer / Developer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://msjo.kr" # the base hostname & protocol for your site
 
+# 추가설정
+timezone: Asia/Seoul
+future: true
+
 permalink: /:year/:month/:day/:title/
 
 # other links
