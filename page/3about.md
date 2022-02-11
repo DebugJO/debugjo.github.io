@@ -24,11 +24,9 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * <i class="fa fa-trello" aria-hidden="true"></i> [trello.com/debugjo](https://trello.com/debugjo)
 
 ##### Software Engineer / Developer
-* 운영체제 ⋮ macOS, UNIX, Linux, Windows Server ‣‣‣ *MPI(CH)*
-* 개발툴 ⋮ IntelliJ IDEA, QT Creator, Visual Studio.NET, Delphi/C++Builder, Xcode
-* 데이터베이스 ⋮ Oracle, SQL Server, PostgreSQL, MySQL, MongoDB ‣‣‣ *Data Modeling*
-* 개발언어 ⋮ C#/WPF/Blazor, C++/Qt<font color="#909090">/MFC</font>, Object Pascal, Rust, <font color="#909090">Go</font>, <font color="#909090">Python</font>, <font color="#909090">Java/Spring</font> 
-* 웹스크립트 ⋮ HTML, CSS, JavaScript, JSON, XML
+* Programming Language : Rust, C#, C++, Delphi, Blazor/WPF/XAML
+* Database : Oracle, SQL Server, MariaDB, SQLite, MongoDB
+* Operating System : Linux, macOS, Windows
 
 ##### IT Carrier
 * 최근 프로젝트
