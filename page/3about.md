@@ -14,7 +14,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 ##### CONTACT
 * **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
 * <i class="fa fa-envelope" aria-hidden="true"></i> me@msjo.kr
-* <i class="fa fa-telegram" aria-hidden="true"></i> @debug [(t.me/debug)](https://t.me/debug)
+* <i class="fa fa-telegram" aria-hidden="true"></i> @debug [(t.me/debug)](https://t.me/debug) ㆍ [https://rustlang.kr](https://rustlang.kr)
 
 ##### SNS(Social Network Service)
 * <i class="fa fa-github" aria-hidden="true"></i> [github.com/DebugJO](https://github.com/DebugJO)
