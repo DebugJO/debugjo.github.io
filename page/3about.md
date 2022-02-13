@@ -28,7 +28,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * Database : Oracle, SQL Server, MariaDB, SQLite, MongoDB
 * Operating System : Linux, macOS, Windows
 
-##### IT Carrier
+##### IT Career
 * 최근 프로젝트
 
 	| YMD | Projects | IDE | Database |
