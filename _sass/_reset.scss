@@ -143,9 +143,9 @@ sup {
     float:right;
     text-decoration: none;
     border:1px solid;
-    color: #999;
-    font-size: 12px;
-    padding: 1px 8px;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 1px 4px 2px 4px;
     border-radius: 4px;    
     &:hover, &:focus {
         color: #666;
