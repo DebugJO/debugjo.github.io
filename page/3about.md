@@ -33,6 +33,9 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |	
+	| 2022.09 | POS 솔루션 | C#, WPF | Oracle, Firebird |		
+	| 2022.07 | LIS-OCS 연동관리 | C#, WPF | SQL Server, MySQL |	
+	| 2022.06 | LPR Server | C#, WPF | MySQL, WebAPI, MQTT |	
 	| 2021.12 | 상품권판매 POS | C#, WPF | SQLite, WebAPI, 전문 |	
 	| 2021.04 | 배달앱 POS | Dephi, C#, Go | MariaDB, SQL Server |	
 	| 2021.01 | WMS Desktop | Dephi, C# | WebAPI, MariaDB |
