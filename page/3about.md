@@ -32,7 +32,8 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * 최근 프로젝트
 
 	| YMD | Projects | IDE | Database |
-	| :---: | -------- | --- | -------- |	
+	| :---: | -------- | --- | -------- |
+	| 2023.08 | POS-배달앱 연동관리 | C#, C++ | SQLite, Firebird |	
 	| 2023.01 | LIS-EMR/OCS 연동관리 | C#, WPF | SQL Server, MySQL |	
 	| 2022.09 | POS 솔루션 | C#, WPF | Oracle, Firebird |		
 	| 2022.07 | LIS-EMR/OCS Server | C#, WPF | SQL Server, MySQL |	
