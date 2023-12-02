@@ -25,7 +25,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 ##### Software Engineer / Developer
 * **Programming Language**: Rust, C#, C++, Delphi, Blazor/WPF/XAML
-* **Database**: Oracle, SQL Server, MariaDB, SQLite, MongoDB
+* **Database**: Oracle, SQL Server, MariaDB, SQLite, Firebird
 * Linux, macOS, Windows
 
 ##### IT Career
