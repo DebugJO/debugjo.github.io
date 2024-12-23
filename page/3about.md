@@ -24,8 +24,8 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * <i class="fa fa-trello" aria-hidden="true"></i> [trello.com/debugjo](https://trello.com/debugjo)
 
 ##### Software Engineer / Developer
-* **Programming Language**: Rust, C#, C++, Delphi, Blazor/WPF/XAML
-* **Database**: Oracle, SQL Server, MariaDB, SQLite, Firebird
+* **Programming Language**: Rust, C#, C++, Flutter, Delphi
+* **Database**: Oracle, SQL Server, MariaDB, PostgreSQL, Firebird
 * Linux, macOS, Windows
 
 ##### IT Career
@@ -66,9 +66,9 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	
 	| Database App(CS) Projects |
 	| :-------- |
-	| 의료기관, 공공기관, 방송국, 교육기관, 금융기관 + **(MiddleWare)** + Oracle, SQL Server, MySQL |	
+	| 의료기관, 공공기관, 방송국, 교육기관, 금융기관 + **(MiddleWare)** + Database |	
 
 ##### Philosophical Religion => { NULL }
 ```cs
-foreach (Person person in peopleModels) { person.toHappy(); }
+foreach (Person person in people) { person.toHappy(); }
 ```
