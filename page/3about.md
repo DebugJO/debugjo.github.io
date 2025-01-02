@@ -29,10 +29,11 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * Linux, macOS, Windows
 
 ##### IT Career
-* 최근 프로젝트
+* 최근 프로젝트(시작일)
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |
+	| 2025.01 | POS/배달 솔류션 | C#, Maui, Blazor | SQLite, SQL Server |
 	| 2024.01 | POS-테이블오더 연동 | C#(AOT) | SQLite, Firebird |
 	| 2023.08 | POS-배달앱 연동관리 | C#, C++ | SQLite, Firebird |	
 	| 2023.01 | LIS-EMR/OCS 연동관리 | C#, WPF | SQL Server, MySQL |	
