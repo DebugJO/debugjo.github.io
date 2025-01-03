@@ -33,7 +33,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 
 	| YMD | Projects | IDE | Database |
 	| :---: | -------- | --- | -------- |
-	| 2025.01 | POS/배달 솔류션 | C#, Maui, Blazor | SQLite, SQL Server |
+	| 2025.01 | POS/배달 솔류션 | C#, Maui/Flutter, Blazor | SQLite, SQL Server |
 	| 2024.01 | POS-테이블오더 연동 | C#(AOT) | SQLite, Firebird |
 	| 2023.08 | POS-배달앱 연동관리 | C#, C++ | SQLite, Firebird |	
 	| 2023.01 | LIS-EMR/OCS 연동관리 | C#, WPF | SQL Server, MySQL |	
