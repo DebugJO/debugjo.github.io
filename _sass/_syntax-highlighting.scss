@@ -2,13 +2,13 @@
  * Syntax highlighting styles
  */
 code{
-    padding: 1px 4px;
+    /* padding: 1px 4px; */
     margin: 0 2px;
     font-size: 90%;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     color: #000;
-    background-color: rgba(0, 0, 0, 0.06);
-    border: 1px solid #d7d0d2;
+    /* background-color: rgba(0, 0, 0, 0.06); */
+    /* border: 1px solid #d7d0d2; */
     font-family: 'Roboto Mono','Noto Sans KR','Malgun Gothic',Menlo,"Microsoft YaHei Mono",Consolas,"Courier New",monospace,sans-serif;
 }
 
@@ -20,8 +20,8 @@ pre {
      white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
      white-space: pre;      /* current browsers */
      > code {
-         margin: 0;
-         padding: 0;
+        margin: 0;
+        padding: 0;
         font-size: 13px;
         color:#d1d1c9;
         border: none;
