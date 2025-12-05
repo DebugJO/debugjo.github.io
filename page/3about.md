@@ -24,7 +24,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * <i class="fa fa-trello" aria-hidden="true"></i> [trello.com/debugjo](https://trello.com/debugjo)
 
 ##### Software Engineer / Developer
-* **Programming Language**: Rust, C#, C++, Flutter, Delphi
+* **Programming Language**: Rust, C#, C++, Database, Delphi
 * **Database**: Oracle, SQL Server, MariaDB, PostgreSQL, Firebird
 * Linux, macOS, Windows
 
