@@ -14,6 +14,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 ##### CONTACT
 * **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
 * <i class="fa fa-envelope" aria-hidden="true"></i> me@msjo.kr
+
 <!--
 * <i class="fa fa-telegram" aria-hidden="true"></i> @debug [(t.me/debug)](https://t.me/debug)
 -->
@@ -21,6 +22,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 ##### SNS(Social Network Service)
 * <i class="fa fa-github" aria-hidden="true"></i> [github.com/DebugJO](https://github.com/DebugJO)
 * <i class="fa fa-telegram" aria-hidden="true"></i> @debug [(t.me/debug)](https://t.me/debug)
+
 <!--
 * <i class="fa fa-twitter" aria-hidden="true"></i> [twitter.com/debugjo](https://twitter.com/debugjo)
 * <i class="fa fa-facebook-official" aria-hidden="true"></i> [facebook.com/debugjo](https://www.facebook.com/debugjo)
