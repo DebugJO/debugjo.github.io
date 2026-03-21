@@ -18,7 +18,7 @@
 * \[PythonㆍScriptㆍEtc\]
 * \[Liberal Arts\]
 * \[macOSㆍiOSㆍSwift\]
-* \[RustㆍGo\]
+* \[RustㆍGoㆍZig\]
 
 ##### Default Contents
 ```
