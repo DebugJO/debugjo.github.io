@@ -71,7 +71,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 	| 의료기관, 공공기관, 방송국, 교육기관, 금융기관 + **(MiddleWare)** + Database |	
 
 ##### Philosophical Religion => { NULL }
+-->
 ```cs
 foreach (Person person in people) { person.toHappy(); }
 ```
--->
