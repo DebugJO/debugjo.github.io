@@ -28,6 +28,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 * **Database**: Oracle, SQL Server, MariaDB, PostgreSQL, Firebird
 * Linux, macOS, Windows
 
+<!--
 ##### IT Career
 * 최근 프로젝트(시작일)
 
@@ -73,3 +74,4 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 ```cs
 foreach (Person person in people) { person.toHappy(); }
 ```
+-->
