@@ -31,7 +31,7 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 -->
 
 ##### Software Engineer / Developer
-* **Programming Language**: C#, Rust, Zig, C++, Delphi
+* **Programming Language**: C#, Rust, Zig, C++, Go
 * **Database**: Oracle, SQL Server, MariaDB, PostgreSQL, Firebird
 * Linux, macOS, Windows
 
