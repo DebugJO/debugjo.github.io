@@ -83,6 +83,4 @@ Thank you for visiting our website. Please do not hesitate to contact me with an
 foreach (Person person in people) { person.toHappy(); }
 ```
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=debugjo&layout=compact&langs_count=10&hide=qmake,javascript,scss,css,html)
-
 ![My Skills](https://skillicons.dev/icons?i=cs,rust,zig,cpp,clion,dotnet,dart,go,postgres,qt)
