@@ -9,7 +9,7 @@
 title: MSJO.kr
 brief-intro: Software Engineer / Developer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://msjo.kr" # the base hostname & protocol for your site
+url: "https://debugjo.github.io/" # the base hostname & protocol for your site
 
 # 추가설정
 timezone: Asia/Seoul
