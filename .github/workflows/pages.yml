@@ -1,53 +1,32 @@
-name: Deploy Jekyll with Minimal Mistakes
-
+name: Deploy
 on:
   push:
-    branches: ["master"] # 본인의 기본 브랜치 이름 확인 (main 또는 master)
+    branches: ["master"]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
+concurrency: # 중요: 이전 작업이 있으면 취소하고 새 작업을 시작함
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
-          bundler-cache: true # Gemfile.lock을 바탕으로 자동 설치 및 캐싱
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Build with Jekyll
-        # --future 옵션은 예약 포스팅까지 빌드할 때 사용하며, 필요 없으면 빼셔도 됩니다.
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site # 빌드된 파일이 들어있는 폴더
-
+          ruby-version: '3.3' # 최신 루비 버전
+          bundler-cache: true
+      - uses: actions/configure-pages@v5
+      - run: bundle exec jekyll build
+      - uses: actions/upload-pages-artifact@v3
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
