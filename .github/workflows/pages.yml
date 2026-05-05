@@ -1,8 +1,8 @@
-name: Deploy Jekyll site to Pages
+name: Deploy GitHub Pages
 
 on:
   push:
-    branches: ["master"]
+    branches: [ "master" ]
   workflow_dispatch:
 
 permissions:
@@ -10,37 +10,46 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      # Node 기반 프로젝트일 경우 (React/Vite 등)
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          ruby-version: '3.2'
-          bundler-cache: true
+          node-version: 20
+          cache: 'npm'
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --trace
-        env:
-          JEKYLL_ENV: production
+      - name: Build
+        run: npm run build
 
+      # 빌드 결과 업로드
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist   # ⚠️ 프로젝트에 맞게 수정
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     needs: build
+
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v4
