@@ -22,7 +22,7 @@ twitter:
 social:
   name: msjo
   email: msjo@devsight.kr 
-  fediverse_handle: # "@username@domain.com"
+  fediverse_handle: "msjo" # "@username@domain.com"
   links:
     - https://twitter.com/username 
     - https://github.com/username 
