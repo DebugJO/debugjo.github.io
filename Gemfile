@@ -1,14 +1,16 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-gemspec
+gem "jekyll", "~> 4.3.2"
+gem "jekyll-theme-chirpy", "~> 7.5.0" # 본인이 사용하는 버전
 
-gem "html-proofer", "~> 5.0", group: :test
-
-platforms :windows, :jruby do
-  gem "tzinfo", ">= 1", "< 3"
-  gem "tzinfo-data"
+group :jekyll_plugins do
+  gem "jekyll-changelog"
+  gem "jekyll-get-json"
+  gem "jekyll-paginate"
+  gem "jekyll-relativize"
+  gem "jekyll-render-static-friendly"
+  gem "jekyll-seo-tag"
+  gem "jekyll-archives"
+  gem "jekyll-sitemap"
+  gem "jekyll-include-cache"
 end
-
-gem "wdm", "~> 0.2.0", :platforms => [:windows]
