@@ -15,8 +15,7 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
   left: 0;
   height: 100%;
   overflow-y: auto;
-  /* width: v.$sidebar-width; */
-  width: 260px;
+  width: v.$sidebar-width;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border-color);
 
