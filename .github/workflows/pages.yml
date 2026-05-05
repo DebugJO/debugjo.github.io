@@ -2,17 +2,20 @@ name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["master"] # 브랜치 이름이 main이면 main으로 수정
-  workflow_dispatch: # 수동 실행 버튼 활성화
+    branches: ["master"] # 브랜치명이 main이면 main으로 수정
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Node.js 24 환경 강제 설정 (2026년 기준 대응)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
-    # ❌ 원본에 있던 if: github.repository ... 줄을 삭제했습니다.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,14 +26,15 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
-          bundler-cache: true # Gemfile 기준 자동 설치
+          ruby-version: '3.3' # 최신 안정화 버전
+          bundler-cache: true
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5 # 버전 업그레이드
 
       - name: Build with Jekyll
-        run: bundle exec jekyll build
+        # --trace를 붙여서 에러가 나면 정확히 어디가 틀렸는지 보여줍니다.
+        run: bundle exec jekyll build --trace
         env:
           JEKYLL_ENV: production
 
