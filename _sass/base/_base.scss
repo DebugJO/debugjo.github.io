@@ -10,9 +10,13 @@
 }
 
 @media (min-width: 1650px) {
-    main.col-12 {
+  main {
+    &.col-12 {
+      @include bp.xxxl {
         padding-right: 0px !important;
+      }
     }
+  }
 }
 
 @media (min-width: 992px) {
