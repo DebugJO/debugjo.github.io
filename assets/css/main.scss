@@ -1,39 +1,31 @@
 ---
 ---
-
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* [테스트] 적용되면 상단 메뉴바 배경이 파란색으로 변합니다 */
-.masthead {
-  background-color: #007bff !important;
-}
-
-/* 280px 고정 레이아웃 */
+/* 레이아웃 고정: 사이드바 280px / 중앙 1000px / 우측 350px */
 @media (min-width: 64em) {
   #main {
     max-width: 1650px !important;
     margin: 0 auto !important;
     display: flex !important;
-    justify-content: flex-start !important;
   }
 
   .sidebar {
     width: 280px !important;
     min-width: 280px !important;
     margin-right: 20px !important;
-    float: none !important;
+    flex-shrink: 0 !important;
   }
 
   .archive, .page, .single {
     width: 1000px !important;
     padding: 0 60px !important;
-    float: none !important;
+    flex-shrink: 0 !important;
   }
 
   .toc {
-    width: 330px !important;
-    margin-left: 20px !important;
-    border: none !important;
+    width: 350px !important;
+    flex-shrink: 0 !important;
   }
 }
