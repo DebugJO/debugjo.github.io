@@ -9,7 +9,7 @@ title: DevSight # the main title
 tagline: A text-focused Jekyll theme
 
 description: >-
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Software Engineer / Developer
 
 url: "https://debugjo.github.io"
 
@@ -20,7 +20,7 @@ twitter:
   username: twitter_username
 
 social:
-  name: your_full_name
+  name: msjo
   email: msjo@devsight.kr 
   fediverse_handle: # "@username@domain.com"
   links:
