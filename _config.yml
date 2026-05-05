@@ -31,3 +31,13 @@ defaults:
       comments: true
       share: true
       related: true
+
+include: ["_posts", "_pages"]
+
+exclude:
+  - vendor/
+  - .github/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
