@@ -2,7 +2,7 @@ name: Deploy Jekyll with Minimal Mistakes
 
 on:
   push:
-    branches: ["main"] # 본인의 기본 브랜치 이름 확인 (main 또는 master)
+    branches: ["master"] # 본인의 기본 브랜치 이름 확인 (main 또는 master)
   workflow_dispatch:
 
 permissions:
