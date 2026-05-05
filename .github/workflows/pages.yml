@@ -2,7 +2,7 @@ name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["master"] # 브랜치명이 main이면 main으로 수정
+    branches: ["master"] # 본인의 브랜치가 main이면 main으로 수정
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # 2026년 환경 대응
 
 jobs:
   build:
@@ -25,14 +25,13 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3' # 최신 안정화 버전
+          ruby-version: '3.3'
           bundler-cache: true
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5 # 버전 업그레이드
+        uses: actions/configure-pages@v5
 
       - name: Build with Jekyll
-        # --trace를 붙여서 에러가 나면 정확히 어디가 틀렸는지 보여줍니다.
         run: bundle exec jekyll build --trace
         env:
           JEKYLL_ENV: production
