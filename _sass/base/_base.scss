@@ -9,6 +9,15 @@
   font-size: 16px;
 }
 
+.custom-social-link {
+  color: #757575;
+}
+
+.custom-social-link:hover {
+  color: #07a !important; 
+  text-decoration: none;
+}
+
 @media (min-width: 1650px) {
   #main-wrapper main.col-12 { 
     padding-right: 20px !important;
