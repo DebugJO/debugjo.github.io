@@ -101,15 +101,13 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
     @include mx.mt-mb(2.5rem);
     @extend %clickable-transition;
   
-    /* 1. 기존의 불균형한 패딩 초기화 (중앙 정렬의 핵심) */
     padding-left: 0 !important; 
     padding-right: 0 !important;
   
-    /* 2. 가로 너비 설정 및 중앙 정렬 */
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;  /* 내부 요소(이미지, 이름)를 가로 중앙으로 */
+    align-items: center; 
     justify-content: center;
   
     @include bp.lg {
@@ -119,7 +117,6 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
     @include bp.xxxl {
       margin-top: 3.5rem;
       margin-bottom: 2.5rem;
-      /* xxxl에서 다시 패딩이 생기지 않도록 주의 */
       padding-left: 0 !important; 
     }
   }  
