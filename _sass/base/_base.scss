@@ -12,8 +12,8 @@
 /* 데스크탑 환경 (사이드바가 나타나는 시점) */
 @media (min-width: 992px) {
   #main-wrapper > .container {
-    margin-left: 0 !important;   
-    margin-right: 0 !important;
+    margin-left: 0px !important;   
+    margin-right: 0px !important;
     max-width: none !important; 
     display: flex;  
     flex-direction: row;
