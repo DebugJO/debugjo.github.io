@@ -13,6 +13,8 @@ description: >-
 
 url: "https://debugjo.github.io"
 
+excerpt_separator: "<!--more-->"
+
 github:
   username: debugjo
 
