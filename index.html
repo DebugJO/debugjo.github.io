@@ -7,14 +7,11 @@ author_profile: true
 
 <div class="entries-list">
   {% for post in site.posts %}
-    <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-      <h2 class="archive__item-title no_toc" itemprop="headline">
-        <a href="{{ post.url | relative_url }}" rel="permalink" style="color: #333; text-decoration: none;">{{ post.title }}</a>
-      </h2>
-      <div class="archive__item-excerpt" itemprop="description" style="color: #666; font-size: 0.9rem;">
-        {{ post.excerpt | strip_html | truncate: 160 }}
-      </div>
-      <small style="color: #999;">{{ post.date | date: "%Y-%m-%d" }}</small>
+    <article class="archive__item">
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p>{{ post.date | date: "%Y-%m-%d" }}</p>
     </article>
+  {% else %}
+    <p>등록된 포스트가 없습니다. (_posts 폴더와 날짜를 확인해주세요!)</p>
   {% endfor %}
 </div>
