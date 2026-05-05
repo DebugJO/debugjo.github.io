@@ -98,7 +98,7 @@ layout: default
 
             <div class="card-text content mt-0 mb-3">
               {% if post.excerpt %}
-                {{ post.excerpt | strip_html }}
+                {{ post.excerpt }}
               {% else %}
                 {% include post-summary.html %}
               {% endif %}
