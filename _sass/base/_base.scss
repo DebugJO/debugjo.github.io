@@ -16,6 +16,8 @@
 .custom-social-link:hover {
   color: #07a !important; 
   text-decoration: none !important; 
+  border-bottom: none !important;
+  outline: none !important;
 }
 
 @media (min-width: 1650px) {
