@@ -1,0 +1,48 @@
+---
+# 이 설정이 있어야 Jekyll이 테마의 기본 CSS와 합쳐줍니다.
+---
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
+@import "minimal-mistakes";
+
+/* 1. 데스크탑 환경(화면 너비 64em 이상) 설정 */
+@media (min-width: 64em) {
+  /* 사이드바 너비를 280px로 강제 고정 */
+  .sidebar {
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    float: left;
+  }
+
+  /* 본문 영역 배치 (전체 100% - 사이드바 280px - 여백 40px) */
+  .archive, .page, .single {
+    display: block;
+    float: right;
+    width: calc(100% - 320px) !important; 
+    padding-right: 0 !important;
+  }
+
+  /* 우측 목차(TOC) 너비 고정 */
+  .toc {
+    width: 280px !important;
+  }
+}
+
+/* 2. 목차(TOC) 내부 긴 제목 줄바꿈 처리 */
+.toc {
+  .toc__menu {
+    li {
+      a {
+        white-space: normal !important; // 줄바꿈 허용
+        display: block;
+        line-height: 1.4;
+        padding: 0.4rem 0;
+      }
+      /* 하위 목차 들여쓰기 */
+      li {
+        padding-left: 15px;
+      }
+    }
+  }
+}
