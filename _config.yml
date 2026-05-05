@@ -1,11 +1,33 @@
-title: "Test Blog"
+title: "DevSight"
 remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "default"
 
-# 필수 플러그인
+locale: "ko-KR"
+
+description: "나만의 개발 기록장"
+url: "https://debugjo.github.io"
+baseurl: ""
+
+excerpt_separator: "<!--more-->"
+
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
 
-# 빌드 에러 방지
-include: ["_pages", "_posts"]
-exclude: ["Gemfile", "Gemfile.lock", "node_modules", "vendor"]
+paginate: 5
+paginate_path: "/page:num/"
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "single"
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
