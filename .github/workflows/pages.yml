@@ -2,34 +2,38 @@ name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["main"]  # 본인의 기본 브랜치 이름이 master라면 master로 수정
+    branches: ["master"] # 브랜치 이름이 main이면 main으로 수정
+  workflow_dispatch: # 수동 실행 버튼 활성화
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   build:
+    # ❌ 원본에 있던 if: github.repository ... 줄을 삭제했습니다.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1' # 루비 버전 설정
-          bundler-cache: true # Gem 설치 속도 향상
+          ruby-version: '3.2'
+          bundler-cache: true # Gemfile 기준 자동 설치
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Build with Jekyll
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
