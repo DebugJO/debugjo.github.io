@@ -2,7 +2,7 @@ name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["master"] # main이면 main으로 수정
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
