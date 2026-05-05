@@ -11,34 +11,13 @@
 
 /* 데스크탑 환경 (사이드바가 나타나는 시점) */
 @media (min-width: 992px) {
-
-  /* 1. 전체를 감싸는 최상위 컨테이너의 중앙 정렬 해제 */
-  #main-wrapper {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    max-width: none !important; /* 화면 끝까지 쓰도록 해제 */
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  /* 2. 본문과 우측 패널을 담고 있는 컨테이너 */
   #main-wrapper > .container {
-    margin-left: 0 !important;   /* 왼쪽 사이드바 바로 옆에 붙음 */
+    margin-left: 0 !important;   
     margin-right: 0 !important;
-    max-width: none !important;  /* 너비 제한 해제 */
-    display: flex;               /* 본문과 우측 패널을 나란히 배치 */
+    max-width: none !important; 
+    display: flex;  
     flex-direction: row;
     justify-content: flex-start;
-    gap: 2rem;                   /* 본문과 우측 패널 사이 간격 */
-  }
-
-  main.col-12 {
-    flex: 0 0 auto;
-    margin-left: 0 !important;
-  }
-
-  #panel-wrapper {
-    margin-left: 0 !important;
   }
 }
 
