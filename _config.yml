@@ -57,3 +57,7 @@ author:
 
 sidebar:
   nav: "main" # navigation.yml의 main 메뉴를 사이드바에 연결
+
+toc: true
+toc_label: "Contents"
+toc_sticky: true  
