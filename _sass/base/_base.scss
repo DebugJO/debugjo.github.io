@@ -9,6 +9,12 @@
   font-size: 16px;
 }
 
+@media (min-width: 1650px) {
+    main.col-12 {
+        padding-right: 0px !important;
+    }
+}
+
 @media (min-width: 992px) {
   #main-wrapper > .container {
     margin-left: 0px !important;   
