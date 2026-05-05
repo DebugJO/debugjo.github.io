@@ -9,21 +9,40 @@
   font-size: 16px;
 }
 
+/* 데스크탑 환경 (사이드바가 나타나는 시점) */
 @media (min-width: 992px) {
+
+  /* 1. 전체를 감싸는 최상위 컨테이너의 중앙 정렬 해제 */
   #main-wrapper {
-    margin-left: 0 !important;   
-    margin-right: auto !important;
-    max-width: none !important; 
-    display: flex !important;
-    justify-content: flex-start !important;
-  }
-  
-  #main-wrapper .container {
-    margin-left: 0 !important;  
+    margin-left: 0 !important;
     margin-right: 0 !important;
-    max-width: 100% !important;  
-    padding-left: 3rem !important; 
-    padding-right: 3rem !important;
+    max-width: none !important; /* 화면 끝까지 쓰도록 해제 */
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* 2. 본문과 우측 패널을 담고 있는 컨테이너 */
+  #main-wrapper > .container {
+    margin-left: 0 !important;   /* 왼쪽 사이드바 바로 옆에 붙음 */
+    margin-right: 0 !important;
+    max-width: none !important;  /* 너비 제한 해제 */
+    display: flex;               /* 본문과 우측 패널을 나란히 배치 */
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2rem;                   /* 본문과 우측 패널 사이 간격 */
+  }
+
+  /* 3. 중앙 본문 영역 (가독성을 위해 적당한 너비 유지) */
+  main.col-12 {
+    flex: 0 0 auto;
+    width: 800px !important;     /* 본문 너비를 고정하거나 %로 조절 */
+    margin-left: 0 !important;
+  }
+
+  /* 4. 우측 사이드바 (TOC 등) */
+  #panel-wrapper {
+    flex: 0 0 300px;             /* 우측 패널 너비 고정 */
+    margin-left: 0 !important;
   }
 }
 
