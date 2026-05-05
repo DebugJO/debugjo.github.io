@@ -3,36 +3,50 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* 전체 페이지 중앙 정렬 */
+/* 1. 상위 컨테이너 중앙 정렬 */
+.initial-content {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
 #main {
   max-width: 1650px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  width: 100% !important;
+  margin: 0 auto !important;
   display: flex !important;
-  justify-content: center !important; /* 내부 요소들을 중앙으로 모음 */
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
 }
 
 @media (min-width: 64em) {
+  /* 2. 왼쪽 사이드바 (280px) */
   .sidebar {
     width: 280px !important;
     min-width: 280px !important;
     margin-right: 20px !important;
+    position: relative !important;
+    top: 0 !important;
     flex-shrink: 0 !important;
   }
 
-  .archive, .page, .single, .layout--home, .initial-content {
+  /* 3. 중앙 본문 (1000px) */
+  .archive, .page, .single, .layout--home {
     width: 1000px !important;
     max-width: 1000px !important;
-    /* 내용물 800px를 유지하기 위해 좌우 여백을 100px씩 줌 */
-    padding-left: 100px !important;
-    padding-right: 100px !important;
+    min-width: 1000px !important;
+    padding: 0 80px !important; /* 내부 여백 조절 */
+    margin: 0 !important;
     flex-shrink: 0 !important;
-    background-color: #ffffff; /* 본문 영역 구분을 위해 흰색 배경 추천 */
+    box-sizing: border-box !important;
   }
 
+  /* 4. 오른쪽 빈 공간 또는 TOC (350px) */
   .toc, .sidebar__right {
     width: 350px !important;
-    flex-shrink: 0 !important;
+    min-width: 350px !important;
     margin-left: 20px !important;
+    flex-shrink: 0 !important;
   }
 }
