@@ -9,6 +9,24 @@
   font-size: 16px;
 }
 
+@media (min-width: 992px) {
+  #main-wrapper {
+    margin-left: 0 !important;   
+    margin-right: auto !important;
+    max-width: none !important; 
+    display: flex !important;
+    justify-content: flex-start !important;
+  }
+  
+  #main-wrapper .container {
+    margin-left: 0 !important;  
+    margin-right: 0 !important;
+    max-width: 100% !important;  
+    padding-left: 3rem !important; 
+    padding-right: 3rem !important;
+  }
+}
+
 html {
   @media (prefers-color-scheme: light) {
     &:not([data-mode]),
