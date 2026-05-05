@@ -19,6 +19,17 @@
     flex-direction: row;
     justify-content: flex-start;
   }
+
+  main.col-12 {
+    flex: 0 0 auto;
+    width: 1000px !important; 
+    margin-left: 0 !important;
+  }
+
+  #panel-wrapper {
+    flex: 0 0 400px;         
+    margin-left: 0 !important;
+  }
 }
 
 html {
