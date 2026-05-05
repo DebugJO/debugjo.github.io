@@ -89,3 +89,43 @@ body {
     }
   }
 }
+
+/* 기존 #main 설정에 아래 내용이 확실히 포함되어야 합니다 */
+#main {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 1900px !important; /* 좌280 + 중1000 + 우500 여유폭 */
+}
+
+@media (min-width: 64em) {
+  /* [가운데 본문] */
+  .archive, .page, .single {
+    width: 1000px !important;
+    flex: 0 0 1000px !important; /* 폭 고정 */
+  }
+
+  /* [우측 패널] - 여기가 핵심입니다 */
+  .sidebar__right {
+    display: block !important;    /* 혹시 숨겨져 있다면 강제로 표시 */
+    width: 500px !important;
+    max-width: 500px !important;
+    flex: 0 0 500px !important;   /* 찌그러지지 않게 고정 */
+    margin-left: 50px !important; /* 본문과의 간격 */
+    position: relative !important; 
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* TOC 상단 고정 (스크롤 시 본문은 올라가도 이건 남음) */
+  .toc {
+    position: sticky !important;
+    top: 40px !important;         /* 화면 상단에서 40px 지점에 고정 */
+    width: 100% !important;
+    border: none !important;      /* 테두리 제거 */
+    background: transparent !important;
+    z-index: 100;
+  }
+}
