@@ -1,50 +1,72 @@
-title: "DevSight"
-theme: "minimal-mistakes-jekyll"
+# 1. 테마 및 기본 정보 설정
+remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "default"
 
 locale: "ko-KR"
-
+title: "DevSight"
 description: "Software Engineer / Developer"
 url: "https://debugjo.github.io"
 baseurl: ""
+repository: "debugjo/debugjo.github.io" # 본인 저장소 이름
 
-excerpt_separator: "<!--more-->"
+# 2. 작성자 정보 (왼쪽 사이드바 프로필)
+author:
+  name   : "Your Name"
+  avatar : "/assets/images/bio-photo.jpg" # 이미지 경로 확인 필요
+  bio    : "I am a **Software Engineer**."
+  location: "Somewhere"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/debugjo"
 
+# 3. 플러그인 (GitHub Pages 호환용)
 plugins:
-  - jekyll-remote-theme
-  - jekyll-include-cache
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-gist
   - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-remote-theme # 반드시 포함
 
+# 4. 파일 읽기/제외 설정 (중요)
+include:
+  - .htaccess
+  - _pages
+  - _posts
+  - assets # 커스텀 CSS 빌드를 위해 반드시 포함
+
+exclude:
+  - vendor
+  - .bundle
+  - .sass-cache
+  - node_modules
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+
+# 5. Sass 빌드 설정
+# sass_dir 설정을 제거해야 assets/css/main.scss를 정확히 인식합니다.
+sass:
+  style: compressed
+  quiet_deps: true
+
+# 6. 페이지네이션
 paginate: 5
-paginate_path: "/page:num/"
+paginate_path: /page:num/
 
+# 7. 포스트 기본 설정
 defaults:
   - scope:
       path: ""
-      type: "posts"
+      type: posts
     values:
-      layout: "single"
+      layout: single
       author_profile: true
       read_time: true
       comments: true
       share: true
       related: true
-
-include: ["_posts", "_pages"]
-
-exclude:
-  - vendor/
-  - .github/
-  - .jekyll-cache/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-
-head_scripts:
-  - https://code.jquery.com/jquery-3.3.1.min.js
-
-sass:
-  sass_dir: _sass
-  style: compressed  
+      toc: true         # 오른쪽 목차 활성화
+      toc_sticky: true  # 목차 고정
