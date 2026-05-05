@@ -98,9 +98,15 @@ layout: default
 
             <div class="card-text content mt-0 mb-3">
               {% if post.excerpt %}
-                {{ post.excerpt }}
+                {% comment %} 
+                  마크다운 서식을 유지하되, 감싸는 <p> 태그를 제거하여 
+                  테마 기본 스타일과 충돌을 피합니다. 
+                {% endcomment %}
+                <div class="excerpt-content">
+                  {{ post.excerpt }}
+                </div>
               {% else %}
-                {% include post-summary.html %}
+                <p>{% include post-summary.html %}</p>
               {% endif %}
             </div>
 
