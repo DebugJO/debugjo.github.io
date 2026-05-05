@@ -123,7 +123,8 @@ defaults:
       layout: post
       comments: true # Enable comments in posts.
       toc: true # Display TOC column in posts.
-      permalink: /posts/:title/
+      # permalink: /posts/:title/
+      permalink: /posts/:year:month:day-:title/
   - scope:
       path: _drafts
     values:
