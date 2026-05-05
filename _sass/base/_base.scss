@@ -9,7 +9,14 @@
   font-size: 16px;
 }
 
-/* 데스크탑 환경 (사이드바가 나타나는 시점) */
+#main-wrapper {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important; 
+    display: flex;
+    justify-content: flex-start;
+  }
+
 @media (min-width: 992px) {
   #main-wrapper > .container {
     margin-left: 0px !important;   
