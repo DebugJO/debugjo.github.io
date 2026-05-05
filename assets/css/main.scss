@@ -3,70 +3,65 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* 1. 기본 배경 및 폰트 설정 (Chirpy 느낌) */
-body {
-  background-color: #fafafa !important; /* 약간 밝은 회색 배경 */
-}
-
-/* 2. 최상위 컨테이너 구조 변경 */
-.initial-content, .masthead {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-}
-
+/* 1. 공통 설정 (모바일 우선) */
 #main {
-  max-width: 1250px !important; /* Chirpy는 너무 넓지 않게 잡습니다 */
-  width: 100% !important;
-  margin: 0 auto !important;
-  display: flex !important;
-  align-items: flex-start !important;
-  padding: 2rem 1rem !important;
-  background: transparent !important;
+  display: block; /* 기본은 세로 쌓기 */
+  margin: 0 auto;
 }
 
+/* 2. 데스크탑 화면 설정 (화면 너비 64em 이상일 때만 가로 배치) */
 @media (min-width: 64em) {
-  /* 3. 왼쪽 사이드바 (Chirpy 스타일: 슬림하고 고정) */
+  .initial-content {
+    display: flex !important;
+    justify-content: center !important;
+    background-color: #fafafa !important; /* Chirpy 배경색 */
+  }
+
+  #main {
+    max-width: 1280px !important; /* Chirpy 전체 폭 */
+    width: 100% !important;
+    display: flex !important; /* 여기서만 가로 정렬 활성 */
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    padding: 2rem 0 !important;
+  }
+
+  /* 왼쪽 사이드바 (Chirpy 스타일) */
   .sidebar {
-    width: 220px !important;
-    min-width: 220px !important;
-    margin-right: 3rem !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    margin-right: 2rem !important;
     position: sticky !important;
     top: 2rem !important;
+    flex-shrink: 0 !important;
     border: none !important;
-    background: transparent !important;
   }
 
-  /* 4. 중앙 포스트 리스트 (가장 중요) */
+  /* 중앙 본문 (Chirpy 스타일 박스) */
   .archive, .page, .single, .layout--home {
-    flex: 1 !important; /* 남은 공간을 다 채우되 */
-    max-width: 750px !important; /* 본문 폭은 읽기 좋게 제한 */
+    flex: 1 !important;
+    max-width: 700px !important; /* 본문 가독성 폭 */
     background: #ffffff !important;
-    padding: 2rem !important;
-    border-radius: 10px !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important; /* 살짝 띄워진 느낌 */
+    padding: 30px 40px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    margin: 0 !important;
   }
 
-  /* 5. 오른쪽 패널 (Trending Tags 등) */
+  /* 오른쪽 패널 (Trending 등) */
   .sidebar__right, .toc {
-    width: 240px !important;
-    min-width: 240px !important;
+    width: 260px !important;
+    min-width: 260px !important;
     margin-left: 2rem !important;
-    font-size: 0.85rem !important;
+    flex-shrink: 0 !important;
     position: sticky !important;
     top: 2rem !important;
   }
 }
 
-/* 6. 포스트 아이템 간격 및 스타일 */
+/* 3. 포스트 리스트 간격 조정 */
 .list__item {
-  border-bottom: 1px solid #eee !important;
-  margin-bottom: 1.5rem !important;
+  border-bottom: 1px solid #f2f2f2 !important;
   padding-bottom: 1.5rem !important;
-}
-
-.archive__item-title {
-  font-family: "Source Sans Pro", sans-serif !important;
-  font-weight: 700 !important;
-  color: #333 !important;
+  margin-bottom: 1.5rem !important;
 }
