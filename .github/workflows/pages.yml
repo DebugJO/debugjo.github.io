@@ -2,16 +2,14 @@ name: Deploy Jekyll with Minimal Mistakes
 
 on:
   push:
-    branches: ["master"] # 또는 master (본인의 기본 브랜치 확인)
+    branches: ["main"] # 본인의 기본 브랜치 이름 확인 (main 또는 master)
   workflow_dispatch:
 
-# 권한 설정
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 동시 실행 방지
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -26,19 +24,22 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2' # 최신 안정화 버전
-          bundler-cache: true # bundle install 결과 캐싱 (속도 향상)
+          ruby-version: '3.2'
+          bundler-cache: true # Gemfile.lock을 바탕으로 자동 설치 및 캐싱
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Build with Jekyll
+        # --future 옵션은 예약 포스팅까지 빌드할 때 사용하며, 필요 없으면 빼셔도 됩니다.
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site # 빌드된 파일이 들어있는 폴더
 
   deploy:
     environment:
