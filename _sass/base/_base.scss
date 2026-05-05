@@ -25,14 +25,18 @@
   main.col-12 {
     flex: 0 0 auto;
     width: 1000px !important; 
-    margin-left: 0 !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
   }
 
   #panel-wrapper {
     flex: 0 0 400px;         
-    margin-left: 0 !important;
+    margin-left: 0px !important;
+    padding-left: 1.75em !important;
+    padding-right: 0px !important;
+    margin-right: 0px !important;
   }
 
   .px-lg-3 {
