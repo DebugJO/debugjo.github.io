@@ -9,14 +9,6 @@
   font-size: 16px;
 }
 
-#main-wrapper {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    max-width: none !important; 
-    display: flex;
-    justify-content: flex-start;
-  }
-
 @media (min-width: 992px) {
   #main-wrapper > .container {
     margin-left: 0px !important;   
