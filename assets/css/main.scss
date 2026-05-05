@@ -1,51 +1,54 @@
 ---
+# 이 빈 머리말이 있어야만 .css 파일로 변환됩니다.
 ---
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* [체크용] 적용 여부를 확인하기 위해 상단 메뉴바에 파란색 선을 긋습니다 */
-.masthead {
-  border-bottom: 4px solid #007bff !important;
+/* 1. 홈 레이아웃(index.html) 및 모든 페이지의 기본 컨테이너 확장 */
+/* layout: home은 보통 .initial-content나 .archive 클래스를 사용합니다. */
+
+#main {
+  max-width: 1650px !important;
+  margin: 0 auto !important;
+  display: flex !important; /* 가로 배치를 위해 flex 사용 */
+  justify-content: center !important;
 }
 
-/* 데스크탑 레이아웃 강제 교정 (화면 너비 64em 이상) */
 @media (min-width: 64em) {
-  /* 전체 컨테이너 폭 확장 */
-  #main {
-    max-width: 1650px !important;
-    margin: 0 auto !important;
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-  }
-
-  /* 왼쪽 사이드바 (280px 고정) */
+  /* 2. 왼쪽 사이드바 (280px 고정) */
   .sidebar {
     width: 280px !important;
     min-width: 280px !important;
+    max-width: 280px !important;
     margin-right: 20px !important;
+    flex: 0 0 280px !important; /* 크기 유지 */
     float: none !important;
-    flex: 0 0 280px !important;
   }
 
-  /* 중앙 컨텐츠 영역 (home 레이아웃 포함 1000px) */
-  /* .layout--home과 .initial-content를 추가하여 메인화면을 타겟팅합니다. */
-  .archive, .page, .single, .layout--home, .initial-content {
+  /* 3. 중앙 컨텐츠 영역 (1000px 고정) */
+  /* layout: home이 적용된 메인 페이지는 보통 .archive나 .initial-content 클래스를 가집니다. */
+  .archive, .page, .single, .initial-content, .layout--home {
     width: 1000px !important;
     max-width: 1000px !important;
     min-width: 1000px !important;
-    padding: 0 50px !important;
-    float: none !important;
+    padding: 0 40px !important; /* 좌우 여백 40px (내용물은 약 920px) */
     flex: 0 0 1000px !important;
+    float: none !important;
     box-sizing: border-box !important;
   }
 
-  /* 오른쪽 목차/패널 영역 */
+  /* 4. 오른쪽 패널/목차 (나머지 공간 활용) */
   .toc, .sidebar__right {
     width: 350px !important;
     min-width: 350px !important;
     margin-left: 0 !important;
     flex: 0 0 350px !important;
+    border: none !important;
   }
+}
+
+/* [적용 확인용] 성공하면 상단바가 파란색으로 변합니다 */
+.masthead {
+  border-bottom: 4px solid #007bff !important;
 }
