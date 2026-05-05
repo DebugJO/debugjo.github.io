@@ -7,6 +7,7 @@ title: "DevSight"
 locale: "ko-KR"
 url: "https://debugjo.github.io"
 baseurl: "" # 절대 빈칸!
+future: true
 
 # 빌드 설정
 include: ["assets", "_pages", "_posts"]
