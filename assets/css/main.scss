@@ -3,13 +3,16 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* 1. 기본 레이아웃 초기화 및 배경 */
-body {
-  background-color: #f8f9fa !important;
-  overflow-x: hidden;
+/* 1. 상단 마스트헤드 제거 (메뉴가 왼쪽으로 이동하므로) */
+.masthead {
+  display: none !important;
 }
 
-/* 2. 전체 컨테이너 설정 */
+/* 2. 전체 레이아웃 설정 */
+body {
+  background-color: #f8f9fa !important; /* Chirpy 느낌의 배경 */
+}
+
 .initial-content {
   display: flex !important;
   justify-content: center !important;
@@ -17,71 +20,74 @@ body {
 }
 
 #main {
-  /* 왼쪽(280) + 여백 + 가운데(1000) + 여백 + 오른쪽(500) = 최대 약 1800px 이상 수용 */
-  max-width: 1900px !important; 
+  max-width: 1920px !important; /* 전체 가용 폭 최대로 */
   width: 100% !important;
   margin: 0 auto !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: flex-start !important;
-  padding: 40px 20px !important;
+  padding: 50px 40px !important;
 }
 
 @media (min-width: 64em) {
-  /* 3. 왼쪽 사이드바 (280px 고정) */
+  /* 3. 왼쪽 사이드바 (280px 고정 + 스크롤 고정) */
+  /* 로고, 타이틀, 설명, 메뉴가 포함됨 */
   .sidebar {
     width: 280px !important;
     min-width: 280px !important;
     max-width: 280px !important;
     flex: 0 0 280px !important;
     margin-right: 40px !important;
-    position: sticky !important; /* 스크롤 시 고정 */
-    top: 20px !important;
+    position: sticky !important; 
+    top: 50px !important; /* 스크롤 시 상단 여백 */
     border: none !important;
+    background: transparent !important;
   }
 
-  /* 4. 중앙 본문 (800px ~ 1000px) */
+  /* 4. 가운데 본문 (800px ~ 1000px) */
   .archive, .page, .single, .layout--home {
     width: 1000px !important;
     min-width: 800px !important;
     max-width: 1000px !important;
-    flex: 1 1 auto !important; /* 공간이 좁아지면 800까지 줄어듦 */
+    flex: 1 1 auto !important; 
     background: #ffffff !important;
-    padding: 40px !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    padding: 50px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04) !important;
     margin: 0 !important;
-    z-index: 1;
   }
 
-  /* 5. 우측 패널 (최대 500px) */
-  .sidebar__right, .toc {
+  /* 5. 우측 패널 (최대 500px + TOC 상단 고정) */
+  .sidebar__right {
     width: 500px !important;
-    max-width: 500px !important;
     min-width: 300px !important;
+    max-width: 500px !important;
     flex: 0 1 500px !important;
     margin-left: 40px !important;
-    display: flex !important;
-    flex-direction: column !important;
+    border: none !important;
   }
 
-  /* TOC 스티키 설정: 본문 스크롤 시 다른 패널은 올라가고 TOC만 상단 고정 */
+  /* 우측 패널 내에서 TOC만 최상단 고정 유지 */
   .toc {
     position: sticky !important;
-    top: 20px !important;
+    top: 50px !important; /* 본문 스크롤 시 TOC가 멈추는 지점 */
     z-index: 10;
-    /* 만약 최근글 아래에 TOC가 있다면 마진 조절 필요 */
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
   }
 }
 
-/* 6. 모바일 대응 (화면이 작아지면 세로로) */
-@media (max-width: 63.9em) {
-  #main {
-    flex-direction: column !important;
-    padding: 10px !important;
-  }
-  .sidebar, .archive, .sidebar__right {
-    width: 100% !important;
-    margin: 0 0 20px 0 !important;
+/* 6. 왼쪽 사이드바 내비게이션 메뉴 스타일 (로고 아래) */
+.nav__list {
+  margin-top: 30px;
+  .nav__items {
+    font-size: 1.1rem;
+    ul li a {
+      padding: 10px 0;
+      color: #333 !important;
+      font-weight: 700;
+      &:hover { color: #007bff !important; }
+    }
   }
 }
