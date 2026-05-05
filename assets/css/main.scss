@@ -1,62 +1,46 @@
 ---
-# 반드시 이 빈 머리말(Front Matter)이 최상단에 있어야 합니다.
 ---
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* 1. 전체 컨테이너 최대 너비 설정 */
-/* 사이드바(280) + 공백(20) + 중앙(1000) + 우측(500) = 약 1800px 이지만, 
-   사용자님의 요청대로 1650px 해상도까지 대응하도록 구성합니다. */
-.masthead .inner,
-.initial-content,
-.footer__inner {
+/* 1. 전체 가로폭 제한 해제 및 최대치 설정 */
+#main {
   max-width: 1650px !important;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 @media (min-width: 64em) {
-  /* 2. 왼쪽 사이드바 (280px 고정) */
+  /* 2. 왼쪽 사이드바 (프로필) 280px 고정 */
   .sidebar {
     width: 280px !important;
     min-width: 280px !important;
-    max-width: 280px !important;
-    float: left;
+    float: left !important;
     margin-right: 20px !important; /* 공백 20px */
   }
 
-  /* 3. 중앙 컨텐츠 영역 (내용 800px + 좌우여백 100px씩 = 총 1000px) */
+  /* 3. 중앙 컨텐츠 (1000px 고정, 패딩 포함) */
+  /* 실제 텍스트 영역을 800px 정도로 맞추기 위해 좌우 패딩을 줍니다. */
   .archive, .page, .single {
     width: 1000px !important;
-    padding-left: 100px !important;  /* 좌측 여백 */
-    padding-right: 100px !important; /* 우측 여백 */
-    float: left;
-    box-sizing: border-box;
-    
-    /* 실제 텍스트가 들어가는 부분은 약 800px이 됩니다 */
+    padding-left: 60px !important; 
+    padding-right: 60px !important;
+    float: left !important;
+    box-sizing: border-box !important;
   }
 
-  /* 4. 우측 패널/목차(TOC) 영역 */
-  /* 최대 가로 해상도 1650px에서 남는 공간 활용 */
+  /* 4. 오른쪽 패널 (TOC) */
   .toc {
-    position: sticky;
-    top: 2rem;
-    width: calc(1650px - 280px - 20px - 1000px) !important;
-    max-width: 500px !important; /* 최대 500px */
-    float: left;
-    margin-left: 20px;
-    border: none;
+    width: calc(1650px - 280px - 20px - 1000px - 20px) !important;
+    max-width: 330px !important; /* 남는 공간에 맞춤 */
+    float: left !important;
+    border: none !important;
     
-    /* 목차 내부 긴 제목 줄바꿈 */
+    /* 긴 제목 줄바꿈 처리 */
     .toc__menu li a {
       white-space: normal !important;
       line-height: 1.4;
     }
   }
-}
-
-/* 포스트 내부의 이미지가 중앙 영역을 벗어나지 않게 조절 */
-.entry-content img {
-  max-width: 100% !important;
 }
