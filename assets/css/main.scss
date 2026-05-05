@@ -3,65 +3,85 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* 1. 공통 설정 (모바일 우선) */
-#main {
-  display: block; /* 기본은 세로 쌓기 */
-  margin: 0 auto;
+/* 1. 기본 레이아웃 초기화 및 배경 */
+body {
+  background-color: #f8f9fa !important;
+  overflow-x: hidden;
 }
 
-/* 2. 데스크탑 화면 설정 (화면 너비 64em 이상일 때만 가로 배치) */
+/* 2. 전체 컨테이너 설정 */
+.initial-content {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+#main {
+  /* 왼쪽(280) + 여백 + 가운데(1000) + 여백 + 오른쪽(500) = 최대 약 1800px 이상 수용 */
+  max-width: 1900px !important; 
+  width: 100% !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 40px 20px !important;
+}
+
 @media (min-width: 64em) {
-  .initial-content {
-    display: flex !important;
-    justify-content: center !important;
-    background-color: #fafafa !important; /* Chirpy 배경색 */
-  }
-
-  #main {
-    max-width: 1280px !important; /* Chirpy 전체 폭 */
-    width: 100% !important;
-    display: flex !important; /* 여기서만 가로 정렬 활성 */
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    padding: 2rem 0 !important;
-  }
-
-  /* 왼쪽 사이드바 (Chirpy 스타일) */
+  /* 3. 왼쪽 사이드바 (280px 고정) */
   .sidebar {
-    width: 260px !important;
-    min-width: 260px !important;
-    margin-right: 2rem !important;
-    position: sticky !important;
-    top: 2rem !important;
-    flex-shrink: 0 !important;
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    flex: 0 0 280px !important;
+    margin-right: 40px !important;
+    position: sticky !important; /* 스크롤 시 고정 */
+    top: 20px !important;
     border: none !important;
   }
 
-  /* 중앙 본문 (Chirpy 스타일 박스) */
+  /* 4. 중앙 본문 (800px ~ 1000px) */
   .archive, .page, .single, .layout--home {
-    flex: 1 !important;
-    max-width: 700px !important; /* 본문 가독성 폭 */
+    width: 1000px !important;
+    min-width: 800px !important;
+    max-width: 1000px !important;
+    flex: 1 1 auto !important; /* 공간이 좁아지면 800까지 줄어듦 */
     background: #ffffff !important;
-    padding: 30px 40px !important;
-    border-radius: 12px !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    padding: 40px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
     margin: 0 !important;
+    z-index: 1;
   }
 
-  /* 오른쪽 패널 (Trending 등) */
+  /* 5. 우측 패널 (최대 500px) */
   .sidebar__right, .toc {
-    width: 260px !important;
-    min-width: 260px !important;
-    margin-left: 2rem !important;
-    flex-shrink: 0 !important;
+    width: 500px !important;
+    max-width: 500px !important;
+    min-width: 300px !important;
+    flex: 0 1 500px !important;
+    margin-left: 40px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* TOC 스티키 설정: 본문 스크롤 시 다른 패널은 올라가고 TOC만 상단 고정 */
+  .toc {
     position: sticky !important;
-    top: 2rem !important;
+    top: 20px !important;
+    z-index: 10;
+    /* 만약 최근글 아래에 TOC가 있다면 마진 조절 필요 */
   }
 }
 
-/* 3. 포스트 리스트 간격 조정 */
-.list__item {
-  border-bottom: 1px solid #f2f2f2 !important;
-  padding-bottom: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+/* 6. 모바일 대응 (화면이 작아지면 세로로) */
+@media (max-width: 63.9em) {
+  #main {
+    flex-direction: column !important;
+    padding: 10px !important;
+  }
+  .sidebar, .archive, .sidebar__right {
+    width: 100% !important;
+    margin: 0 0 20px 0 !important;
+  }
 }
