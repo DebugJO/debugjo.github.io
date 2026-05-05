@@ -2,7 +2,7 @@ name: Deploy Jekyll site to Pages
 
 on:
   push:
-    branches: ["main"] # 본인의 기본 브랜치 이름이 master라면 master로 수정
+    branches: ["main"]  # 본인의 기본 브랜치 이름이 master라면 master로 수정
 
 permissions:
   contents: read
