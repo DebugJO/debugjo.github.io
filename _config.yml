@@ -58,7 +58,7 @@ theme_mode: # [light | dark]
 
 cdn: "https://chirpy-img.netlify.app"
 
-avatar: "/commons/avatar.jpg"
+avatar: "assets/img/favicons/msjo.png"
 
 social_preview_image: # string, local or CORS resources
 
