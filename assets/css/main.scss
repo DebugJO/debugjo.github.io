@@ -1,54 +1,38 @@
 ---
-# 이 빈 머리말이 있어야만 .css 파일로 변환됩니다.
 ---
-
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; 
 @import "minimal-mistakes";
 
-/* 1. 홈 레이아웃(index.html) 및 모든 페이지의 기본 컨테이너 확장 */
-/* layout: home은 보통 .initial-content나 .archive 클래스를 사용합니다. */
-
+/* 전체 페이지 중앙 정렬 */
 #main {
   max-width: 1650px !important;
-  margin: 0 auto !important;
-  display: flex !important; /* 가로 배치를 위해 flex 사용 */
-  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex !important;
+  justify-content: center !important; /* 내부 요소들을 중앙으로 모음 */
 }
 
 @media (min-width: 64em) {
-  /* 2. 왼쪽 사이드바 (280px 고정) */
   .sidebar {
     width: 280px !important;
     min-width: 280px !important;
-    max-width: 280px !important;
     margin-right: 20px !important;
-    flex: 0 0 280px !important; /* 크기 유지 */
-    float: none !important;
+    flex-shrink: 0 !important;
   }
 
-  /* 3. 중앙 컨텐츠 영역 (1000px 고정) */
-  /* layout: home이 적용된 메인 페이지는 보통 .archive나 .initial-content 클래스를 가집니다. */
-  .archive, .page, .single, .initial-content, .layout--home {
+  .archive, .page, .single, .layout--home, .initial-content {
     width: 1000px !important;
     max-width: 1000px !important;
-    min-width: 1000px !important;
-    padding: 0 40px !important; /* 좌우 여백 40px (내용물은 약 920px) */
-    flex: 0 0 1000px !important;
-    float: none !important;
-    box-sizing: border-box !important;
+    /* 내용물 800px를 유지하기 위해 좌우 여백을 100px씩 줌 */
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+    flex-shrink: 0 !important;
+    background-color: #ffffff; /* 본문 영역 구분을 위해 흰색 배경 추천 */
   }
 
-  /* 4. 오른쪽 패널/목차 (나머지 공간 활용) */
   .toc, .sidebar__right {
     width: 350px !important;
-    min-width: 350px !important;
-    margin-left: 0 !important;
-    flex: 0 0 350px !important;
-    border: none !important;
+    flex-shrink: 0 !important;
+    margin-left: 20px !important;
   }
-}
-
-/* [적용 확인용] 성공하면 상단바가 파란색으로 변합니다 */
-.masthead {
-  border-bottom: 4px solid #007bff !important;
 }
