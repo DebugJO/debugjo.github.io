@@ -17,10 +17,10 @@ github:
   username: debugjo
 
 twitter:
-  username: "https://t.me/debug"
+  username: # name
 
 social:
-  name: devsight.kr
+  name: debugjo
   email: "msjo <msjo@devsight.kr>"
   fediverse_handle: # "@username@domain.com"
   links:
