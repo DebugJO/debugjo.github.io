@@ -37,3 +37,15 @@ defaults:
 # 페이지네이션
 paginate: 5
 paginate_path: /page:num/
+
+exclude:
+  - vendor/
+  - .github/
+  - .jekyll-cache/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - docs/          # 테마 샘플 문서 폴더 제외
+  - test/          # 테마 테스트 폴더 제외
+  - README.md
+  - LICENSE
