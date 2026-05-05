@@ -13,8 +13,6 @@ description: >-
 
 url: "https://debugjo.github.io"
 
-excerpt_separator: "<!--more-->"
-
 github:
   username: debugjo
 
@@ -128,6 +126,7 @@ defaults:
       toc: true # Display TOC column in posts.
       # permalink: /posts/:title/
       permalink: /posts/:year:month:day-:title/
+      excerpt_separator: "<!--more-->"
   - scope:
       path: _drafts
     values:
