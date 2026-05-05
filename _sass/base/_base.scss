@@ -26,12 +26,17 @@
     flex: 0 0 auto;
     width: 1000px !important; 
     margin-left: 0 !important;
+    padding-right: 1rem !important;
   }
 
   #panel-wrapper {
     flex: 0 0 400px;         
     margin-left: 0 !important;
   }
+
+  .px-lg-3 {
+    padding-right: 17rem !important;
+    padding-left: 1rem !important;
 }
 
 html {
