@@ -41,3 +41,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
+
+head_scripts:
+  - https://code.jquery.com/jquery-3.3.1.min.js
