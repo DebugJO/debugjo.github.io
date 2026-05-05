@@ -32,16 +32,12 @@
     gap: 2rem;                   /* 본문과 우측 패널 사이 간격 */
   }
 
-  /* 3. 중앙 본문 영역 (가독성을 위해 적당한 너비 유지) */
   main.col-12 {
     flex: 0 0 auto;
-    width: 800px !important;     /* 본문 너비를 고정하거나 %로 조절 */
     margin-left: 0 !important;
   }
 
-  /* 4. 우측 사이드바 (TOC 등) */
   #panel-wrapper {
-    flex: 0 0 300px;             /* 우측 패널 너비 고정 */
     margin-left: 0 !important;
   }
 }
