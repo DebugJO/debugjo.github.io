@@ -44,3 +44,7 @@ exclude:
 
 head_scripts:
   - https://code.jquery.com/jquery-3.3.1.min.js
+
+sass:
+  sass_dir: _sass
+  style: compressed  
