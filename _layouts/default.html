@@ -96,7 +96,6 @@ layout: compress
     </style>
     
     {% raw %}
-    <!-- start -->
     <script>
       (function () {
         if (window.innerWidth <= 850) return;
@@ -108,7 +107,8 @@ layout: compress
     
           swup = new Swup({
             containers: ["#main-wrapper"],
-            linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+            // linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+            linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"]):not([class*="search"])',
             animateHistoryBrowsing: true,
           });
           window._swupInstance = swup;
@@ -140,17 +140,11 @@ layout: compress
               mask.onclick = () => body.classList.remove("sidebar-display");
             }
     
-            try {
-              // if (window.hljs) {
-              //   document.querySelectorAll("pre code:not(.hljs)").forEach(el => window.hljs.highlightElement(el));
-              // }
-              
-              // if (window.tocbot) window.tocbot.refresh();
-              
+            try {              
               if (typeof window.initSidebar === 'function') window.initSidebar();
               if (typeof window.initTopbar === 'function') window.initTopbar();
-              if (typeof window.initSearch === 'function') window.initSearch();
               if (typeof window.initClipboard === 'function') window.initClipboard();
+              if (typeof window.initSearch === 'function') window.initSearch();
               
               if (window.hljs) {
                 document.querySelectorAll("pre code").forEach((el) => {
@@ -183,7 +177,6 @@ layout: compress
         }
       })();
     </script>
-    <!-- end -->
     {% endraw %}
     
   </body>
