@@ -48,19 +48,6 @@
   align-items: center !important;
   justify-content: flex-start !important; 
   text-align: center !important;  
-
-  will-change: transform, opacity !important;
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-}
-
-#sidebar i, 
-#sidebar .nav-link, 
-#sidebar .sidebar-bottom a {
-  font-display: block !important;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-  transform: translateZ(0) !important;
 }
 
 #sidebar .profile-wrapper {
