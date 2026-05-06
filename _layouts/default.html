@@ -82,7 +82,8 @@ layout: compress
     {% endfor %}
 
     {% include_cached search-loader.html lang=lang %}
-
+    
+    <!-- Swap 추가 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
     <script src="https://unpkg.com/swup@4"></script>
     <script>
@@ -90,7 +91,7 @@ layout: compress
         const swup = new Swup({
           containers: ["#main-wrapper"],
           linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-          animateHistoryBrowsing: true,        
+          animateHistoryBrowsing: true,
           animationSelector: false 
         });
     
@@ -119,8 +120,15 @@ layout: compress
               window.hljs.highlightElement(el);
             });
           }
+    
+          if (window.tocbot) {
+            window.tocbot.refresh();
+          }
+          
+          if (window.initSearch) window.initSearch();
           if (window.initSidebar) window.initSidebar();
           if (window.initTopbar) window.initTopbar();
+          if (window.initClipboard) window.initClipboard(); // 코드 복사 버튼 재바인딩
         });
       });
     </script>
