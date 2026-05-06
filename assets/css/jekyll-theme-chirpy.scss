@@ -26,6 +26,12 @@
     }
 }
 
+@media (max-width: calc(850px)) {
+    #sidebar {
+      transform: translateX(-280px) !important;
+      -webkit-transform: translateX(-280px) !important;
+}
+
 #sidebar {
   width: 280px !important;
   display: flex !important;
