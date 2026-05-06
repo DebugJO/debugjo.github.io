@@ -83,12 +83,39 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <!-- Swup -->
-    <link rel="stylesheet" href="/assets/css/custom.css">
+    <!-- 추가 -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
     
     <script src="https://unpkg.com/swup@4"></script>
     
     <script>
+      function normalize(path) {
+        if (!path) return "/";
+        return path.replace(/\/+$/, "") || "/";
+      }
+    
+      function updateSidebarActive() {
+        const currentPath = normalize(window.location.pathname);
+    
+        document.querySelectorAll("#sidebar a").forEach(link => {
+          const href = link.getAttribute("href");
+          if (!href) return;
+    
+          try {
+            const url = new URL(href, window.location.origin);
+            const linkPath = normalize(url.pathname);
+    
+            if (linkPath === currentPath) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          } catch (e) {
+            // 잘못된 URL 무시
+          }
+        });
+      }
+    
       document.addEventListener("DOMContentLoaded", () => {
         const swup = new Swup({
           containers: ["#main-wrapper"],
@@ -96,7 +123,9 @@ layout: compress
           animateHistoryBrowsing: true
         });
     
-        swup.hooks.on("page:view", () => {    
+        updateSidebarActive();
+    
+        swup.hooks.on("page:view", () => {  
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
@@ -105,26 +134,11 @@ layout: compress
     
           if (window.initSidebar) window.initSidebar();
           if (window.initTopbar) window.initTopbar();
+    
+          updateSidebarActive();
         });
       });
-
-      function updateSidebarActive() {
-        const currentPath = window.location.pathname;
-      
-        document.querySelectorAll("#sidebar a").forEach(link => {
-          const href = link.getAttribute("href");
-      
-          if (!href) return;
-      
-          const normalizedHref = new URL(href, window.location.origin).pathname;
-      
-          if (normalizedHref === currentPath) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
-      }      
-    </script>   
+    </script>
+    
   </body>
 </html>
