@@ -2,7 +2,7 @@
 # Front Matter
 ---
 
-@use "main" {%- if jekyll.environment == "production" -%} .bundle {%- endif -%};
+@use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
 body {
   font-size: 1.05rem;
