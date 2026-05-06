@@ -22,18 +22,18 @@
     }
 }
 
-// @media (max-width: 850px) {
-//   #sidebar {
-//     transition: transform 0.4s ease !important;
-//     transform: translateX(-280px) !important;
-//     -webkit-transform: translateX(-280px) !important;
-//   }
+@media (max-width: 850px) {
+  #sidebar {
+    transition: transform 0.4s ease !important;
+    transform: translateX(-280px) !important;
+    -webkit-transform: translateX(-280px) !important;
+  }
 
-//   [sidebar-display] #sidebar {
-//     transform: translateX(0) !important;
-//     -webkit-transform: translateX(0) !important;
-//   }
-// }
+  [sidebar-display] #sidebar {
+    transform: translateX(0) !important;
+    -webkit-transform: translateX(0) !important;
+  }
+}
 
 #sidebar {
   width: 280px !important;
@@ -43,11 +43,11 @@
   justify-content: flex-start !important; 
   text-align: center !important;  
   
-  contain: layout paint !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  transform: translate3d(0, 0, 0) !important;
-  -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;
+  // contain: layout paint !important;
+  // -webkit-transform: translate3d(0, 0, 0) !important;
+  // transform: translate3d(0, 0, 0) !important;
+  // -webkit-backface-visibility: hidden !important;
+  // backface-visibility: hidden !important;
 }
 
 #sidebar .profile-wrapper {
