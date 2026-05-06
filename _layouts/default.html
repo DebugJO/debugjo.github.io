@@ -89,7 +89,10 @@ layout: compress
 <script src="https://unpkg.com/swup@4"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // 1. Swup 초기화 (모든 화면 크기에서 작동하도록 설정)
+    // [수정] 모바일에서도 스크립트가 실행되도록 return을 제거하고 
+    // Swup 활성화 여부만 체크합니다.
+    const isDesktop = window.innerWidth > 850;
+
     const swup = new Swup({
       containers: ["#main-wrapper"],
       linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
@@ -97,61 +100,54 @@ layout: compress
       animationSelector: false
     });
 
-    // 2. 사이드바 활성화 상태 업데이트 함수
-    function updateSidebar() {
+    // 사이드바 활성화 표시 로직 (함수로 분리)
+    function updateSidebarActive() {
       const currentPath = window.location.pathname;
-      const origin = window.location.origin;
-
       document.querySelectorAll("#sidebar .nav-item").forEach(item => {
         item.classList.remove("active");
         const link = item.querySelector("a");
         if (link) {
-          const linkPath = new URL(link.href, origin).pathname;
+          const linkPath = new URL(link.href, window.location.origin).pathname;
           if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
-            item.classList.add("active");
+            item.closest(".nav-item").classList.add("active");
           }
         }
       });
     }
 
-    // 3. 모바일 상태 초기화 (사이드바 닫기 및 버튼 먹통 방지)
-    function resetMobileState() {
-      // 페이지 이동 시 열려있던 모바일 메뉴 닫기
+    // [추가] 모바일 사이드바 강제 닫기 함수
+    function closeMobileMenu() {
+      // Chirpy 테마의 모바일 메뉴 상태 속성 제거
       document.body.removeAttribute("data-sidebar-display");
-      
-      // Chirpy 테마의 모바일 토글 버튼 이벤트를 다시 바인딩하기 위해 
-      // 기존 테마 스크립트들을 재실행
-      if (typeof window.initSidebar === 'function') window.initSidebar();
-      if (typeof window.initTopbar === 'function') window.initTopbar();
-      if (typeof window.initSearch === 'function') window.initSearch();
-      if (typeof window.initClipboard === 'function') window.initClipboard();
     }
 
-    // --- Swup 훅(Hooks) 설정 ---
+    // 초기 실행
+    updateSidebarActive();
 
-    // 콘텐츠가 교체된 직후 실행
+    // Swup 이벤트: 콘텐츠가 교체될 때
     swup.hooks.on("content:replace", () => {
-      updateSidebar();
-      resetMobileState();
+      updateSidebarActive();
+      closeMobileMenu(); // 페이지 이동 시 모바일 메뉴 닫기
     });
 
-    // 페이지 뷰가 완료된 후 실행 (스크롤 복구 등)
+    // Swup 이벤트: 페이지 뷰가 완료되었을 때 (스크립트 재실행)
     swup.hooks.on("page:view", () => {
-      // 코드 하이라이팅 재적용
       if (window.hljs) {
         document.querySelectorAll("pre code").forEach(el => {
           window.hljs.highlightElement(el);
         });
       }
 
-      // TOC(목차) 재설정
       if (window.tocbot) {
         window.tocbot.refresh();
       }
-    });
 
-    // 초기 로드 시 실행
-    updateSidebar();
+      // 테마 기본 기능 재연결 (이게 없으면 메뉴 버튼이 먹통됨)
+      if (typeof window.initSidebar === 'function') window.initSidebar();
+      if (typeof window.initTopbar === 'function') window.initTopbar();
+      if (typeof window.initSearch === 'function') window.initSearch();
+      if (typeof window.initClipboard === 'function') window.initClipboard();
+    });
   });
 </script>
 
