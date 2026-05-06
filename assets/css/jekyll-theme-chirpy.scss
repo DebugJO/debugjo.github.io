@@ -4,6 +4,8 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
+
+
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
 .license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
 .post-meta a:not([class]):hover, .content a:not(.img-link):hover {
@@ -45,11 +47,20 @@
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-start !important; 
-  text-align: center !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-  transform: translate3d(0, 0, 0) !important;
+  text-align: center !important;  
+
+  will-change: transform, opacity !important;
+  backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
-  backface-visibility: hidden !important;  
+}
+
+#sidebar i, 
+#sidebar .nav-link, 
+#sidebar .sidebar-bottom a {
+  font-display: block !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  transform: translateZ(0) !important;
 }
 
 #sidebar .profile-wrapper {
