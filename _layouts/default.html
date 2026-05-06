@@ -82,7 +82,99 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-
+    <!-- 추가 부분: Swup 및 커스텀 스크립트 -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+    <script src="https://unpkg.com/swup@4"></script>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. 모바일 환경(850px 이하)에서는 Swup 비활성화 (Chirpy 모바일 기본 동작 유지)
+        if (window.innerWidth <= 850) {
+          return;
+        }
+    
+        const swup = new Swup({
+          containers: ["#main-wrapper"],
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          animateHistoryBrowsing: true,
+          animationSelector: false
+        });
+    
+        // --- 사이드바 활성화 상태 업데이트 함수 ---
+        function updateSidebarActive() {
+          const currentPath = window.location.pathname;
+          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+            item.classList.remove("active");
+          });
+    
+          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+            // 홈(/)과 하위 경로 구분하여 active 클래스 추가
+            if (currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath))) {
+              const navItem = link.closest(".nav-item");
+              if (navItem) navItem.classList.add("active");
+            }
+          });
+        }
+    
+        // --- 모바일 토글 이벤트 재바인딩 함수 ---
+        function rebindMobileMenu() {
+          const menuBtn = document.querySelector('#sidebar-trigger'); // Chirpy 모바일 메뉴 버튼
+          const mask = document.querySelector('#mask');               // 클릭 시 닫히는 배경 마스크
+          const body = document.body;
+    
+          if (menuBtn && mask) {
+            // 기존에 걸려있을지 모를 이벤트를 초기화하고 새로 할당
+            menuBtn.onclick = (e) => {
+              e.preventDefault();
+              body.classList.toggle('sidebar-display');
+            };
+            
+            mask.onclick = () => {
+              if (body.classList.contains('sidebar-display')) {
+                body.classList.remove('sidebar-display');
+              }
+            };
+          }
+        }
+    
+        // 초기 실행
+        updateSidebarActive();
+        rebindMobileMenu();
+    
+        // Swup으로 컨텐츠가 교체될 때마다 실행
+        swup.hooks.on("content:replace", () => {
+          updateSidebarActive();
+        });
+    
+        // 페이지 뷰가 완료된 후 Chirpy의 기본 JS 기능들 재호출
+        swup.hooks.on("page:view", () => {
+          // 1. 코드 하이라이트
+          if (window.hljs) {
+            document.querySelectorAll("pre code").forEach(el => {
+              window.hljs.highlightElement(el);
+            });
+          }
+    
+          // 2. TOC(목차) 초기화
+          if (window.tocbot) {
+            window.tocbot.refresh();
+          }
+    
+          // 3. Chirpy 내부 모듈 재시작 (정의되어 있는 경우)
+          if (typeof window.initSidebar === 'function') window.initSidebar();
+          if (typeof window.initTopbar === 'function') window.initTopbar();
+          if (typeof window.initSearch === 'function') window.initSearch();
+          if (typeof window.initClipboard === 'function') window.initClipboard();
+          
+          // 4. 모바일 메뉴 다시 걸기 (안드로이드/아이폰 대응)
+          rebindMobileMenu();
+    
+          // 5. 스크롤을 상단으로 이동
+          window.scrollTo(0, 0);
+        });
+      });
+    </script>
 
   </body>
 </html>
