@@ -86,72 +86,71 @@ layout: compress
     <!-- 추가 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
     
+    <!-- Swup -->
     <script src="https://unpkg.com/swup@4"></script>
     
     <script>
-      function normalize(path) {
-        if (!path) return "/";
-        return path.replace(/\/+$/, "") || "/";
-      }
-    
-      function updateSidebarActive() {
-        const currentPath = normalize(window.location.pathname);
-    
-        document.querySelectorAll("#sidebar a").forEach(link => {
-          const href = link.getAttribute("href");
-          if (!href) return;
-    
-          try {
-            const url = new URL(href, window.location.origin);
-            const linkPath = normalize(url.pathname);
-    
-            if (linkPath === currentPath) {
-              link.classList.add("active");
-            } else {
-              link.classList.remove("active");
-            }
-          } catch (e) {
-            // 잘못된 URL 무시
-          }
-        });
-      }
-    
       document.addEventListener("DOMContentLoaded", () => {
+    
+        // ===== Swup 초기화 =====
         const swup = new Swup({
-          containers: ["main"], 
+          containers: ["#main-wrapper"], 
           linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
           animateHistoryBrowsing: true
         });
-      
+    
+        // ===== 경로 normalize =====
         function normalize(path) {
           return path.replace(/\/+$/, "") || "/";
         }
-      
+    
+        // ===== 사이드바 active 갱신 =====
         function updateSidebarActive() {
           const currentPath = normalize(window.location.pathname);
-      
+    
           document.querySelectorAll("#sidebar a").forEach(link => {
             const href = link.getAttribute("href");
             if (!href) return;
-      
-            const url = new URL(href, window.location.origin);
-            const linkPath = normalize(url.pathname);
-      
-            link.classList.toggle("active", linkPath === currentPath);
+    
+            try {
+              const url = new URL(href, window.location.origin);
+              const linkPath = normalize(url.pathname);
+    
+              link.classList.toggle("active", linkPath === currentPath);
+            } catch (e) {
+              // 무시
+            }
           });
         }
-      
+    
+        // ===== 최초 실행 =====
         updateSidebarActive();
-      
+    
+        // ===== 페이지 전환 후 =====
         swup.hooks.on("page:view", () => {
+          console.log("SWUP PAGE VIEW");
+    
+          // ⭐ 사이드바 active 갱신
           updateSidebarActive();
-      
+    
+          // 코드 하이라이트
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
             });
           }
+    
+          // Chirpy 내부 기능 (버전에 따라 존재)
+          if (window.initSidebar) window.initSidebar();
+          if (window.initTopbar) window.initTopbar();
+    
+          // (선택) 현재 메뉴 위치로 스크롤
+          const active = document.querySelector("#sidebar .active");
+          if (active) {
+            active.scrollIntoView({ block: "nearest" });
+          }
         });
+    
       });
     </script>
     
