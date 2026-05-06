@@ -115,14 +115,18 @@ layout: compress
         });
     
         swup.hooks.on("page:view", () => {
+          document.body.removeAttribute("sidebar-display");
+    
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
             });
           }
+          
           if (window.tocbot) {
             window.tocbot.refresh();
           }
+    
           if (window.initSearch) window.initSearch();
           if (window.initSidebar) window.initSidebar();
           if (window.initTopbar) window.initTopbar();
