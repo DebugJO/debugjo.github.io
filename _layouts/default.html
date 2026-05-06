@@ -84,63 +84,76 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <!-- 추가 부분 -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <script src="https://unpkg.com/swup@4"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        if (window.innerWidth <= 850) {
-          return;
-        }
-    
-        const swup = new Swup({
-          containers: ["#main-wrapper"],
-          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-          animateHistoryBrowsing: true,
-          animationSelector: false
-        });
-    
-        document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-          link.addEventListener("click", function () {
-            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-              item.classList.remove("active");
-            });
-            this.closest(".nav-item").classList.add("active");
-          });
-        });
-    
-        swup.hooks.on("content:replace", () => {
-          const currentPath = window.location.pathname;
-          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-            item.classList.remove("active");
-          });
-          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-            const linkPath = new URL(link.href, window.location.origin).pathname;
-            if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
-              const navItem = link.closest(".nav-item");
-              if (navItem) navItem.classList.add("active");
-            }
-          });
-        });
-    
-        swup.hooks.on("page:view", () => {
-          if (window.hljs) {
-            document.querySelectorAll("pre code").forEach(el => {
-              window.hljs.highlightElement(el);
-            });
-          }
-
-          if (window.tocbot) {
-            window.tocbot.refresh();
-          }
-
-          if (window.initSidebar) window.initSidebar();
-          if (window.initTopbar) window.initTopbar();
-          if (window.initSearch) window.initSearch();
-          if (window.initClipboard) window.initClipboard();
-        });
+<!-- 추가 부분 -->
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+<script src="https://unpkg.com/swup@4"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Swup 초기화 (850px 초과일 때만 Swup 활성화하고 싶다면 조건부 설정)
+    let swup = null;
+    if (window.innerWidth > 850) {
+      swup = new Swup({
+        containers: ["#main-wrapper"],
+        linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+        animateHistoryBrowsing: true,
+        animationSelector: false
       });
-    </script>
+    }
+
+    // 2. 사이드바 활성화 로직 (모바일/데스크탑 공통)
+    function updateSidebarActive() {
+      const currentPath = window.location.pathname;
+      document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+        item.classList.remove("active");
+      });
+      document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+        const linkPath = new URL(link.href, window.location.origin).pathname;
+        if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+          const navItem = link.closest(".nav-item");
+          if (navItem) navItem.classList.add("active");
+        }
+      });
+    }
+
+    // 3. 모바일 사이드바 닫기 함수 (Chirpy 테마 기준)
+    function closeMobileSidebar() {
+      if (document.body.hasAttribute("data-sidebar-display")) {
+        document.body.removeAttribute("data-sidebar-display");
+      }
+    }
+
+    // 초기 실행
+    updateSidebarActive();
+
+    // Swup 이벤트 리스너 (Swup이 활성화된 경우에만)
+    if (swup) {
+      swup.hooks.on("content:replace", () => {
+        updateSidebarActive();
+        closeMobileSidebar(); // 페이지 이동 시 모바일 메뉴 닫기
+      });
+
+      swup.hooks.on("page:view", () => {
+        // 코드 하이라이트 재실행
+        if (window.hljs) {
+          document.querySelectorAll("pre code").forEach(el => {
+            window.hljs.highlightElement(el);
+          });
+        }
+
+        // TOC 재설정
+        if (window.tocbot) {
+          window.tocbot.refresh();
+        }
+
+        // 테마 기본 JS 재초기화 (모바일 메뉴 버튼 등)
+        if (typeof window.initSidebar === 'function') window.initSidebar();
+        if (typeof window.initTopbar === 'function') window.initTopbar();
+        if (typeof window.initSearch === 'function') window.initSearch();
+        if (typeof window.initClipboard === 'function') window.initClipboard();
+      });
+    }
+  });
+</script>
 
   </body>
 </html>
