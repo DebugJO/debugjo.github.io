@@ -36,8 +36,10 @@
   }
 }
 
-.container {
-    padding-left: calc(var(--bs-gutter-x))!important;
+@media (max-width: calc(850px)) {
+    #topbar {
+        margin-left: 8px !important;
+    }
 }
 
 #sidebar {
