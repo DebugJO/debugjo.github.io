@@ -85,12 +85,14 @@ layout: compress
     
     <!-- Swap 추가 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <script src="https://unpkg.com/swup@4"></script>
+    <script src="https://unpkg.com"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const swup = new Swup({
           containers: ["#main-wrapper"],
-          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          linkSelector: window.innerWidth > 850 
+            ? 'a[href]:not([target="_blank"]):not([href^="#"])' 
+            : 'a[data-no-swup]', 
           animateHistoryBrowsing: true,
           animationSelector: false 
         });
@@ -115,18 +117,14 @@ layout: compress
         });
     
         swup.hooks.on("page:view", () => {
-          document.body.removeAttribute("sidebar-display");
-    
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
             });
           }
-          
           if (window.tocbot) {
             window.tocbot.refresh();
           }
-    
           if (window.initSearch) window.initSearch();
           if (window.initSidebar) window.initSidebar();
           if (window.initTopbar) window.initTopbar();
@@ -134,6 +132,6 @@ layout: compress
         });
       });
     </script>
-
+    
   </body>
 </html>
