@@ -119,23 +119,39 @@ layout: compress
       document.addEventListener("DOMContentLoaded", () => {
         const swup = new Swup({
           containers: ["#main-wrapper"],
-          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          linkSelector: 'a[href^="/"]:not([target="_blank"]):not([href^="#"])',
           animateHistoryBrowsing: true
         });
-    
+      
+        function normalize(path) {
+          return path.replace(/\/+$/, "") || "/";
+        }
+      
+        function updateSidebarActive() {
+          const currentPath = normalize(window.location.pathname);
+      
+          document.querySelectorAll("#sidebar a").forEach(link => {
+            const href = link.getAttribute("href");
+            if (!href) return;
+      
+            const url = new URL(href, window.location.origin);
+            const linkPath = normalize(url.pathname);
+      
+            link.classList.toggle("active", linkPath === currentPath);
+          });
+        }
+      
+        // 최초 실행
         updateSidebarActive();
-    
-        swup.hooks.on("page:view", () => {  
+      
+        swup.hooks.on("page:view", () => {
+          updateSidebarActive();
+      
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
             });
           }
-    
-          if (window.initSidebar) window.initSidebar();
-          if (window.initTopbar) window.initTopbar();
-    
-          updateSidebarActive();
         });
       });
     </script>
