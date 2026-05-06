@@ -83,7 +83,30 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <script src="/assets/js/custom.js"></script>
-    <link rel="stylesheet" href="/assets/css/custom.css">    
+    <!-- Swup -->
+    <script src="https://unpkg.com/swup@4"></script>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const swup = new Swup({
+          containers: ["#main-wrapper"],
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          animateHistoryBrowsing: true
+        });
+    
+        swup.hooks.on("page:view", () => {
+          console.log("SWUP PAGE VIEW");
+    
+          if (window.hljs) {
+            document.querySelectorAll("pre code").forEach(el => {
+              window.hljs.highlightElement(el);
+            });
+          }
+    
+          if (window.initSidebar) window.initSidebar();
+          if (window.initTopbar) window.initTopbar();
+        });
+      });
+    </script>   
   </body>
 </html>
