@@ -82,96 +82,97 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-<!-- Swup v4 라이브러리 -->
-<script src="https://unpkg.com/swup@4"></script>
-
-<style>
-  /* 애니메이션: main-wrapper만 부드럽게 전환 */
-  html.is-animating #main-wrapper {
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-  html.is-rendering #main-wrapper {
-    opacity: 1;
-  }
-</style>
-
-<script>
-  (function () {
-    // 850px 이하 모바일은 Swup 미사용 (순정 Chirpy 동작 유지)
-    if (window.innerWidth <= 850) return;
-
-    function initSwup() {
-      const swup = new Swup({
-        containers: ["#main-wrapper"],
-        linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-        animateHistoryBrowsing: true,
-      });
-
-      function reinitChirpy() {
-        const currentPath = window.location.pathname;
-        const body = document.body;
-
-        // 1. 사이드바 활성화 상태 갱신
-        document.querySelectorAll("#sidebar .nav-item").forEach((item) => {
-          const link = item.querySelector("a");
-          if (link) {
-            const linkPath = new URL(link.href, window.location.origin).pathname;
-            const isActive = currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath));
-            item.classList.toggle("active", isActive);
-          }
-        });
-
-        // 2. 모바일 메뉴(사이드바 토글) 버튼 재연결
-        const menuBtn = document.querySelector("#sidebar-trigger");
-        const mask = document.querySelector("#mask");
-
-        if (menuBtn) {
-          menuBtn.onclick = (e) => {
-            e.preventDefault();
-            body.classList.toggle("sidebar-display");
-          };
-        }
-        if (mask) {
-          mask.onclick = () => body.classList.remove("sidebar-display");
-        }
-
-        // 3. Chirpy 내부 테마 함수 안전하게 실행
-        try {
-          if (typeof window.initSidebar === 'function') window.initSidebar();
-          if (typeof window.initTopbar === 'function') window.initTopbar();
-          if (typeof window.initSearch === 'function') window.initSearch();
-          if (typeof window.initClipboard === 'function') window.initClipboard();
-          
-          if (window.hljs) {
-            document.querySelectorAll("pre code").forEach((el) => window.hljs.highlightElement(el));
-          }
-          if (window.tocbot && typeof window.tocbot.refresh === 'function') {
-            window.tocbot.refresh();
-          }
-        } catch (e) {
-          console.warn("Chirpy reinit error:", e);
-        }
+    <!-- Swup v4 라이브러리 -->
+    <script src="https://unpkg.com/swup@4"></script>
+    
+    <style>
+      /* 애니메이션: main-wrapper만 부드럽게 전환 */
+      html.is-animating #main-wrapper {
+        opacity: 0;
+        transition: opacity 0.25s ease;
       }
-
-      // Swup 페이지 전환 이벤트
-      swup.hooks.on("page:view", () => {
-        reinitChirpy();
-        window.scrollTo(0, 0);
-      });
-
-      // 초기 실행
-      reinitChirpy();
-    }
-
-    // 문서 로드 완료 후 실행
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-      setTimeout(initSwup, 100);
-    } else {
-      document.addEventListener("DOMContentLoaded", () => setTimeout(initSwup, 100));
-    }
-  })();
-</script>
-
+      html.is-rendering #main-wrapper {
+        opacity: 1;
+      }
+    </style>
+    
+    {% raw %}    
+    <script>
+      (function () {
+        // 850px 이하 모바일은 Swup 미사용 (순정 Chirpy 동작 유지)
+        if (window.innerWidth <= 850) return;
+    
+        function initSwup() {
+          const swup = new Swup({
+            containers: ["#main-wrapper"],
+            linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+            animateHistoryBrowsing: true,
+          });
+    
+          function reinitChirpy() {
+            const currentPath = window.location.pathname;
+            const body = document.body;
+    
+            // 1. 사이드바 활성화 상태 갱신
+            document.querySelectorAll("#sidebar .nav-item").forEach((item) => {
+              const link = item.querySelector("a");
+              if (link) {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                const isActive = currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath));
+                item.classList.toggle("active", isActive);
+              }
+            });
+    
+            // 2. 모바일 메뉴(사이드바 토글) 버튼 재연결
+            const menuBtn = document.querySelector("#sidebar-trigger");
+            const mask = document.querySelector("#mask");
+    
+            if (menuBtn) {
+              menuBtn.onclick = (e) => {
+                e.preventDefault();
+                body.classList.toggle("sidebar-display");
+              };
+            }
+            if (mask) {
+              mask.onclick = () => body.classList.remove("sidebar-display");
+            }
+    
+            // 3. Chirpy 내부 테마 함수 안전하게 실행
+            try {
+              if (typeof window.initSidebar === 'function') window.initSidebar();
+              if (typeof window.initTopbar === 'function') window.initTopbar();
+              if (typeof window.initSearch === 'function') window.initSearch();
+              if (typeof window.initClipboard === 'function') window.initClipboard();
+              
+              if (window.hljs) {
+                document.querySelectorAll("pre code").forEach((el) => window.hljs.highlightElement(el));
+              }
+              if (window.tocbot && typeof window.tocbot.refresh === 'function') {
+                window.tocbot.refresh();
+              }
+            } catch (e) {
+              console.warn("Chirpy reinit error:", e);
+            }
+          }
+    
+          // Swup 페이지 전환 이벤트
+          swup.hooks.on("page:view", () => {
+            reinitChirpy();
+            window.scrollTo(0, 0);
+          });
+    
+          // 초기 실행
+          reinitChirpy();
+        }
+    
+        // 문서 로드 완료 후 실행
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          setTimeout(initSwup, 100);
+        } else {
+          document.addEventListener("DOMContentLoaded", () => setTimeout(initSwup, 100));
+        }
+      })();
+    </script>
+    {% endraw %}
   </body>
 </html>
