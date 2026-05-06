@@ -39,7 +39,6 @@
   }
 }
 
-
 #sidebar {
   width: 280px !important;
   display: flex !important;
@@ -47,6 +46,10 @@
   align-items: center !important;
   justify-content: flex-start !important; 
   text-align: center !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;  
 }
 
 #sidebar .profile-wrapper {
