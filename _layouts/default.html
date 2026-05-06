@@ -93,7 +93,7 @@ layout: compress
           animateHistoryBrowsing: true
         });
     
-        swup.hooks.on("contentReplaced", () => {
+        swup.hooks.on("content:replace", () => {
           const currentPath = window.location.pathname;
     
           document.querySelectorAll("#sidebar .nav-item").forEach(item => {
@@ -111,7 +111,7 @@ layout: compress
             }
           });
         });
-
+    
         swup.hooks.on("page:view", () => {
           console.log("SWUP PAGE VIEW");
           if (window.hljs) {
