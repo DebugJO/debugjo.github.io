@@ -86,7 +86,6 @@ layout: compress
     <script src="https://unpkg.com/swup@4"></script>
     
     <style>
-      /* 애니메이션: main-wrapper만 부드럽게 전환 */
       html.is-animating #main-wrapper {
         opacity: 0;
         transition: opacity 0.25s ease;
@@ -99,7 +98,7 @@ layout: compress
     {% raw %}    
     <script>
       (function () {
-        // 850px 이하 모바일은 Swup 미사용 (순정 Chirpy 동작 유지)
+        // 850px 이하 모바일은 Swup 미사용
         if (window.innerWidth <= 850) return;
     
         function initSwup() {
@@ -112,8 +111,7 @@ layout: compress
           function reinitChirpy() {
             const currentPath = window.location.pathname;
             const body = document.body;
-    
-            // 1. 사이드바 활성화 상태 갱신
+            
             document.querySelectorAll("#sidebar .nav-item").forEach((item) => {
               const link = item.querySelector("a");
               if (link) {
@@ -123,7 +121,6 @@ layout: compress
               }
             });
     
-            // 2. 모바일 메뉴(사이드바 토글) 버튼 재연결
             const menuBtn = document.querySelector("#sidebar-trigger");
             const mask = document.querySelector("#mask");
     
@@ -137,7 +134,6 @@ layout: compress
               mask.onclick = () => body.classList.remove("sidebar-display");
             }
     
-            // 3. Chirpy 내부 테마 함수 안전하게 실행
             try {
               if (typeof window.initSidebar === 'function') window.initSidebar();
               if (typeof window.initTopbar === 'function') window.initTopbar();
@@ -155,17 +151,14 @@ layout: compress
             }
           }
     
-          // Swup 페이지 전환 이벤트
           swup.hooks.on("page:view", () => {
             reinitChirpy();
             window.scrollTo(0, 0);
           });
     
-          // 초기 실행
           reinitChirpy();
         }
     
-        // 문서 로드 완료 후 실행
         if (document.readyState === "complete" || document.readyState === "interactive") {
           setTimeout(initSwup, 100);
         } else {
@@ -173,6 +166,8 @@ layout: compress
         }
       })();
     </script>
+    <!-- 에러 방지를 위한 빈 공간 -->
+    <br>
     {% endraw %}
   </body>
 </html>
