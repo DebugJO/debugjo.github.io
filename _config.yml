@@ -176,3 +176,9 @@ df:
   archives:
     strftime: "%Y-%m"
     dayjs: "YYYY-MM"    
+
+assets:
+  css:
+    - assets/css/custom.scss
+  js:
+    - assets/js/custom.js
