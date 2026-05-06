@@ -28,6 +28,7 @@
 
 @media (max-width: calc(850px)) {
     #sidebar {
+      transition: transform .4s ease !important;
       transform: translateX(-280px) !important;
       -webkit-transform: translateX(-280px) !important;
   }  
