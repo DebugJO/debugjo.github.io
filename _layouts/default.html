@@ -120,15 +120,13 @@ layout: compress
               window.hljs.highlightElement(el);
             });
           }
-    
           if (window.tocbot) {
             window.tocbot.refresh();
           }
-          
           if (window.initSearch) window.initSearch();
           if (window.initSidebar) window.initSidebar();
           if (window.initTopbar) window.initTopbar();
-          if (window.initClipboard) window.initClipboard(); // 코드 복사 버튼 재바인딩
+          if (window.initClipboard) window.initClipboard();
         });
       });
     </script>
