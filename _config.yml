@@ -168,3 +168,11 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+df:
+  post:
+    strftime: "%Y-%m-%d" 
+    dayjs: "YYYY-MM-DD"
+  archives:
+    strftime: "%Y-%m"
+    dayjs: "YYYY-MM"    
