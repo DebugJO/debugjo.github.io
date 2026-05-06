@@ -82,102 +82,122 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <!-- Swup v4 라이브러리 -->
-    <script src="https://unpkg.com/swup@4"></script>
-    
-    <style>
-      html.is-animating #main-wrapper {
-        opacity: 0;
-        transition: opacity 0.25s ease;
-      }
-      html.is-rendering #main-wrapper {
-        opacity: 1;
-      }
-    </style>
-    
-    {% raw %}
-    <script>
-      (function () {
-        if (window.innerWidth <= 850) return;
-    
-        let swup;
-    
-        function initSwup() {
-          if (window._swupInstance) return;
-    
-          swup = new Swup({
-            containers: ["#main-wrapper"],
-            // linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-            linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"]):not([class*="search"])',
-            animateHistoryBrowsing: true,
-          });
-          window._swupInstance = swup;
-    
-          function reinitChirpy() {
-            const currentPath = window.location.pathname;
-            const body = document.body;
-    
-            const navLinks = document.querySelectorAll("#sidebar .nav-item a");
-            navLinks.forEach((link) => {
-              const item = link.closest(".nav-item");
-              const linkPath = new URL(link.href, window.location.origin).pathname;
-              const isActive = currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath));
-              if (item.classList.contains("active") !== isActive) {
-                item.classList.toggle("active", isActive);
+<!-- 1. Swup v4 라이브러리 로드 -->
+<script src="https://unpkg.com/swup@4"></script>
+
+<!-- 2. Swup 전환 애니메이션 및 깜박임 방지 CSS -->
+<style>
+  /* 중앙 컨텐츠 페이드 효과 */
+  html.is-animating #main-wrapper {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  html.is-rendering #main-wrapper {
+    opacity: 1;
+  }
+
+  /* 전환 중 검색 결과 레이어가 튀어 나오는 현상 방지 */
+  html.is-animating #search-results-wrapper {
+    display: none !important;
+  }
+</style>
+
+{% raw %}
+<script>
+  (function () {
+    // 모바일 환경(850px 이하)에서는 Swup을 실행하지 않음
+    if (window.innerWidth <= 850) return;
+
+    let swup;
+
+    function initSwup() {
+      if (window._swupInstance) return;
+
+      swup = new Swup({
+        containers: ["#main-wrapper"],
+        // 검색 관련 링크(.search-...)는 Swup 처리에서 제외하여 깜박임 방지
+        linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"]):not([class*="search"])',
+        animateHistoryBrowsing: true,
+      });
+      window._swupInstance = swup;
+
+      function reinitChirpy() {
+        const currentPath = window.location.pathname;
+        const body = document.body;
+
+        // [1] 사이드바 메뉴 활성화 상태 갱신
+        const navLinks = document.querySelectorAll("#sidebar .nav-item a");
+        navLinks.forEach((link) => {
+          const item = link.closest(".nav-item");
+          const linkPath = new URL(link.href, window.location.origin).pathname;
+          const isActive = currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath));
+          if (item && item.classList.contains("active") !== isActive) {
+            item.classList.toggle("active", isActive);
+          }
+        });
+
+        // [2] 모바일 메뉴(토글) 버튼 재연결 (이벤트 중복 방지)
+        const menuBtn = document.querySelector("#sidebar-trigger");
+        const mask = document.querySelector("#mask");
+
+        if (menuBtn) {
+          menuBtn.onclick = (e) => {
+            e.preventDefault();
+            body.classList.toggle("sidebar-display");
+          };
+        }
+        if (mask) {
+          mask.onclick = () => body.classList.remove("sidebar-display");
+        }
+
+        // [3] Chirpy 내부 UI 함수들 재초기화
+        try {
+          // 필요 시 주석 해제 (단, CPU 사용량이나 깜박임 유발 시 다시 주석)
+          if (typeof window.initSidebar === 'function') window.initSidebar();
+          if (typeof window.initTopbar === 'function') window.initTopbar();
+          if (typeof window.initClipboard === 'function') window.initClipboard();
+          
+          // 검색 초기화는 linkSelector에서 제외했으므로 보통은 호출 안 해도 무방함
+          // if (typeof window.initSearch === 'function') window.initSearch();
+
+          // 코드 하이라이팅 (이미 된 것은 제외하여 연산 절약)
+          if (window.hljs) {
+            document.querySelectorAll("pre code").forEach((el) => {
+              if (!el.classList.contains('hljs')) {
+                window.hljs.highlightElement(el);
               }
             });
-    
-            const menuBtn = document.querySelector("#sidebar-trigger");
-            const mask = document.querySelector("#mask");
-    
-            if (menuBtn) {
-              menuBtn.onclick = (e) => {
-                e.preventDefault();
-                body.classList.toggle("sidebar-display");
-              };
-            }
-            if (mask) {
-              mask.onclick = () => body.classList.remove("sidebar-display");
-            }
-    
-            try {              
-              if (typeof window.initSidebar === 'function') window.initSidebar();
-              if (typeof window.initTopbar === 'function') window.initTopbar();
-              if (typeof window.initClipboard === 'function') window.initClipboard();
-              // if (typeof window.initSearch === 'function') window.initSearch();
-              
-              if (window.hljs) {
-                document.querySelectorAll("pre code").forEach((el) => {
-                  if (!el.classList.contains('hljs')) { 
-                    window.hljs.highlightElement(el);
-                  }
-                });
-              }
-              if (window.tocbot && typeof window.tocbot.refresh === 'function') {
-                window.tocbot.refresh();
-              }
-            }
-            } catch (e) {
-              console.warn("UI refresh warning:", e);
-            }
           }
-    
-          swup.hooks.on("page:view", () => {
-            reinitChirpy();
-            window.scrollTo(0, 0);
-          });
-    
-          reinitChirpy();
+
+          // 우측 패널 목차(TOC) 갱신
+          if (window.tocbot && typeof window.tocbot.refresh === 'function') {
+            window.tocbot.refresh();
+          }
+        } catch (e) {
+          console.warn("UI refresh warning:", e);
         }
-    
-        if (document.readyState === "complete") {
-          initSwup();
-        } else {
-          window.addEventListener("load", initSwup);
-        }
-      })();
-    </script>
-    {% endraw %}
+      }
+
+      // 페이지 전환 완료 후 실행되는 훅
+      swup.hooks.on("page:view", () => {
+        reinitChirpy();
+        window.scrollTo(0, 0);
+      });
+
+      // 최초 로드 시 실행
+      reinitChirpy();
+    }
+
+    // 문서 로드 상태에 따라 초기화 함수 실행
+    if (document.readyState === "complete") {
+      initSwup();
+    } else {
+      window.addEventListener("load", initSwup);
+    }
+  })();
+</script>
+<!-- end of script: 에러 방지용 주석 및 여백 -->
+{% endraw %}
     
   </body>
 </html>
