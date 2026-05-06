@@ -137,6 +137,12 @@
 
   {% include metadata-hook.html %}
 
-  <script src="https://instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipS0KnM4yb4WjDaq66nTHuxYBUtE8Z5zlImjnT/f74ExjiCJ9n5W6QMS"></script>
+
+  <script>
+    document.documentElement.style.visibility = 'hidden';
+    document.addEventListener("DOMContentLoaded", function() {
+      document.documentElement.style.visibility = 'visible';
+    });
+  </script>
   
 </head>
