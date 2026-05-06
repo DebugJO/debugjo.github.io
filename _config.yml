@@ -58,7 +58,7 @@ theme_mode: # [light | dark]
 
 cdn:
 
-avatar:
+avatar: "assets/img/favicons/msj3.png"
 
 social_preview_image: # string, local or CORS resources
 
