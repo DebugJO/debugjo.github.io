@@ -20,6 +20,8 @@
 
 #sidebar {
     width: 280px !important;
+    contain: layout paint !important; 
+    transform: translateZ(0) !important; 
 }
 
 @media (min-width: 1650px) {
