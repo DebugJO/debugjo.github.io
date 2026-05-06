@@ -149,7 +149,7 @@ layout: compress
               
               if (window.hljs) {
                 document.querySelectorAll("pre code").forEach((el) => {
-                  if (!el.classList.contains('hljs')) { // 이미 강조된 건 건너뜀
+                  if (!el.classList.contains('hljs')) { 
                     window.hljs.highlightElement(el);
                   }
                 });
@@ -157,6 +157,7 @@ layout: compress
               if (window.tocbot && typeof window.tocbot.refresh === 'function') {
                 window.tocbot.refresh();
               }
+            }
             } catch (e) {
               console.error("Reinit error:", e);
             }
@@ -175,8 +176,9 @@ layout: compress
         } else {
           window.addEventListener("load", initSwup);
         }
-      });
+      })();
     </script>
+    <!-- end -->
     {% endraw %}
     
   </body>
