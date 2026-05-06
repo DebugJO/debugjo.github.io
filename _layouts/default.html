@@ -96,6 +96,7 @@ layout: compress
     </style>
     
     {% raw %}
+    <!-- start -->
     <script>
       (function () {
         if (window.innerWidth <= 850) return;
@@ -140,11 +141,15 @@ layout: compress
             }
     
             try {
+              if (window.hljs) {
+                document.querySelectorAll("pre code:not(.hljs)").forEach(el => window.hljs.highlightElement(el));
+              }
+              
+              if (window.tocbot) window.tocbot.refresh();
+              
               if (typeof window.initSidebar === 'function') window.initSidebar();
               if (typeof window.initTopbar === 'function') window.initTopbar();
-              
               if (typeof window.initSearch === 'function') window.initSearch();
-              
               if (typeof window.initClipboard === 'function') window.initClipboard();
               
               if (window.hljs) {
@@ -159,7 +164,7 @@ layout: compress
               }
             }
             } catch (e) {
-              console.error("Reinit error:", e);
+              console.warn("UI refresh warning:", e);
             }
           }
     
