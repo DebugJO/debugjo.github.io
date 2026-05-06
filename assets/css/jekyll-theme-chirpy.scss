@@ -4,8 +4,6 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
-
-
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
 .license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
 .post-meta a:not([class]):hover, .content a:not(.img-link):hover {
@@ -116,13 +114,12 @@
     box-shadow: none  !important;
 }
 
-/* 맨 아래에 추가 */
 body {
-  animation: fadeIn 0.15s ease-in-out !important;
+  animation: pageFadeIn 0.1s ease-in-out !important;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0.8 !important; }
+@keyframes pageFadeIn {
+  from { opacity: 0.85 !important; }
   to { opacity: 1 !important; }
 }
 
