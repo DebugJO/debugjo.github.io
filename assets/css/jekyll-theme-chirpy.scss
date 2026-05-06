@@ -4,7 +4,10 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
-header .post-meta em, header .post-meta time, .post-tail-wrapper .license-wrapper>a, footer a, footer em {
-  color: #0070d1 !important;
-  text-decoration: none !important;
+#page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
+.license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
+.post-meta a:not([class]):hover, .content a:not(.img-link):hover {
+    color: #0070d1 !important;
+    border-bottom: none !important;
+    text-decoration: none !important;
 }
