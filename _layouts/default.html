@@ -82,7 +82,63 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
+    <!-- 추가 부분 -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.innerWidth <= 850) {
+          return;
+        }
+    
+        const swup = new Swup({
+          containers: ["#main-wrapper"],
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          animateHistoryBrowsing: true,
+          animationSelector: false
+        });
+    
+        document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+          link.addEventListener("click", function () {
+            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+              item.classList.remove("active");
+            });
+            this.closest(".nav-item").classList.add("active");
+          });
+        });
+    
+        swup.hooks.on("content:replace", () => {
+          const currentPath = window.location.pathname;
+          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+            item.classList.remove("active");
+          });
+          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+            if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+              const navItem = link.closest(".nav-item");
+              if (navItem) navItem.classList.add("active");
+            }
+          });
+        });
+    
+        swup.hooks.on("page:view", () => {
+          if (window.hljs) {
+            document.querySelectorAll("pre code").forEach(el => {
+              window.hljs.highlightElement(el);
+            });
+          }
 
+          if (window.tocbot) {
+            window.tocbot.refresh();
+          }
+
+          if (window.initSidebar) window.initSidebar();
+          if (window.initTopbar) window.initTopbar();
+          if (window.initSearch) window.initSearch();
+          if (window.initClipboard) window.initClipboard();
+        });
+      });
+    </script>
 
   </body>
 </html>
