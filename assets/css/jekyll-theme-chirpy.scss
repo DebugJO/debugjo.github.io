@@ -113,16 +113,3 @@
 #sidebar #avatar {
     box-shadow: none  !important;
 }
-
-body {
-  animation: pageFadeIn 0.1s ease-in-out !important;
-}
-
-@keyframes pageFadeIn {
-  from { opacity: 0.85 !important; }
-  to { opacity: 1 !important; }
-}
-
-#sidebar {
-  transition: none !important;
-}
