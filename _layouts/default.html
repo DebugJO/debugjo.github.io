@@ -118,8 +118,8 @@ layout: compress
     
       document.addEventListener("DOMContentLoaded", () => {
         const swup = new Swup({
-          containers: ["#main-wrapper"],
-          linkSelector: 'a[href^="/"]:not([target="_blank"]):not([href^="#"])',
+          containers: ["main"], 
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
           animateHistoryBrowsing: true
         });
       
@@ -141,7 +141,6 @@ layout: compress
           });
         }
       
-        // 최초 실행
         updateSidebarActive();
       
         swup.hooks.on("page:view", () => {
