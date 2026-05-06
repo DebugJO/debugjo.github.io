@@ -83,7 +83,6 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <!-- 추가 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
     <script src="https://unpkg.com"></script>
     <script>
@@ -94,23 +93,28 @@ layout: compress
           animateHistoryBrowsing: true
         });
     
+        document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+          link.addEventListener("click", function (e) {
+            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+              item.classList.remove("active");
+            });
+            this.closest(".nav-item").classList.add("active");
+          });
+        });
+    
         swup.hooks.on("page:view", () => {
           console.log("SWUP PAGE VIEW");
-    
+          
           const currentPath = window.location.pathname;
-    
-          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-            item.classList.remove("active");
-          });
     
           document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
             const linkPath = new URL(link.href, window.location.origin).pathname;
-            
+
             if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
               link.closest(".nav-item").classList.add("active");
             }
           });
-
+    
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
