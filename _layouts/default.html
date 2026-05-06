@@ -84,77 +84,69 @@ layout: compress
     {% include_cached search-loader.html lang=lang %}
     
     <!-- Swap 추가 -->
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-<script src="https://unpkg.com/swup@4"></script>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+    <script src="https://unpkg.com/swup@4"></script>    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let swup = null;
     
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    let swup = null;
-
-    function initSwup() {
-      // 💡 모바일 크기(850px 이하)에서는 Swup 비활성화 및 기존 인스턴스 파괴
-      if (window.innerWidth <= 850) {
-        if (swup) {
-          swup.destroy();
-          swup = null;
-        }
-        return;
-      }
-
-      // 💡 데스크톱 크기에서만 Swup 인스턴스 생성
-      if (!swup) {
-        swup = new Swup({
-          containers: ["#main-wrapper"],
-          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-          animateHistoryBrowsing: true,
-          animationSelector: false
-        });
-
-        // 1. Swup v4 본문 교체 시점 (메뉴 active 클래스 즉시 변경)
-        swup.hooks.on("content:replace", () => {
-          const currentPath = window.location.pathname;
-
-          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-            item.classList.remove("active");
-          });
-
-          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-            const linkPath = new URL(link.href, window.location.origin).pathname;
-            if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
-              const navItem = link.closest(".nav-item");
-              if (navItem) {
-                navItem.classList.add("active");
-              }
+        function initSwup() {
+          // 💡 모바일 크기(850px 이하)에서는 Swup 비활성화 및 기존 인스턴스 파괴
+          if (window.innerWidth <= 850) {
+            if (swup) {
+              swup.destroy();
+              swup = null;
             }
-          });
-        });
-
-        // 2. 새 페이지 로드 완료 시점 (TOC, 하이라이트 등 바인딩)
-        swup.hooks.on("page:view", () => {
-          if (window.hljs) {
-            document.querySelectorAll("pre code").forEach(el => {
-              window.hljs.highlightElement(el);
+            return;
+          }
+    
+          if (!swup) {
+            swup = new Swup({
+              containers: ["#main-wrapper"],
+              linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+              animateHistoryBrowsing: true,
+              animationSelector: false
+            });
+    
+            swup.hooks.on("content:replace", () => {
+              const currentPath = window.location.pathname;
+    
+              document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+                item.classList.remove("active");
+              });
+    
+              document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+                  const navItem = link.closest(".nav-item");
+                  if (navItem) {
+                    navItem.classList.add("active");
+                  }
+                }
+              });
+            });
+    
+            swup.hooks.on("page:view", () => {
+              if (window.hljs) {
+                document.querySelectorAll("pre code").forEach(el => {
+                  window.hljs.highlightElement(el);
+                });
+              }
+              if (window.tocbot) {
+                window.tocbot.refresh();
+              }
+              if (window.initSearch) window.initSearch();
+              if (window.initSidebar) window.initSidebar();
+              if (window.initTopbar) window.initTopbar();
+              if (window.initClipboard) window.initClipboard();
             });
           }
-          if (window.tocbot) {
-            window.tocbot.refresh();
-          }
-          if (window.initSearch) window.initSearch();
-          if (window.initSidebar) window.initSidebar();
-          if (window.initTopbar) window.initTopbar();
-          if (window.initClipboard) window.initClipboard();
-        });
-      }
-    }
-
-    initSwup();
-
-    // 창 크기 조절 시 Swup 활성화 여부 실시간 판단
-    window.addEventListener("resize", initSwup);
-  });
-</script>
-
-
+        };
     
+        initSwup();
+        window.addEventListener("resize", initSwup);
+      });
+    </script>
+
   </body>
 </html>
