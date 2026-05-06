@@ -82,98 +82,87 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <!-- 추가 부분: Swup 및 커스텀 스크립트 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+    <!-- 1. Swup 라이브러리 로드 -->
     <script src="https://unpkg.com/swup@4"></script>
     
+    <!-- 2. Swup 애니메이션 CSS (custom.css 대신 여기에 직접 삽입) -->
+    <style>
+      /* 페이지 전환 시 부드럽게 사라지고 나타나는 효과 */
+      html.is-animating #main-wrapper {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      html.is-rendering #main-wrapper {
+        opacity: 1;
+      }
+    </style>
+    
+    <!-- 3. 핵심 로직 스크립트 -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // 1. 모바일 환경(850px 이하)에서는 Swup 비활성화 (Chirpy 모바일 기본 동작 유지)
-        if (window.innerWidth <= 850) {
-          return;
-        }
+      (function() {
+        // 모바일(850px 이하)에서는 Swup을 실행하지 않음 (Chirpy 순정 모바일 기능 유지)
+        if (window.innerWidth <= 850) return;
     
-        const swup = new Swup({
-          containers: ["#main-wrapper"],
-          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-          animateHistoryBrowsing: true,
-          animationSelector: false
-        });
-    
-        // --- 사이드바 활성화 상태 업데이트 함수 ---
-        function updateSidebarActive() {
-          const currentPath = window.location.pathname;
-          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-            item.classList.remove("active");
+        document.addEventListener("DOMContentLoaded", () => {
+          const swup = new Swup({
+            containers: ["#main-wrapper"],
+            linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+            animateHistoryBrowsing: true
           });
     
-          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-            const linkPath = new URL(link.href, window.location.origin).pathname;
-            // 홈(/)과 하위 경로 구분하여 active 클래스 추가
-            if (currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath))) {
-              const navItem = link.closest(".nav-item");
-              if (navItem) navItem.classList.add("active");
-            }
-          });
-        }
+          // 테마의 UI 요소들을 다시 바인딩하는 함수
+          function reinitChirpy() {
+            const currentPath = window.location.pathname;
+            const body = document.body;
     
-        // --- 모바일 토글 이벤트 재바인딩 함수 ---
-        function rebindMobileMenu() {
-          const menuBtn = document.querySelector('#sidebar-trigger'); // Chirpy 모바일 메뉴 버튼
-          const mask = document.querySelector('#mask');               // 클릭 시 닫히는 배경 마스크
-          const body = document.body;
-    
-          if (menuBtn && mask) {
-            // 기존에 걸려있을지 모를 이벤트를 초기화하고 새로 할당
-            menuBtn.onclick = (e) => {
-              e.preventDefault();
-              body.classList.toggle('sidebar-display');
-            };
-            
-            mask.onclick = () => {
-              if (body.classList.contains('sidebar-display')) {
-                body.classList.remove('sidebar-display');
+            // [1] 사이드바 메뉴 활성화(Active) 처리
+            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+              const link = item.querySelector('a');
+              if (link) {
+                const linkPath = new URL(link.href, window.location.origin).pathname;
+                const isActive = currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath));
+                item.classList.toggle("active", isActive);
               }
-            };
-          }
-        }
-    
-        // 초기 실행
-        updateSidebarActive();
-        rebindMobileMenu();
-    
-        // Swup으로 컨텐츠가 교체될 때마다 실행
-        swup.hooks.on("content:replace", () => {
-          updateSidebarActive();
-        });
-    
-        // 페이지 뷰가 완료된 후 Chirpy의 기본 JS 기능들 재호출
-        swup.hooks.on("page:view", () => {
-          // 1. 코드 하이라이트
-          if (window.hljs) {
-            document.querySelectorAll("pre code").forEach(el => {
-              window.hljs.highlightElement(el);
             });
+    
+            // [2] 모바일 토글 버튼(사이드바 버튼) 재연결
+            const menuBtn = document.querySelector('#sidebar-trigger');
+            const mask = document.querySelector('#mask');
+    
+            if (menuBtn) {
+              menuBtn.onclick = (e) => {
+                e.preventDefault();
+                body.classList.toggle('sidebar-display');
+              };
+            }
+            if (mask) {
+              mask.onclick = () => body.classList.remove('sidebar-display');
+            }
+    
+            // [3] Chirpy 내부 모듈 초기화 (함수가 존재할 때만 실행)
+            if (typeof window.initSidebar === 'function') window.initSidebar();
+            if (typeof window.initTopbar === 'function') window.initTopbar();
+            if (typeof window.initSearch === 'function') window.initSearch();
+            if (typeof window.initClipboard === 'function') window.initClipboard();
+            
+            // [4] 코드 하이라이트 및 목차(TOC) 갱신
+            if (window.hljs) {
+              document.querySelectorAll("pre code").forEach(el => window.hljs.highlightElement(el));
+            }
+            if (window.tocbot) window.tocbot.refresh();
           }
     
-          // 2. TOC(목차) 초기화
-          if (window.tocbot) {
-            window.tocbot.refresh();
-          }
+          // 처음 로드됐을 때 실행
+          reinitChirpy();
     
-          // 3. Chirpy 내부 모듈 재시작 (정의되어 있는 경우)
-          if (typeof window.initSidebar === 'function') window.initSidebar();
-          if (typeof window.initTopbar === 'function') window.initTopbar();
-          if (typeof window.initSearch === 'function') window.initSearch();
-          if (typeof window.initClipboard === 'function') window.initClipboard();
-          
-          // 4. 모바일 메뉴 다시 걸기 (안드로이드/아이폰 대응)
-          rebindMobileMenu();
-    
-          // 5. 스크롤을 상단으로 이동
-          window.scrollTo(0, 0);
+          // Swup으로 페이지가 바뀔 때마다 실행
+          swup.hooks.on("page:view", () => {
+            reinitChirpy();
+            window.scrollTo(0, 0); // 새 페이지 상단으로 스크롤 이동
+          });
         });
-      });
+      })();
     </script>
 
   </body>
