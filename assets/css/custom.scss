@@ -2,16 +2,11 @@
 # Front Matter
 ---
 
-body {
+html.is-animating #main-wrapper {
   opacity: 0;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.25s ease;
 }
 
-body.fade-out {
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-body.loaded {
+html.is-rendering #main-wrapper {
   opacity: 1;
 }
