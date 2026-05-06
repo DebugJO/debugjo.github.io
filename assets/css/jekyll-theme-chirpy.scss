@@ -36,11 +36,11 @@
   }
 }
 
-// @media (max-width: calc(850px)) {
-//     #topbar {
-//         margin-left: 8px !important;
-//     }
-// }
+@media (max-width: calc(850px)) {
+    #topbar {
+        margin-left: 8px !important;
+    }
+}
 
 #topbar-wrapper .flex-shrink-0 {
     --bs-gutter-x: 3rem !important;
