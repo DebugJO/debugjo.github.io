@@ -15,3 +15,13 @@
 #sidebar .site-subtitle.fst-italic {
     font-style: normal !important;
 }
+
+#sidebar {
+    width: 280px !important;
+}
+
+@media (min-width: 1650px) {
+    #sidebar {
+        width: 280px !important;
+    }
+}
