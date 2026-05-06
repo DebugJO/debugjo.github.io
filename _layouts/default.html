@@ -133,13 +133,15 @@ layout: compress
             if (mask) {
               mask.onclick = () => body.classList.remove("sidebar-display");
             }
-    
-            if (typeof window.initSidebar === "function") window.initSidebar();
-            if (typeof window.initTopbar === "function") window.initTopbar();
-            if (typeof window.initSearch === "function") window.initSearch();
-            if (typeof window.initClipboard === "function") window.initClipboard();
-            if (typeof window.initFooter === "function") window.initClipboard();
-            if (typeof window.initPanel === "function") window.initClipboard();
+
+            if (typeof window.initSidebar === 'function') window.initSidebar();
+            if (typeof window.initTopbar === 'function') window.initTopbar();
+            if (typeof window.initSearch === 'function') window.initSearch();
+            if (typeof window.initClipboard === 'function') {
+              window.initClipboard();
+            }
+            if (typeof window.initFooter === 'function') window.initFooter();
+            if (typeof window.initPanel === 'function') window.initPanel();
     
             if (window.hljs) {
               document
