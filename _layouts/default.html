@@ -141,11 +141,11 @@ layout: compress
             }
     
             try {
-              if (window.hljs) {
-                document.querySelectorAll("pre code:not(.hljs)").forEach(el => window.hljs.highlightElement(el));
-              }
+              // if (window.hljs) {
+              //   document.querySelectorAll("pre code:not(.hljs)").forEach(el => window.hljs.highlightElement(el));
+              // }
               
-              if (window.tocbot) window.tocbot.refresh();
+              // if (window.tocbot) window.tocbot.refresh();
               
               if (typeof window.initSidebar === 'function') window.initSidebar();
               if (typeof window.initTopbar === 'function') window.initTopbar();
