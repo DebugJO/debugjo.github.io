@@ -85,13 +85,12 @@ layout: compress
     
     <!-- Swap 추가 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <script src="https://unpkg.com/swup@4"></script>    
+    <script src="https://unpkg.com"></script>    
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         let swup = null;
     
         function initSwup() {
-          // 💡 모바일 크기(850px 이하)에서는 Swup 비활성화 및 기존 인스턴스 파괴
           if (window.innerWidth <= 850) {
             if (swup) {
               swup.destroy();
