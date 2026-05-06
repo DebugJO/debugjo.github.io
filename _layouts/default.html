@@ -84,29 +84,42 @@ layout: compress
     {% include_cached search-loader.html lang=lang %}
     
     <!-- Swap 추가 -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <script src="https://unpkg.com"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const swup = new Swup({
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+<script src="https://unpkg.com/swup@4"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let swup = null;
+
+    function initSwup() {
+      // 💡 1. 850px 이하(모바일 크기)이면 Swup을 실행하지 않고 기존 인스턴스 파괴
+      if (window.innerWidth <= 850) {
+        if (swup) {
+          swup.destroy();
+          swup = null;
+        }
+        return;
+      }
+
+      // 💡 2. 850px 초과(데스크톱 크기)에서만 Swup 인스턴스 생성
+      if (!swup) {
+        swup = new Swup({
           containers: ["#main-wrapper"],
-          linkSelector: window.innerWidth > 850 
-            ? 'a[href]:not([target="_blank"]):not([href^="#"])' 
-            : 'a[data-no-swup]', 
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
           animateHistoryBrowsing: true,
-          animationSelector: false 
+          animationSelector: false
         });
-    
+
+        // 3. 본문 교체 시점 (메뉴 active 클래스 즉시 변경)
         swup.hooks.on("content:replace", () => {
           const currentPath = window.location.pathname;
-    
+
           document.querySelectorAll("#sidebar .nav-item").forEach(item => {
             item.classList.remove("active");
           });
-    
+
           document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
             const linkPath = new URL(link.href, window.location.origin).pathname;
-    
+
             if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
               const navItem = link.closest(".nav-item");
               if (navItem) {
@@ -115,7 +128,8 @@ layout: compress
             }
           });
         });
-    
+
+        // 4. 새 페이지 로드 완료 시점 (TOC, 하이라이트 등 바인딩)
         swup.hooks.on("page:view", () => {
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
@@ -130,8 +144,17 @@ layout: compress
           if (window.initTopbar) window.initTopbar();
           if (window.initClipboard) window.initClipboard();
         });
-      });
-    </script>
+      }
+    }
+
+    // 초기 실행
+    initSwup();
+
+    // 💡 5. 화면 크기가 실시간으로 바뀔 때마다 Swup 활성화 여부 재판단
+    window.addEventListener("resize", initSwup);
+  });
+</script>
+
     
   </body>
 </html>
