@@ -84,72 +84,63 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-<!-- 추가 부분 -->
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-<script src="https://unpkg.com/swup@4"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // [수정] 모바일에서도 스크립트가 실행되도록 return을 제거하고 
-    // Swup 활성화 여부만 체크합니다.
-    const isDesktop = window.innerWidth > 850;
-
-    const swup = new Swup({
-      containers: ["#main-wrapper"],
-      linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-      animateHistoryBrowsing: true,
-      animationSelector: false
-    });
-
-    // 사이드바 활성화 표시 로직 (함수로 분리)
-    function updateSidebarActive() {
-      const currentPath = window.location.pathname;
-      document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-        item.classList.remove("active");
-        const link = item.querySelector("a");
-        if (link) {
-          const linkPath = new URL(link.href, window.location.origin).pathname;
-          if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
-            item.closest(".nav-item").classList.add("active");
-          }
+    <!-- 추가 부분 -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.innerWidth <= 850) {
+          return;
         }
-      });
-    }
-
-    // [추가] 모바일 사이드바 강제 닫기 함수
-    function closeMobileMenu() {
-      // Chirpy 테마의 모바일 메뉴 상태 속성 제거
-      document.body.removeAttribute("data-sidebar-display");
-    }
-
-    // 초기 실행
-    updateSidebarActive();
-
-    // Swup 이벤트: 콘텐츠가 교체될 때
-    swup.hooks.on("content:replace", () => {
-      updateSidebarActive();
-      closeMobileMenu(); // 페이지 이동 시 모바일 메뉴 닫기
-    });
-
-    // Swup 이벤트: 페이지 뷰가 완료되었을 때 (스크립트 재실행)
-    swup.hooks.on("page:view", () => {
-      if (window.hljs) {
-        document.querySelectorAll("pre code").forEach(el => {
-          window.hljs.highlightElement(el);
+    
+        const swup = new Swup({
+          containers: ["#main-wrapper"],
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          animateHistoryBrowsing: true,
+          animationSelector: false
         });
-      }
+    
+        document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+          link.addEventListener("click", function () {
+            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+              item.classList.remove("active");
+            });
+            this.closest(".nav-item").classList.add("active");
+          });
+        });
+    
+        swup.hooks.on("content:replace", () => {
+          const currentPath = window.location.pathname;
+          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+            item.classList.remove("active");
+          });
+          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+            if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+              const navItem = link.closest(".nav-item");
+              if (navItem) navItem.classList.add("active");
+            }
+          });
+        });
+    
+        swup.hooks.on("page:view", () => {
+          if (window.hljs) {
+            document.querySelectorAll("pre code").forEach(el => {
+              window.hljs.highlightElement(el);
+            });
+          }
 
-      if (window.tocbot) {
-        window.tocbot.refresh();
-      }
+          if (window.tocbot) {
+            window.tocbot.refresh();
+          }
 
-      // 테마 기본 기능 재연결 (이게 없으면 메뉴 버튼이 먹통됨)
-      if (typeof window.initSidebar === 'function') window.initSidebar();
-      if (typeof window.initTopbar === 'function') window.initTopbar();
-      if (typeof window.initSearch === 'function') window.initSearch();
-      if (typeof window.initClipboard === 'function') window.initClipboard();
-    });
-  });
-</script>
+          if (window.initSidebar) window.initSidebar();
+          if (window.initTopbar) window.initTopbar();
+          if (window.initSearch) window.initSearch();
+          if (window.initClipboard) window.initClipboard();
+        });
+      });
+    </script>
 
   </body>
 </html>
