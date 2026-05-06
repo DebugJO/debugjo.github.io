@@ -86,14 +86,20 @@ layout: compress
 
     <!-- 추가 부분 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <script src="https://unpkg.com/swup@4"></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         if (window.innerWidth <= 850) {
           return;
         }
-    
-        const swup = new Swup({
+
+        import('https://unpkg.com/swup@4')
+        .then(() => {
+          const swup = new Swup();
+        })
+        .catch(err => console.error('Swup 로드 실패:', err));
+        
+          swup = ({
           containers: ["#main-wrapper"],
           linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
           animateHistoryBrowsing: true,
