@@ -90,7 +90,8 @@ layout: compress
         const swup = new Swup({
           containers: ["#main-wrapper"],
           linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-          animateHistoryBrowsing: true
+          animateHistoryBrowsing: true,        
+          animationSelector: false 
         });
     
         swup.hooks.on("content:replace", () => {
@@ -124,6 +125,6 @@ layout: compress
         });
       });
     </script>
-    
+
   </body>
 </html>
