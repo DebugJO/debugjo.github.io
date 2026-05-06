@@ -1,0 +1,8 @@
+body {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
