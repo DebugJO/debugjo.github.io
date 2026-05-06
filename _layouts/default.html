@@ -85,10 +85,10 @@ layout: compress
     
     <!-- Swap 추가 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css" />
-    <script src="https://unpkg.com/swup@4"></script>
+    <script src="https://unpkg.com"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 850) {
           return;
         }
     
@@ -96,7 +96,7 @@ layout: compress
           containers: ["#main-wrapper"],
           linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
           animateHistoryBrowsing: true,
-          animationSelector: false
+          animationSelector: false,
         });
     
         swup.hooks.on("content:replace", () => {
