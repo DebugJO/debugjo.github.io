@@ -86,74 +86,61 @@ layout: compress
 
     <!-- 추가 부분 -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-
-<script type="module">
-document.addEventListener("DOMContentLoaded", async () => {
-  // 모바일 크기(850px 이하)일 경우 실행 중단
-  if (window.innerWidth <= 850) {
-    return;
-  }
-
-  try {
-    // 1. Swup을 스크립트 내부에서 동적으로 로드합니다.
-    await import('https://unpkg.com/swup@4');
-
-    // 2. Swup 인스턴스를 초기화합니다.
-    const swup = new Swup({
-      containers: ["#main-wrapper"],
-      linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-      animateHistoryBrowsing: true,
-      animationSelector: false
-    });
-
-    // 3. 사이드바 클릭 이벤트 리스너 설정
-    document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-      link.addEventListener("click", function () {
-        document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-          item.classList.remove("active");
-        });
-        this.closest(".nav-item").classList.add("active");
-      });
-    });
-
-    // 4. Swup 콘텐츠 교체 훅
-    swup.hooks.on("content:replace", () => {
-      const currentPath = window.location.pathname;
-      document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-        item.classList.remove("active");
-      });
-
-      document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-        const linkPath = new URL(link.href, window.location.origin).pathname;
-        if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
-          const navItem = link.closest(".nav-item");
-          if (navItem) navItem.classList.add("active");
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.innerWidth <= 850) {
+          return;
         }
-      });
-    });
-
-    // 5. Swup 페이지 전환 후 실행할 훅
-    swup.hooks.on("page:view", () => {
-      if (window.hljs) {
-        document.querySelectorAll("pre code").forEach(el => {
-          window.hljs.highlightElement(el);
+    
+        const swup = new Swup({
+          containers: ["#main-wrapper"],
+          linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+          animateHistoryBrowsing: true,
+          animationSelector: false
         });
-      }
-      if (window.tocbot) {
-        window.tocbot.refresh();
-      }
-      if (window.initSidebar) window.initSidebar();
-      if (window.initTopbar) window.initTopbar();
-      if (window.initSearch) window.initSearch();
-      if (window.initClipboard) window.initClipboard();
-    });
+    
+        document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+          link.addEventListener("click", function () {
+            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+              item.classList.remove("active");
+            });
+            this.closest(".nav-item").classList.add("active");
+          });
+        });
+    
+        swup.hooks.on("content:replace", () => {
+          const currentPath = window.location.pathname;
+          document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+            item.classList.remove("active");
+          });
+          document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+            if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+              const navItem = link.closest(".nav-item");
+              if (navItem) navItem.classList.add("active");
+            }
+          });
+        });
+    
+        swup.hooks.on("page:view", () => {
+          if (window.hljs) {
+            document.querySelectorAll("pre code").forEach(el => {
+              window.hljs.highlightElement(el);
+            });
+          }
 
-  } catch (error) {
-    console.error("Swup 로딩 중 오류 발생:", error);
-  }
-});
-</script>
+          if (window.tocbot) {
+            window.tocbot.refresh();
+          }
 
+          if (window.initSidebar) window.initSidebar();
+          if (window.initTopbar) window.initTopbar();
+          if (window.initSearch) window.initSearch();
+          if (window.initClipboard) window.initClipboard();
+        });
+      });
+    </script>
 
   </body>
 </html>
