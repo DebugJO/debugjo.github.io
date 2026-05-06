@@ -2,12 +2,12 @@
 # Front Matter
 ---
 
-@import "main";
+@use "main" {%- if jekyll.environment == "production" -%} .bundle {%- endif -%};
 
 body {
   font-size: 1.05rem;
 }
 
 a {
-  color: #007bff;
+  color: #0070d1;
 }
