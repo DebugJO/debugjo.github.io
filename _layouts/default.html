@@ -84,8 +84,8 @@ layout: compress
     {% include_cached search-loader.html lang=lang %}
     
     <!-- Swap 추가 -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <script src="https://unpkg.com"></script>    
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css" />
+    <script src="https://unpkg.com"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         let swup = null;
@@ -104,19 +104,23 @@ layout: compress
               containers: ["#main-wrapper"],
               linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
               animateHistoryBrowsing: true,
-              animationSelector: false
+              animationSelector: false,
             });
     
             swup.hooks.on("content:replace", () => {
               const currentPath = window.location.pathname;
     
-              document.querySelectorAll("#sidebar .nav-item").forEach(item => {
+              document.querySelectorAll("#sidebar .nav-item").forEach((item) => {
                 item.classList.remove("active");
               });
     
-              document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-                const linkPath = new URL(link.href, window.location.origin).pathname;
-                if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+              document.querySelectorAll("#sidebar .nav-item a").forEach((link) => {
+                const linkPath = new URL(link.href, window.location.origin)
+                  .pathname;
+                if (
+                  currentPath === linkPath ||
+                  (currentPath.startsWith(linkPath) && linkPath !== "/")
+                ) {
                   const navItem = link.closest(".nav-item");
                   if (navItem) {
                     navItem.classList.add("active");
@@ -127,7 +131,7 @@ layout: compress
     
             swup.hooks.on("page:view", () => {
               if (window.hljs) {
-                document.querySelectorAll("pre code").forEach(el => {
+                document.querySelectorAll("pre code").forEach((el) => {
                   window.hljs.highlightElement(el);
                 });
               }
@@ -140,10 +144,10 @@ layout: compress
               if (window.initClipboard) window.initClipboard();
             });
           }
-        };
     
-        initSwup();
-        window.addEventListener("resize", initSwup);
+          initSwup();
+          window.addEventListener("resize", initSwup);
+        }
       });
     </script>
 
