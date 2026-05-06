@@ -20,11 +20,11 @@ twitter:
   username: # twitter_username
 
 social:
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: DebugJO
+  email: "msjo <msjo@devsight.kr>"# change to your email address
   fediverse_handle: # fill in your fediverse handle. E.g. "@username@domain.com"
   links:
-    # - https://www.facebook.com/username
+    - https://github.com/debugjo
     # - https://www.linkedin.com/in/username
 
 webmaster_verifications:
