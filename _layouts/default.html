@@ -96,9 +96,7 @@ layout: compress
           animateHistoryBrowsing: true
         });
     
-        swup.hooks.on("page:view", () => {
-          console.log("SWUP PAGE VIEW");
-    
+        swup.hooks.on("page:view", () => {    
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
@@ -109,6 +107,24 @@ layout: compress
           if (window.initTopbar) window.initTopbar();
         });
       });
+
+      function updateSidebarActive() {
+        const currentPath = window.location.pathname;
+      
+        document.querySelectorAll("#sidebar a").forEach(link => {
+          const href = link.getAttribute("href");
+      
+          if (!href) return;
+      
+          const normalizedHref = new URL(href, window.location.origin).pathname;
+      
+          if (normalizedHref === currentPath) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }      
     </script>   
   </body>
 </html>
