@@ -32,18 +32,8 @@
   [sidebar-display] #sidebar {
     transform: translateX(0) !important;
     -webkit-transform: translateX(0) !important;
-    width : 280px !important;
+    width : 260px !important;
   }
-}
-
-@media (max-width: calc(850px)) {
-    #topbar {
-        margin-left: 8px !important;
-    }
-}
-
-#topbar-wrapper .flex-shrink-0 {
-    --bs-gutter-x: 3rem !important;
 }
 
 #sidebar {
