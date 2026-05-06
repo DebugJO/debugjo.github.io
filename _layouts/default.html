@@ -85,13 +85,13 @@ layout: compress
     
     <!-- Swap 추가 -->
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-<script src="https://unpkg.com/swup@4"></script>
+<script src="https://unpkg.com"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     let swup = null;
 
     function initSwup() {
-      // 💡 1. 850px 이하(모바일 크기)이면 Swup을 실행하지 않고 기존 인스턴스 파괴
+      // 💡 모바일 크기(850px 이하)에서는 Swup 비활성화 및 기존 인스턴스 파괴
       if (window.innerWidth <= 850) {
         if (swup) {
           swup.destroy();
@@ -100,7 +100,7 @@ layout: compress
         return;
       }
 
-      // 💡 2. 850px 초과(데스크톱 크기)에서만 Swup 인스턴스 생성
+      // 💡 데스크톱 크기에서만 Swup 인스턴스 생성
       if (!swup) {
         swup = new Swup({
           containers: ["#main-wrapper"],
@@ -109,7 +109,7 @@ layout: compress
           animationSelector: false
         });
 
-        // 3. 본문 교체 시점 (메뉴 active 클래스 즉시 변경)
+        // 1. Swup v4 본문 교체 시점 (메뉴 active 클래스 즉시 변경)
         swup.hooks.on("content:replace", () => {
           const currentPath = window.location.pathname;
 
@@ -119,7 +119,6 @@ layout: compress
 
           document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
             const linkPath = new URL(link.href, window.location.origin).pathname;
-
             if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
               const navItem = link.closest(".nav-item");
               if (navItem) {
@@ -129,7 +128,7 @@ layout: compress
           });
         });
 
-        // 4. 새 페이지 로드 완료 시점 (TOC, 하이라이트 등 바인딩)
+        // 2. 새 페이지 로드 완료 시점 (TOC, 하이라이트 등 바인딩)
         swup.hooks.on("page:view", () => {
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
@@ -147,13 +146,13 @@ layout: compress
       }
     }
 
-    // 초기 실행
     initSwup();
 
-    // 💡 5. 화면 크기가 실시간으로 바뀔 때마다 Swup 활성화 여부 재판단
+    // 창 크기 조절 시 Swup 활성화 여부 실시간 판단
     window.addEventListener("resize", initSwup);
   });
 </script>
+
 
     
   </body>
