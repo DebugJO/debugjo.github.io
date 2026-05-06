@@ -4,10 +4,7 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
-body {
-  font-size: 1.05rem;
-}
-
-a {
-  color: #0070d1;
+header .post-meta em, header .post-meta time, .post-tail-wrapper .license-wrapper>a, footer a, footer em {
+  color: #0070d1 !important;
+  text-decoration: none !important;
 }
