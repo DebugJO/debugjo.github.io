@@ -112,3 +112,12 @@
 #sidebar #avatar {
     box-shadow: none  !important;
 }
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: block !important; 
+  }
+}
