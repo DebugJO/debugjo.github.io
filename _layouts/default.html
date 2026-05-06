@@ -82,13 +82,9 @@ layout: compress
 
     {% include_cached search-loader.html lang=lang %}
 
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css">
-    <!-- 1. Swup 라이브러리 로드 -->
+    <!-- Swup 라이브러리 로드 -->
     <script src="https://unpkg.com/swup@4"></script>
-    
-    <!-- 2. Swup 애니메이션 CSS (custom.css 대신 여기에 직접 삽입) -->
     <style>
-      /* 페이지 전환 시 부드럽게 사라지고 나타나는 효과 */
       html.is-animating #main-wrapper {
         opacity: 0;
         transition: opacity 0.25s ease;
@@ -98,68 +94,66 @@ layout: compress
       }
     </style>
     
-    <!-- 3. 핵심 로직 스크립트 -->
     <script>
-      (function() {
-        // 모바일(850px 이하)에서는 Swup을 실행하지 않음 (Chirpy 순정 모바일 기능 유지)
+      (function () {
         if (window.innerWidth <= 850) return;
     
         document.addEventListener("DOMContentLoaded", () => {
           const swup = new Swup({
             containers: ["#main-wrapper"],
             linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-            animateHistoryBrowsing: true
+            animateHistoryBrowsing: true,
           });
     
-          // 테마의 UI 요소들을 다시 바인딩하는 함수
           function reinitChirpy() {
             const currentPath = window.location.pathname;
             const body = document.body;
     
-            // [1] 사이드바 메뉴 활성화(Active) 처리
-            document.querySelectorAll("#sidebar .nav-item").forEach(item => {
-              const link = item.querySelector('a');
+            document.querySelectorAll("#sidebar .nav-item").forEach((item) => {
+              const link = item.querySelector("a");
               if (link) {
-                const linkPath = new URL(link.href, window.location.origin).pathname;
-                const isActive = currentPath === linkPath || (linkPath !== "/" && currentPath.startsWith(linkPath));
+                const linkPath = new URL(link.href, window.location.origin)
+                  .pathname;
+                const isActive =
+                  currentPath === linkPath ||
+                  (linkPath !== "/" && currentPath.startsWith(linkPath));
                 item.classList.toggle("active", isActive);
               }
             });
     
-            // [2] 모바일 토글 버튼(사이드바 버튼) 재연결
-            const menuBtn = document.querySelector('#sidebar-trigger');
-            const mask = document.querySelector('#mask');
+            const menuBtn = document.querySelector("#sidebar-trigger");
+            const mask = document.querySelector("#mask");
     
             if (menuBtn) {
               menuBtn.onclick = (e) => {
                 e.preventDefault();
-                body.classList.toggle('sidebar-display');
+                body.classList.toggle("sidebar-display");
               };
             }
             if (mask) {
-              mask.onclick = () => body.classList.remove('sidebar-display');
+              mask.onclick = () => body.classList.remove("sidebar-display");
             }
     
-            // [3] Chirpy 내부 모듈 초기화 (함수가 존재할 때만 실행)
-            if (typeof window.initSidebar === 'function') window.initSidebar();
-            if (typeof window.initTopbar === 'function') window.initTopbar();
-            if (typeof window.initSearch === 'function') window.initSearch();
-            if (typeof window.initClipboard === 'function') window.initClipboard();
-            
-            // [4] 코드 하이라이트 및 목차(TOC) 갱신
+            if (typeof window.initSidebar === "function") window.initSidebar();
+            if (typeof window.initTopbar === "function") window.initTopbar();
+            if (typeof window.initSearch === "function") window.initSearch();
+            if (typeof window.initClipboard === "function") window.initClipboard();
+            if (typeof window.initFooter === "function") window.initClipboard();
+            if (typeof window.initPanel === "function") window.initClipboard();
+    
             if (window.hljs) {
-              document.querySelectorAll("pre code").forEach(el => window.hljs.highlightElement(el));
+              document
+                .querySelectorAll("pre code")
+                .forEach((el) => window.hljs.highlightElement(el));
             }
             if (window.tocbot) window.tocbot.refresh();
           }
     
-          // 처음 로드됐을 때 실행
           reinitChirpy();
     
-          // Swup으로 페이지가 바뀔 때마다 실행
           swup.hooks.on("page:view", () => {
             reinitChirpy();
-            window.scrollTo(0, 0); // 새 페이지 상단으로 스크롤 이동
+            window.scrollTo(0, 0);
           });
         });
       })();
