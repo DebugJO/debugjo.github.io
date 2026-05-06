@@ -114,7 +114,6 @@ layout: compress
         });
     
         swup.hooks.on("page:view", () => {
-          console.log("SWUP PAGE VIEW");
           if (window.hljs) {
             document.querySelectorAll("pre code").forEach(el => {
               window.hljs.highlightElement(el);
