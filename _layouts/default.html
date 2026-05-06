@@ -88,9 +88,9 @@ layout: compress
     <script src="https://unpkg.com/swup@4"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // if (window.innerWidth <= 850) {
-        //   return;
-        // }
+        if (window.innerWidth <= 768) {
+          return;
+        }
     
         const swup = new Swup({
           containers: ["#main-wrapper"],
