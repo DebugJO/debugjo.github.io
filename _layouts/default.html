@@ -89,69 +89,69 @@ layout: compress
 <script src="https://unpkg.com/swup@4"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // 1. Swup 초기화 (850px 초과일 때만 Swup 활성화하고 싶다면 조건부 설정)
-    let swup = null;
-    if (window.innerWidth > 850) {
-      swup = new Swup({
-        containers: ["#main-wrapper"],
-        linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
-        animateHistoryBrowsing: true,
-        animationSelector: false
-      });
-    }
+    // 1. Swup 초기화 (모든 화면 크기에서 작동하도록 설정)
+    const swup = new Swup({
+      containers: ["#main-wrapper"],
+      linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"])',
+      animateHistoryBrowsing: true,
+      animationSelector: false
+    });
 
-    // 2. 사이드바 활성화 로직 (모바일/데스크탑 공통)
-    function updateSidebarActive() {
+    // 2. 사이드바 활성화 상태 업데이트 함수
+    function updateSidebar() {
       const currentPath = window.location.pathname;
+      const origin = window.location.origin;
+
       document.querySelectorAll("#sidebar .nav-item").forEach(item => {
         item.classList.remove("active");
-      });
-      document.querySelectorAll("#sidebar .nav-item a").forEach(link => {
-        const linkPath = new URL(link.href, window.location.origin).pathname;
-        if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
-          const navItem = link.closest(".nav-item");
-          if (navItem) navItem.classList.add("active");
+        const link = item.querySelector("a");
+        if (link) {
+          const linkPath = new URL(link.href, origin).pathname;
+          if (currentPath === linkPath || (currentPath.startsWith(linkPath) && linkPath !== "/")) {
+            item.classList.add("active");
+          }
         }
       });
     }
 
-    // 3. 모바일 사이드바 닫기 함수 (Chirpy 테마 기준)
-    function closeMobileSidebar() {
-      if (document.body.hasAttribute("data-sidebar-display")) {
-        document.body.removeAttribute("data-sidebar-display");
+    // 3. 모바일 상태 초기화 (사이드바 닫기 및 버튼 먹통 방지)
+    function resetMobileState() {
+      // 페이지 이동 시 열려있던 모바일 메뉴 닫기
+      document.body.removeAttribute("data-sidebar-display");
+      
+      // Chirpy 테마의 모바일 토글 버튼 이벤트를 다시 바인딩하기 위해 
+      // 기존 테마 스크립트들을 재실행
+      if (typeof window.initSidebar === 'function') window.initSidebar();
+      if (typeof window.initTopbar === 'function') window.initTopbar();
+      if (typeof window.initSearch === 'function') window.initSearch();
+      if (typeof window.initClipboard === 'function') window.initClipboard();
+    }
+
+    // --- Swup 훅(Hooks) 설정 ---
+
+    // 콘텐츠가 교체된 직후 실행
+    swup.hooks.on("content:replace", () => {
+      updateSidebar();
+      resetMobileState();
+    });
+
+    // 페이지 뷰가 완료된 후 실행 (스크롤 복구 등)
+    swup.hooks.on("page:view", () => {
+      // 코드 하이라이팅 재적용
+      if (window.hljs) {
+        document.querySelectorAll("pre code").forEach(el => {
+          window.hljs.highlightElement(el);
+        });
       }
-    }
 
-    // 초기 실행
-    updateSidebarActive();
+      // TOC(목차) 재설정
+      if (window.tocbot) {
+        window.tocbot.refresh();
+      }
+    });
 
-    // Swup 이벤트 리스너 (Swup이 활성화된 경우에만)
-    if (swup) {
-      swup.hooks.on("content:replace", () => {
-        updateSidebarActive();
-        closeMobileSidebar(); // 페이지 이동 시 모바일 메뉴 닫기
-      });
-
-      swup.hooks.on("page:view", () => {
-        // 코드 하이라이트 재실행
-        if (window.hljs) {
-          document.querySelectorAll("pre code").forEach(el => {
-            window.hljs.highlightElement(el);
-          });
-        }
-
-        // TOC 재설정
-        if (window.tocbot) {
-          window.tocbot.refresh();
-        }
-
-        // 테마 기본 JS 재초기화 (모바일 메뉴 버튼 등)
-        if (typeof window.initSidebar === 'function') window.initSidebar();
-        if (typeof window.initTopbar === 'function') window.initTopbar();
-        if (typeof window.initSearch === 'function') window.initSearch();
-        if (typeof window.initClipboard === 'function') window.initClipboard();
-      });
-    }
+    // 초기 로드 시 실행
+    updateSidebar();
   });
 </script>
 
