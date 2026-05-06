@@ -36,6 +36,10 @@
   }
 }
 
+.container {
+    padding-left: calc(var(--bs-gutter-x))!important;
+}
+
 #sidebar {
   width: 280px !important;
   display: flex !important;
