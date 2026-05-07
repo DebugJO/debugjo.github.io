@@ -149,13 +149,14 @@ layout: compress
         });
       
         function initSwup() {
-          if (window.innerWidth <= 850 || window._swupInstance) return;
+          // if (window.innerWidth <= 850 || window._swupInstance) return;
       
           const swup = new Swup({
             containers: ["#main-wrapper"],
             linkSelector: 'a[href]:not([target="_blank"]):not([href^="#"]):not([class*="search"])',
             animateHistoryBrowsing: true,
-            animationSelector: false,
+            //animationSelector: false,
+            animationSelector: window.innerWidth <= 850 ? false : '[class*="transition-"]'
           });
           window._swupInstance = swup;
       
