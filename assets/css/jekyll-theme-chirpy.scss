@@ -8,6 +8,10 @@ body {
   font-family: "Noto Sans KR", "Malgun Gothic", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace;
 }
 
+#article pre {
+  font-family: "IBM Plex Mono", "Source Sans Pro", SF Mono, Menlo, Monaco, Consolas, monospace;
+}
+
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
 .license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
 .post-meta a:not([class]):hover, .content a:not(.img-link):hover {
