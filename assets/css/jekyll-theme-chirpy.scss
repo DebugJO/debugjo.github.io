@@ -12,6 +12,10 @@
     text-decoration: none !important;
 }
 
+#topbar-wrapper {
+    --bs-gutter-x: 2.5rem !important;
+}
+
 #sidebar .profile-wrapper {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
