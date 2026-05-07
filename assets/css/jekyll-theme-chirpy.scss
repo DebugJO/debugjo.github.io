@@ -4,6 +4,10 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
+body {
+  font-family: "Noto Sans KR", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", SF Mono, Menlo, Monaco, monospace, Arial";
+}
+
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
 .license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
 .post-meta a:not([class]):hover, .content a:not(.img-link):hover {
