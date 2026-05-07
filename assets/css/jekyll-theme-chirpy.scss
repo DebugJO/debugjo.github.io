@@ -5,7 +5,7 @@
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
 body {
-  font-family: "Noto Sans KR", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace;
+  font-family: "Noto Sans KR", "Malgun Gothic", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace;
 }
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
