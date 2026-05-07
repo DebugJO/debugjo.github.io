@@ -32,14 +32,32 @@
     transition: transform 0.4s ease !important;
     transform: translateX(-280px) !important;
     -webkit-transform: translateX(-280px) !important;
+    opacity: 1 !important; 
+    visibility: visible !important;
   }
 
+  body.sidebar-display #sidebar,
   [sidebar-display] #sidebar {
     transform: translateX(0) !important;
     -webkit-transform: translateX(0) !important;
-    width : 260px !important;
+    width: 260px !important;
+    z-index: 9999;
   }
 }
+
+// @media (max-width: 850px) {
+//   #sidebar {
+//     transition: transform 0.4s ease !important;
+//     transform: translateX(-280px) !important;
+//     -webkit-transform: translateX(-280px) !important;
+//   }
+
+//   [sidebar-display] #sidebar {
+//     transform: translateX(0) !important;
+//     -webkit-transform: translateX(0) !important;
+//     width : 260px !important;
+//   }
+// }
 
 #sidebar {
   width: 280px !important;
