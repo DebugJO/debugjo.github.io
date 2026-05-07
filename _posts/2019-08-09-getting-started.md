@@ -13,6 +13,41 @@ tags: [getting started]
 
 When creating your site repository, you have two options depending on your needs:
 
+```cs
+public static int GetLongestUniqueLength(string s)
+{
+    if (string.IsNullOrWhiteSpace(s))
+    {
+        return 0;
+    }
+
+    try
+    {
+        int[] lastSeen = new int[128];
+        Array.Fill(lastSeen, -1);
+        int maxLength = 0, left = 0;
+
+        for (int right = 0; right < s.Length; right++)
+        {
+            if (lastSeen[s[right]] >= left)
+            {
+                left = lastSeen[s[right]] + 1;
+            }
+
+            lastSeen[s[right]] = right;
+            maxLength = Math.Max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+    catch (Exception ex)
+    {
+        LogHelper.Error($"GetLongestUniqueLength Error : {ex.Message}");
+        return 0;
+    }
+}
+```
+
 ### Option 1. Using the Starter (Recommended)
 
 This approach simplifies upgrades, isolates unnecessary files, and is perfect for users who want to focus on writing with minimal configuration.
