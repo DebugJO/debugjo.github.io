@@ -12,6 +12,12 @@
     text-decoration: none !important;
 }
 
+@media (min-width: 1650px) {
+    main.col-12 {
+        padding-right: 1.5em !important;
+    }
+}
+
 #main-wrapper>.container {
     --bs-gutter-x: 2.5rem !important;
     margin-left: 0 !important;
