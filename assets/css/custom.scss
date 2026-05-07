@@ -10,3 +10,12 @@ html.is-animating #main-wrapper {
 html.is-rendering #main-wrapper {
   opacity: 1;
 }
+
+@media (max-width: 850px) {
+  html.is-animating #main-wrapper,
+  html.is-rendering #main-wrapper,
+  #main-wrapper {
+    opacity: 1 !important;      
+    transition: none !important; 
+  }
+}
