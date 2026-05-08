@@ -16,14 +16,30 @@
        url('/assets/fonts/FiraCode-VF.woff2') format('woff2');  
 }
 
+@font-face {
+	font-family: 'Monaspace Neon';
+  src: url('/assets/fonts/MonaspaceNeon.woff2') format('woff2-variations'),
+       url('/assets/fonts/MonaspaceNeon.woff2') format('woff2');  
+}
+
+@font-face {
+	font-family: 'IBM-Plex-Mono';
+  src: url('/assets/fonts/ibm-plex-mono.woff2') format('woff2-variations'),
+       url('/assets/fonts/ibm-plex-mono.woff2') format('woff2');  
+}
+
 body {
-  font-family: "Pretendard", "Malgun Gothic", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "Pretendard", "Malgun Gothic", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-weight: 450 !important;
+  font-variant-ligatures: contextual !important;
 }
 
 .highlight code pre {
-  font-family: "Fira Code", "Source Sans Pro", SF Mono, Menlo, Monaco, Consolas, monospace !important;
+  font-family: "Fira Code", Consolas, "Source Sans Pro", SF Mono, Menlo, Monaco, monospace !important;
   line-height: 1.3rem !important;
   font-size: 13px !important;
+  font-weight: 450 !important;
+  font-variant-ligatures: contextual !important;
 }
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
