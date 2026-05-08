@@ -4,8 +4,14 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
+@font-face {
+	font-family: 'Pretendard';
+  src: url('/assets/fonts/PretendardVariable.woff2') format('woff2-variations'),
+       url('/assets/fonts/PretendardVariable.woff2') format('woff2');  
+}
+
 body {
-  font-family: "Noto Sans KR", "Malgun Gothic", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "Pretendard", "Malgun Gothic", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace !important;
 }
 
 .highlight code pre {
