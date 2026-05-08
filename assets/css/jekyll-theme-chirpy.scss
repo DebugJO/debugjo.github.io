@@ -117,14 +117,12 @@ body {
   font-weight: 450 !important;
   font-variant-ligatures: contextual !important;
 }
-
-#tail-wrapper {
+footer p {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   font-weight: 400 !important;
   font-variant-ligatures: contextual !important; 
   font-size: 13px !important;
 }
-
 /******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
@@ -136,9 +134,14 @@ body {
 }
 
 @media (min-width: 1650px) {
+    #main-wrapper>.container {
+        max-width: 1500px !important;
+    }
+}
+
+@media (min-width: 1650px) {
     main.col-12 {
         padding-right: 1.5em !important;
-        max-width: 1500px !important;
         padding-left: 0rem !important;
     }
 }
