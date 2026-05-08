@@ -118,7 +118,14 @@ body {
   font-variant-ligatures: contextual !important;
 }
 
-/******************************************** 폰트 설정 *************************************************/
+#tail-wrapper {
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-weight: 400 !important;
+  font-variant-ligatures: contextual !important; 
+  font-size: 13px !important;
+}
+
+/******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
 .license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
