@@ -134,15 +134,15 @@ footer p {
 }
 
 @media (min-width: 1650px) {
-    #main-wrapper>.container {
-        max-width: 1500px !important;
-    }
-}
-
-@media (min-width: 1650px) {
     main.col-12 {
         padding-right: 1.5em !important;
         padding-left: 0rem !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    #main-wrapper>.container {
+        max-width: 1500px !important;
     }
 }
 
