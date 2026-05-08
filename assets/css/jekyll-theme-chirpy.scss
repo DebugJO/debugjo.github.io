@@ -10,12 +10,18 @@
        url('/assets/fonts/PretendardVariable.woff2') format('woff2');  
 }
 
+@font-face {
+	font-family: 'Fira Code';
+  src: url('/assets/fonts/FiraCode-VF.woff2') format('woff2-variations'),
+       url('/assets/fonts/FiraCode-VF.woff2') format('woff2');  
+}
+
 body {
   font-family: "Pretendard", "Malgun Gothic", "IBM Plex Mono", "Source Sans Pro", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace !important;
 }
 
 .highlight code pre {
-  font-family: "IBM Plex Mono", "Source Sans Pro", SF Mono, Menlo, Monaco, Consolas, monospace !important;
+  font-family: "Fira Code", "Source Sans Pro", SF Mono, Menlo, Monaco, Consolas, monospace !important;
   line-height: 1.3rem !important;
   font-size: 13px !important;
 }
