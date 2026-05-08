@@ -41,28 +41,28 @@ H2 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
   font-variant-ligatures: contextual !important;  
-   font-size: 18px !important;
+  font-size: 18px !important;
 }
 
 H3 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
   font-variant-ligatures: contextual !important;  
-   font-size: 16px !important;
+  font-size: 16px !important;
 }
 
 H4 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
   font-variant-ligatures: contextual !important; 
-   font-size: 15px !important;
+  font-size: 15px !important;
 }
 
 H5 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
   font-variant-ligatures: contextual !important;  
-   font-size: 14px !important;
+  font-size: 14px !important;
 }
 
 H6 {
@@ -74,8 +74,16 @@ H6 {
 
 .post-desc {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 450 !important;
+  font-weight: 400 !important;
   font-variant-ligatures: contextual !important;  
+  font-size: 15px !important;
+}
+
+p {
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-weight: 450 !important;
+  font-variant-ligatures: contextual !important; 
+  font-size: 15px !important;
 }
 
 body {
