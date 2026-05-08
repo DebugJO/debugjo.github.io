@@ -16,6 +16,7 @@
        url('/assets/fonts/FiraCode-VF.woff2') format('woff2');  
 }
 
+/*
 @font-face {
 	font-family: 'Monaspace Neon';
   src: url('/assets/fonts/MonaspaceNeon.woff2') format('woff2-variations'),
@@ -27,6 +28,7 @@
   src: url('/assets/fonts/ibm-plex-mono.woff2') format('woff2-variations'),
        url('/assets/fonts/ibm-plex-mono.woff2') format('woff2');  
 }
+*/
 
 body {
   font-family: "Pretendard", "Malgun Gothic", "Microsoft Yahei", Arial, SF Mono, Menlo, Monaco, monospace !important;
@@ -35,7 +37,7 @@ body {
 }
 
 .highlight code pre {
-  font-family: "Monaspace Neon", Consolas, "Source Sans Pro", SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "Fira Code", Consolas, "Source Sans Pro", SF Mono, Menlo, Monaco, monospace !important;
   line-height: 1.3rem !important;
   font-size: 13px !important;
   font-weight: 450 !important;
