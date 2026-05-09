@@ -1,24 +1,6 @@
-{%- comment -%}
-  포스트 요약 또는 전체 내용을 가져옵니다.
-{%- endcomment -%}
-
 {%- assign content = post.content -%}
 
-{%- comment -%} 코드 블록 줄번호 제거 로직 {%- endcomment -%}
-{%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
-  {%- assign content = content
-    | replace: '<td class="rouge-gutter gl"><pre class="lineno">', '<!--'
-    | replace: '</td><td class="rouge-code">', '--><td>'
-  -%}
-{%- endif -%}
-
-{%- comment -%} 
-  중요: 
-  1. 홈 화면(include.full_text == true)일 때만 전체/more 로직 작동
-  2. 관련 글(Related Posts) 등에서는 태그가 깨지지 않게 strip_html 처리된 요약만 제공
-{%- endcomment -%}
-
-<div class="post-summary-content"> <!-- 시작 태그 -->
+<div class="post-summary-content"> 
   {%- if include.full_text -%}
     {%- if content contains '<!--more-->' -%}
       {{ content | split: '<!--more-->' | first }}
@@ -26,7 +8,6 @@
       {{ content }}
     {%- endif -%}
   {%- else -%}
-    {%- comment -%} 관련 글 카드 등에서는 텍스트만 100자 노출 (안전장치) {%- endcomment -%}
     {{ content | markdownify | strip_html | truncate: 100 }}
   {%- endif -%}
-</div> <!-- 반드시 닫혀야 함! -->
+</div>
