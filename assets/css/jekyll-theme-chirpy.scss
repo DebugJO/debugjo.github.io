@@ -331,3 +331,15 @@ footer p {
 .highlight pre::-webkit-scrollbar {
     display: none !important;
 }
+
+.btn-outline-primary {
+  border-radius: 20px; 
+  padding: 5px 20px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--main-color);
+  color: #fff;
+}
