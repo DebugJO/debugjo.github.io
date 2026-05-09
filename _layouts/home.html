@@ -49,7 +49,7 @@ layout: default
 <div id="post-list" class="flex-grow-1 px-xl-1">
   {% for post in posts %}
     <article class="card-wrapper card">
-      <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse">
+      <!-- <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse"> -->
         {% assign card_body_col = '12' %}
 
         {% if post.image %}
@@ -131,7 +131,7 @@ layout: default
           </div>
           <!-- .card-body -->
         </div>
-      </a>
+      <!-- </a> -->
     </article>
   {% endfor %}
 </div>
