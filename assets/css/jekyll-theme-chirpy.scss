@@ -312,28 +312,21 @@ footer p {
 }
 
 /* 메인 컨텐츠 영역 확장 */
-#post-list .card-text.content {
-  line-height: 1.75 !important;
-}
-
-#post-list .card-text.content p {
-  display: block !important;
+.card-text.content {
+  line-height: 1.75 !important; 
 }
 
 .card-text.content img {
-  max-width: 100% !important;
-  height: auto !important;
-  border-radius: 5px !important;
-  margin: 10px 0 !important;
+  max-width: 100% !important; 
+  height: auto !important; 
+  border-radius: 5px !important; ;
 }
 
-/* 코드 블록이 카드 밖으로 나가지 않게 */
 .card-text.content pre {
-  /* white-space: pre-wrap !important; */
-  /* word-break: break-all !important; */
-  display: block !important;
-  max-width: 100% !important;
+  white-space: pre-wrap !important; ;
+  word-break: break-all !important; 
 }
+
 /*
 .card-body {
   height: auto !important;
