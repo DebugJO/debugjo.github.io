@@ -312,6 +312,24 @@ footer p {
 }
 
 /* 메인 컨텐츠 영역 확장 */
+.card-text.content {
+  color: var(--main-color) !important;
+  line-height: 1.6 !important;
+}
+
+.card-text.content img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 5px !important;
+  margin: 10px 0 !important;
+}
+
+/* 코드 블록이 카드 밖으로 나가지 않게 */
+.card-text.content pre {
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+}
+/*
 .card-body {
   height: auto !important;
   min-height: 100vh !important;
@@ -341,4 +359,5 @@ card-text.content {
     opacity: 1 !important;
     transition: none !important;
 }
+*/
 /* 메인 컨텐츠 영역 확장  end */
