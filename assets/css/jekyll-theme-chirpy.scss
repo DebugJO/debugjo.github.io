@@ -333,31 +333,21 @@ footer p {
 }
 
 /* Read More... 버튼 */
-.custom-read-more-wrapper {
-  margin-top: 2rem !important;
-  margin-bottom: 1rem !important;
-  display: block;
+.standalone-read-more {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 4px;
+  text-decoration: none; 
+  transition: 0.3s;
 }
 
-.content a.read-more-link {
-  display: inline-block !important;
-  padding: 4px 12px !important;
-  font-size: 0.9rem !important;
-  font-weight: 600 !important;
-  color: #0d6efd !important;           
-  background-color: transparent !important;
-  border: 1px solid #0d6efd !important; 
-  border-radius: 5px !important;
-  text-decoration: none !important;
-  border-bottom: 1px solid #0d6efd !important;
-  transition: all 0.3s ease !important;
-}
-
-.content a.read-more-link:not(.img-link):hover {
-  color: #ffffff !important;       
-  background-color: #0d6efd !important; 
-  border-color: #0d6efd !important;
-  border-bottom: 1px solid #0d6efd !important;
-  text-decoration: none !important;
-  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3) !important;
+.standalone-read-more:hover {
+  background-color: #0d6efd;
+  color: #ffffff !important;
+  text-decoration: none;
 }
