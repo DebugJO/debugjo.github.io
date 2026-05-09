@@ -343,3 +343,7 @@ footer p {
   background-color: var(--main-color);
   color: #fff;
 }
+
+.mt-4 mb-2 .btn {
+    border-bottom: 0px !important;
+}
