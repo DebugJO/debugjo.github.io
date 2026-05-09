@@ -101,8 +101,8 @@ layout: default
               {% include post-summary.html full_text=true %}
               
               {% if post.content contains '<!--more-->' %}
-                <div class="mt-4 mb-2">
-                  <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">Read More ...</a>
+                <div class="custom-read-more-wrapper">
+                  <a href="{{ post.url | relative_url }}" class="read-more-link">Read More ...</a>
                 </div>
               {% endif %}
             </div>
