@@ -320,3 +320,14 @@ footer p {
 #post-list .card .card-body .card-text.content {
     color: #34343C !important;
 }
+
+.highlight table td pre {
+    overflow-x: auto !important;    
+    white-space: pre !important;  
+    scrollbar-width: none !important; 
+    -ms-overflow-style: none !important;
+}
+
+.highlight table td pre::-webkit-scrollbar {
+    display: none !important;
+}
