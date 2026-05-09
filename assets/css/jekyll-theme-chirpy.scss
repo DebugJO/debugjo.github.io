@@ -16,89 +16,55 @@
        url('/assets/fonts/FiraCode-VF.woff2') format('woff2');  
 }
 
-/*
-@font-face {
-	font-family: 'Monaspace Neon';
-  src: url('/assets/fonts/MonaspaceNeon.woff2') format('woff2-variations'),
-       url('/assets/fonts/MonaspaceNeon.woff2') format('woff2');  
-}
-
-@font-face {
-	font-family: 'IBM Plex Mono';
-  src: url('/assets/fonts/ibm-plex-mono.woff2') format('woff2-variations'),
-       url('/assets/fonts/ibm-plex-mono.woff2') format('woff2');  
-}
-*/
-
 /******************************************** 폰트 설정 *************************************************/
 
 H1 {
-  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
-  font-variant-ligatures: contextual !important;
   font-size: 22px !important;
 }
 
 H2 {
-  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
-  font-variant-ligatures: contextual !important;  
   font-size: 20px !important;
 }
 
 H3 {
-  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
   font-weight: 500 !important;
-  font-variant-ligatures: contextual !important;  
   font-size: 18px !important;
 }
 
 H4 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
-  font-weight: 500 !important;
-  font-variant-ligatures: contextual !important; 
   font-size: 16px !important;
 }
 
 H5 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
-  font-weight: 500 !important;
-  font-variant-ligatures: contextual !important;  
-  font-size: 15px !important;
+  font-size: 14px !important;
 }
 
 H6 {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important; 
-  font-weight: 500 !important;
-  font-variant-ligatures: contextual !important;  
-  font-size: 14px !important;
-}
-
-.post-desc {
-  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 400 !important;
-  font-variant-ligatures: contextual !important;  
-  font-size: 15px !important;
+  font-size: 13px !important;
 }
 
 p {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 420 !important;
-  font-variant-ligatures: contextual !important; 
+  font-size: 15px !important;
+}
+
+.post-desc {
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   font-size: 15px !important;
 }
 
 .me-auto{
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 400 !important;
-  font-variant-ligatures: contextual !important; 
   font-size: 13px !important;
 }
 
 input#search-input.form-control {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 400 !important;
-  font-variant-ligatures: contextual !important; 
   font-size: 14px !important;
 }
 
@@ -106,8 +72,6 @@ input#search-input.form-control {
 
 body {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 420 !important;
-  font-variant-ligatures: contextual !important;
 }
 
 .highlight code pre {
@@ -117,10 +81,9 @@ body {
   font-weight: 450 !important;
   font-variant-ligatures: contextual !important;
 }
+
 footer p {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-  font-weight: 400 !important;
-  font-variant-ligatures: contextual !important; 
   font-size: 13px !important;
 }
 /******************************************** 폰트 설정 end *********************************************/
@@ -131,164 +94,4 @@ footer p {
     color: #0070d1 !important;
     border-bottom: none !important;
     text-decoration: none !important;
-}
-
-@media (min-width: 1650px) {
-    main.col-12 {
-        padding-right: 1.5em !important;
-        padding-left: 0rem !important;
-    }
-}
-
-@media (min-width: 1000px) {
-    #main-wrapper>.container {
-        max-width: 1500px !important;
-    }
-}
-
-@media (min-width: 1000px) {
-    .col-xl-9 {
-        width: 57% !important;
-    }
-}		
-
-@media (min-width: 1000px) {
-    .col-xl-3 {
-        width: 43% !important;
-  }
-}
-
-#main-wrapper>.container {
-    --bs-gutter-x: 2.5rem !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-}
-
-#sidebar .site-title {
-    font-weight: 600 !important;
-}  
-
-#sidebar .profile-wrapper {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-}
-
-#sidebar .site-subtitle.fst-italic {
-    font-style: normal !important;
-}
-
-@media (min-width: 1650px) {
-    #sidebar {
-        width: 280px !important;
-    }
-}
-
-@media (max-width: 850px) {
-  #sidebar {
-    transition: transform 0.4s ease !important;
-    transform: translateX(-280px) !important;
-    -webkit-transform: translateX(-280px) !important;
-    opacity: 1 !important; 
-    visibility: visible !important;
-  }
-
-  body.sidebar-display #sidebar,
-  [sidebar-display] #sidebar {
-    transform: translateX(0) !important;
-    -webkit-transform: translateX(0) !important;
-    width: 260px !important;
-    z-index: 9999;
-  }
-}
-
-// @media (max-width: 850px) {
-//   #sidebar {
-//     transition: transform 0.4s ease !important;
-//     transform: translateX(-280px) !important;
-//     -webkit-transform: translateX(-280px) !important;
-//   }
-
-//   [sidebar-display] #sidebar {
-//     transform: translateX(0) !important;
-//     -webkit-transform: translateX(0) !important;
-//     width : 260px !important;
-//   }
-// }
-
-#sidebar {
-  width: 280px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important; 
-  text-align: center !important;  
-  
-  // contain: layout paint !important;
-  // -webkit-transform: translate3d(0, 0, 0) !important;
-  // transform: translate3d(0, 0, 0) !important;
-  // -webkit-backface-visibility: hidden !important;
-  // backface-visibility: hidden !important;
-}
-
-#sidebar .profile-wrapper {
-  width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 1.5rem 0 !important;
-}
-
-#sidebar .flex-column.flex-grow-1 {
-  width: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;    
-  justify-content: flex-start !important; 
-  padding: 1rem 0 !important;
-  margin: 0 !important;
-}
-
-#sidebar nav.flex-column,
-#sidebar nav.flex-column ul {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-#sidebar ul li.nav-item {
-    padding-left: 0px !important;
-    padding-right:0px !important;
-}
-
-#sidebar nav.flex-column li.nav-item {
-  width: 210px !important;
-  display: flex !important;
-  justify-content: center !important; 
-  align-items: center !important;
-  text-align: center !important;
-}
-
-#sidebar nav.flex-column li.nav-item a {
-  width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  text-align: center !important;
-}
-
-#sidebar .sidebar-bottom {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  padding: 1rem 0 !important;
-  margin-top: auto !important;
-}
-
-#sidebar #avatar {
-    box-shadow: none  !important;
 }
