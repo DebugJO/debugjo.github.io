@@ -314,5 +314,6 @@ footer p {
 /* 메인 컨텐츠 영역 확장 */
 .card-body {
   height: 100vh !important;
+  min-height: 100vh !important;
 }
 /* 메인 컨텐츠 영역 확장  end */
