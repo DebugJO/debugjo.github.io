@@ -8,6 +8,6 @@
       {{ content }}
     {%- endif -%}
   {%- else -%}
-    {{ content | markdownify | strip_html | newline_to_br | replace: '<br />', ' ' | strip_newlines  | strip | truncate: 100 }}
+    {{ content | markdownify | strip_html | truncate: 100 }}
   {%- endif -%}
 </div>
