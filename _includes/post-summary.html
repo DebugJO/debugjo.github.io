@@ -1,3 +1,5 @@
+ {{ content }}
+
 {%- assign content = post.content -%}
 
 {%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
@@ -21,7 +23,5 @@
   {%- assign max_length = include.max_length | default: 100000 -%}
   {%- assign content = content | truncate: max_length -%}
 {%- endunless -%}
-
- {{ content }}
     
 {{- content -}}
