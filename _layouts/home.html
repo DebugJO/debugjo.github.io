@@ -99,6 +99,12 @@ layout: default
             </h1>
             <div class="card-text content mt-0 mb-3">
               {% include post-summary.html full_text=true %}
+              
+              {% if post.content contains '<!--more-->' %}
+                <div class="mt-4 mb-2">
+                  <a href="{{ post.url | relative_url }}" class="btn btn-outline-primary btn-sm">Read More ...</a>
+                </div>
+              {% endif %}
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
