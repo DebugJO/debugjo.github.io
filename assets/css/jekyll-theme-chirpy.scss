@@ -343,9 +343,8 @@ main.col-12 {
   flex: 1 !important;
 }
 
-.pagination {
-  margin-top: auto !important;
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
-}
+/* 확인용 임시 코드 (나중에 삭제하세요) */
+#main-wrapper { background-color: rgba(255, 0, 0, 0.1) !important; }
+#main-wrapper > .container { background-color: rgba(0, 255, 0, 0.1) !important; }
+main { background-color: rgba(0, 0, 255, 0.1) !important; }
 /* 메인 컨텐츠 영역 확장  end */
