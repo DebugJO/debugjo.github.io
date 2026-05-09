@@ -1,12 +1,14 @@
 {%- assign content = post.content -%}
 
+{%- comment -%}
 {%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
   {%- assign content = content
     | replace: '<td class="rouge-gutter gl"><pre class="lineno">', '<!--'
     | replace: '</td><td class="rouge-code">', '--><td>'
   -%}
 {%- endif -%}
-
+{%- endcomment -%}
+      
 <div class="content">
   {{ content }}
 </div>
