@@ -371,3 +371,13 @@ footer p {
 .rouge-code {
   padding-left: 20px !important;
 }
+
+#search-results .post-snippet {
+  display: none !important;
+}
+
+#search-results > div {
+  margin-bottom: 1rem !important;
+  border-bottom: 1px solid var(--main-border-color);
+  padding-bottom: 0.5rem;
+}
