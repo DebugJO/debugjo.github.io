@@ -238,7 +238,7 @@ footer p {
 
 @media (min-width: 768px) {
     #post-list .card .card-body {
-        padding: 1.75rem 1rem 1.25rem !important;
+        padding: 0rem 0rem 0rem !important;
     }
 }
 
@@ -314,5 +314,6 @@ footer p {
 #post-list .card .card-body .card-text .content p {
   line-height: 1.75 !important;
   margin-bottom: 16px !important;
+  margin-block-end: 16px !important;
 }
 
