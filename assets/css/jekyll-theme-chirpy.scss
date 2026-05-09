@@ -254,6 +254,10 @@ footer p {
   width: 100% !important;
 }
 
+.table-wrapper table thead {
+  border-bottom: 0px !important;
+}
+
 .table-wrapper table thead th{
   border: 1px solid #ddd !important; 
   text-align: center !important; 
