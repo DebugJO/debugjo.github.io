@@ -359,16 +359,13 @@ footer p {
 .highlight .gl {
   padding-left: 0px !important;
   padding-right: 0px !important;
+  display: none !important;
 }
 
 @media (min-width: 850px) {
     main h1 {
         margin-top: 2.5rem !important;
     }
-}
-
-.rouge-gutter gl {
-  display: none !important;
 }
 
 .rouge-code {
