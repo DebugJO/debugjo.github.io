@@ -317,8 +317,7 @@ footer p {
   min-height: 100vh !important;
 }
 
-.card-text {
+#post-list .card .card-body .card-text {
   display: inline !important;
-  overflow: hidden !important;
 }
 /* 메인 컨텐츠 영역 확장  end */
