@@ -311,3 +311,13 @@ footer p {
   font-size: 14px !important;
 }
 
+.post-preview,
+.card-wrapper,
+.card {
+    height: auto !important;
+    max-height: none !important;
+}
+
+.post-content {
+    overflow: visible !important;
+}
