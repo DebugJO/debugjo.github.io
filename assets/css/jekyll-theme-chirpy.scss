@@ -265,6 +265,11 @@ footer p {
 }
 
 .table-wrapper table tbody td{
+  border: 1px solid #DDD !important;   
+  text-align: left !important; 
+}
+
+.table-wrapper table tbody td tr{
   border: 1px solid #F6F8FA !important;   
   text-align: left !important; 
 }
