@@ -314,6 +314,9 @@ footer p {
 #post-list .card .card-body .card-text .content p {
   line-height: 1.75 !important;
   margin-bottom: 16px !important;
-  margin-block-end: 16px !important;
 }
 
+#post-list .card .card-body .post-meta, 
+#post-list .card .card-body .card-text.content {
+    color: #34343C !important;
+}
