@@ -10,5 +10,9 @@
 {%- endcomment -%}
       
 <div class="content">
-  {{ content }}
+  {%- if content contains '<!--more-->' -%}
+    {{ content | split: '<!--more-->' | first }}
+  {%- else -%}
+    {{ content }}
+  {%- endif -%}
 </div>
