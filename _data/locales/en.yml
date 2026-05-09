@@ -78,9 +78,6 @@ df:
   post:
     strftime: "%Y-%m-%d" 
     dayjs: "YYYY-MM-DD"
-  archives:
-    strftime: "%Y-%m"
-    dayjs: "MM-DD" 
 
 # categories page
 categories:
