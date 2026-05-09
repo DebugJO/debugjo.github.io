@@ -53,6 +53,11 @@ p {
   font-size: 15px !important;
 }
 
+li {
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-size: 15px !important;
+}
+
 .post-desc {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   font-size: 15px !important;
@@ -86,7 +91,8 @@ footer p {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   font-size: 13px !important;
 }
-/******************************************** 폰트 설정 end *********************************************/
+
+/******************************************** 폰트 설정 *************************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
 .license-wrapper>a:hover, #search-results a:hover, footer a:hover, #topbar #breadcrumb a:hover, 
@@ -95,3 +101,5 @@ footer p {
     border-bottom: none !important;
     text-decoration: none !important;
 }
+
+/******************************************** 폰트 설정 end *********************************************/
