@@ -312,52 +312,7 @@ footer p {
 }
 
 /* 메인 컨텐츠 영역 확장 */
-/*
-#post-list .card-text.content {
-  line-height: 1.75 !important; 
-}
-
-.card-text.content img {
-  max-width: 100% !important; 
-  height: auto !important; 
-  border-radius: 5px !important; ;
-}
-
-.card-text.content pre {
-  white-space: pre-wrap !important; ;
-  word-break: break-all !important; 
-}
-*/
-
-/*
-.card-body {
-  height: auto !important;
-  min-height: 100vh !important;
-}
-
 #post-list .card .card-body .card-text {
-  display: inline !important;
+  display: block !important;
 }
 
-.post-preview {
-  box-shadow: none !important;
-  height: auto !important;
-}
-
-card-text.content {
-  max-height: none !important;
-  overflow: visible !important;
-}
-
-.card-text.content img {
-  max-width: 100% !important;
-  height: auto !important;
-}
-
-.post-preview::before {
-    background-color: transparent !important;
-    opacity: 1 !important;
-    transition: none !important;
-}
-*/
-/* 메인 컨텐츠 영역 확장  end */
