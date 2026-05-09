@@ -334,7 +334,7 @@ footer p {
 
 .standalone-read-more {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 0px;
   padding: 4px 12px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -343,6 +343,8 @@ footer p {
   border-radius: 4px;
   text-decoration: none; 
   transition: 0.3s;
+  width: fit-content;
+  margin-bottom: 20px;
 }
 
 .standalone-read-more:hover {
