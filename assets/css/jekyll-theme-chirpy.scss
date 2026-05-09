@@ -281,11 +281,9 @@ footer p {
     margin-top: 1em !important;
 }
 
-/*
 #related-posts {
   display: none !important;
 }
-*/
 
 .post-navigation {
   margin-top: 1rem !important; 
@@ -355,7 +353,14 @@ footer p {
   text-decoration: none;
 }
 
+/*
 .rouge-gutter gl {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+*/
+
+.highlight .gl {
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
