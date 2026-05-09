@@ -312,6 +312,10 @@ footer p {
 }
 
 /* 메인 컨텐츠 영역 확장 */
+html, body {
+  height: 100% !important;
+}
+
 #main-wrapper {
   display: flex !important;
   flex-direction: column !important;
@@ -324,7 +328,24 @@ footer p {
   flex-direction: column !important;
 }
 
+#main-wrapper > .container > .row {
+  flex: 1 !important;
+  display: flex !important;
+}
+
+main.col-12 {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
 #post-list {
   flex: 1 !important;
+}
+
+.pagination {
+  margin-top: auto !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
 }
 /* 메인 컨텐츠 영역 확장  end */
