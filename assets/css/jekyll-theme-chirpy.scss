@@ -242,13 +242,6 @@ footer p {
     }
 }
 
-/*
-#post-list .card {
-    margin-left: -10px !important;
-    margin-right: -10px !important;
-}
-*/
-
 .table-wrapper table {
   margin-bottom: 0px !important;
   font-size: 14px !important;
@@ -316,5 +309,9 @@ footer p {
 /* 메인 컨텐츠 영역 확장 */
 #post-list .card .card-body .card-text {
   display: block !important;
+}
+
+#post-list .card .card-body .card-text .content p {
+    line-height: 1.75 !important;
 }
 
