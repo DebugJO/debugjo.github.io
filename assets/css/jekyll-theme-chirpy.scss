@@ -383,5 +383,9 @@ footer p {
 }
 
 .content {
-    margin-top: 1.5rem !important;
+  margin-top: 1.5rem !important;
+}
+
+.card-body .card-text.content {
+   margin-top: 0px !important;
 }
