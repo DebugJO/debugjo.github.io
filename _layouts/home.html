@@ -99,14 +99,12 @@ layout: default
             </h1>
             <div class="card-text content mt-0 mb-3">
               {% include post-summary.html full_text=true %}      
-
+            </div>
+            <div>
               {% if post.content contains '<!--more-->' %}
                 <a href="{{ post.url | relative_url }}" class="standalone-read-more">Read More ...</a>
               {% endif %}
             </div>
-
-
-
             <div class="post-meta flex-grow-1 d-flex align-items-end">
               <div class="me-auto">
                 <!-- posted date -->
