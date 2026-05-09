@@ -1,6 +1,15 @@
-{%- assign content = content -%}
+{%- assign content = post.content -%}
 
-<div class="post-content">
+{%- comment -%}
+{%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
+  {%- assign content = content
+    | replace: '<td class="rouge-gutter gl"><pre class="lineno">', '<!--'
+    | replace: '</td><td class="rouge-code">', '--><td>'
+  -%}
+{%- endif -%}
+{%- endcomment -%}
+      
+<div class="content">
   {%- if content contains '<!--more-->' -%}
     {{ content | split: '<!--more-->' | first }}
   {%- else -%}
