@@ -1,27 +1,31 @@
- {{ content }}
+{%- if post.description and include.full_text != true -%}
+  {{- post.description -}}
+{%- else -%}
+  {%- comment -%} Remove the line numbers from the code snippet. {%- endcomment -%}
 
-{%- assign content = post.content -%}
+  {%- assign content = post.content -%}
 
-{%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
+  {%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
+    {%- assign content = content
+      | replace: '<td class="rouge-gutter gl"><pre class="lineno">',
+        '<!-- <td class="rouge-gutter gl"><pre class="lineno">'
+    -%}
+    {%- assign content = content | replace: '</td><td class="rouge-code">', '</td> --><td class="rouge-code">' -%}
+  {%- endif -%}
+
   {%- assign content = content
-    | replace: '<td class="rouge-gutter gl"><pre class="lineno">',
-      '<!-- <td class="rouge-gutter gl"><pre class="lineno">'
+    | markdownify
+    | strip_html
+    | newline_to_br
+    | replace: '<br />', ' '
+    | strip_newlines
+    | strip
   -%}
-  {%- assign content = content | replace: '</td><td class="rouge-code">', '</td> --><td class="rouge-code">' -%}
+
+  {%- unless include.full_text -%}
+    {%- assign max_length = include.max_length | default: 100000 -%}
+    {%- assign content = content | truncate: max_length -%}
+  {%- endunless -%}
+
+  {{- content -}}
 {%- endif -%}
-
-{%- assign content = content
-  | markdownify
-  | strip_html
-  | newline_to_br
-  | replace: '<br />', ' '
-  | strip_newlines
-  | strip
--%}
-
-{%- unless include.full_text -%}
-  {%- assign max_length = include.max_length | default: 100000 -%}
-  {%- assign content = content | truncate: max_length -%}
-{%- endunless -%}
-    
-{{- content -}}
