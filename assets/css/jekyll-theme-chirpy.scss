@@ -311,6 +311,21 @@ footer p {
   font-size: 14px !important;
 }
 
-.layout-home main {
-    min-height: 100% !important;
+/* 메인 컨텐츠 영역의 최소 높이를 화면 전체(100vh)로 설정 */
+#main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 포스트 목록이나 페이지 내용이 들어가는 컨테이너를 확장 */
+#main-wrapper > .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 실제 포스트 리스트 영역 확장 */
+#post-list {
+  flex: 1;
 }
