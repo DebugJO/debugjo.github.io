@@ -94,13 +94,11 @@ layout: default
 
         <div class="col-md-{{ card_body_col }}">
           <div class="card-body d-flex flex-column">
-            <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse">
-              <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
-            </a>
+            <h1 class="card-title my-2 mt-md-0">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h1>
             <div class="card-text content mt-0 mb-3">
-              <div>
-                {% include post-summary.html full_text=true %}
-              </div>
+              {% include post-summary.html full_text=true %}
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
