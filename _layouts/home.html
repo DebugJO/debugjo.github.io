@@ -96,8 +96,10 @@ layout: default
           <div class="card-body d-flex flex-column">
             <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
 
-            <div class="card-text content mt-0 mb-3">
-              <p>{% include post-summary.html full_text=true %}</p>
+            <div class="card-text content mt-0 mb-3">  
+              <div class="content">
+                {% include post-summary.html full_text=true %}
+              </div>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
