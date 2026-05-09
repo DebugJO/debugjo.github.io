@@ -311,32 +311,3 @@ footer p {
   font-size: 14px !important;
 }
 
-#main-wrapper {
-  min-height: 100vh !important; 
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-#core-wrapper {
-  flex: 1 1 auto !important; /* flex-grow를 더 확실하게 지정 */
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.container {
-  height: 100% !important;
-}
-
-main.col-12 {
-  flex-grow: 1 !important;
-}
-
-#post-list {
-  flex-grow: 1 !important;
-}
-
-html, body {
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
