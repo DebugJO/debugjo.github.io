@@ -1,6 +1,6 @@
 {%- assign content = post.content -%}
 
-<div class="post-summary-content"> 
+<div class="content"> 
   {%- if include.full_text -%}
     {%- if content contains '<!--more-->' -%}
       {{ content | split: '<!--more-->' | first }}
