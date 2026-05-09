@@ -310,3 +310,13 @@ footer p {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;      
   font-size: 14px !important;
 }
+
+#main-wrapper {
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#core-wrapper {
+  flex-grow: 1 !important;
+}
