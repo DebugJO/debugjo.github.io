@@ -332,10 +332,11 @@ footer p {
     display: none !important;
 }
 
+/* Read More... 버튼 */
 #post-list .card-text.content a.btn {
-  border-bottom: none !important; /* 테마 기본 밑줄 제거 */
+  border-bottom: 1px solid !important;
   text-decoration: none !important;
-  display: inline-block; /* 버튼 모양 유지 */
+  display: inline-block;
 }
 
 .btn-outline-primary {
