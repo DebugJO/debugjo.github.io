@@ -21,6 +21,7 @@
     {%- assign content = content | replace: '</td><td class="rouge-code">', '</td> --><td class="rouge-code">' -%}
   {%- endif -%}
 
+  {%- comment -%}    
   {%- assign content = content
     | markdownify
     | strip_html
@@ -29,6 +30,7 @@
     | strip_newlines
     | strip
   -%}
+  {%- endcomment -%}      
 
   {%- unless include.full_text -%}
     {%- assign max_length = include.max_length | default: 100000 -%}
