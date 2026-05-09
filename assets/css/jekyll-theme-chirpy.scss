@@ -366,3 +366,11 @@ footer p {
         margin-top: 2.5rem !important;
     }
 }
+
+.rouge-gutter gl {
+  display: none !important;
+}
+
+.rouge-code {
+  padding-left: 20px !important;
+}
