@@ -1,4 +1,6 @@
-<div class="content">
+{%- assign content = post.content -%}
+
+<div class="post-content">
   {%- if content contains '<!--more-->' -%}
     {{ content | split: '<!--more-->' | first }}
   {%- else -%}
