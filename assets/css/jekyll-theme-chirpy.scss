@@ -321,13 +321,13 @@ footer p {
     color: #34343C !important;
 }
 
-.highlight table td pre {
+.highlight {
     overflow-x: auto !important;    
     white-space: pre !important;  
     scrollbar-width: none !important; 
     -ms-overflow-style: none !important;
 }
 
-.highlight table td pre::-webkit-scrollbar {
+.highlight pre::-webkit-scrollbar {
     display: none !important;
 }
