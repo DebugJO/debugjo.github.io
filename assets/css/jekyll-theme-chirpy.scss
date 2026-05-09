@@ -312,9 +312,12 @@ footer p {
 }
 
 /* 메인 컨텐츠 영역 확장 */
-.card-text.content {
-  color: var(--main-color) !important;
+#post-list .card-text.content {
   line-height: 1.75 !important;
+}
+
+#post-list .card-text.content p {
+  display: block !important;
 }
 
 .card-text.content img {
@@ -326,8 +329,10 @@ footer p {
 
 /* 코드 블록이 카드 밖으로 나가지 않게 */
 .card-text.content pre {
-  white-space: pre-wrap !important;
-  word-break: break-all !important;
+  /* white-space: pre-wrap !important; */
+  /* word-break: break-all !important; */
+  display: block !important;
+  max-width: 100% !important;
 }
 /*
 .card-body {
