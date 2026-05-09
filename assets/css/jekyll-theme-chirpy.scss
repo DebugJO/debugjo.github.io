@@ -332,3 +332,21 @@ footer p {
     display: none !important;
 }
 
+.standalone-read-more {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 4px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 4px;
+  text-decoration: none; 
+  transition: 0.3s;
+}
+
+.standalone-read-more:hover {
+  background-color: #0d6efd;
+  color: #ffffff !important; 
+  text-decoration: none;
+}
