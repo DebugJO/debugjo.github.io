@@ -27,6 +27,15 @@ script_includes:
         {% include datetime.html date=page.date tooltip=true lang=lang %}
       </span>
 
+      <span>
+        {{ site.data.locales[lang].post.written_by }}
+        {% if site.data.authors[author].url -%}
+          <a href="{{ site.data.authors[author].url }}">{{ site.data.authors[author].name }}</a>
+        {%- else -%}
+          {{ site.data.authors[author].name }}
+        {%- endif %}        
+      </span>
+
       <!-- lastmod date -->
       {% if page.last_modified_at and page.last_modified_at != page.date %}
         <span>
