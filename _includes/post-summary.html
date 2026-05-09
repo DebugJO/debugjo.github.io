@@ -1,5 +1,3 @@
-{%- assign content = post.content -%}
-
 {%- if content contains '<td class="rouge-gutter gl"><pre class="lineno">' -%}
   {%- assign content = content
     | replace: '<td class="rouge-gutter gl"><pre class="lineno">', '<!--'
