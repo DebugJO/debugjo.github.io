@@ -332,16 +332,24 @@ footer p {
     display: none !important;
 }
 
+#post-list .card-text.content a.btn {
+  border-bottom: none !important; /* 테마 기본 밑줄 제거 */
+  text-decoration: none !important;
+  display: inline-block; /* 버튼 모양 유지 */
+}
+
 .btn-outline-primary {
-  border-radius: 20px; 
-  padding: 5px 20px;
-  font-weight: 600;
-  transition: all 0.3s;
+  color: #0d6efd !important;
+  border: 1px solid #0d6efd !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--main-color);
-  color: #fff;
+  background-color: #0d6efd !important;
+  color: #ffffff !important;
+  border-color: #0d6efd !important;
+  box-shadow: 0 2px 5px rgba(13, 110, 253, 0.3); 
 }
 
 .btn btn-outline-primary btn-sm {
