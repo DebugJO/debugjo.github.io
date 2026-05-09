@@ -312,38 +312,7 @@ footer p {
 }
 
 /* 메인 컨텐츠 영역 확장 */
-#main-wrapper, 
-#main-wrapper > .container, 
-#main-wrapper > .container > .row, 
-main, 
-#post-list {
-  display: flex !important;
-  flex-direction: column !important;
-  flex: 1 !important;
-}
-
-.card-wrapper {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.card-wrapper .card {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  margin-bottom: 0 !important; /* 하단 여백 제거 */
-}
-
-.card-wrapper .card .card-body {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center; /* 내용이 적을 때 중앙에 배치 (선택 사항) */
-}
-
-.pagination {
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+.card-body {
+  height: 100vh !important;
 }
 /* 메인 컨텐츠 영역 확장  end */
