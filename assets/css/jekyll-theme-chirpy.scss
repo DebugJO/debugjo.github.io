@@ -229,3 +229,9 @@ footer p {
 	border: 1px solid #ececec !important;
 	box-shadow: none !important;
 }	
+
+@media (min-width: 768px) {
+    #post-list .card .card-body {
+        padding: 1.75rem 1rem 1.25rem !important;
+    }
+}
