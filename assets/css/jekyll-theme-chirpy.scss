@@ -290,13 +290,10 @@ footer p {
   display: none !important;
 }
 
-
 .post-navigation {
   margin-top: 1rem !important; 
 }
 
-
-footer {
-    height: 4rem !important;
-    border-top: 0px !important; 
+#tail-wrapper>:not(script) {
+    margin-top: 1rem !important; 
 }
