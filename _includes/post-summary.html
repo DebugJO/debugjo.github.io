@@ -3,11 +3,11 @@
 <div class="content"> 
   {%- if include.full_text -%}
     {%- if content contains '<!--more-->' -%}
-      {{ content | split: '<!--more-->' | first }}
+      {{ content | split: '<!--more-->' | first | xml_escape }}
     {%- else -%}
-      {{ content }}
+      {{ content | xml_escape }}
     {%- endif -%}
   {%- else -%}
-    {{ content | markdownify | strip_html | truncate: 100 }}
+    {{ content | markdownify | strip_html | truncate: 200 | xml_escape }}
   {%- endif -%}
 </div>
