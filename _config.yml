@@ -67,8 +67,6 @@ social_preview_image: # string, local or CORS resources
 
 toc: true
 
-show_excerpts: false
-
 comments:
   provider: # [disqus | utterances | giscus]
   disqus:
