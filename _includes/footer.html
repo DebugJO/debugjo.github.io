@@ -49,3 +49,18 @@
     {{ site.data.locales[include.lang].meta | replace: ':PLATFORM', _platform | replace: ':THEME', _theme }}
   </p>
 </footer>
+
+<script>
+  function forceToc() {
+    if (typeof tocbot !== 'undefined') {
+      tocbot.init({
+        tocSelector: '#toc',
+        contentSelector: '.post-content',
+        headingSelector: 'h2, h3, h4, h5',
+        collapseDepth: 5,
+        hasInnerContainers: true
+      });
+    }
+  }
+  window.onload = forceToc;
+</script>
