@@ -472,6 +472,14 @@ blockquote {
   color: #34343C !important;
 }
 
+.content h6+ol+li {
+  font-size: 14px !important;	
+}
+
+.content h6+ul+li {
+  font-size: 14px !important;	
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
