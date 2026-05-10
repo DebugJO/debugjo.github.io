@@ -68,7 +68,7 @@ social_preview_image: # string, local or CORS resources
 toc: true
 
 toc:
-  selectors: "h2,h3,h4,h5"
+  selectors: "h2,h3,h4,h5,h6"
 
 comments:
   provider: # [disqus | utterances | giscus]
@@ -117,7 +117,7 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
-  toc_levels: 1..5 
+  toc_levels: 2..6 
 
 collections:
   tabs:
