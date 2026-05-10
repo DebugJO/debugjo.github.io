@@ -18,6 +18,8 @@ github:
   
 twitter:
   username: DebugJO # twitter_username
+  
+telegram: debug
 
 social:
   name: DebugJO
@@ -25,7 +27,7 @@ social:
   fediverse_handle: # fill in your fediverse handle. E.g. "@username@domain.com"
   links:
     - https://github.com/debugjo
-    # - https://www.linkedin.com/in/username
+    # - https://www.linkedin.com/in/username   
 
 webmaster_verifications:
   google: # fill in your Google verification code
