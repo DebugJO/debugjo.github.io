@@ -1,9 +1,9 @@
-document.querySelector("main h2, main h3")&&tocbot.refresh({
+document.querySelector("main h2, main h3,  main h4,  main h5")&&tocbot.refresh({
     tocSelector:"#toc",
     contentSelector:".content",
     ignoreSelector:"[data-toc-skip]",
-    headingSelector:"h2, h3, h4, h5, h6",
+    headingSelector:"h2, h3, h4, h5",
     orderedList:!1,
     scrollSmooth:!1,
-    collapseDepth: 6
+    collapseDepth: 5
 });
