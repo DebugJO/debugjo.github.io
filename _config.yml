@@ -66,7 +66,6 @@ avatar: "assets/img/favicons/msj3.png"
 social_preview_image: # string, local or CORS resources
 
 toc: true
-  selectors: "h2,h3,h4,h5"
 
 comments:
   provider: # [disqus | utterances | giscus]
