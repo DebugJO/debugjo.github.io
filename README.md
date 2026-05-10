@@ -33,8 +33,8 @@ tags: [rust, C#]
 [RustㆍZigㆍGo, Zig]
 [RustㆍZigㆍGo, Go]
 
-[Liberal Artsㆍφιλοσοφία, Liberal Arts]
-[Liberal Artsㆍφιλοσοφία, φιλοσοφία]
+[Liberal Artsㆍφιλοσοφία, Arts]
+[Liberal Artsㆍφιλοσοφία, Philo]
 [Liberal Artsㆍφιλοσοφία, Insights]
 
 H1: 22px
