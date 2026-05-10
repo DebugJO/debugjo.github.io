@@ -63,6 +63,7 @@ P: 15px
 # 참고 사이트: <https://github.com/cotes2020/jekyll-theme-chirpy>
 
 ## H2 — heading
+{: data-toc-skip=''}
 {: data-toc-skip='' .mt-4 .mb-0 }
 
 ### Ordered list
