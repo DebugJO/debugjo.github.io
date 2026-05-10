@@ -4,6 +4,6 @@
   {%- if content contains '<!--more-->' -%}
     {{ content | delete: '<!--more-->' | markdownify }}
   {%- else -%}
-    {{ content | markdownify }}
+    {{ content }}
   {%- endif -%}
 </div>
