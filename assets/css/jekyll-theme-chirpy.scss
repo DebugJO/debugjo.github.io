@@ -446,3 +446,10 @@ blockquote>p:last-child {
 .preview-img img {
     border-radius: 8px !important;
 }
+
+html[data-mode='dark'] {
+  --p-text-color: #B0B0B0;
+  p {
+    color: var(--p-text-color);
+  }
+}
