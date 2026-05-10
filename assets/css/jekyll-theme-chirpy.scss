@@ -458,9 +458,26 @@ blockquote>p:last-child {
   border-radius: 8px !important;
 }
 
+/* TOC에서 H5 항목을 보이게 하고 들여쓰기 부여 */
 #toc .toc-link.node-name--H5 {
   display: block !important;
   visibility: visible !important;
+  padding-left: 2.5rem !important; /* H4보다 조금 더 오른쪽으로 */
+  font-size: 0.8rem !important;
+  line-height: 1.5;
+  color: var(--toc-highlight); /* 테마 기본 강조색 사용 */
+}
+
+/* 마우스 올렸을 때 효과 */
+#toc .toc-link.node-name--H5:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* 활성화된 상태 디자인 */
+#toc .is-active-link.node-name--H5 {
+  font-weight: bold;
+  border-left: 2px solid var(--toc-highlight);
 }
 
 /************************************** Dark *****************************************/
