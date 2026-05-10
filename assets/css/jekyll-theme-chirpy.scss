@@ -314,13 +314,17 @@ footer p {
   display: block !important;
 }
 
-#post-list .card .card-body .card-text .content p {
-  line-height: 22px !important;  
+#post-list .card .card-body .card-text .content p:not(.footnotes *) {
+  line-height: 1.75 !important;  
   margin-bottom: 14px !important;
   max-height: none !important;
   overflow: visible !important;
   display: block !important;
   -webkit-line-clamp: unset !important;  
+}
+
+#post-list .card .card-body .card-text .content .footnotes p {
+    margin-bottom: 0px !important;
 }
 
 #post-list .card .card-body .post-meta, 
