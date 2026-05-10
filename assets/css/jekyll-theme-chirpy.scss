@@ -458,6 +458,10 @@ blockquote>p:last-child {
   border-radius: 8px !important;
 }
 
+.toc-list .is-collapsed {
+  max-height: none !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
