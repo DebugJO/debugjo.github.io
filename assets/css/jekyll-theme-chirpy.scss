@@ -443,18 +443,20 @@ blockquote>p:last-child {
 }
 
 .highlight table td pre {
-    word-break: break-word !important;
-    white-space: pre-wrap !important;
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
 }
 
 .preview-img img {
-    border-radius: 8px !important;
+  border-radius: 8px !important;
 }
 
-.footnotes>ol>li>p {
-    margin-left: .25em !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
+.content .footnotes p {
+  margin-bottom: 0px !important;
+}
+
+#post-list .content .footnotes p {
+  margin-bottom: 0px !important;
 }
 
 html[data-mode='dark'] {
