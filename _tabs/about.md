@@ -8,17 +8,17 @@ order: 4
 {: .prompt-tip }
 
 #### CONTACT
-{: data-toc-skip=''}
+
 * **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
 * Email : msjo@devsight.kr
 
 #### SNS(Social Network Service)
-{: data-toc-skip=''}
+
 * GitHub : [github.com/DebugJO](https://github.com/DebugJO)
 * Telegram : @debug [(t.me/debug)](https://t.me/debug)
 
 #### Software Engineer / Developer
-{: data-toc-skip=''}
+
 * **Language** : C#, Rust, Zig, C++, Go
 * **Database** : Oracle, SQL Server, MariaDB, PostgreSQL, Firebird
 * **Desktop**  : Avalonia, WPF, Qt, Electrobun, Blazor
@@ -26,7 +26,6 @@ order: 4
 ---
 
 #### 참고문헌 작성법
-{: data-toc-skip=''}
 
 * 저서 : 글쓴이, 책이름, 출판사, 출판연도, 인용한 쪽 수
 * 번역서 : 글쓴이, 책이름, 옮긴이, 출판사, 출판연도, 인용한 쪽 수
