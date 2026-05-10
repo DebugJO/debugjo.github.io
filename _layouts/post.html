@@ -25,6 +25,7 @@ script_includes:
       <span>
         {{ site.data.locales[lang].post.posted }}
         {% include datetime.html date=page.date tooltip=true lang=lang %}
+        {{ site.data.locales[lang].post.written_by }}
       </span>
 
       <!-- lastmod date -->
