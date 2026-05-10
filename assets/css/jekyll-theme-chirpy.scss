@@ -458,6 +458,13 @@ blockquote>p:last-child {
   border-radius: 8px !important;
 }
 
+#toc .toc-link.node-name--H5 {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/************************************** Dark *****************************************/
+
 html[data-mode='dark'] {
   --p-text-color: #B0B0B0;
   
