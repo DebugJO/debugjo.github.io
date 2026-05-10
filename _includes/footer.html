@@ -53,14 +53,34 @@
 <script>
   function forceToc() {
     if (typeof tocbot !== 'undefined') {
+      // Chirpy 테마가 사용하는 실제 본문 영역 ID나 클래스를 찾습니다.
+      const content = document.querySelector('.post-content') || 
+                      document.querySelector('#post-wrapper') || 
+                      document.querySelector('article');
+
+      if (!content) {
+        console.warn("TOC: 본문 영역을 찾을 수 없습니다.");
+        return;
+      }
+
       tocbot.init({
         tocSelector: '#toc',
-        contentSelector: '.post-content',
+        contentSelector: content.className ? '.' + content.className.split(' ')[0] : 'article',
         headingSelector: 'h2, h3, h4, h5',
         collapseDepth: 5,
-        hasInnerContainers: true
+        hasInnerContainers: true,
+        // 제목에 ID가 없는 경우를 대비한 설정 (Chirpy는 보통 자동 생성하지만 안전책)
+        ignoreSelector: '[data-toc-skip]'
       });
+      
+      console.log("TOC: 강제 초기화 완료");
     }
   }
-  window.onload = forceToc;
+
+  // DOM이 완전히 로드된 후 실행 (window.onload보다 안전)
+  if (document.readyState === 'complete') {
+    forceToc();
+  } else {
+    window.addEventListener('load', forceToc);
+  }
 </script>
