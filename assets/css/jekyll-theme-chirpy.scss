@@ -462,11 +462,12 @@ html[data-mode='dark'] {
     color: #B0B0B0 !important;
   }
 
-  table-wrapper>table tbody tr:nth-child(2n+1) {
+  .table-wrapper>table tbody tr:nth-child(2n+1) {
     background-color: #1F1F22 !important;
   }
 
   .table-wrapper table thead th {
     background-color: #1F1F22 !important;
+    color: #B0B0B0 !important;
   }
 }
