@@ -35,11 +35,6 @@ jobs:
           # submodules: true
           # If using the 'assets' git submodule from Chirpy Starter, uncomment above
           # (See: https://github.com/cotes2020/chirpy-starter/tree/main/assets)
-      
-      - name: Setup Node.js    
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
           
       - name: Setup Pages
         id: pages
