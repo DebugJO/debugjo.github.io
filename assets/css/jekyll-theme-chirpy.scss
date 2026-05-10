@@ -455,11 +455,11 @@ html[data-mode='dark'] {
   }
 
   .me-auto {
-    --p-text-color: #B0B0B0;
+     color: #B0B0B0 !important;
   }
 
   .table-wrapper>table tbody tr td {
-    color: #B0B0B0;
+    color: #B0B0B0 !important;
   }
 
   table-wrapper>table tbody tr:nth-child(2n+1) {
