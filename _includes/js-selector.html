@@ -41,10 +41,6 @@
   %}
 {% endif %}
 
-{%- assign has_toc_headers = false -%}
-{% if page.content contains '<h2' or page.content contains '<h3' or page.content contains '<h4' or page.content contains '<h5' %}
-  {% assign has_toc_headers = true %}
-{% endif %}
 {% if site.toc and page.toc %}
   {% assign urls = urls | append: ',' | append: site.data.origin[type].toc.js %}
 {% endif %}
