@@ -409,6 +409,22 @@ footer p {
   font-size: 15px !important;
 }
 
-#blockquote p {
+blockquote>p:last-child {
+    font-size: 14px !important;
+}
+
+.table-wrapper table thead th {
   font-size: 14px !important;
+}
+
+.table-wrapper table tbody td {
+  font-size: 14px !important;
+}
+
+.categories .card-header {
+    font-size: 16px !important;
+}
+
+.categories .list-group-item {
+  font-size: 15px !important;
 }
