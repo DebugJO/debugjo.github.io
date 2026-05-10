@@ -152,7 +152,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 {% include embed/youtube.html id='Balreaj8Yqs' %}
 ```
 
-### Reverse Footnote
+### Reference
 
 ```
 [^footnote]: The footnote source
