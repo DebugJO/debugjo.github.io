@@ -8,11 +8,6 @@
       {{ content }}
     {%- endif -%}
   {%- else -%}
-    {%- if content contains '<!--more-->' -%}
-      {{ content | split: '<!--more-->' | first }}
-    {%- else -%}
-      {{ content }}
-    {%- endif -%}
+    {{ content | markdownify }}
   {%- endif -%}
 </div>
-
