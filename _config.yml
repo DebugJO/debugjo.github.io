@@ -19,7 +19,8 @@ github:
 twitter:
   username: # DebugJO # twitter_username
   
-telegram: debug
+telegram:
+  username: debug
 
 social:
   name: DebugJO
