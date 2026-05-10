@@ -109,19 +109,7 @@ This is an example of `Inline Code`.
 
 Here is the `/path/to/the/file.extend`{: .filepath}.
 
-### Common, Code blocks
 
-```
-This is a common code snippet, without syntax highlight and line number.
-```
-
-### Specific Language, Code blocks
-
-```bash
-if [ $? -ne 0 ]; then
-  echo "The command was not successful.";
-  #do the needful / exit
-fi;
 ```
 
 ```
