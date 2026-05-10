@@ -131,6 +131,7 @@ defaults:
       layout: post
       comments: false # Enable comments in posts.
       toc: true # Display TOC column in posts.
+        selectors: "h2,h3,h4,h5"
       permalink: /:year:month:day-:title/
   - scope:
       path: _drafts
