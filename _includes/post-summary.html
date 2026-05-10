@@ -3,9 +3,9 @@
 <div class="content"> 
   {%- if include.full_text -%}
     {%- if content contains '<!--more-->' -%}
-      {{ content | split: '<!--more-->' | first | xml_escape }}
+      {{ content | split: '<!--more-->' | first }}
     {%- else -%}
-      {{ content | xml_escape }}
+      {{ content }}
     {%- endif -%}
   {%- else -%}
     {{ content | markdownify | strip_html | truncate: 200 | xml_escape }}
