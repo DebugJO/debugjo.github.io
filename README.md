@@ -37,6 +37,19 @@ tags: [rust, C#]
 [Liberal Artsㆍφιλοσοφία, φιλοσοφία]
 [Liberal Artsㆍφιλοσοφία, Insights]
 
+H1: 22px
+
+H2: 20px
+
+H3: 18px
+
+H4: 16px
+
+H5: 14px
+
+H6: 13px
+
+P: 15px
 
 이미지: 732 * 2 = 1464 : ![redox](/upload/redox.jpg)
 
