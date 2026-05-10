@@ -130,7 +130,7 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 
 ## Mermaid SVG
 
-```
+```md
 ```mermaid
  gantt
   title  Adding GANTT diagram functionality to mermaid
