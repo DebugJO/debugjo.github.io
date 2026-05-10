@@ -11,7 +11,7 @@ toc: true
 ## CONTACT
 
 * **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
-* Email : msjo@devsight.kr
+* **Email** : msjo@devsight.kr
 
 ### SNS(Social Network Service)
 
