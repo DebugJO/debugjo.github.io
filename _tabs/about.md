@@ -8,17 +8,17 @@ toc: true
 > Thank you for visiting our website. Please do not hesitate to contact me with any questions you may have. 프로그램 개발의뢰 및 궁금하신 문의 사항이 있으면 언제든지 메일로 연락해주세요.
 {: .prompt-info }
 
-#### CONTACT
+### CONTACT
 
 * **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea
 * Email : msjo@devsight.kr
 
-#### SNS(Social Network Service)
+### SNS(Social Network Service)
 
 * GitHub : [github.com/DebugJO](https://github.com/DebugJO)
 * Telegram : @debug [(t.me/debug)](https://t.me/debug)
 
-#### Software Engineer / Developer
+### Software Engineer / Developer
 
 * **Language** : C#, Rust, Zig, C++, Go
 * **Database** : Oracle, SQL Server, MariaDB, PostgreSQL, Firebird
@@ -26,7 +26,7 @@ toc: true
 
 ---
 
-#### 참고문헌 작성법
+### 참고문헌 작성법
 
 * 저서 : 글쓴이, 책이름, 출판사, 출판연도, 인용한 쪽 수
 * 번역서 : 글쓴이, 책이름, 옮긴이, 출판사, 출판연도, 인용한 쪽 수
