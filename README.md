@@ -140,3 +140,21 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   cherry :active, c, after b a, 1d
 ```
 
+### Images
+
+```
+![Desktop View](/posts/20190808/mockup.png){: width="972" height="589" }
+```
+
+### Video
+
+```
+{% include embed/youtube.html id='Balreaj8Yqs' %}
+```
+
+### Reverse Footnote
+
+```
+[^footnote]: The footnote source
+[^fn-nth-2]: The 2nd footnote source
+```
