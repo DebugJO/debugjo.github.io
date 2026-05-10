@@ -1,9 +1,14 @@
-<div class="content">
-  {%- assign content = post.content -%}
+{%- assign content = post.content -%}
 
-  {%- if content contains '<!--more-->' -%}
-    {{ content | split: '<!--more-->' | first | markdownify }}
+<div class="content"> 
+  {%- if include.full_text -%}
+    {%- if content contains '<!--more-->' -%}
+      {{ content | split: '<!--more-->' | first }}
+    {%- else -%}
+      {{ content }}
+    {%- endif -%}
   {%- else -%}
     {{ content | markdownify }}
   {%- endif -%}
 </div>
+
