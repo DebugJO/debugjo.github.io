@@ -8,6 +8,6 @@
       {{ content }}
     {%- endif -%}
   {%- else -%}
-    {{ content | markdownify }}
+    {{ content | markdownify | strip_html | truncate: 100 }}
   {%- endif -%}
 </div>
