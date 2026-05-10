@@ -462,6 +462,13 @@ blockquote>p:last-child {
   max-height: none !important;
 }
 
+sup, sub {
+  height: 0 !important;
+  line-height: 0 !important;
+  font-size: 12px !important;
+  color: #920951 !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
