@@ -437,3 +437,8 @@ blockquote>p:last-child {
 {
   display: none !important;
 }
+
+.highlight table td pre {
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+}
