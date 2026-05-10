@@ -3,6 +3,11 @@
 List of supported languages and lexers : <https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers>
 
 ```md
+
+파일명: yyyy-mm-dd-번호.md
+
+excerpt_separator: <!--more-->
+
 ---
 title: 제목
 author: msj
@@ -32,9 +37,6 @@ tags: [rust, C#]
 [Liberal Artsㆍφιλοσοφία, φιλοσοφία]
 [Liberal Artsㆍφιλοσοφία, Insights]
 
-excerpt_separator: <!--more-->
-
-파일명: yyyy-mm-dd-번호.md
 
 이미지: 732 * 2 = 1464 : ![redox](/upload/redox.jpg)
 
@@ -45,10 +47,81 @@ excerpt_separator: <!--more-->
 | 2 | a | b | c |
 | 3 | a | b | c |
 
-Block Mathjax :
-$$
-f(x) = ax + b
-$$
+# 참고 사이트: <https://github.com/cotes2020/jekyll-theme-chirpy>
 
-Inline Mathjax : $a \neq b$
+## H2 — heading
+{: data-toc-skip='' .mt-4 .mb-0 }
+
+### Ordered list
+
+1. Firstly
+2. Secondly
+3. Thirdly
+
+### Unordered list
+
+- Chapter
+  - Section
+    - Paragraph
+
+### ToDo list
+
+- [ ] Job
+  - [x] Step 1
+  - [x] Step 2
+  - [ ] Step 3
+
+### Description list
+
+Sun
+: the star around which the earth orbits
+
+Moon
+: the natural satellite of the earth, visible by reflected light from the sun
+
+## Block Quote
+
+> This line shows the _block quote_.
+
+## Prompts
+
+> An example showing the `tip` type prompt.
+{: .prompt-tip }
+
+> An example showing the `info` type prompt.
+{: .prompt-info }
+
+> An example showing the `warning` type prompt.
+{: .prompt-warning }
+
+> An example showing the `danger` type prompt.
+{: .prompt-danger }
+
+## Footnote
+
+Clicking the hook will locate the footnote[^footnote], and here is another footnote[^fn-nth-2].
+
+## Inline code
+
+This is an example of `Inline Code`.
+
+## Filepath
+
+Here is the `/path/to/the/file.extend`{: .filepath}.
+
+### Common, Code blocks
+
+```
+This is a common code snippet, without syntax highlight and line number.
+```
+
+### Specific Language, Code blocks
+
+```bash
+if [ $? -ne 0 ]; then
+  echo "The command was not successful.";
+  #do the needful / exit
+fi;
+```
+
 ```
