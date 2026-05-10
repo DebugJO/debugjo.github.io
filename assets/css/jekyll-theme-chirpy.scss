@@ -455,6 +455,10 @@ blockquote>p:last-child {
   margin-bottom: 0px !important;	
 }
 
+#post-list .card .card-body .card-text .content .footnotes ol li p {
+  margin-bottom: 0px !important;	
+}
+
 html[data-mode='dark'] {
   --p-text-color: #B0B0B0;
   
