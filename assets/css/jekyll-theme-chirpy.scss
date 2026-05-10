@@ -451,12 +451,10 @@ blockquote>p:last-child {
     border-radius: 8px !important;
 }
 
-.footnotes ol li p {
-  margin-bottom: 0px !important;	
-}
-
-#post-list .card .card-body .card-text .content .footnotes ol li p {
-  margin-bottom: 0px !important;	
+.footnotes>ol>li>p {
+    margin-left: .25em !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 html[data-mode='dark'] {
