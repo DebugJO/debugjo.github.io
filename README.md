@@ -45,9 +45,9 @@ H3: 18px
 
 H4: 16px
 
-H5: 14px
+H5: 15px
 
-H6: 13px
+H6: 14x
 
 P: 15px
 
