@@ -1,5 +1,7 @@
 # [debugjo.github.io](https://debugjo.github.io/)
 
+List of supported languages and lexers : <https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers>
+
 ```md
 ---
 title: 제목
