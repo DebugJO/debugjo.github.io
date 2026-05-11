@@ -94,7 +94,9 @@ export function displaySearch() {
   });
 
   input.addEventListener('input', () => {
-    if (input.value.length < 2) {
+    const minLength = 2;    
+    if (input.value.length < minLength) {
+      results.innerHTML = '';     
       if (isMobileView()) {
         hints.classList.remove(UNLOADED);
       } else {
