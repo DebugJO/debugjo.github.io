@@ -10,9 +10,9 @@ toc: true
 
 #### CONTACT
 
-<i class="fa-regular fa-address-book"></i> **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea  
-<i class="fa-regular fa-envelope"></i> **Email** : msjo@devsight.kr  
-<i class="fa-regular fa-house"></i> **Site** : <https://devsight.kr>  
+<i class="fa-solid fa-address-book"></i> **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea  
+<i class="fa-solid fa-envelope"></i> **Email** : msjo@devsight.kr  
+<i class="fa-solid fa-house"></i> **Site** : <https://devsight.kr>  
 
 #### SNS(Social Network Service)
 
@@ -22,9 +22,9 @@ toc: true
 
 #### Software Engineer / Developer
 
-<i class="fa-brands fa-dev"></i> **Language** : C#, Rust, Zig, C++, Go  
-<i class="fa-brands fa-dev"></i> **Database** : Oracle, SQL Server, MariaDB, PostgreSQL, Firebird  
-<i class="fa-brands fa-dev"></i> **Desktop**  : Avalonia, WPF, Qt, Electrobun, Blazor  
+<i class="fa-solid fa-code"></i> **Language** : C#, Rust, Zig, C++, Go  
+<i class="fa-solid fa-code"></i> **Database** : Oracle, SQL Server, MariaDB, PostgreSQL, Firebird  
+<i class="fa-solid fa-code"></i> **Desktop**  : Avalonia, WPF, Qt, Electrobun, Blazor  
 
 ---
 
