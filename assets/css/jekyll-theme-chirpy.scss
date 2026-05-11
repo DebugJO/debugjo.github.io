@@ -545,4 +545,15 @@ html[data-mode='dark'] {
   .content li {
     color: #B0B0B0 !important;
   }  
+
+  .content li::marker {
+    color: #B0B0B0 !important;
+  }
+
+  sup, sub {
+    height: 0 !important;
+    line-height: 0 !important;
+    font-size: 12px !important;
+    color: #FF5733 !important;
+  }
 }
