@@ -537,4 +537,12 @@ html[data-mode='dark'] {
   .content h5:hover .anchor {
       visibility: hidden !important;
   }
+
+  .card-wrapper .card .content H6 {
+    color: #B0B0B0 !important;
+  }
+  
+  .card-wrapper .card .content li {
+    color: #B0B0B0 !important;
+  }  
 }
