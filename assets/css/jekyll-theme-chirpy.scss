@@ -531,6 +531,14 @@ h5 + .highlighter-rouge {
   margin-top: 1.2em !important;
 }  
 
+h5 + h6 {
+ margin-top: 1rem !important;
+}
+
+h6 + .highlighter-rouge {
+  margin-top: 1.2em !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
