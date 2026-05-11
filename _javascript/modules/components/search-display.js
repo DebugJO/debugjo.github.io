@@ -75,7 +75,6 @@ function isMobileView() {
 
 export function displaySearch() {
   btnSearchTrigger.addEventListener('click', () => {
-    console.log("xxxxxxxxxxxxxxxx");
     MobileSearchBar.on();
     if (input.value.length >= 2) {
       ResultSwitch.on();
@@ -97,8 +96,8 @@ export function displaySearch() {
   });
 
   input.addEventListener('input', () => {
-    console.log("yyyyyyyyyyyyyyyyyyyyyyy");
-    if (input.value < 2) {
+    console.log("입력된 글자 수:", input.value.length);
+    if (input.value.length < 2) {
       if (isMobileView()) {
         hints.classList.remove(UNLOADED);
       } else {
