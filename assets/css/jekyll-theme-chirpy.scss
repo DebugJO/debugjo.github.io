@@ -496,6 +496,9 @@ blockquote {
   border-bottom: 0px !important;
 }  
 
+.content hr {
+  border-color: #E1E1E1 !important;
+}  
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
@@ -563,5 +566,8 @@ html[data-mode='dark'] {
 
   .content a {
     border-bottom: 0px !important;
+  }  
+  .content hr {
+    border-color: #393939 !important;
   }  
 }
