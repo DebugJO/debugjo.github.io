@@ -501,6 +501,11 @@ blockquote {
   border-bottom: 0px !important;  
 }
 
+.content .anchor .text-muted {
+    color: #FFF !important;
+    border-bottom: 0px !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
@@ -555,4 +560,9 @@ html[data-mode='dark'] {
     color: #1B1B1E !important;
     border-bottom: 0px !important;
   }
+
+  .content .anchor .text-muted {
+      color: #1B1B1E !important;
+      border-bottom: 0px !important;
+  }  
 }
