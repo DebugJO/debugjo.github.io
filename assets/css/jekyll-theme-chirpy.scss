@@ -539,6 +539,10 @@ h6 + .highlighter-rouge {
   margin-top: 1.2em !important;
 }
 
+.rouge-code .c1 {
+	font-style: italic !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
