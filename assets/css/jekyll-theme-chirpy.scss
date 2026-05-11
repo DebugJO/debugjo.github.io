@@ -448,9 +448,25 @@ blockquote>p:last-child {
   display: none !important;
 }
 
+/*
 .highlight table td pre {
   word-break: break-word !important;
   white-space: pre-wrap !important;
+}
+*/
+
+.highlight table td pre {
+    white-space: pre !important;   
+    word-break: normal !important;   
+    overflow-x: auto !important;  
+    display: block !important;  
+    -webkit-overflow-scrolling: touch;   
+    -ms-overflow-style: none;        
+    scrollbar-width: none;   
+}
+
+.highlight table td pre::-webkit-scrollbar {
+    display: none !important;
 }
 
 .preview-img img {
