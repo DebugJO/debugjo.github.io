@@ -18,56 +18,53 @@
 
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
-<<script>
-  {% comment %} Note: dependent library will be loaded in `js-selector.html` {% endcomment %}
+<script>
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('search-results');
-    console.log("1111111111111111111111111");
-    const sjs = SimpleJekyllSearch({
-      console.log("2222222222222222222222222222222222")
-      searchInput: searchInput,
-      resultsContainer: resultsContainer,
-      json: '{{ '/assets/js/data/search.json' | relative_url }}',
-      searchResultTemplate: '{{ result_elem | strip_newlines }}',
-      noResultsText: '{{ not_found }}',
-      console.log("333333333333333333333333333333333")
-      templateMiddleware: function(prop, value, template) {
-        if (prop === 'categories') {
-          if (value === '') {
-            return `${value}`;
-          } else {
-            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
-          }
-        }
-        if (prop === 'tags') {
-          if (value === '') {
-            return `${value}`;
-          } else {
-            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
-          }
-        }
-      }
-    });
-
-    searchInput.addEventListener('input', () => {
-      console.log("44444444444444444444444444444")
-      const query = searchInput.value;
+    let searchData = [];
+  
+    fetch('{{ '/assets/js/data/search.json' | relative_url }}')
+      .then(response => response.json())
+      .then(data => {
+        searchData = data;
+        console.log("검색 데이터 로드 완료:", data.length);
+      });
+  
+    searchInput.addEventListener('input', function(e) {
+      const query = e.target.value.toLowerCase().trim();
+      resultsContainer.innerHTML = ''; 
+  
       if (query.length >= 2) {
-         console.log("555555555555555555555555")
         resultsContainer.style.display = 'block';
-        sjs.search(query);
-      }
-    });
-    
-    searchInput.addEventListener('keyup', (e) => {
-               console.log("666666666666666666666666666")
-      if (e.target.value.length === 0) {
+  
+        const filtered = searchData.filter(item => {
+          return (item.title && item.title.toLowerCase().includes(query)) || 
+                 (item.content && item.content.toLowerCase().includes(query)) ||
+                 (item.tags && item.tags.toLowerCase().includes(query));
+        });
+  
+        if (filtered.length > 0) {
+          filtered.forEach(item => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+              <div class="px-md-4 py-3">
+                <a href="${item.url}">${item.title}</a>
+                <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1">
+                  ${item.categories ? `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${item.categories}</div>` : ''}
+                  ${item.tags ? `<div><i class="fa fa-tag fa-fw"></i>${item.tags}</div>` : ''}
+                </div>
+              </div>
+            `;
+            resultsContainer.appendChild(div);
+          });
+        } else {
+          resultsContainer.innerHTML = '<div class="px-md-4 py-3 text-muted">{{ not_found }}</div>';
+        }
+      } else {
         resultsContainer.style.display = 'none';
       }
     });
   });
-
-  console.log("777777777777777777777777")
 </script>
 
