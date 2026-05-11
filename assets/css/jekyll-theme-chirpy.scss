@@ -481,9 +481,9 @@ blockquote {
     display: none !important;
 }
 
-.anchor .text-muted {
-  color: #FFFFFF !important;
-  border-bottom: 0px !important;
+h2:hover .anchor {
+  color: #FFF !important;
+  border-bottom: 0px !important;  
 }
 
 /************************************** Dark *****************************************/
@@ -521,7 +521,7 @@ html[data-mode='dark'] {
     text-decoration: none !important;
   }
 
-  .anchor .text-muted {
+  h2:hover .anchor {
     color: #1B1B1E !important;
     border-bottom: 0px !important;
   }
