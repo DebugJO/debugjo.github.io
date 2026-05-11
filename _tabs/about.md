@@ -11,13 +11,13 @@ toc: true
 #### CONTACT
 
 <i class="fa-solid fa-address-book"></i> **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea  
-<i class="fa-solid fa-envelope"></i> **Email** : msjo@devsight.kr  
-<i class="fa-solid fa-house"></i> **Site** : <https://devsight.kr>  
+<i class="fa-solid fa-envelope"></i> msjo@devsight.kr  
+<i class="fa-solid fa-house"></i> <https://devsight.kr>  
 
 #### SNS(Social Network Service)
 
-<i class="fa-brands fa-github"></i> [github.com/debugjo](https://github.com/DebugJO)  
-<i class="fa-brands fa-telegram"></i> @debug [(t.me/debug)](https://t.me/debug)  
+<i class="fa-brands fa-github"></i> <https://github.com/debugjo>  
+<i class="fa-brands fa-telegram"></i> @debug <https://t.me/debug>  
 
 #### Software Engineer / Developer
 
