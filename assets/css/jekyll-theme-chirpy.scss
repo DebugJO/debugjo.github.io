@@ -481,6 +481,11 @@ blockquote {
     display: none !important;
 }
 
+.anchor .text-muted {
+  color: #FFFFFF !important;
+  border-bottom: 0px !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
@@ -507,12 +512,17 @@ html[data-mode='dark'] {
     color: #B0B0B0 !important;
   }
 
-   .post-meta a:not(:hover)
-   {
-      border-bottom: 0px !important;
-   }
+  .post-meta a:not(:hover)
+  {
+    border-bottom: 0px !important;
+  }
   
   .post-meta a {
-      text-decoration: none !important;
+    text-decoration: none !important;
+  }
+
+  .anchor .text-muted {
+    color: #1B1B1E !important;
+    border-bottom: 0px !important;
   }
 }
