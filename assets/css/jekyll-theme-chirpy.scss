@@ -214,15 +214,21 @@ footer p {
     }
 }
 
+@media (min-width: 1650px) {
+    main.col-12 {
+        padding-right: 2.5rem !important;
+    }
+}
+
 @media (min-width: 1200px) {
     .col-xl-9 {
-        width: 60% !important;
+        width: 58% !important;
     }
 }
 
 @media (min-width: 1200px) {
     .col-xl-3 {
-        width: 40% !important;
+        width: 42% !important;
     }
 }	
 
