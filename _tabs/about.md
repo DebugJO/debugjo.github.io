@@ -18,7 +18,7 @@ toc: true
 
 * GitHub : [github.com/DebugJO](https://github.com/DebugJO)
 * Telegram : @debug [(t.me/debug)](https://t.me/debug)
-* <i class="fa fa-twitter" aria-hidden="true"></i> [twitter.com/debugjo](https://twitter.com/debugjo)
+* <i class="fa-brands fa-square-x-twitter"></i> [twitter.com/debugjo](https://twitter.com/debugjo)
 
 #### Software Engineer / Developer
 
