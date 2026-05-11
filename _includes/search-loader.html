@@ -1,0 +1,70 @@
+<!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
+{% capture result_elem %}
+  <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+    <header>
+      <h2><a href="{url}">{title}</a></h2>
+      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
+        {categories}
+        {tags}
+      </div>
+    </header>
+    <p>{content}</p>
+  </article>
+{% endcapture %}
+
+{% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
+
+<script>
+  {% comment %} Note: dependent library will be loaded in `js-selector.html` {% endcomment %}
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+
+    SimpleJekyllSearch({
+      searchInput: searchInput,
+      resultsContainer: resultsContainer,
+      json: '{{ '/assets/js/data/search.json' | relative_url }}',
+      searchResultTemplate: '{{ result_elem | strip_newlines }}',
+      noResultsText: '{{ not_found }}',
+      // 엔진 차원에서 2글자 미만은 검색하지 않도록 설정
+      minLength: 2, 
+      templateMiddleware: function(prop, value, template) {
+        if (prop === 'categories') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          }
+        }
+
+        if (prop === 'tags') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          }
+        }
+      }
+    });
+
+    // Chirpy 테마의 UI 강제 제어 로직 추가
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value.length < 2) {
+        // 2글자 미만일 때 결과창을 비우고, Chirpy가 강제로 연 레이어를 닫기 위해 클래스 조작
+        resultsContainer.innerHTML = '';
+        const wrapper = document.getElementById('search-result-wrapper');
+        if (wrapper) {
+          wrapper.classList.add('d-none');
+          wrapper.classList.remove('d-block');
+        }
+        // 메인 콘텐츠 다시 보이기
+        const mainRows = document.querySelectorAll('#main-wrapper>.container>.row');
+        mainRows.forEach((el) => el.classList.remove('d-none'));
+      }
+    });
+  });
+</script>
