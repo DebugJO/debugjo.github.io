@@ -94,7 +94,10 @@ export function displaySearch() {
   });
 
   input.addEventListener('input', () => {
-    const minLength = 2;    
+    const minLength = 2;
+
+    alert("현재 글자수: " + input.value.length);
+    
     if (input.value.length < minLength) {
       results.innerHTML = '';     
       if (isMobileView()) {
