@@ -18,31 +18,49 @@
 
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
-<script>
+<<script>
+  {% comment %} Note: dependent library will be loaded in `js-selector.html` {% endcomment %}
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
-    
+    const resultsContainer = document.getElementById('search-results');
+
     const sjs = SimpleJekyllSearch({
       searchInput: searchInput,
-      resultsContainer: document.getElementById('search-results'),
+      resultsContainer: resultsContainer,
       json: '{{ '/assets/js/data/search.json' | relative_url }}',
       searchResultTemplate: '{{ result_elem | strip_newlines }}',
       noResultsText: '{{ not_found }}',
       templateMiddleware: function(prop, value, template) {
         if (prop === 'categories') {
-          return value === '' ? '' : `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          }
         }
         if (prop === 'tags') {
-          return value === '' ? '' : `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          }
         }
       }
     });
-  
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value;
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value;
       if (query.length >= 2) {
-        sjs.search(query); 
+        resultsContainer.style.display = 'block';
+        sjs.search(query);
+      }
+    });
+    
+    searchInput.addEventListener('keyup', (e) => {
+      if (e.target.value.length === 0) {
+        resultsContainer.style.display = 'none';
       }
     });
   });
 </script>
+
