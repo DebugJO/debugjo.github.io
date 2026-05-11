@@ -492,6 +492,10 @@ blockquote {
     visibility: hidden !important;
 }
 
+.content a {
+  border-bottom: 0px !important;
+}  
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
@@ -556,4 +560,8 @@ html[data-mode='dark'] {
     font-size: 12px !important;
     color: #D32F2F !important;
   }
+
+  .content a {
+    border-bottom: 0px !important;
+  }  
 }
