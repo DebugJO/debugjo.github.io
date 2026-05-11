@@ -17,25 +17,25 @@ tags: [rust, C#]
 
 ### Category
 
-[C#ㆍ.NETㆍAvalonia, C#]
-[C#ㆍ.NETㆍAvalonia, .NET]
-[C#ㆍ.NETㆍAvalonia, Avalonia]
+["【C#ㆍ.NETㆍAvalonia】", C#]
+["【C#ㆍ.NETㆍAvalonia】", .NET]
+["【C#ㆍ.NETㆍAvalonia】", Avalonia]
 
-[C++ㆍQTㆍC3, C++]
-[C++ㆍQTㆍC3, QT]
-[C++ㆍQTㆍC3, C3] 
+["【C++ㆍQTㆍC3】", C++]
+["【C++ㆍQTㆍC3】", QT]
+["【C++ㆍQTㆍC3】", C3] 
 
-[DatabaseㆍModeling, Database]
-[DatabaseㆍModeling, Modeling]
-[DatabaseㆍModeling, SQL]
+["【DatabaseㆍModeling】", Database]
+["【DatabaseㆍModeling】", Modeling]
+["【DatabaseㆍModeling】", SQL]
 
-[RustㆍZigㆍGo, Rust]
-[RustㆍZigㆍGo, Zig]
-[RustㆍZigㆍGo, Go]
+["【RustㆍZigㆍGo】", Rust]
+["【RustㆍZigㆍGo】", Zig]
+["【RustㆍZigㆍGo】", Go]
 
-[Liberal Artsㆍφιλοσοφία, Arts]
-[Liberal Artsㆍφιλοσοφία, Philo]
-[Liberal Artsㆍφιλοσοφία, Insights]
+["【Liberal Artsㆍφιλοσοφία】", Arts]
+["【Liberal Artsㆍφιλοσοφία】", Philo]
+["【Liberal Artsㆍφιλοσοφία】", Insights]
 
 H1: 22px
 
