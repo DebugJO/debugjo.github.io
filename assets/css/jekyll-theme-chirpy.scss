@@ -527,6 +527,14 @@ blockquote {
   border: 1px !important;
 }  
 
+:target::before {
+  content: "";
+  display: block;
+  height: 70px; 
+  margin-top: -70px;
+  visibility: hidden;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
