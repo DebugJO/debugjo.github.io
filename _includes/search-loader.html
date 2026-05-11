@@ -21,6 +21,8 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
+    const resultWrapper = document.getElementById('search-result-wrapper');
+    const searchHints = document.getElementById('search-hints');
     const resultsContainer = document.getElementById('search-results');
     let searchData = [];
   
@@ -28,15 +30,16 @@
       .then(response => response.json())
       .then(data => {
         searchData = data;
-        console.log("검색 데이터 로드 완료:", data.length);
+        console.log("검색 데이터 로드 완료");
       });
   
-    searchInput.addEventListener('input', function(e) {
-      const query = e.target.value.toLowerCase().trim();
-      resultsContainer.innerHTML = ''; 
-  
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      
       if (query.length >= 2) {
-        resultsContainer.style.display = 'block';
+        resultWrapper.classList.remove('d-none');
+        searchHints.classList.add('d-none');
+        resultsContainer.innerHTML = ''; 
   
         const filtered = searchData.filter(item => {
           return (item.title && item.title.toLowerCase().includes(query)) || 
@@ -46,25 +49,29 @@
   
         if (filtered.length > 0) {
           filtered.forEach(item => {
-            const div = document.createElement('div');
-            div.innerHTML = `
-              <div class="px-md-4 py-3">
-                <a href="${item.url}">${item.title}</a>
-                <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1">
-                  ${item.categories ? `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${item.categories}</div>` : ''}
-                  ${item.tags ? `<div><i class="fa fa-tag fa-fw"></i>${item.tags}</div>` : ''}
-                </div>
+            const resultItem = document.createElement('div');
+            resultItem.className = 'px-md-4 py-3 w-100'; 
+            resultItem.innerHTML = `
+              <header>
+                <a href="${item.url}" class="h4 text-primary text-decoration-none">${item.title}</a>
+              </header>
+              <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1">
+                ${item.categories ? `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${item.categories}</div>` : ''}
+                ${item.tags ? `<div><i class="fa fa-tag fa-fw"></i>${item.tags}</div>` : ''}
               </div>
+              <div class="mt-2 text-secondary text-truncate-2">${item.content.substring(0, 150)}...</div>
             `;
-            resultsContainer.appendChild(div);
+            resultsContainer.appendChild(resultItem);
           });
         } else {
-          resultsContainer.innerHTML = '<div class="px-md-4 py-3 text-muted">{{ not_found }}</div>';
+          resultsContainer.innerHTML = '<div class="mt-5">{{ not_found }}</div>';
         }
       } else {
-        resultsContainer.style.display = 'none';
+        if (query.length === 0) {
+          resultWrapper.classList.add('d-none');
+          searchHints.classList.remove('d-none');
+        }
       }
     });
   });
 </script>
-
