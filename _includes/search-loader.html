@@ -27,13 +27,8 @@
       json: '{{ '/assets/js/data/search.json' | relative_url }}',
       searchResultTemplate: '{{ result_elem | strip_newlines }}',
       noResultsText: '{{ not_found }}',
+      minSearchLength: 2
       templateMiddleware: function(prop, value, template) {
-        // [중요] 2글자 미만일 때는 모든 출력값을 빈 값으로 돌려보내서 화면에 아무것도 안 그리게 함
-        const input = document.getElementById('search-input');
-        if (input && input.value.length < 2) {
-          return ''; 
-        }
-
         if (prop === 'categories') {
           if (value === '') {
             return `${value}`;
@@ -49,18 +44,6 @@
             return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
           }
         }
-      }
-    });
-
-    // 1글자 입력 시 Chirpy가 강제로 만든 검색 UI를 자동으로 닫아버리는 안전 장치
-    document.getElementById('search-input').addEventListener('input', function() {
-      if (this.value.length === 1) {
-        const resultWrapper = document.getElementById('search-result-wrapper');
-        const searchHints = document.getElementById('search-hints');
-        // 결과창 내용 비우기
-        document.getElementById('search-results').innerHTML = '';
-        // 힌트(키워드 추천 등)가 있다면 숨기기
-        if (searchHints) searchHints.classList.add('d-none');
       }
     });
   });
