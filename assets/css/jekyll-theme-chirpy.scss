@@ -481,7 +481,22 @@ blockquote {
     display: none !important;
 }
 
-h2:hover .anchor {
+.content h2:hover .anchor {
+  color: #FFF !important;
+  border-bottom: 0px !important;  
+}
+
+.content h3:hover .anchor {
+  color: #FFF !important;
+  border-bottom: 0px !important;  
+}
+
+.content h4:hover .anchor {
+  color: #FFF !important;
+  border-bottom: 0px !important;  
+}
+
+.content h5:hover .anchor {
   color: #FFF !important;
   border-bottom: 0px !important;  
 }
@@ -521,7 +536,22 @@ html[data-mode='dark'] {
     text-decoration: none !important;
   }
 
-  h2:hover .anchor {
+  .content h2:hover .anchor {
+    color: #1B1B1E !important;
+    border-bottom: 0px !important;
+  }
+  
+  .content h3:hover .anchor {
+    color: #1B1B1E !important;
+    border-bottom: 0px !important;
+  }
+  
+  .content h4:hover .anchor {
+    color: #1B1B1E !important;
+    border-bottom: 0px !important;
+  }
+  
+  .content h5:hover .anchor {
     color: #1B1B1E !important;
     border-bottom: 0px !important;
   }
