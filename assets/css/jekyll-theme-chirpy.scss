@@ -499,6 +499,11 @@ blockquote {
 .content hr {
   border-color: #E1E1E1 !important;
 }  
+
+.content #tags  a {
+  border-bottom: 1px !important;
+}  
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
