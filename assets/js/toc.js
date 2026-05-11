@@ -9,6 +9,6 @@ document.querySelector("main h2, main h3, main h4, main h5") && tocbot.refresh({
     orderedList: !1,
     scrollSmooth: !1, 
     collapseDepth: 5,
-    headingsOffset: dynamicOffset - 48, 
-    scrollSmoothOffset: -(dynamicOffset - 48)
+    headingsOffset: dynamicOffset, 
+    scrollSmoothOffset: -dynamicOffset
 });
