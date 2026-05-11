@@ -49,22 +49,27 @@
   
         if (filtered.length > 0) {
           filtered.forEach(item => {
-            const resultItem = document.createElement('div');
-            resultItem.className = 'px-md-4 py-3 w-100'; 
-            resultItem.innerHTML = `
+            const article = document.createElement('article');
+            article.className = 'px-md-3 py-3';
+            
+            article.innerHTML = `
               <header>
-                <a href="${item.url}" class="h4 text-primary text-decoration-none">${item.title}</a>
+                <h2>
+                  <a href="${item.url}">${item.title}</a>
+                </h2>
               </header>
-              <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1">
-                ${item.categories ? `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${item.categories}</div>` : ''}
+              <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1" style="font-size: 0.8rem;">
+                ${item.categories ? `<div class="me-sm-3"><i class="far fa-folder fa-fw"></i>${item.categories}</div>` : ''}
                 ${item.tags ? `<div><i class="fa fa-tag fa-fw"></i>${item.tags}</div>` : ''}
               </div>
-              <div class="mt-2 text-secondary text-truncate-2">${item.content.substring(0, 150)}...</div>
+              <div class="mt-2 text-secondary" style="font-size: 0.9rem; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                ${item.content.substring(0, 100)}...
+              </div>
             `;
-            resultsContainer.appendChild(resultItem);
+            resultsContainer.appendChild(article);
           });
         } else {
-          resultsContainer.innerHTML = '<div class="mt-5">{{ not_found }}</div>';
+          resultsContainer.innerHTML = '<div class="mt-5 w-100 text-center">{{ not_found }}</div>';
         }
       } else {
         if (query.length === 0) {
@@ -75,3 +80,4 @@
     });
   });
 </script>
+
