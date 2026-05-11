@@ -76,7 +76,9 @@ function isMobileView() {
 export function displaySearch() {
   btnSearchTrigger.addEventListener('click', () => {
     MobileSearchBar.on();
-    ResultSwitch.on();
+    if (input.value.length >= 2) {
+      ResultSwitch.on();
+    }
     input.focus();
   });
 
@@ -94,7 +96,7 @@ export function displaySearch() {
   });
 
   input.addEventListener('input', () => {
-    if (input.value === '') {
+    if (input.value < 2) {
       if (isMobileView()) {
         hints.classList.remove(UNLOADED);
       } else {
