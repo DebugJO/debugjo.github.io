@@ -589,6 +589,12 @@ header h1+.post-meta {
   }
 }  
 
+@media (max-width: 849px) {
+  #post-list {
+    margin-top: 0rem;
+  }
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
