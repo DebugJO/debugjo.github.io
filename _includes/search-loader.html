@@ -72,19 +72,27 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const filtered =
       searchData.filter((item) => {
-
+    
         const title =
-          item.title
-            ?.toLowerCase() || '';
-
+          item.title?.toLowerCase() || '';
+    
         const content =
-          item.content
-            ?.toLowerCase() || '';
-
-        return (
-          title.includes(keyword) ||
-          content.includes(keyword)
-        );
+          item.content?.toLowerCase() || '';
+    
+        const categories =
+          item.categories?.toLowerCase() || '';
+    
+        const tags =
+          item.tags?.toLowerCase() || '';
+    
+        return keywords.every((word) => {
+          return (
+            title.includes(word) ||
+            content.includes(word) ||
+            categories.includes(word) ||
+            tags.includes(word)
+          );
+        });
       });
 
     /**
@@ -102,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 최대 개수 제한 추천
+     * 최대 개수 제한
      */
     const results =
       filtered.slice(0, 30);
@@ -166,9 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  /**
-   * auto focus
-   */
   searchInput.focus();
 
 });
