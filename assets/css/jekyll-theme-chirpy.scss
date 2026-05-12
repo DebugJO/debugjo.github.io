@@ -196,8 +196,8 @@ article > header > h1 {
   overflow-wrap: break-word !important; 
   -webkit-hyphens: auto !important;
   hyphens: auto !important;
-  line-break: after-white-space;
-  -webkit-hyphenate-limit-chars: 3 2 2 !important;
+  line-break: after-white-space !important;;
+  hyphenate-character: '-';
 }
 
 .card-body {
