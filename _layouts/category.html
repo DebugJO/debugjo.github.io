@@ -9,7 +9,7 @@ layout: page
   <h1 class="ps-lg-2">
     <i class="far fa-folder-open fa-fw text-muted"></i>
     {{ page.title }}
-    <span>{{ page.posts | size }}</span>
+    <span>{{ site.categories[page.title] | size }}</span>
   </h1>
 
   <ul class="content ps-0">
