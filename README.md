@@ -6,6 +6,8 @@ List of supported languages and lexers : <https://github.com/rouge-ruby/rouge/wi
 
 파일명: yyyy-mm-dd-번호.md
 
+[연관 글]({% post_url 2020-04-08-2 %})
+
 excerpt_separator: <!--more-->
 
 ---
