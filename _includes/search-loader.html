@@ -27,28 +27,45 @@
     const searchResults =
       document.getElementById('search-results');
 
-    searchInput.addEventListener('input', (e) => {
+    /**
+     * 핵심:
+     * 2글자 미만이면
+     * 라이브러리 input 이벤트 자체 차단
+     */
+    searchInput.addEventListener(
+      'input',
+      (e) => {
 
-      const keyword = e.target.value.trim();
+        const keyword = e.target.value.trim();
 
-      if (keyword.length < 2) {
+        if (keyword.length < 2) {
 
-        searchResults.innerHTML = '';
+          // 결과 제거
+          searchResults.innerHTML = '';
 
-        searchResults.classList.add('unloaded');
+          // Chirpy 검색창 숨김
+          searchResults.classList.add('unloaded');
 
-        return;
-      }
+          // 중요
+          e.stopImmediatePropagation();
 
-      searchResults.classList.remove('unloaded');
-    });
+          return false;
+        }
 
+        searchResults.classList.remove('unloaded');
+      },
+      true // capture phase 중요
+    );
+
+    /**
+     * SimpleJekyllSearch
+     */
     SimpleJekyllSearch({
       searchInput: searchInput,
 
       resultsContainer: searchResults,
 
-      json: '{{ '/assets/js/data/search.json' | relative_url }}',
+      json: '{{ "/assets/js/data/search.json" | relative_url }}',
 
       searchResultTemplate:
         '{{ result_elem | strip_newlines }}',
@@ -89,11 +106,6 @@
             </div>
           `;
         }
-      },
-
-      searchMiddleware: function(searchTerm) {
-
-        return searchTerm.trim().length >= 2;
       }
     });
 
