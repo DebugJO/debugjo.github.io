@@ -251,24 +251,5 @@
   })();
   </script>
   {% endraw %}  
-  
-  <script>
-    document.querySelectorAll('.highlight table td pre')
-      .forEach(pre => {
-    
-        const lines =
-          pre.innerHTML.split('\n');
-    
-        pre.innerHTML =
-          lines.map(line => {
-    
-            if (line.trim() === '') {
-              return '<span class="empty-line"></span>';
-            }
-    
-            return line;
-          }).join('\n');
-      });
-  </script>    
-  
+
 </head>
