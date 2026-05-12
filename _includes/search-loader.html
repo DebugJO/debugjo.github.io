@@ -19,87 +19,157 @@
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    const searchInput =
-      document.getElementById('search-input');
+  const searchInput =
+    document.getElementById('search-input');
 
-    const searchResults =
-      document.getElementById('search-results');
+  const searchResults =
+    document.getElementById('search-results');
 
-    /**
-     * SimpleJekyllSearch init
-     */
-    const search = SimpleJekyllSearch({
-      searchInput: searchInput,
+  let searchData = [];
 
-      resultsContainer: searchResults,
+  /**
+   * search.json preload
+   */
+  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+    .then((response) => response.json())
+    .then((data) => {
+      searchData = data;
+    })
+    .catch((err) => {
+      console.error('Search load error:', err);
 
-      json: '{{ "/assets/js/data/search.json" | relative_url }}',
-
-      searchResultTemplate:
-        '{{ result_elem | strip_newlines }}',
-
-      noResultsText:
-        '{{ not_found }}',
-
-      templateMiddleware: function(
-        prop,
-        value,
-        template
-      ) {
-
-        if (prop === 'categories') {
-
-          if (value === '') {
-            return `${value}`;
-          }
-
-          return `
-            <div class="me-sm-4">
-              <i class="far fa-folder fa-fw"></i>
-              ${value}
-            </div>
-          `;
-        }
-
-        if (prop === 'tags') {
-
-          if (value === '') {
-            return `${value}`;
-          }
-
-          return `
-            <div>
-              <i class="fa fa-tag fa-fw"></i>
-              ${value}
-            </div>
-          `;
-        }
-      }
+      searchResults.innerHTML = `
+        <p class="mt-5">
+          Search data load failed.
+        </p>
+      `;
     });
 
+  /**
+   * search
+   */
+  searchInput.addEventListener('input', (e) => {
+
+    const keyword =
+      e.target.value
+        .toLowerCase()
+        .trim();
+
     /**
-     * 2글자 미만 처리
+     * 2글자 제한
      */
-    searchInput.addEventListener('input', () => {
+    if (keyword.length < 2) {
 
-      const keyword =
-        searchInput.value.trim();
+      searchResults.innerHTML = '';
 
-      if (keyword.length < 2) {
+      return;
+    }
 
-        // 검색 결과 제거
-        searchResults.innerHTML = '';
+    /**
+     * filter
+     */
+    const filtered =
+      searchData.filter((item) => {
 
-        // Chirpy hidden 상태
-        searchResults.classList.add('unloaded');
+        const title =
+          item.title
+            ?.toLowerCase() || '';
 
-        return;
-      }
+        const content =
+          item.content
+            ?.toLowerCase() || '';
 
-      searchResults.classList.remove('unloaded');
-    });
+        return (
+          title.includes(keyword) ||
+          content.includes(keyword)
+        );
+      });
+
+    /**
+     * render
+     */
+    if (filtered.length === 0) {
+
+      searchResults.innerHTML = `
+        <p class="mt-5">
+          {{ site.data.locales[include.lang].search.no_results }}
+        </p>
+      `;
+
+      return;
+    }
+
+    /**
+     * 최대 개수 제한 추천
+     */
+    const results =
+      filtered.slice(0, 30);
+
+    searchResults.innerHTML =
+      results.map((item) => {
+
+        const categories =
+          item.categories
+            ? `
+              <div class="me-sm-4">
+                <i class="far fa-folder fa-fw"></i>
+                ${item.categories}
+              </div>
+            `
+            : '';
+
+        const tags =
+          item.tags
+            ? `
+              <div>
+                <i class="fa fa-tag fa-fw"></i>
+                ${item.tags}
+              </div>
+            `
+            : '';
+
+        return `
+          <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+
+            <header>
+
+              <h2>
+                <a href="${item.url}">
+                  ${item.title}
+                </a>
+              </h2>
+
+              <div class="
+                post-meta
+                d-flex
+                flex-column
+                flex-sm-row
+                text-muted
+                mt-1
+                mb-1
+              ">
+                ${categories}
+                ${tags}
+              </div>
+
+            </header>
+
+            <p>
+              ${item.content}
+            </p>
+
+          </article>
+        `;
+      }).join('');
 
   });
+
+  /**
+   * auto focus
+   */
+  searchInput.focus();
+
+});
 </script>
