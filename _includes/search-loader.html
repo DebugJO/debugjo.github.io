@@ -28,7 +28,7 @@
       searchResultTemplate: '{{ result_elem | strip_newlines }}',
       noResultsText: '{{ not_found }}',
     
-      if (searchInput.trim().length < 2) {
+      if (searchInput.value.trim().length < 2) {
         return [];
       },
 
