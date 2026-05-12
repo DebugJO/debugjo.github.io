@@ -567,6 +567,16 @@ header h1+.post-meta {
     margin-top: 0.5rem !important;
 }
 
+#toc-bar.invisible
+{
+    top: -1.5rem !important;
+}
+
+#toc-bar
+{
+  height: 1.5rem !important;
+}  
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
