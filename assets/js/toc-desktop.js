@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const dynamicOffset = headerElement
     ? headerElement.offsetHeight
-    : 0;
+    : 48;
 
   document.querySelector(
     'main h2, main h3, main h4, main h5'
