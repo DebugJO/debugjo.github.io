@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   const headerElement =
-    document.querySelector('header');
+    document.querySelector('main');
 
   const dynamicOffset = headerElement
     ? headerElement.offsetHeight
-    : 48;
+    : 0;
 
   document.querySelector(
     'main h2, main h3, main h4, main h5'
