@@ -1,5 +1,5 @@
 /**
- * TOC button, topbar and popup for mobile devices
+ * Mobile TOC for Chirpy
  */
 
 const $tocBar = document.getElementById('toc-bar');
@@ -11,11 +11,19 @@ const $btnClose = document.getElementById('toc-popup-close');
 const SCROLL_LOCK = 'overflow-hidden';
 const CLOSING = 'closing';
 
-export class TocMobile {
-  static #invisible = true;
-  static #barHeight = 16 * 3; // 3rem
+const BAR_HEIGHT = 16 * 3; // 3rem
 
-  static options = {
+/**
+ * dynamic offset
+ */
+function getTocOptions() {
+  const headerElement = document.querySelector('main h2, main h3, main h4, main h5');
+
+  const dynamicOffset = headerElement
+    ? headerElement.offsetHeight
+    : BAR_HEIGHT;
+
+  return {
     tocSelector: '#toc-popup-content',
     contentSelector: '.content',
     ignoreSelector: '[data-toc-skip]',
@@ -23,103 +31,209 @@ export class TocMobile {
     orderedList: false,
     scrollSmooth: false,
     collapseDepth: 5,
-    headingsOffset: this.#barHeight
+
+    // desktop 스타일 동일 적용
+    headingsOffset: dynamicOffset,
+    scrollSmoothOffset: -dynamicOffset
   };
+}
 
-  static initBar() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          $tocBar.classList.toggle('invisible', entry.isIntersecting);
-        });
-      },
-      { rootMargin: `-${this.#barHeight}px 0px 0px 0px` }
-    );
-
-    observer.observe($soloTrigger);
-    this.#invisible = false;
+/**
+ * TOC Bar Observer
+ */
+function initBar() {
+  if (!$soloTrigger || !$tocBar) {
+    return;
   }
 
-  static listenAnchors() {
-    const $anchors = document.getElementsByClassName('toc-link');
-    [...$anchors].forEach((anchor) => {
-      anchor.onclick = () => this.hidePopup();
-    });
-  }
-
-  static refresh() {
-    if (this.#invisible) {
-      this.initComponents();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        $tocBar.classList.toggle(
+          'invisible',
+          entry.isIntersecting
+        );
+      });
+    },
+    {
+      rootMargin: `-${BAR_HEIGHT}px 0px 0px 0px`
     }
-    tocbot.refresh(this.options);
-    this.listenAnchors();
+  );
+
+  observer.observe($soloTrigger);
+}
+
+/**
+ * popup close
+ */
+function hidePopup() {
+  if (!$popup || !$popup.open) {
+    return;
   }
 
-  static get popupOpened() {
-    return $popup.open;
-  }
+  $popup.toggleAttribute(CLOSING);
 
-  static showPopup() {
-    this.lockScroll(true);
-    $popup.showModal();
-    const activeItem = $popup.querySelector('li.is-active-li');
-    activeItem.scrollIntoView({ block: 'center' });
-  }
+  $popup.addEventListener(
+    'animationend',
+    () => {
+      $popup.toggleAttribute(CLOSING);
 
-  static hidePopup() {
-    $popup.toggleAttribute(CLOSING);
-
-    $popup.addEventListener(
-      'animationend',
-      () => {
-        $popup.toggleAttribute(CLOSING);
+      if ($popup.open) {
         $popup.close();
-      },
-      { once: true }
-    );
+      }
+    },
+    { once: true }
+  );
 
-    this.lockScroll(false);
-  }
+  document.documentElement.classList.remove(
+    SCROLL_LOCK
+  );
 
-  static lockScroll(enable) {
-    document.documentElement.classList.toggle(SCROLL_LOCK, enable);
-    document.body.classList.toggle(SCROLL_LOCK, enable);
-  }
+  document.body.classList.remove(
+    SCROLL_LOCK
+  );
+}
 
-  static clickBackdrop(event) {
-    if ($popup.hasAttribute(CLOSING)) {
-      return;
-    }
+/**
+ * popup open
+ */
+function showPopup() {
+  /**
+   * popup 열기 전에
+   * 최신 TOC refresh
+   */
+  document.querySelector(
+    'main h2, main h3, main h4, main h5'
+  ) &&
+    tocbot.refresh(getTocOptions());
 
-    const rect = event.target.getBoundingClientRect();
-    if (
-      event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom
-    ) {
-      this.hidePopup();
-    }
-  }
+  bindAnchorEvents();
 
-  static initComponents() {
-    this.initBar();
+  document.documentElement.classList.add(
+    SCROLL_LOCK
+  );
 
-    [...$triggers].forEach((trigger) => {
-      trigger.onclick = () => this.showPopup();
+  document.body.classList.add(
+    SCROLL_LOCK
+  );
+
+  $popup.showModal();
+
+  const activeItem =
+    $popup.querySelector('li.is-active-li');
+
+  if (activeItem) {
+    activeItem.scrollIntoView({
+      block: 'center'
     });
-
-    $popup.onclick = (e) => this.clickBackdrop(e);
-    $btnClose.onclick = () => this.hidePopup();
-    $popup.oncancel = (e) => {
-      e.preventDefault();
-      this.hidePopup();
-    };
-  }
-
-  static init() {
-    tocbot.init(this.options);
-    this.listenAnchors();
-    this.initComponents();
   }
 }
+
+/**
+ * anchor click
+ */
+function bindAnchorEvents() {
+  const $anchors =
+    document.getElementsByClassName('toc-link');
+
+  [...$anchors].forEach((anchor) => {
+    anchor.onclick = () => {
+      /**
+       * 모바일 timing 문제 해결
+       */
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          hidePopup();
+        }, 80);
+      });
+    };
+  });
+}
+
+/**
+ * backdrop click
+ */
+function clickBackdrop(event) {
+  if ($popup.hasAttribute(CLOSING)) {
+    return;
+  }
+
+  const rect = event.target.getBoundingClientRect();
+
+  if (
+    event.clientX < rect.left ||
+    event.clientX > rect.right ||
+    event.clientY < rect.top ||
+    event.clientY > rect.bottom
+  ) {
+    hidePopup();
+  }
+}
+
+/**
+ * init
+ */
+function initMobileToc() {
+  /**
+   * heading 없으면 종료
+   */
+  if (
+    document.querySelector(
+      'main h2, main h3, main h4, main h5'
+    ) === null
+  ) {
+    return;
+  }
+
+  /**
+   * mobile only
+   */
+  if (window.innerWidth >= 1200) {
+    return;
+  }
+
+  /**
+   * TOC init
+   */
+  tocbot.init(getTocOptions());
+
+  bindAnchorEvents();
+
+  initBar();
+
+  /**
+   * open button
+   */
+  [...$triggers].forEach((trigger) => {
+    trigger.onclick = () => showPopup();
+  });
+
+  /**
+   * backdrop
+   */
+  $popup.onclick = (e) =>
+    clickBackdrop(e);
+
+  /**
+   * close button
+   */
+  $btnClose.onclick = () =>
+    hidePopup();
+
+  /**
+   * ESC / cancel
+   */
+  $popup.oncancel = (e) => {
+    e.preventDefault();
+
+    hidePopup();
+  };
+}
+
+/**
+ * run
+ */
+document.addEventListener(
+  'DOMContentLoaded',
+  initMobileToc
+);
