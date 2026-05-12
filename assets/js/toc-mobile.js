@@ -1,7 +1,3 @@
-/**
- * Mobile TOC for Chirpy
- */
-
 const $tocBar = document.getElementById('toc-bar');
 const $soloTrigger = document.getElementById('toc-solo-trigger');
 const $triggers = document.getElementsByClassName('toc-trigger');
@@ -13,26 +9,19 @@ const CLOSING = 'closing';
 
 const BAR_HEIGHT = 16 * 3; // 3rem
 
-/**
- * dynamic offset
- */
 function getTocOptions() {
-  const headerElement = document.querySelector('main h2, main h3, main h4, main h5');
+  const headerElement = document.querySelector('header');
 
-  const dynamicOffset = headerElement
-    ? headerElement.offsetHeight
-    : BAR_HEIGHT;
+  const dynamicOffset = headerElement ? headerElement.offsetHeight : BAR_HEIGHT;
 
   return {
     tocSelector: '#toc-popup-content',
     contentSelector: '.content',
     ignoreSelector: '[data-toc-skip]',
     headingSelector: 'h2, h3, h4, h5',
-    orderedList: false,
-    scrollSmooth: false,
+    orderedList: !1,
+    scrollSmooth: !1, 
     collapseDepth: 5,
-
-    // desktop 스타일 동일 적용
     headingsOffset: dynamicOffset,
     scrollSmoothOffset: -dynamicOffset
   };
@@ -94,14 +83,7 @@ function hidePopup() {
   );
 }
 
-/**
- * popup open
- */
 function showPopup() {
-  /**
-   * popup 열기 전에
-   * 최신 TOC refresh
-   */
   document.querySelector(
     'main h2, main h3, main h4, main h5'
   ) &&
@@ -129,18 +111,12 @@ function showPopup() {
   }
 }
 
-/**
- * anchor click
- */
 function bindAnchorEvents() {
   const $anchors =
     document.getElementsByClassName('toc-link');
 
   [...$anchors].forEach((anchor) => {
     anchor.onclick = () => {
-      /**
-       * 모바일 timing 문제 해결
-       */
       requestAnimationFrame(() => {
         setTimeout(() => {
           hidePopup();
@@ -150,9 +126,6 @@ function bindAnchorEvents() {
   });
 }
 
-/**
- * backdrop click
- */
 function clickBackdrop(event) {
   if ($popup.hasAttribute(CLOSING)) {
     return;
@@ -170,13 +143,7 @@ function clickBackdrop(event) {
   }
 }
 
-/**
- * init
- */
 function initMobileToc() {
-  /**
-   * heading 없으면 종료
-   */
   if (
     document.querySelector(
       'main h2, main h3, main h4, main h5'
@@ -184,45 +151,27 @@ function initMobileToc() {
   ) {
     return;
   }
-
-  /**
-   * mobile only
-   */
+  
   if (window.innerWidth >= 1200) {
     return;
   }
 
-  /**
-   * TOC init
-   */
   tocbot.init(getTocOptions());
 
   bindAnchorEvents();
 
   initBar();
 
-  /**
-   * open button
-   */
   [...$triggers].forEach((trigger) => {
     trigger.onclick = () => showPopup();
   });
 
-  /**
-   * backdrop
-   */
   $popup.onclick = (e) =>
     clickBackdrop(e);
 
-  /**
-   * close button
-   */
   $btnClose.onclick = () =>
     hidePopup();
 
-  /**
-   * ESC / cancel
-   */
   $popup.oncancel = (e) => {
     e.preventDefault();
 
@@ -230,9 +179,6 @@ function initMobileToc() {
   };
 }
 
-/**
- * run
- */
 document.addEventListener(
   'DOMContentLoaded',
   initMobileToc
