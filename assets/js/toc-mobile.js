@@ -86,6 +86,9 @@ export class TocMobile {
   }
 
   static showPopup() {
+    tocbot.refresh(this.getOptions());
+    this.listenAnchors();
+    
     this.lockScroll(true);
 
     $popup.showModal();
