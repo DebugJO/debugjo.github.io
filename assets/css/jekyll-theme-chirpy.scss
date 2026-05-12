@@ -563,6 +563,10 @@ h6 + .highlighter-rouge {
 	font-style: italic !important;
 }
 
+header h1+.post-meta {
+    margin-top: 0.5rem !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
