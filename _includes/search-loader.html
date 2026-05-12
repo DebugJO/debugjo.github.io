@@ -28,10 +28,9 @@
       searchResultTemplate: '{{ result_elem | strip_newlines }}',
       noResultsText: '{{ not_found }}',
 
-      searchInput.addEventListener('input', () => {
+      searchInput.addEventListener('search-input', () => {
         if (searchInput.value.trim().length < 2) {
-          searchResults.innerHTML = '';
-          return;
+          return [];
         }
       }),
     
