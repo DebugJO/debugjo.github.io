@@ -251,5 +251,14 @@
   })();
   </script>
   {% endraw %}  
+
+  document.querySelectorAll('.highlight pre')
+    .forEach(pre => {
   
+      pre.innerHTML =
+        pre.innerHTML.replace(
+          /\n\s*\n/g,
+          '\n<span class="empty-line"></span>\n'
+        );
+    });  
 </head>
