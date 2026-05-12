@@ -51,15 +51,19 @@
 </footer>  
 
 <script>
-  document.querySelectorAll('.highlight pre')
-    .forEach(pre => {
+  document.addEventListener('DOMContentLoaded', () => {
   
-      const html = pre.innerHTML;
+    document.querySelectorAll('.highlight pre')
+      .forEach(pre => {
   
-      pre.innerHTML =
-        html.replace(
-          /<\/span>\n\s*\n<span/g,
-          '</span>\n<span class="empty-line"></span><span'
-        );
-  });  
+        const html = pre.innerHTML;
+  
+        pre.innerHTML =
+          html.replace(
+            /<\/span>\n\s*\n<span/g,
+            '</span>\n<span class="empty-line"></span><span'
+          );
+      });
+  
+  });
 </script>
