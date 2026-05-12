@@ -231,9 +231,15 @@ footer p {
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
 }
 
+#archives .year {
+  font-size: 1rem !important;
+  font-weight: 600 !important;	
+}
+
 #archives .year::after {
-  left: 16.5px !important;
-}  
+  margin-top: 14px !important;
+  margin-top: 12px !important;
+}
 
 /******************************************** 폰트 설정 end *********************************************/
 
