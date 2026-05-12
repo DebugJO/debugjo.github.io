@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   const headerElement =
-    document.querySelector('main');
+    document.querySelector('header');
 
   const dynamicOffset = headerElement
     ? headerElement.offsetHeight
