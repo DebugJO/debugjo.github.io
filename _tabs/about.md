@@ -1,6 +1,6 @@
 ---
 # the default layout is 'page'
-icon: fa-solid fa-circle-info
+icon: fas fa-solid fa-circle-info
 order: 4
 toc: true
 ---
