@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .toLowerCase()
         .trim();
 
+    const keywords = keyword.split(/\s+/);
+
     /**
      * 2글자 제한
      */
@@ -72,21 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const filtered =
       searchData.filter((item) => {
-
+    
         const title =
           item.title
             ?.toLowerCase() || '';
-
+    
         const content =
           item.content
             ?.toLowerCase() || '';
-
+    
         const categories =
-          item.categories?.toLowerCase() || '';
+          item.categories
+            ?.toLowerCase() || '';
     
         const tags =
-          item.tags?.toLowerCase() || '';
-        
+          item.tags
+            ?.toLowerCase() || '';
+    
         return keywords.every((word) => {
           return (
             title.includes(word) ||
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tags.includes(word)
           );
         });
-     });
+    });
     /**
      * render
      */
