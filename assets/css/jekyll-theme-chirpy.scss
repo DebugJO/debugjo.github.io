@@ -577,6 +577,18 @@ header h1+.post-meta {
   height: 1.5rem !important;
 }  
 
+@media (min-width: 850px) {
+  #post-list {
+      margin-top: 1rem;
+  }
+}
+
+@media (min-width: 850px) {
+  main h1 {
+      margin-top: 1rem !important;
+  }
+}  
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
