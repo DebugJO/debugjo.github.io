@@ -157,8 +157,14 @@ kbd {
 }  
 
 #post-list .card .card-body .card-title {
-    font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;  
-}  
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-size: 1.25rem !important;
+}
+
+article > header > h1 {
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-size: 1.25rem !important;
+}
 
 .card-body {
     font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;  
