@@ -27,12 +27,6 @@
       json: '{{ '/assets/js/data/search.json' | relative_url }}',
       searchResultTemplate: '{{ result_elem | strip_newlines }}',
       noResultsText: '{{ not_found }}',
-
-      searchInput.addEventListener('search-input', () => {
-        if (searchInput.value.trim().length < 2) {
-          return [];
-        }
-      }),
     
       templateMiddleware: function(prop, value, template) {
         if (prop === 'categories') {
@@ -51,6 +45,13 @@
           }
         }
       }
+    }),
+
+    searchInput.addEventListener('input', () => {
+      if (searchInput.value.trim().length < 2) {
+        searchResults.innerHTML = '';
+      }
     });
+  
   });
 </script>
