@@ -13,6 +13,9 @@ layout: default
         <i class="{{ page.icon }} fa-fw"></i>
       {% endif %}
       {{ title }}
+      {% if page.layout == 'categories' %}
+        <span class="lead text-muted ps-2">{{ site.posts | size }}</span>
+      {% endif %}
     </h1>
     <div class="content">
       {{ content }}
