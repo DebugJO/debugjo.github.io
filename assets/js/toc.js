@@ -1,5 +1,5 @@
-import { TocMobile as mobile } from './toc-mobile';
-import { TocDesktop as desktop } from './toc-desktop';
+import { TocMobile as mobile } from './toc-mobile.js';
+import { TocDesktop as desktop } from './toc-desktop.js';
 
 const desktopMode = matchMedia('(min-width: 1200px)');
 
@@ -20,7 +20,6 @@ function init() {
     return;
   }
 
-  // Avoid create multiple instances of Tocbot. Ref: <https://github.com/tscanlin/tocbot/issues/203>
   if (desktopMode.matches) {
     desktop.init();
   } else {
