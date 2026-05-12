@@ -192,7 +192,7 @@ footer p {
   font-size: 13px !important;
 }
 
-/******************************************** 폰트 설정 header ******************************************/
+/******************************************** 폰트 설정 header, 추가 ******************************************/
 
 #search-results>article>p {
   font-size: 13px !important;
@@ -202,6 +202,10 @@ footer p {
   font-size: 1.12rem !important;
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
 }
+
+#archives .year::after {
+  left: 16.5px !important;
+}  
 
 /******************************************** 폰트 설정 end *********************************************/
 
