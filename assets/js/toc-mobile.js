@@ -7,7 +7,8 @@ const $btnClose = document.getElementById('toc-popup-close');
 const SCROLL_LOCK = 'overflow-hidden';
 const CLOSING = 'closing';
 
-const BAR_HEIGHT = 16 * 3; // 3rem
+//const BAR_HEIGHT = 16 * 3; // 3rem
+const BAR_HEIGHT = 16 * 1.5;
 
 function getTocOptions() {
   const headerElement = document.querySelector('header');
