@@ -156,6 +156,13 @@ function initMobileToc() {
     return;
   }
 
+  const mediaQuery =
+    window.matchMedia('(min-width: 1200px)');
+
+  mediaQuery.addEventListener('change', () => {
+    location.reload();
+  });
+  
   tocbot.init(getTocOptions());
 
   bindAnchorEvents();
