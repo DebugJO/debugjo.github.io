@@ -182,9 +182,9 @@ body {
   font-variant-ligatures: contextual !important;
 }
 
-.highlight table td pre span:empty {
-  display: block !important;
-  height: 0.25em !important;
+.empty-line {
+  display: block;
+  height: 0.35em;
 }
 
 footer p {
