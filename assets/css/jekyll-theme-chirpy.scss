@@ -194,20 +194,13 @@ footer p {
 
 /******************************************** 폰트 설정 header ******************************************/
 
-/*
-#search-results>article {
-  margin-bottom: 0px !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-  width: 48% !important;  
+#search-results>article>p {
+  font-size: 13px !important;
 }
 
-#search-results>article>header>h2>a {
-    font-size: 18px !important;
-    line-height: 1.3rem !important;
-    font-family: 'Pretendard';
+#search-results h2 a {
+  font-size: 1.12rem !important;
 }
-*/
 
 /******************************************** 폰트 설정 end *********************************************/
 
