@@ -1,14 +1,35 @@
-const headerElement = document.querySelector('header');
-const dynamicOffset = headerElement ? headerElement.offsetHeight : 0;
+// const headerElement = document.querySelector('header');
+// const dynamicOffset = headerElement ? headerElement.offsetHeight : 0;
 
-document.querySelector("main h2, main h3, main h4, main h5") && tocbot.refresh({
-    tocSelector: "#toc",
-    contentSelector: ".content",
-    ignoreSelector: "[data-toc-skip]",
-    headingSelector: "h2, h3, h4, h5",
-    orderedList: !1,
-    scrollSmooth: !1, 
-    collapseDepth: 5,
-    headingsOffset: dynamicOffset, 
-    scrollSmoothOffset: -dynamicOffset
-});
+// document.querySelector("main h2, main h3, main h4, main h5") && tocbot.refresh({
+//     tocSelector: "#toc",
+//     contentSelector: ".content",
+//     ignoreSelector: "[data-toc-skip]",
+//     headingSelector: "h2, h3, h4, h5",
+//     orderedList: !1,
+//     scrollSmooth: !1, 
+//     collapseDepth: 5,
+//     headingsOffset: dynamicOffset, 
+//     scrollSmoothOffset: -dynamicOffset
+// });
+
+
+export class TocDesktop {
+  static options = {
+    tocSelector: '#toc',
+    contentSelector: '.content',
+    ignoreSelector: '[data-toc-skip]',
+    headingSelector: 'h2, h3, h4, h5',
+    orderedList: false,
+    scrollSmooth: false,
+    headingsOffset: 16 * 2 // 2rem
+  };
+
+  static refresh() {
+    tocbot.refresh(this.options);
+  }
+
+  static init() {
+    tocbot.init(this.options);
+  }
+}
