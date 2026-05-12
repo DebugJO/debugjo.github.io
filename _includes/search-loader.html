@@ -19,47 +19,34 @@
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
 <script>
+  {% comment %} Note: dependent library will be loaded in `js-selector.html` {% endcomment %}
   document.addEventListener('DOMContentLoaded', () => {
-
-    const input = document.getElementById('search-input');
-    const results = document.getElementById('search-results');
-
     SimpleJekyllSearch({
-      searchInput: input,
-      resultsContainer: results,
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
       json: '{{ '/assets/js/data/search.json' | relative_url }}',
       searchResultTemplate: '{{ result_elem | strip_newlines }}',
       noResultsText: '{{ not_found }}',
-
-      searchFunction: function(searchTerm, data) {
-        if (searchTerm.trim().length < 2) {
-          return [];
-        }
-
-        searchTerm = searchTerm.toLowerCase();
-
-        return data.filter(item => {
-          return (
-            item.title.toLowerCase().includes(searchTerm) ||
-            item.content.toLowerCase().includes(searchTerm) ||
-            item.categories.toLowerCase().includes(searchTerm) ||
-            item.tags.toLowerCase().includes(searchTerm)
-          );
-        });
+    
+      if (searchInput.trim().length < 2) {
+        return [];
       },
 
       templateMiddleware: function(prop, value, template) {
-
         if (prop === 'categories') {
-          return value === ''
-            ? value
-            : `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          }
         }
 
         if (prop === 'tags') {
-          return value === ''
-            ? value
-            : `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          }
         }
       }
     });
