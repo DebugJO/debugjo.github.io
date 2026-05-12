@@ -191,11 +191,12 @@ article > header > h1 {
 
 .content p {
   text-align: justify !important;
-  word-break: keep-all !important; 
-  overflow-wrap: break-word !important;
-  -webkit-hyphens: manual !important;
-  hyphens: manual !important;
   text-justify: inter-character !important;
+  word-break: normal !important; 
+  overflow-wrap: break-word !important; 
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  line-break: after-white-space;
 }
 
 .card-body {
