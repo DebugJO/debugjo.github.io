@@ -1,4 +1,3 @@
-
 /**
  * TOC button, topbar and popup for mobile devices
  */
@@ -12,17 +11,15 @@ const $btnClose = document.getElementById('toc-popup-close');
 const SCROLL_LOCK = 'overflow-hidden';
 const CLOSING = 'closing';
 
-const headerElement = document.querySelector('header');
-const dynamicOffset = headerElement ? headerElement.offsetHeight : 0;
-
 export class TocMobile {
   static #invisible = true;
   static #barHeight = 16 * 3; // 3rem
 
   static getOptions() {
     const headerElement = document.querySelector('header');
+
     const dynamicOffset = headerElement
-      ? headerElement.offsetHeight
+      ? headerElement.getBoundingClientRect().height
       : this.#barHeight;
 
     return {
@@ -33,8 +30,9 @@ export class TocMobile {
       orderedList: false,
       scrollSmooth: false,
       collapseDepth: 5,
-      headingsOffset: dynamicOffset,
-      scrollSmoothOffset: -dynamicOffset
+
+      // 핵심
+      headingsOffset: dynamicOffset
     };
   }
 
@@ -45,10 +43,13 @@ export class TocMobile {
           $tocBar.classList.toggle('invisible', entry.isIntersecting);
         });
       },
-      { rootMargin: `-${this.#barHeight}px 0px 0px 0px` }
+      {
+        rootMargin: `-${this.#barHeight}px 0px 0px 0px`
+      }
     );
 
     observer.observe($soloTrigger);
+
     this.#invisible = false;
   }
 
@@ -56,7 +57,17 @@ export class TocMobile {
     const $anchors = document.getElementsByClassName('toc-link');
 
     [...$anchors].forEach((anchor) => {
-      anchor.onclick = () => this.hidePopup();
+      anchor.onclick = () => {
+        /**
+         * 모바일에서 popup close 와
+         * anchor 이동 timing 충돌 방지
+         */
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            this.hidePopup();
+          }, 80);
+        });
+      };
     });
   }
 
@@ -66,6 +77,7 @@ export class TocMobile {
     }
 
     tocbot.refresh(this.getOptions());
+
     this.listenAnchors();
   }
 
@@ -75,23 +87,33 @@ export class TocMobile {
 
   static showPopup() {
     this.lockScroll(true);
+
     $popup.showModal();
 
     const activeItem = $popup.querySelector('li.is-active-li');
 
     if (activeItem) {
-      activeItem.scrollIntoView({ block: 'center' });
+      activeItem.scrollIntoView({
+        block: 'center'
+      });
     }
   }
 
   static hidePopup() {
+    if (!$popup.open) {
+      return;
+    }
+
     $popup.toggleAttribute(CLOSING);
 
     $popup.addEventListener(
       'animationend',
       () => {
         $popup.toggleAttribute(CLOSING);
-        $popup.close();
+
+        if ($popup.open) {
+          $popup.close();
+        }
       },
       { once: true }
     );
@@ -100,8 +122,15 @@ export class TocMobile {
   }
 
   static lockScroll(enable) {
-    document.documentElement.classList.toggle(SCROLL_LOCK, enable);
-    document.body.classList.toggle(SCROLL_LOCK, enable);
+    document.documentElement.classList.toggle(
+      SCROLL_LOCK,
+      enable
+    );
+
+    document.body.classList.toggle(
+      SCROLL_LOCK,
+      enable
+    );
   }
 
   static clickBackdrop(event) {
@@ -134,13 +163,16 @@ export class TocMobile {
 
     $popup.oncancel = (e) => {
       e.preventDefault();
+
       this.hidePopup();
     };
   }
 
   static init() {
     tocbot.init(this.getOptions());
+
     this.listenAnchors();
+
     this.initComponents();
   }
 }
