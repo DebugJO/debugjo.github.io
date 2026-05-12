@@ -197,7 +197,7 @@ article > header > h1 {
   -webkit-hyphens: auto !important;
   hyphens: auto !important;
   line-break: after-white-space;
-  -webkit-text-size-adjust: none;
+  -webkit-hyphenate-limit-chars: 3 2 2 !important;
 }
 
 .card-body {
