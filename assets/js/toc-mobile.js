@@ -11,12 +11,12 @@ const $btnClose = document.getElementById('toc-popup-close');
 const SCROLL_LOCK = 'overflow-hidden';
 const CLOSING = 'closing';
 
-export class TocMobile {
+
   static #invisible = true;
   static #barHeight = 16 * 3; // 3rem
 
   static getOptions() {
-    const headerElement = document.querySelector('header');
+    const headerElement = document.querySelector('main h2, main h3, main h4, main h5');
 
     const dynamicOffset = headerElement
       ? headerElement.getBoundingClientRect().height
@@ -178,4 +178,3 @@ export class TocMobile {
 
     this.initComponents();
   }
-}
