@@ -19,65 +19,31 @@
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
 <script>
+  {% comment %} Note: dependent library will be loaded in `js-selector.html` {% endcomment %}
   document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('search-input');
-    const resultWrapper = document.getElementById('search-result-wrapper');
-    const searchHints = document.getElementById('search-hints');
-    const resultsContainer = document.getElementById('search-results');
-    let searchData = [];
-  
-    fetch('{{ '/assets/js/data/search.json' | relative_url }}')
-      .then(response => response.json())
-      .then(data => {
-        searchData = data;
-        console.log("검색 데이터 로드 완료");
-      });
-  
-    searchInput.addEventListener('input', function() {
-      const query = this.value.toLowerCase().trim();
-      
-      if (query.length >= 2) {
-        resultWrapper.classList.remove('d-none');
-        searchHints.classList.add('d-none');
-        resultsContainer.innerHTML = ''; 
-  
-        const filtered = searchData.filter(item => {
-          return (item.title && item.title.toLowerCase().includes(query)) || 
-                 (item.content && item.content.toLowerCase().includes(query)) ||
-                 (item.tags && item.tags.toLowerCase().includes(query));
-        });
-  
-        if (filtered.length > 0) {
-          filtered.forEach(item => {
-            const article = document.createElement('article');
-            article.className = 'px-md-3 py-3';
-            
-            article.innerHTML = `
-              <header>
-                <h2>
-                  <a href="${item.url}">${item.title}</a>
-                </h2>
-              </header>
-              <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1" style="font-size: 0.8rem;">
-                ${item.categories ? `<div class="me-sm-3"><i class="far fa-folder fa-fw"></i>${item.categories}</div>` : ''}
-                ${item.tags ? `<div><i class="fa fa-tag fa-fw"></i>${item.tags}</div>` : ''}
-              </div>
-              <div class="mt-2 text-secondary" style="font-size: 0.9rem; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                ${item.content.substring(0, 100)}...
-              </div>
-            `;
-            resultsContainer.appendChild(article);
-          });
-        } else {
-          resultsContainer.innerHTML = '<div class="mt-5 w-100 text-center">{{ not_found }}</div>';
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('search-results'),
+      json: '{{ '/assets/js/data/search.json' | relative_url }}',
+      searchResultTemplate: '{{ result_elem | strip_newlines }}',
+      noResultsText: '{{ not_found }}',
+      templateMiddleware: function(prop, value, template) {
+        if (prop === 'categories') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          }
         }
-      } else {
-        if (query.length === 0) {
-          resultWrapper.classList.add('d-none');
-          searchHints.classList.remove('d-none');
+
+        if (prop === 'tags') {
+          if (value === '') {
+            return `${value}`;
+          } else {
+            return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          }
         }
       }
     });
   });
 </script>
-
