@@ -19,17 +19,24 @@ export class TocMobile {
   static #invisible = true;
   static #barHeight = 16 * 3; // 3rem
 
-  static options = {
-    tocSelector: '#toc-popup-content',
-    contentSelector: '.content',
-    ignoreSelector: '[data-toc-skip]',
-    headingSelector: 'h2, h3, h4, h5',
-    orderedList: false,
-    scrollSmooth: false,
-    collapseDepth: 5,
-    headingsOffset: dynamicOffset, 
-    scrollSmoothOffset: -dynamicOffset
-  };
+  static getOptions() {
+    const headerElement = document.querySelector('header');
+    const dynamicOffset = headerElement
+      ? headerElement.offsetHeight
+      : this.#barHeight;
+
+    return {
+      tocSelector: '#toc-popup-content',
+      contentSelector: '.content',
+      ignoreSelector: '[data-toc-skip]',
+      headingSelector: 'h2, h3, h4, h5',
+      orderedList: false,
+      scrollSmooth: false,
+      collapseDepth: 5,
+      headingsOffset: dynamicOffset,
+      scrollSmoothOffset: -dynamicOffset
+    };
+  }
 
   static initBar() {
     const observer = new IntersectionObserver(
@@ -47,6 +54,7 @@ export class TocMobile {
 
   static listenAnchors() {
     const $anchors = document.getElementsByClassName('toc-link');
+
     [...$anchors].forEach((anchor) => {
       anchor.onclick = () => this.hidePopup();
     });
@@ -56,7 +64,8 @@ export class TocMobile {
     if (this.#invisible) {
       this.initComponents();
     }
-    tocbot.refresh(this.options);
+
+    tocbot.refresh(this.getOptions());
     this.listenAnchors();
   }
 
@@ -67,8 +76,12 @@ export class TocMobile {
   static showPopup() {
     this.lockScroll(true);
     $popup.showModal();
+
     const activeItem = $popup.querySelector('li.is-active-li');
-    activeItem.scrollIntoView({ block: 'center' });
+
+    if (activeItem) {
+      activeItem.scrollIntoView({ block: 'center' });
+    }
   }
 
   static hidePopup() {
@@ -97,6 +110,7 @@ export class TocMobile {
     }
 
     const rect = event.target.getBoundingClientRect();
+
     if (
       event.clientX < rect.left ||
       event.clientX > rect.right ||
@@ -115,7 +129,9 @@ export class TocMobile {
     });
 
     $popup.onclick = (e) => this.clickBackdrop(e);
+
     $btnClose.onclick = () => this.hidePopup();
+
     $popup.oncancel = (e) => {
       e.preventDefault();
       this.hidePopup();
@@ -123,7 +139,7 @@ export class TocMobile {
   }
 
   static init() {
-    tocbot.init(this.options);
+    tocbot.init(this.getOptions());
     this.listenAnchors();
     this.initComponents();
   }
