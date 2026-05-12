@@ -87,12 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const tags =
           item.tags?.toLowerCase() || '';
         
-        return (
-          title.includes(word) ||
-          content.includes(word) ||
-          categories.includes(word) ||
-          tags.includes(word)
-        );
+        return keywords.every((word) => {
+          return (
+            title.includes(word) ||
+            content.includes(word) ||
+            categories.includes(word) ||
+            tags.includes(word)
+          );
+        });
      });
     /**
      * render
