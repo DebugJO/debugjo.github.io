@@ -72,28 +72,27 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const filtered =
       searchData.filter((item) => {
-    
+
         const title =
-          item.title?.toLowerCase() || '';
-    
+          item.title
+            ?.toLowerCase() || '';
+
         const content =
-          item.content?.toLowerCase() || '';
-    
+          item.content
+            ?.toLowerCase() || '';
+
         const categories =
           item.categories?.toLowerCase() || '';
     
         const tags =
           item.tags?.toLowerCase() || '';
-    
-        return keywords.every((word) => {
-          return (
-            title.includes(word) ||
-            content.includes(word) ||
-            categories.includes(word) ||
-            tags.includes(word)
-          );
-        });
-      });
+        
+        return (
+          title.includes(word) ||
+          content.includes(word) ||
+          categories.includes(word) ||
+          tags.includes(word)
+        );
 
     /**
      * render
