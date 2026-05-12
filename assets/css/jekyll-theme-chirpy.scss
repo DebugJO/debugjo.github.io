@@ -178,12 +178,24 @@ article > header > h1 {
   opacity: 0.9 !important;
 }
 
+/*
 .content p {
   text-align: justify !important;
   word-break: keep-all !important;
   text-justify: inter-word !important;
   hyphens: auto !important;
   overflow-wrap: break-word !important;
+}
+*/
+
+.content p {
+  text-align: justify !important;
+  text-justify: inter-word !important; 
+  word-break: break-all !important;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
 }
 
 .card-body {
