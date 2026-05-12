@@ -1,5 +1,5 @@
-import { TocMobile as mobile } from './toc-mobile.js';
-import { TocDesktop as desktop } from './toc-desktop.js';
+import { TocMobile as mobile } from './toc-mobile';
+import { TocDesktop as desktop } from './toc-desktop';
 
 const desktopMode = matchMedia('(min-width: 1200px)');
 
