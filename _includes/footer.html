@@ -56,13 +56,27 @@
     document.querySelectorAll('.highlight pre')
       .forEach(pre => {
   
-        const html = pre.innerHTML;
+        const lines =
+          pre.innerHTML.split('\n');
   
-        pre.innerHTML =
-          html.replace(
-            /<\/span>\n\s*\n<span/g,
-            '</span>\n<span class="empty-line"></span><span'
-          );
+        const result = [];
+  
+        lines.forEach((line) => {
+  
+          if (line.trim() === '') {
+  
+            result.push(
+              '<span class="empty-line"></span>'
+            );
+  
+          } else {
+  
+            result.push(line);
+          }
+        });
+  
+        pre.innerHTML = result.join('\n');
+  
       });
   
   });
