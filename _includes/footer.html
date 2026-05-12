@@ -49,3 +49,17 @@
     {{ site.data.locales[include.lang].meta | replace: ':PLATFORM', _platform | replace: ':THEME', _theme }}
   </p>
 </footer>  
+
+<script>
+  document.querySelectorAll('.highlight pre')
+    .forEach(pre => {
+  
+      const html = pre.innerHTML;
+  
+      pre.innerHTML =
+        html.replace(
+          /<\/span>\n\s*\n<span/g,
+          '</span>\n<span class="empty-line"></span><span'
+        );
+  });  
+</script>
