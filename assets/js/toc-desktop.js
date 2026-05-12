@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  const mediaQuery =
+    window.matchMedia('(min-width: 1200px)');
+
+  mediaQuery.addEventListener('change', () => {
+    location.reload();
+  });
+  
   const headerElement =
     document.querySelector('header');
 
