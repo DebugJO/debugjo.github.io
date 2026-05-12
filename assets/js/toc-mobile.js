@@ -11,30 +11,20 @@ const $btnClose = document.getElementById('toc-popup-close');
 const SCROLL_LOCK = 'overflow-hidden';
 const CLOSING = 'closing';
 
-
+export class TocMobile {
   static #invisible = true;
   static #barHeight = 16 * 3; // 3rem
 
-  static getOptions() {
-    const headerElement = document.querySelector('main h2, main h3, main h4, main h5');
-
-    const dynamicOffset = headerElement
-      ? headerElement.getBoundingClientRect().height
-      : this.#barHeight;
-
-    return {
-      tocSelector: '#toc-popup-content',
-      contentSelector: '.content',
-      ignoreSelector: '[data-toc-skip]',
-      headingSelector: 'h2, h3, h4, h5',
-      orderedList: false,
-      scrollSmooth: false,
-      collapseDepth: 5,
-
-      // 핵심
-      headingsOffset: dynamicOffset
-    };
-  }
+  static options = {
+    tocSelector: '#toc-popup-content',
+    contentSelector: '.content',
+    ignoreSelector: '[data-toc-skip]',
+    headingSelector: 'h2, h3, h4, h5',
+    orderedList: false,
+    scrollSmooth: false,
+    collapseDepth: 5,
+    headingsOffset: this.#barHeight
+  };
 
   static initBar() {
     const observer = new IntersectionObserver(
@@ -43,31 +33,17 @@ const CLOSING = 'closing';
           $tocBar.classList.toggle('invisible', entry.isIntersecting);
         });
       },
-      {
-        rootMargin: `-${this.#barHeight}px 0px 0px 0px`
-      }
+      { rootMargin: `-${this.#barHeight}px 0px 0px 0px` }
     );
 
     observer.observe($soloTrigger);
-
     this.#invisible = false;
   }
 
   static listenAnchors() {
     const $anchors = document.getElementsByClassName('toc-link');
-
     [...$anchors].forEach((anchor) => {
-      anchor.onclick = () => {
-        /**
-         * 모바일에서 popup close 와
-         * anchor 이동 timing 충돌 방지
-         */
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            this.hidePopup();
-          }, 80);
-        });
-      };
+      anchor.onclick = () => this.hidePopup();
     });
   }
 
@@ -75,9 +51,7 @@ const CLOSING = 'closing';
     if (this.#invisible) {
       this.initComponents();
     }
-
-    tocbot.refresh(this.getOptions());
-
+    tocbot.refresh(this.options);
     this.listenAnchors();
   }
 
@@ -86,37 +60,20 @@ const CLOSING = 'closing';
   }
 
   static showPopup() {
-    tocbot.refresh(this.getOptions());
-    this.listenAnchors();
-    
     this.lockScroll(true);
-
     $popup.showModal();
-
     const activeItem = $popup.querySelector('li.is-active-li');
-
-    if (activeItem) {
-      activeItem.scrollIntoView({
-        block: 'center'
-      });
-    }
+    activeItem.scrollIntoView({ block: 'center' });
   }
 
   static hidePopup() {
-    if (!$popup.open) {
-      return;
-    }
-
     $popup.toggleAttribute(CLOSING);
 
     $popup.addEventListener(
       'animationend',
       () => {
         $popup.toggleAttribute(CLOSING);
-
-        if ($popup.open) {
-          $popup.close();
-        }
+        $popup.close();
       },
       { once: true }
     );
@@ -125,15 +82,8 @@ const CLOSING = 'closing';
   }
 
   static lockScroll(enable) {
-    document.documentElement.classList.toggle(
-      SCROLL_LOCK,
-      enable
-    );
-
-    document.body.classList.toggle(
-      SCROLL_LOCK,
-      enable
-    );
+    document.documentElement.classList.toggle(SCROLL_LOCK, enable);
+    document.body.classList.toggle(SCROLL_LOCK, enable);
   }
 
   static clickBackdrop(event) {
@@ -142,7 +92,6 @@ const CLOSING = 'closing';
     }
 
     const rect = event.target.getBoundingClientRect();
-
     if (
       event.clientX < rect.left ||
       event.clientX > rect.right ||
@@ -161,20 +110,16 @@ const CLOSING = 'closing';
     });
 
     $popup.onclick = (e) => this.clickBackdrop(e);
-
     $btnClose.onclick = () => this.hidePopup();
-
     $popup.oncancel = (e) => {
       e.preventDefault();
-
       this.hidePopup();
     };
   }
 
   static init() {
-    tocbot.init(this.getOptions());
-
+    tocbot.init(this.options);
     this.listenAnchors();
-
     this.initComponents();
   }
+}
