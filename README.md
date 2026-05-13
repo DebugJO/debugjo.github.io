@@ -44,13 +44,13 @@ mermaid: true
 
 ### Category
 
-["【 CSharpㆍdotNETㆍAvalonia 】", CSharp]
-["【 CSharpㆍdotNETㆍAvalonia 】", dotNET]
-["【 CSharpㆍdotNETㆍAvalonia 】", Avalonia]
+["【 csharpㆍdotnetㆍAvalonia 】", csharp]
+["【 csharpㆍdotnetㆍAvalonia 】", dotnet]
+["【 csharpㆍdotnetㆍAvalonia 】", Avalonia]
 
-["【 CPPㆍQTㆍC3 】", CPP]
-["【 CPPㆍQTㆍC3 】", QT]
-["【 CPPㆍQTㆍC3 】", C3] 
+["【 cppㆍQTㆍC3 】", cpp]
+["【 cppㆍQTㆍC3 】", QT]
+["【 cppㆍQTㆍC3 】", C3] 
 
 ["【 DatabaseㆍModeling 】", Database]
 ["【 DatabaseㆍModeling 】", Modeling]
