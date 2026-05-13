@@ -326,8 +326,10 @@ li>code.highlighter-rouge
     }
 }
 
-#main-wrapper>.container {
-  margin-left:0px !important;
+@media (min-width: 1200px) 
+  #main-wrapper>.container {
+    margin-left:0px !important;
+  }    
 }
 
 @media (min-width: 1650px) {
