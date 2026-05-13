@@ -268,7 +268,11 @@ li>code.highlighter-rouge
 
 .table-wrapper>table thead tr th, .table-wrapper>table tbody tr td {
   white-space: normal !important;
-}  
+}
+
+.card-wrapper .mermaid .basic label-container {
+  height: 70% !important;
+}
 
 /******************************************** 폰트 설정 end *********************************************/
 
