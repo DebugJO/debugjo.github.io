@@ -2,6 +2,18 @@
 
 List of supported languages and lexers : <https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers>
 
+```yml
+category:
+  dotnet: '.NET'
+  cpp: 'C++'
+  csharp: 'C#'
+
+tag:
+  dotnet: '.net'
+  cpp: 'c++'
+  csharp: 'c#'
+```  
+
 ```md
 
 파일명: yyyy-mm-dd-번호.md
@@ -10,10 +22,11 @@ List of supported languages and lexers : <https://github.com/rouge-ruby/rouge/wi
 
 excerpt_separator: <!--more-->
 
+
 ---
 title: "제목"
 author: msj
-categories: ["【 CSharpㆍdotNETㆍAvalonia 】", CSharp]
+categories: ["【 csharpㆍdotnetㆍAvalonia 】", csharp]
 tags: [rust, csharp, dotnet, cpp]
 ---
 
