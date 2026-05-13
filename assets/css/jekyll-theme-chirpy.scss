@@ -266,6 +266,10 @@ li>code.highlighter-rouge
   margin: 0px !important;
 }
 
+.table-wrapper>table thead tr th, .table-wrapper>table tbody tr td {
+  white-space: normal !important;
+}  
+
 /******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
