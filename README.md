@@ -14,7 +14,7 @@ excerpt_separator: <!--more-->
 title: 제목
 author: msj
 categories: [Blogging, Tutorial]
-tags: [rust, C#]
+tags: [rust, csharp, dotnet, cpp]
 ---
 
 pin: true
@@ -23,13 +23,13 @@ mermaid: true
 
 ### Category
 
-["【 C#ㆍ.NETㆍAvalonia 】", C#]
-["【 C#ㆍ.NETㆍAvalonia 】", .NET]
-["【 C#ㆍ.NETㆍAvalonia 】", Avalonia]
+["【 CSharpㆍdotNETㆍAvalonia 】", CSharp]
+["【 CSharpㆍdotNETㆍAvalonia 】", dotNET]
+["【 CSharpㆍdotNETㆍAvalonia 】", Avalonia]
 
-["【 C++ㆍQTㆍC3 】", C++]
-["【 C++ㆍQTㆍC3 】", QT]
-["【 C++ㆍQTㆍC3 】", C3] 
+["【 CPPㆍQTㆍC3 】", CPP]
+["【 CPPㆍQTㆍC3 】", QT]
+["【 CPPㆍQTㆍC3 】", C3] 
 
 ["【 DatabaseㆍModeling 】", Database]
 ["【 DatabaseㆍModeling 】", Modeling]
