@@ -1,0 +1,9 @@
+category:
+  dotnet: ".NET"
+  cpp: "C++"
+  csharp: "C#"
+
+tag:
+  dotnet: ".net"
+  cpp: "c++"
+  csharp: "c#"
