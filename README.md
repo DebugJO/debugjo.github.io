@@ -11,10 +11,18 @@ List of supported languages and lexers : <https://github.com/rouge-ruby/rouge/wi
 excerpt_separator: <!--more-->
 
 ---
+title: "제목"
+author: msj
+categories: ["【 CSharpㆍdotNETㆍAvalonia 】", CSharp]
+tags: [rust, csharp, dotnet, cpp]
+---
+
+---
 title: 제목
 author: msj
 categories: [Blogging, Tutorial]
 tags: [rust, csharp, dotnet, cpp]
+description: "C# .NET C++" 
 ---
 
 pin: true
