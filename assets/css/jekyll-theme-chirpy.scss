@@ -312,6 +312,22 @@ main h4 {
  display: none !important;
 }
 
+#page-category>h1 {
+  font-size: 20px !important;
+}
+
+#page-tag>h1 {
+  font-size: 20px !important;
+}
+
+#page-category>ul>li>a {
+  font-size: 16x !important;
+}
+
+#page-tag>ul>li>a {
+  font-size: 16px !important;
+}
+
 /******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
