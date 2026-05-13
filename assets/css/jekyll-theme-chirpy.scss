@@ -288,6 +288,16 @@ li>code.highlighter-rouge
    opacity: 0.8 !important;
 }
 
+#sidebar #avatar {
+  width: 8rem !important;
+  height: 8rem !important;
+}
+
+#sidebar #avatar img {
+  height: 8rem !important;
+  width: 8rem !important;
+}
+
 /******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
