@@ -300,6 +300,10 @@ main h4 {
     margin: 1rem 0 1rem !important;
 }
 
+.post-tail-wrapper .post-meta a:not(:hover), .content a:not(.img-link) {
+    border-bottom: none !important;
+}
+
 /******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
@@ -726,7 +730,6 @@ html[data-mode='dark'] {
   
   .post-meta a {
     text-decoration: none !important;
-     border-bottom: 0px !important;
   }
  
   .content .anchor .text-muted {
