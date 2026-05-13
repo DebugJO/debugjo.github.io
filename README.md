@@ -7,6 +7,8 @@ category:
   dotnet: '.NET'
   cpp: 'C++'
   csharp: 'C#'
+  '【 csharpㆍdotnetㆍavalonia 】': '【 C#ㆍ.NETㆍAvalonia 】'
+  '【 cppㆍqtㆍc3 】': '【 C++ㆍQTㆍC3 】'
 
 tag:
   dotnet: '.net'
@@ -26,8 +28,8 @@ excerpt_separator: <!--more-->
 ---
 title: "제목"
 author: msj
-categories: ["【 csharpㆍdotnetㆍAvalonia 】", csharp]
-tags: [rust, csharp, dotnet, cpp]
+categories: ["【 csharpㆍdotnetㆍavalonia 】", csharp]
+tags: [csharp, dotnet, cpp]
 ---
 
 ---
@@ -36,21 +38,20 @@ author: msj
 categories: [Blogging, Tutorial]
 tags: [rust, csharp, dotnet, cpp]
 description: "C# .NET C++" 
----
-
 pin: true
 math: true
 mermaid: true
+---
 
 ### Category
 
-["【 csharpㆍdotnetㆍAvalonia 】", csharp]
-["【 csharpㆍdotnetㆍAvalonia 】", dotnet]
-["【 csharpㆍdotnetㆍAvalonia 】", Avalonia]
+["【 csharpㆍdotnetㆍavalonia 】", csharp]
+["【 csharpㆍdotnetㆍavalonia 】", dotnet]
+["【 csharpㆍdotnetㆍavalonia 】", Avalonia]
 
-["【 cppㆍQTㆍC3 】", cpp]
-["【 cppㆍQTㆍC3 】", QT]
-["【 cppㆍQTㆍC3 】", C3] 
+["【 cppㆍqtㆍc3 】", cpp]
+["【 cppㆍqtㆍc3 】", QT]
+["【 cppㆍqtㆍc3 】", C3] 
 
 ["【 DatabaseㆍModeling 】", Database]
 ["【 DatabaseㆍModeling 】", Modeling]
