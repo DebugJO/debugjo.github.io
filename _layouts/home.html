@@ -116,14 +116,8 @@ layout: default
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     {% for category in post.categories %}
-                    
-                      <!-- Category 수정-->
-                      {% comment %}  
-                      {{ category }}
-                      {% endcomment %}
-                      {% include ref/display-name.html type="category" name=category %}
-                    
-                    {%- unless forloop.last -%},{%- endunless -%}
+                      {% include ref/display-name.html type="category" name=category %}                  
+                      {%- unless forloop.last -%},{%- endunless -%}
                     {% endfor %}
                   </span>
                 {% endif %}
