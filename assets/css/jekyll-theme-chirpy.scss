@@ -270,8 +270,8 @@ li>code.highlighter-rouge
   white-space: normal !important;
 }
 
-.card-wrapper .mermaid .node rect {
-  height: 50% !important;
+.card-wrapper .mermaid .node rect p {
+  margin-bottom: 0px !important;
 }
 
 /******************************************** 폰트 설정 end *********************************************/
