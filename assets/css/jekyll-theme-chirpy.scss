@@ -270,9 +270,8 @@ li>code.highlighter-rouge
   white-space: normal !important;
 }
 
-#post-list .mermaid svg .nodeLabel p {
+div.mermaid [class^="node"] p {
   margin-bottom: 0 !important;
-  line-height: normal !important;
 }
 
 /******************************************** 폰트 설정 end *********************************************/
