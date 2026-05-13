@@ -304,6 +304,14 @@ main h4 {
     border-bottom: none !important;
 }
 
+#page-category>h1>i {
+ display: none !important;
+}
+
+#page-tag>h1>i {
+ display: none !important;
+}
+
 /******************************************** 폰트 설정 end *********************************************/
 
 #page-category a:hover, #page-tag a:hover, #access-lastmod a:hover, .post-tail-wrapper 
