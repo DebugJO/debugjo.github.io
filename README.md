@@ -17,6 +17,10 @@ categories: [Blogging, Tutorial]
 tags: [rust, C#]
 ---
 
+pin: true
+math: true
+mermaid: true
+
 ### Category
 
 ["【 C#ㆍ.NETㆍAvalonia 】", C#]
