@@ -270,7 +270,10 @@ li>code.highlighter-rouge
   white-space: normal !important;
 }
 
-div.mermaid [class^="nodeLabel"] p {
+.mermaid .nodeLabel p, 
+.mermaid .edgeLabel p {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
   margin-bottom: 0 !important;
 }
 
