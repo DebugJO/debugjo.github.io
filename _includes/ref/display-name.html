@@ -1,0 +1,6 @@
+{% assign type = include.type %}
+{% assign name = include.name %}
+
+{% assign value = site.data.display_name[type][name] %}
+
+{{ value | default: name }}
