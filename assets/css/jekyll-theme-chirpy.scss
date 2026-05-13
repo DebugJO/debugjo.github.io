@@ -420,6 +420,10 @@ li>code.highlighter-rouge
   -webkit-line-clamp: unset !important;  
 }
 
+#post-list .card .card-body .card-text .content p:not(.nodeLabel p) {
+  margin-bottom: 0px !important;
+}
+
 #post-list .card .card-body .card-text .content .footnotes p {
     margin-bottom: 0px !important;
 }
