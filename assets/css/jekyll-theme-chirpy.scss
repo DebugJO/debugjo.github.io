@@ -131,11 +131,6 @@ code.highlighter-rouge {
     font-size: 16px !important;
 }
 
-.post-meta {
-    font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;    
-    font-size: 13px !important;
-}
-
 .post-tags {
     font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;    
     font-size: 13px !important;
@@ -731,6 +726,7 @@ html[data-mode='dark'] {
   
   .post-meta a {
     text-decoration: none !important;
+     border-bottom: 0px !important;
   }
  
   .content .anchor .text-muted {
