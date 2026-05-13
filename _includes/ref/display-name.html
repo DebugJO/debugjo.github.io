@@ -1,6 +1,6 @@
 {% assign type = include.type %}
-{% assign name = include.name %}
+{% assign key = include.name | downcase %}
 
-{% assign value = site.data.display_name[type][name] %}
+{% assign value = site.data.display_name[type][key] %}
 
-{{ value | default: name }}
+{{ value | default: include.name }}
