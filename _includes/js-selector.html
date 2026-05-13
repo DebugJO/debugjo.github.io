@@ -43,9 +43,13 @@
   {% assign urls = urls | append: ',' | append: site.data.origin[type].toc.js %}
 {% endif %}
 
-{% if page.mermaid %}
-  {% assign urls = urls | append: ',' | append: site.data.origin[type].mermaid.js %}
-{% endif %}
+{% comment %}  
+  {% if page.mermaid %}
+    {% assign urls = urls | append: ',' | append: site.data.origin[type].mermaid.js %}
+  {% endif %}
+{% endcomment %}
+
+{% assign urls = urls | append: ',' | append: site.data.origin[type].mermaid.js %}
 
 {% include jsdelivr-combine.html urls=urls %}
 
