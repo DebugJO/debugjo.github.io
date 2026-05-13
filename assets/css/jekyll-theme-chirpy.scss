@@ -758,4 +758,15 @@ html[data-mode='dark'] {
     fill: #1F2020 !important;
     stroke: #CCCCCC !important;
   }
+
+  .standalone-read-more {
+    color: #809bce !important;
+    border: 1px solid #809bce !important;
+  }
+
+  .standalone-read-more:hover {
+    background-color: #809bce !important;
+    color: #fff !important;
+    text-decoration: none !important;
+  }
 }
