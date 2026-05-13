@@ -112,7 +112,7 @@ code.highlighter-rouge {
 #sidebar .site-title {
     font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;  
     font-weight: 700 !important; 
-    font-size: 24px !important;
+    font-size: 22px !important;
 }
 
 #sidebar ul li.nav-item a.nav-link {
@@ -752,5 +752,10 @@ html[data-mode='dark'] {
   }  
   .content hr {
     border-color: #393939 !important;
-  }  
+  } 
+
+  .mermaid .node rect {
+    fill: #1F2020 !important;
+    stroke: #CCCCCC !important;
+  }
 }
