@@ -411,7 +411,8 @@ li>code.highlighter-rouge
   display: block !important;
 }
 
-#post-list .card .card-body .card-text .content p:not(.footnotes *) {
+/* #post-list .card .card-body .card-text .content p:not(.footnotes *) { */
+#post-list .card .card-body .card-text .content p:not(.footnotes *):not(.nodeLabel *):not(.edgeLabel *) {  
   line-height: 1.75 !important;  
   margin-bottom: 14px !important;
   max-height: none !important;
