@@ -174,7 +174,7 @@ script_includes:
             href="{{ site.baseurl }}/tags/{{ tag | slugify | url_encode }}/"
             class="post-tag no-text-decoration"
           >
-            {{- tag -}}
+            {% include ref/display-name.html type="tag" name=tag %}
           </a>
         {% endfor %}
       </div>
