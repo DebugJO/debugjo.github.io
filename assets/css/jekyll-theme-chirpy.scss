@@ -320,12 +320,9 @@ main h4 {
   font-size: 20px !important;
 }
 
-#page-category>ul>li>a {
-  font-size: 16x !important;
-}
-
-#page-tag>ul>li>a {
-  font-size: 16px !important;
+#page-category ul>li>a, 
+#page-tag ul>li>a {
+    font-size: 16px !important;
 }
 
 /******************************************** 폰트 설정 end *********************************************/
