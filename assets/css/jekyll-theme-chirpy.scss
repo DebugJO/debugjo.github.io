@@ -234,7 +234,7 @@ footer p {
 }
 
 #search-results h2 a {
-  font-size: 1.12rem !important;
+  font-size: 1.05rem !important;
   font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
 }
 
@@ -265,6 +265,10 @@ p>code.highlighter-rouge
   margin: 0px !important;
   font-size: 14px !important;
   vertical-align: 1px;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  text-justify: inter-character !important;
+  line-break: anywhere !important;	
 }
 
 li>code.highlighter-rouge
@@ -277,6 +281,10 @@ li>code.highlighter-rouge
   margin: 0px !important;
   font-size: 14px !important;
   vertical-align: 1px;
+  -webkit-hyphens: auto !important;
+  hyphens: auto !important;
+  text-justify: inter-character !important;
+  line-break: anywhere !important;  
 }
 
 .table-wrapper>table thead tr th, .table-wrapper>table tbody tr td {
