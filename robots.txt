@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://debugjo.github.io/sitemap.xml
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
