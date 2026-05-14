@@ -786,6 +786,10 @@ header h1+.post-meta {
   margin-bottom: 0px !important;
 }
 
+.code-header::before {
+  background-color: #d6e5fa !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
@@ -873,5 +877,9 @@ html[data-mode='dark'] {
     background-color: #809bce !important;
     color: #444 !important;
     text-decoration: none !important;
+  }
+
+  .code-header::before {
+    background-color: #2d455a  !important;
   }
 }
