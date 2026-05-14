@@ -760,12 +760,20 @@ header h1+.post-meta {
     margin-top: 2rem !important;
 }
 
-#toc-wrapper {
-  margin-top: 6px !important;
-}
-
 #panel-wrapper>:last-child {
   margin-bottom: 0rem !important; 
+}
+
+#toc-wrapper::before, .toc-border-cover {
+  height: 1.5rem !important;
+}
+
+#toc-wrapper {
+  margin-top: 3rem !important;
+}
+
+#access-lastmod ul {
+  margin-top: 1rem !important;
 }
 
 /************************************** Dark *****************************************/
