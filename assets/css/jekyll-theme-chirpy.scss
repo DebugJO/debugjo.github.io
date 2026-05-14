@@ -731,6 +731,10 @@ header h1+.post-meta {
   }
 }
 
+.access>section:not(:first-child) {
+    margin-top: 2rem !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
