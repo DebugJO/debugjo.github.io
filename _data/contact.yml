@@ -20,7 +20,7 @@
 
 - type: sitemap
   icon: "fa-solid fa-sitemap"
-  noblank: true    
+  url: 'https://debugjo.github.io/sitemap.xml' 
   
 # Uncomment and complete the url below to enable more contact options
 #
