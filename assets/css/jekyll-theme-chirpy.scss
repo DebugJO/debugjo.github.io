@@ -776,6 +776,14 @@ header h1+.post-meta {
   margin-top: 1rem !important;
 }
 
+#search-results>article:not(:last-child) {
+  margin-bottom: 0rem !important;
+}
+
+#search-results>article h2 {
+  line-height: 1rem !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
