@@ -646,7 +646,11 @@ blockquote {
     display: none !important;
 }
 
-.anchor .text-muted {
+a .anchor .text-muted {
+  visibility: hidden !important;
+}
+
+a .anchor .text-muted i {
   visibility: hidden !important;
 }
 
