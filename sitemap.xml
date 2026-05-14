@@ -14,6 +14,7 @@ permalink: /sitemap.xml
       | downcase %}
 
     {% unless excluded contains '.css'
+      or excluded contains '.min'
       or excluded contains '.js'
       or excluded contains '.json'
       or excluded contains '.txt'
