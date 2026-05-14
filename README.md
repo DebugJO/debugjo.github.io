@@ -21,9 +21,9 @@ tag:
 파일명: yyyy-mm-dd-번호.md
 
 [연관 글]({% post_url 2020-04-08-2 %})
+일반링크 : href="{{ "/feed.xml" | relative_url }}"
 
 excerpt_separator: <!--more-->
-
 
 ---
 title: "제목"
