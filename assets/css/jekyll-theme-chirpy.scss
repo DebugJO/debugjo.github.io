@@ -231,6 +231,7 @@ footer p {
 
 #search-results>article>p {
   font-size: 13px !important;
+  -webkit-line-clamp: 2 !important;
 }
 
 #search-results h2 a {
