@@ -16,6 +16,12 @@
        url('/assets/fonts/FiraCode-VF.woff2') format('woff2');  
 }
 
+@font-face {
+	font-family: 'D2Coding';
+  src: url('/assets/fonts/D2Coding.woff2') format('woff2-variations'),
+       url('/assets/fonts/D2Coding.woff2') format('woff2');  
+}
+
 /******************************************** 폰트 설정 *************************************************/
 
 H1 {
@@ -254,7 +260,7 @@ p>code.highlighter-rouge
   border-radius: 0px !important;
   background-color: transparent !important;
   border: 0px !important;
-  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "D2Coding", "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   padding: 0px !important;
   margin: 0px !important;
   font-size: 15px !important;
@@ -265,7 +271,7 @@ li>code.highlighter-rouge
   border-radius: 0px !important;
   background-color: transparent !important;
   border: 0px !important;
-  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "D2Coding", "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   padding: 0px !important;
   margin: 0px !important;
   font-size: 15px !important;
