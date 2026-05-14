@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const content =
           item.content
             ?.toLowerCase() || '';
-    
+
+        /*
         const categories =
           item.categories
             ?.toLowerCase() || '';
@@ -90,13 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const tags =
           item.tags
             ?.toLowerCase() || '';
-    
+        */
+        
         return keywords.every((word) => {
           return (
             title.includes(word) ||
-            content.includes(word) ||
+            content.includes(word) 
+            /* ||
             categories.includes(word) ||
             tags.includes(word)
+            */
           );
         });
     });
