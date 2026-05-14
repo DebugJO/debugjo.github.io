@@ -123,26 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
     searchResults.innerHTML =
       results.map((item) => {
 
-        const categories =
-          item.categories
-            ? `
-              <div class="me-sm-4">
-                <i class="far fa-folder fa-fw"></i>
-                ${item.categories}
-              </div>
-            `
-            : '';
-
-        const tags =
-          item.tags
-            ? `
-              <div>
-                <i class="fa fa-tag fa-fw"></i>
-                ${item.tags}
-              </div>
-            `
-            : '';
-
         return `
           <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
 
@@ -153,20 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   ${item.title}
                 </a>
               </h2>
-
-              <div class="
-                post-meta
-                d-flex
-                flex-column
-                flex-sm-row
-                text-muted
-                mt-1
-                mb-1
-              ">
-                ${categories}
-                ${tags}
-              </div>
-
+              
             </header>
 
             <p>
