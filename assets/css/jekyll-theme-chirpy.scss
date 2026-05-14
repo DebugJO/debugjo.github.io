@@ -646,12 +646,8 @@ blockquote {
     display: none !important;
 }
 
-a .anchor .text-muted {
-  visibility: hidden !important;
-}
-
-a .anchor .text-muted i {
-  visibility: hidden !important;
+.fa-hashtag {
+    --fa: "" !important;
 }
 
 .content .anchor .text-muted {
