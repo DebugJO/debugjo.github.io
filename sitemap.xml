@@ -8,18 +8,33 @@ permalink: /sitemap.xml
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Pages -->
+  <!-- Static Pages -->
   {% for page in site.pages %}
-    {% if page.sitemap != false and page.url != "/404.html" %}
+    {% assign excluded = page.url
+      | downcase %}
+
+    {% unless excluded contains '.css'
+      or excluded contains '.js'
+      or excluded contains '.json'
+      or excluded contains '.txt'
+      or excluded contains '.xml'
+      or excluded contains '.webmanifest'
+      or excluded contains '.map'
+      or excluded contains '/assets/'
+      or excluded contains '/api/'
+      or page.url == '/404.html'
+      or page.sitemap == false %}
+
   <url>
     <loc>{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-    {% endif %}
+
+    {% endunless %}
   {% endfor %}
 
-  <!-- Posts -->
+  <!-- Blog Posts -->
   {% for post in site.posts %}
   <url>
     <loc>{{ site.url }}{{ site.baseurl }}{{ post.url }}</loc>
@@ -31,7 +46,7 @@ permalink: /sitemap.xml
     {% endif %}
 
     <changefreq>{{ post.sitemap.changefreq | default: "weekly" }}</changefreq>
-    <priority>{{ post.sitemap.priority | default: "0.5" }}</priority>
+    <priority>{{ post.sitemap.priority | default: "0.8" }}</priority>
   </url>
   {% endfor %}
 
