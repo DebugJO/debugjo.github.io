@@ -9,9 +9,7 @@
     <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
       {% for post in site.posts limit: MAX_SIZE %}
         <li class="text-truncate lh-lg">
-          <a href="{{ post.url | relative_url }}">
-            ￭ {{ post.title }}
-          </a>
+          <a href="{{ url }}">￭ {{ post.title }}</a>
         </li>
       {% endfor %}
     </ul>
