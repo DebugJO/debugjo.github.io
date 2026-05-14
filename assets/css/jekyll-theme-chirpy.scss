@@ -93,11 +93,6 @@ input#search-input.form-control {
     font-size: 13px !important;
 }
 
-code.highlighter-rouge {
-    font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
-    font-size: 14px !important;
-}
-
 .post-meta {
     font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
     font-size: 13px !important;
@@ -242,14 +237,22 @@ footer p {
   margin-top: 12px !important;
 }
 
+/*
+code.highlighter-rouge {
+    font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
+    font-size: 15px !important;
+}
+*/
+
 p>code.highlighter-rouge
 {
   border-radius: 0px !important;
   background-color: transparent !important;
   border: 0px !important;
-  font-family: "Fira Code", Consolas, "Source Sans Pro", SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   padding: 0px !important;
   margin: 0px !important;
+  font-size: 15px !important;
 }
 
 li>code.highlighter-rouge
@@ -257,9 +260,10 @@ li>code.highlighter-rouge
   border-radius: 0px !important;
   background-color: transparent !important;
   border: 0px !important;
-  font-family: "Fira Code", Consolas, "Source Sans Pro", SF Mono, Menlo, Monaco, monospace !important;
+  font-family: "Pretendard", "Malgun Gothic", Arial, SF Mono, Menlo, Monaco, monospace !important;
   padding: 0px !important;
   margin: 0px !important;
+  font-size: 15px !important;
 }
 
 .table-wrapper>table thead tr th, .table-wrapper>table tbody tr td {
