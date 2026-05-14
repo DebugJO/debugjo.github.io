@@ -736,7 +736,11 @@ header h1+.post-meta {
 }
 
 #toc-wrapper {
-  margin-top: 0px !important;
+  margin-top: 6px !important;
+}
+
+#panel-wrapper>:last-child {
+  margin-bottom: 0rem !important; 
 }
 
 /************************************** Dark *****************************************/
