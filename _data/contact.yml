@@ -14,13 +14,19 @@
   icon: 'fab fa-telegram'
   url: 'https://t.me/debug'  
 
-#- type: rss
-#  icon: "fas fa-rss"
-#  noblank: true  
+- type: rss
+  icon: "fas fa-rss"
+  noblank: true  
 
 - type: sitemap
   icon: "fa-solid fa-sitemap"
-  url: 'https://debugjo.github.io/sitemap.xml' 
+  url: 'https://debugjo.github.io/sitemap.xml'
+  noblank: true 
+
+- type: devsight
+  icon: "fa-solid fa-house"
+  url: 'https://devsight.kr'
+  noblank: true 
   
 # Uncomment and complete the url below to enable more contact options
 #
