@@ -489,8 +489,10 @@ main h4 {
   font-size: 14px !important;
 }
 
-ul.pagination.align-items-center.mt-4.mb-0 {
-  margin-top: 10px !important;
+@media (max-width: 768px) {
+ ul.pagination.align-items-center.mt-4.mb-0 {
+    margin-top: 10px !important;
+  }
 }
 
 /* 메인 컨텐츠 영역 확장 */
