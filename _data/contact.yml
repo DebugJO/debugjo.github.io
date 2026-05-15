@@ -24,7 +24,7 @@
 #  noblank: true 
 
 - type: devsight
-  icon: "fa-solid fa-house-laptop"
+  icon: "fa-solid fa-blog"
   url: 'https://devsight.kr'
   noblank: true 
   
