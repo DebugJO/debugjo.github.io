@@ -6,270 +6,328 @@ nav_exclude: true
 ---
 
 <style>
-   #article-view table td {
-     padding: 0px !important;
-     border: 0px !important;
-   }
-   .gsc-control-cse {
-     padding-top: 20px !important;
-   }
-   .gsc-result-info {
-     display: none !important;
-   }
-   .gsc-result-info-container {
-     display: none !important;
-   }
-   .gsc-orderby-container {
-     display: none !important;
-   }
-   .gsc-webResult.gsc-result {
-     border: 0px !important;
-   }
-   input.gsc-input {
-     padding-left: 10px !important;
-     font-size: 15px !important;
-   }
-   .gsc-webResult.gsc-result,
-   .gsc-results .gsc-imageResult {
-     margin: 0px !important;
-     padding: 0px !important;
-     margin-bottom: 12px !important;
-   }
-   .gsc-results .gcsc-more-maybe-branding-root {
-     display: none !important;
-   }
-   form.gsc-search-box {
-     max-width: 100% !important;
-     font-size: 14px !important;
-     margin: 0px !important;
-     padding: 0px !important;
-   }
-   .gs-result .gs-image .gs-image,
-   .gs-result .gs-promotion-image {
-     display: none !important;
-   }
-   #cse-footer {
-     display: none !important;
-   }
-   .gsc-results .gcsc-more-maybe-branding-root {
-     display: none !important;
-   }
-   .gsib_a::before {
-     content: "" !important;
-     position: absolute !important;
-     top: 0 !important;
-     left: 0 !important;
-     cursor: pointer !important;
-   }
-   .gs-result .gs-title,
-   .gs-result .gs-title * {
-     font-size: 16px !important;
-     font-family:
-       "Pretendard Variable",
-       "Malgun Gothic",
-       Arial,
-       SF Mono,
-       Menlo,
-       Monaco,
-       monospace !important;
-   }
-   .gs-webResult div.gs-visibleUrl-breadcrumb {
-     display: none !important;
-   }
-   .tag_label {
-     min-height: auto !important;
-   }
+  #article-view table td {
+    padding: 0px !important;
+    border: 0px !important;
+  }
 
-   .gsc-search-box {
-     font-family:
-       "Pretendard Variable",
-       "Malgun Gothic",
-       Arial,
-       SF Mono,
-       Menlo,
-       Monaco,
-       monospace !important;
-   }
+  .gsc-control-cse {
+    padding-top: 20px !important;
+  }
 
-   .gsc-search-box {
-     font-family:
-       "Pretendard Variable",
-       "Malgun Gothic",
-       Arial,
-       SF Mono,
-       Menlo,
-       Monaco,
-       monospace !important;
-   }
+  .gsc-result-info {
+    display: none !important;
+  }
 
-   .gs-snippet {
-     font-family:
-       "Pretendard Variable",
-       "Malgun Gothic",
-       Arial,
-       SF Mono,
-       Menlo,
-       Monaco,
-       monospace !important;
-   }
+  .gsc-result-info-container {
+    display: none !important;
+  }
 
-   .gsc-wrapper {
-     max-width: 100% !important;
-     padding-left: 2px !important;
-     padding-right: 2px !important;
-   }
+  .gsc-orderby-container {
+    display: none !important;
+  }
 
-   .gs-webResult.gs-result a.gs-title:link,
-   .gs-webResult.gs-result a.gs-title:link b,
-   .gs-imageResult a.gs-title:link,
-   .gs-imageResult a.gs-title:link b {
-     color: #0056b2 !important;
-   }
+  .gsc-webResult.gsc-result {
+    border: 0px !important;
+  }
 
-   .gs-result .gs-title:hover {
-     text-decoration: none !important;
-   }
+  input.gsc-input {
+    padding-left: 10px !important;
+    font-size: 15px !important;
+  }
 
-   tbody,
-   td,
-   tfoot,
-   th,
-   thead,
-   tr {
-     height: 38px !important;
-   }
+  .gsc-webResult.gsc-result,
+  .gsc-results .gsc-imageResult {
+    margin: 0px !important;
+    padding: 0px !important;
+    margin-bottom: 12px !important;
+  }
 
-   .gsc-above-wrapper-area {
-     max-width: 100% !important;
-     height: 8px !important;
-   }
+  .gsc-results .gcsc-more-maybe-branding-root {
+    display: none !important;
+  }
 
-   .gsc-webResult-divider {
-     display: none !important;
-   }
+  form.gsc-search-box {
+    max-width: 100% !important;
+    font-size: 14px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
 
-   @media (max-width: 768px) {
+  .gs-result .gs-image .gs-image,
+  .gs-result .gs-promotion-image {
+    display: none !important;
+  }
+
+  #cse-footer {
+    display: none !important;
+  }
+
+  .gsc-results .gcsc-more-maybe-branding-root {
+    display: none !important;
+  }
+
+  .gsib_a::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    cursor: pointer !important;
+  }
+
+  .gs-result .gs-title,
+  .gs-result .gs-title * {
+    font-size: 16px !important;
+    font-family:
+      "Pretendard Variable",
+      "Malgun Gothic",
+      Arial,
+      SF Mono,
+      Menlo,
+      Monaco,
+      monospace !important;
+  }
+
+  .gs-webResult div.gs-visibleUrl-breadcrumb {
+    display: none !important;
+  }
+
+  .tag_label {
+    min-height: auto !important;
+  }
+
+  .gsc-search-box {
+    font-family:
+      "Pretendard Variable",
+      "Malgun Gothic",
+      Arial,
+      SF Mono,
+      Menlo,
+      Monaco,
+      monospace !important;
+  }
+
+  .gsc-search-box {
+    font-family:
+      "Pretendard Variable",
+      "Malgun Gothic",
+      Arial,
+      SF Mono,
+      Menlo,
+      Monaco,
+      monospace !important;
+  }
+
+  .gs-snippet {
+    font-family:
+      "Pretendard Variable",
+      "Malgun Gothic",
+      Arial,
+      SF Mono,
+      Menlo,
+      Monaco,
+      monospace !important;
+  }
+
+  .gsc-wrapper {
+    max-width: 100% !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+
+  .gs-webResult.gs-result a.gs-title:link,
+  .gs-webResult.gs-result a.gs-title:link b,
+  .gs-imageResult a.gs-title:link,
+  .gs-imageResult a.gs-title:link b {
+    color: #0056b2 !important;
+  }
+
+  .gs-result .gs-title:hover {
+    text-decoration: none !important;
+  }
+
+  tbody,
+  td,
+  tfoot,
+  th,
+  thead,
+  tr {
+    height: 38px !important;
+  }
+
+  .gsc-above-wrapper-area {
+    max-width: 100% !important;
+    height: 8px !important;
+  }
+
+  .gsc-webResult-divider {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
     .gsc-wrapper {
-       margin-top: 20px !important;
-     }
+      margin-top: 20px !important;
+    }
 
     .gsc-results .gsc-cursor-box {
-       border: 0px !important;
-       margin: 0px !important;
-     }
-   }
+      border: 0px !important;
+      margin: 0px !important;
+    }
+  }
 
-   .gsearch-top > h1 {
-     font-family:
-       "Pretendard Variable",
-       "Malgun Gothic",
-       Arial,
-       SF Mono,
-       Menlo,
-       Monaco,
-       monospace !important;
-     font-size: 1.25rem !important;
-     padding-left: 4px !important;
-   }
+  .gsearch-top > h1 {
+    font-family:
+      "Pretendard Variable",
+      "Malgun Gothic",
+      Arial,
+      SF Mono,
+      Menlo,
+      Monaco,
+      monospace !important;
+    font-size: 1.25rem !important;
+    padding-left: 4px !important;
+  }
 
-  .gs-webResult.gs-result a.gs-title:visited, .gs-webResult.gs-result a.gs-title:visited b, .gs-imageResult a.gs-title:visited, .gs-imageResult a.gs-title:visited b {
-      color: #0056b2 !important;
-   }
+  .gs-webResult.gs-result a.gs-title:visited,
+  .gs-webResult.gs-result a.gs-title:visited b,
+  .gs-imageResult a.gs-title:visited,
+  .gs-imageResult a.gs-title:visited b {
+    color: #0056b2 !important;
+  }
 
   div.gcsc-find-more-on-google-root {
     display: none !important;
   }
 
-   html[data-mode="dark"] {
-     .gsc-control-cse {
-       padding-top: 20px !important;
-       background-color: #1b1b1e !important;
-       border: 0px !important;
-     }
+  .gsc-completion-container {
+    background-color: #fafafa !important;
+  }
 
-     .gsc-search-box input.gsc-input {
-       color: #b0b0b0 !important;
-       background-color: #1B1B1E !important;
-     }
+  .gsc-completion-container td {
+    background-color: transparent !important;
+  }
 
-     .gsc-search-box table {
-       caption-side: bottom;
-       border-collapse: collapse;
-       border: 0px !important;
-     }
+  /* 구글 자동 완성 *********************************************************************************/
+  .gsc-completion-container {
+    background-color: #fff !important;
+    border: 1px solid #d2d2d2 !important;
+  }
 
-     .gsc-search-box tbody,
-     td,
-     tfoot,
-     th,
-     thead,
-     tr {
-       background-color: #1b1b1e !important;
-     }
+  .gsc-completion-container td {
+    background-color: transparent !important;
+    margin: 0px !important;
+    padding: 4px !important;
+  }
 
-     .gsc-control-wrapper-cse {
-       background: #1b1b1e !important;
-     }
+  .gsc-completion-container .gsc-completion-selected td,
+  .gsc-completion-container td:hover {
+    background-color: #f3f3f3 !important;
+  }
 
-     .gsc-webResult.gsc-result {
-       background-color: transparent !important;
-     }
+  /****************************************************** Dark *****************************************************/
 
-     .gsc-results .gsc-cursor-box {
-       border: 0px !important;
-     }
+  html[data-mode="dark"] {
+    .gsc-control-cse {
+      padding-top: 20px !important;
+      background-color: #1b1b1e !important;
+      border: 0px !important;
+    }
 
-     .gsc-results .gsc-cursor-box .gsc-cursor-page {
-       background-color: #1b1b1e !important;
-     }
+    .gsc-search-box input.gsc-input {
+      color: #b0b0b0 !important;
+      background-color: #1b1b1e !important;
+    }
 
-     .gsc-input .gsc-input-box {
-       border: 0px !important;
-     }
+    .gsc-search-box table {
+      caption-side: bottom;
+      border-collapse: collapse;
+      border: 0px !important;
+    }
 
-     .gs-webResult .gs-snippet,
-     .gs-fileFormatType {
-       color: #b0b0b0 !important;
-     }
+    .gsc-search-box tbody,
+    td,
+    tfoot,
+    th,
+    thead,
+    tr {
+      background-color: #1b1b1e !important;
+    }
 
-     .gs-webResult.gs-result a.gs-title:link,
-     .gs-webResult.gs-result a.gs-title:link b,
-     .gs-imageResult a.gs-title:link,
-     .gs-imageResult a.gs-title:link b {
-       color: #73a4e6 !important;
-     }
+    .gsc-control-wrapper-cse {
+      background: #1b1b1e !important;
+    }
 
-     .gs-webResult.gs-result a.gs-title:visited,
-     .gs-webResult.gs-result a.gs-title:visited b,
-     .gs-imageResult a.gs-title:visited,
-     .gs-imageResult a.gs-title:visited b {
-       color: #73a4e6 !important;
-     }
+    .gsc-webResult.gsc-result {
+      background-color: transparent !important;
+    }
 
-     form.gsc-search-box {
-       border: 1px solid #444 !important;
-       border-radius: 8px !important;
-       padding: 2px !important;
-     }
+    .gsc-results .gsc-cursor-box {
+      border: 0px !important;
+    }
 
-     .gsc-search-box tbody,
-     td,
-     tfoot,
-     th,
-     thead,
-     tr {
-       background-color: #1B1B1E !important;
-     }
+    .gsc-results .gsc-cursor-box .gsc-cursor-page {
+      background-color: #1b1b1e !important;
+    }
 
-     .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
-       color: #73a4e6 !important;
-       text-decoration: none !important;
-     }
+    .gsc-input .gsc-input-box {
+      border: 0px !important;
+    }
+
+    .gs-webResult .gs-snippet,
+    .gs-fileFormatType {
+      color: #b0b0b0 !important;
+    }
+
+    .gs-webResult.gs-result a.gs-title:link,
+    .gs-webResult.gs-result a.gs-title:link b,
+    .gs-imageResult a.gs-title:link,
+    .gs-imageResult a.gs-title:link b {
+      color: #73a4e6 !important;
+    }
+
+    .gs-webResult.gs-result a.gs-title:visited,
+    .gs-webResult.gs-result a.gs-title:visited b,
+    .gs-imageResult a.gs-title:visited,
+    .gs-imageResult a.gs-title:visited b {
+      color: #73a4e6 !important;
+    }
+
+    form.gsc-search-box {
+      border: 1px solid #444 !important;
+      border-radius: 8px !important;
+      padding: 2px !important;
+    }
+
+    .gsc-search-box tbody,
+    td,
+    tfoot,
+    th,
+    thead,
+    tr {
+      background-color: #1b1b1e !important;
+    }
 
     .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
-       color: #73a4e6 !important;
+      color: #73a4e6 !important;
+      text-decoration: none !important;
     }
-     
+
+    .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+      color: #73a4e6 !important;
+    }
+
+    /********************************************** 구글 검색 자동 완성 ***********************************************/
+    .gsc-completion-container {
+      background-color: #fff !important;
+      border: 1px solid #444 !important;
+      color: #b0b0b0 !important;
+    }
+
+    .gsc-completion-container .gsc-completion-selected td,
+    .gsc-completion-container td:hover {
+      background-color: #232323 !important;
+    }
+  }
 </style>
 
 <div class="gsearch-top">
