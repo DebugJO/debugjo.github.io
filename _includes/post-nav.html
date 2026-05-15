@@ -4,11 +4,23 @@
   {% assign previous = site.data.locales[include.lang].post.button.previous %}
   {% assign next = site.data.locales[include.lang].post.button.next %}
 
-  {% if page.previous.url %}
-    <div class="btn btn-outline-primary disabled" aria-label="{{ previous }}">
-      <p>-</p>
-    </div>  
+  <!-- next 를 왼쪽으로 -->
+  {% if page.next.url %}
+    <a
+      href="{{ site.baseurl }}{{page.next.url}}"
+      class="btn btn-outline-primary"
+      aria-label="{{ next }}"
+    >
+      <p>{{ page.next.title }}</p>
+    </a>
   {% else %}
+    <div class="btn btn-outline-primary disabled" aria-label="{{ next }}">
+      <p>-</p>
+    </div>
+  {% endif %}
+
+  <!-- previous 를 오른쪽으로 -->
+  {% if page.previous.url %}
     <a
       href="{{ site.baseurl }}{{ page.previous.url }}"
       class="btn btn-outline-primary"
@@ -16,19 +28,9 @@
     >
       <p>{{ page.previous.title }}</p>
     </a>
-  {% endif %}
-
-  {% if page.next.url %}
-    <div class="btn btn-outline-primary disabled" aria-label="{{ next }}">
+  {% else %}
+    <div class="btn btn-outline-primary disabled" aria-label="{{ previous }}">
       <p>-</p>
     </div>
-  {% else %}
-    <a
-      href="{{ site.baseurl }}{{page.next.url}}"
-      class="btn btn-outline-primary"
-      aria-label="{{ next }}"
-    >
-      <p>{{ page.next.title }}</p>
-    </a>  
   {% endif %}
 </nav>
