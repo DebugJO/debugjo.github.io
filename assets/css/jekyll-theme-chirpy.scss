@@ -292,7 +292,7 @@ li>code.highlighter-rouge
   white-space: normal !important;
 }
 
-th>code.highlighter-rouge {
+.table-wrapper>table th>code.highlighter-rouge {
   border-radius: 0px !important;
   background-color: rgba(0, 0, 0, 0) !important;
   border: 0px !important;
@@ -300,10 +300,9 @@ th>code.highlighter-rouge {
   padding: 0px !important;
   margin: 0px !important;
   font-size: 14px !important;
-  vertical-align: 1px;
 }	
 
-td>code.highlighter-rouge {
+.table-wrapper>table td>code.highlighter-rouge {
   border-radius: 0px !important;
   background-color: rgba(0, 0, 0, 0) !important;
   border: 0px !important;
@@ -311,7 +310,6 @@ td>code.highlighter-rouge {
   padding: 0px !important;
   margin: 0px !important;
   font-size: 14px !important;
-  vertical-align: 1px;
 }	
 
 .mermaid .nodeLabel p, 
