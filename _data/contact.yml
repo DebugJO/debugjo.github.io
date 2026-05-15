@@ -25,7 +25,7 @@
 
 - type: google_site_search
   icon: "fa-solid fa-magnifying-glass"
-  url: "{{ '/gsearch/' | relative_url }}"
+  url: /gsearch
   noblank: true 
   
 # Uncomment and complete the url below to enable more contact options
