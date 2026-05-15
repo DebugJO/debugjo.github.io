@@ -23,9 +23,9 @@
 #  url: 'https://debugjo.github.io/sitemap.xml'
 #  noblank: true 
 
-- type: devsight
-  icon: "fa-solid fa-blog"
-  url: 'https://devsight.kr'
+- type: google_site_search
+  icon: "fa-solid fa-magnifying-glass"
+  url: "{{ '/gsearch/' | relative_url }}"
   noblank: true 
   
 # Uncomment and complete the url below to enable more contact options
