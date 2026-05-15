@@ -1,106 +1,79 @@
----
-layout: default
-title: GSearch
-permalink: /gsearch/
-nav_exclude: true 
----
-
-<!--
-<div class="home">
-	<h1 style="font-size:16px; margin-left: 40px;">Google Programmable Search Engine<span style="font-size: 13px;"> → Under Construction: Redirecting to <a href="https://devsight.kr/search/"><b>[Search Posts]</b></a></span></h1>
-</div>
--->
-<div class="home">
-  <h1 style="font-size:16px; margin-left: 40px;">
-    Google Devsight Search
-    <span style="font-size: 13px; float: right; margin-right: 24px; margin-top: 4px;">
-      <a href="https://debugjo.github.io/rustlang/search/" style="text-decoration: none; border: 1px solid #607D8B; color: #607D8B; font-size: 12px; border-radius: 4px; padding-bottom: 4px; vertical-align: 2px; padding-left: 6px; padding-right: 6px; padding-top: 2px; font-weight: bold;">Search Posts</a>
-    </span>
-  </h1>
-</div>
-
 <style>
-	.gsc-control-cse gsc-control-cse-ko {background-color : #FAFAFA}
-	.gsc-control-cse {background-color : #FAFAFA; margin-top: -20px; margin-left: 14px;}
-	.gsc-control-wrapper-cse {background-color : #FAFAFA}
-	/* .gsc-input {background-color : #FAFAFA; } */
-	.gsc-input {padding:0px;}
-	.gsc-input-box {background-color : #FFFFFF}
-	.gsib_b { display: none !important; }
-	 #gs_tti50 {border-color : #FFFFFF; background-color : #FFFFFF; padding-top: 0px; padding-bottom: 0px;}
-	.gstl_50 gssb_c {background-color : #FAFAFA}
-	.gsc-input {border-color : #FAFAFA }
-	.gsc-results-wrapper-visible {border-color : #FAFAFA; background-color : #FAFAFA }
-	.gsc-webResult gsc-result {border-color : #FAFAFA; background-color : #FAFAFA }
-	.gsc-orderby-container {border-color : #FAFAFA; background-color : #FAFAFA }
-	.gsc-result-info-container {border-color : #FAFAFA; background-color : #FAFAFA }
-	.gsc-webResult.gsc-result, .gsc-results .gsc-imageResult {border-color : #FAFAFA; background-color : #FAFAFA }
-	.gsc-webResult.gsc-result:hover {border-color : #FAFAFA; background-color : #FAFAFA }
-	.gcsc-more-maybe-branding-root { display: none !important; }
-	.gsc-orderby-container { display: none !important; }
-	.gsc-result-info-container { display: none !important; }
-	.gsc-control-cse .gs-spelling, .gsc-control-cse .gs-result .gs-title, .gsc-control-cse .gs-result .gs-title * {font-size: 16px; color : #003366! !important;}
-	.gs-title, .gs-title b { color: #003366 !important; font-size: 16px !important; padding:0px;}
-	.gsc-result .gs-title { margin:0px !important;}
-
-	
-	/* 1. 전체 검색어 제안 창의 기본 배경색 (FAFAFA) */
-	.gsc-completion-container {
-    	background-color: #FAFAFA !important;
-	}
-
-	/* 2. 각 행(td)의 기본 배경색 (투명하게 하여 컨테이너 색이 보이게 함) */
-	.gsc-completion-container td {
-    	background-color: transparent !important;
-	}
-
-	/* 3. 마우스 호버 및 키보드 선택 시 배경색 (eee) */
-	.gsc-completion-container .gsc-completion-selected,
-	.gsc-completion-container .gsc-completion-selected td {
-   		background-color: #eee !important;
-	}
-	/* 마우스 커서를 올리는 즉시(Hover) eee 색상이 적용되도록 강제 */
-	.gsc-completion-container .gsc-completion-selected,
-	.gsc-completion-container td:hover {
-    	background-color: #eee !important;
-	}
-
-	/* 혹시 남아있을 수 있는 구글 기본 노란색 잔상을 완전히 제거 */
-	.gsc-completion-container .gsc-completion-selected td,
-	.gsc-completion-container td:hover {
-    	background-color: #eee !important;
-	}
-
-	/* URL 및 브레드크럼(경로) 숨기기 */
-	.gsc-webResult .gs-visibleUrl,
-	.gsc-webResult .gs-visibleUrl-breadcrumb,
-	.gsc-webResult .gs-visibleUrl-short {
-    	display: none !important;
-	}
-
-	/* 본문 내용(Snippet)은 살리고 내부의 '날짜'만 숨기기 */
-	.gsc-webResult .gs-relativePublishedDate,
-	.gsc-webResult .gs-snippet .gs-date {
-    	display: none !important;
-	}
-
-	.gsc-webResult .gs-bidi-start-align.gs-snippet {
-    	display: block !important;
-    	visibility: visible !important;
-    	height: auto !important;
-	}
+  #article-view table td {
+    padding: 0px !important;
+    border: 0px !important;
+  }
+  .gsc-control-cse {
+    padding-top: 0px !important;
+  }
+  .gsc-result-info {
+    display: none !important;
+  }
+  .gsc-result-info-container {
+    display: none !important;
+  }
+  .gsc-orderby-container {
+    display: none !important;
+  }
+  .gsc-webResult.gsc-result {
+    border: 0px !important;
+  }
+  input.gsc-input {
+    padding-left: 10px !important;
+  }
+  .gsc-webResult.gsc-result,
+  .gsc-results .gsc-imageResult {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .gsc-results .gcsc-more-maybe-branding-root {
+    display: none !important;
+  }
+  form.gsc-search-box {
+    max-width: 100% !important;
+    font-size: 14px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .gs-result .gs-image .gs-image,
+  .gs-result .gs-promotion-image {
+    display: none !important;
+  }
+  #cse-footer {
+    display: none !important;
+  }
+  .gsc-results .gcsc-more-maybe-branding-root {
+    display: none !important;
+  }
+  .gsib_a::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    cursor: pointer !important;
+  }
+  .gs-result .gs-title,
+  .gs-result .gs-title * {
+    font-size: 16px !important;
+  }
+  .gs-webResult div.gs-visibleUrl-breadcrumb {
+    display: none !important;
+  }
+  .tag_label {
+    min-height: auto !important;
+  }
 </style>
 
+<script async src="https://cse.google.com/cse.js?cx=b68326e10e8ed4cd6"></script>
+<div class="gcse-search"></div>
 <script>
-  (function() {
-    var cx = 'b68326e10e8ed4cd6';
-	var gcse = document.createElement('script');
-	gcse.type = 'text/javascript';
-	gcse.async = true;
-	gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(gcse, s);
-  })();        
-  window.onload = function() { var input = document.getElementById("gsc-i-id1").focus(); }
+  window.onload = function () {
+    var checkSearch = setInterval(function () {
+      var searchBox = document.querySelector("input.gsc-input");
+      if (searchBox) {
+        searchBox.focus();
+        clearInterval(checkSearch);
+      }
+    }, 200);
+  };
 </script>
-<gcse:search linkTarget="_parent"></gcse:search>
