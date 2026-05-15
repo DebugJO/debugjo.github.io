@@ -168,7 +168,7 @@ exclude:
   - "*.config.js"
   - "package*.json"
   - backup
-  - .well-known
+  - .well-known/appspecific/com.chrome.devtools.json
 
 jekyll-archives:
   enabled: [categories, tags]
