@@ -2,7 +2,7 @@
 layout: default
 title: "Google Site Search"
 permalink: /gsearch/
-nav_exclude: true 
+nav_exclude: true
 ---
 
 <style>
@@ -11,7 +11,7 @@ nav_exclude: true
     border: 0px !important;
   }
   .gsc-control-cse {
-    padding-top: 0px !important;
+    padding-top: 20px !important;
   }
   .gsc-result-info {
     display: none !important;
@@ -69,7 +69,23 @@ nav_exclude: true
   .tag_label {
     min-height: auto !important;
   }
+
+  .gsearch-top > h1 {
+    font-family:
+      "Pretendard Variable",
+      "Malgun Gothic",
+      Arial,
+      SF Mono,
+      Menlo,
+      Monaco,
+      monospace !important;
+    font-size: 1.25rem !important;
+  }
 </style>
+
+<div class="gsearch-top">
+  <h1>Google Site Search</h1>
+</div>
 
 <script async src="https://cse.google.com/cse.js?cx=b68326e10e8ed4cd6"></script>
 <div class="gcse-search"></div>
