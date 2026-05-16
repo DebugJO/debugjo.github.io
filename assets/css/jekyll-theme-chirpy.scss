@@ -572,7 +572,7 @@ main h4 {
   text-decoration: none; 
   transition: 0.3s;
   width: fit-content;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .standalone-read-more:hover {
@@ -613,7 +613,8 @@ main h4 {
 }
 
 .card-body .card-text.content {
-   margin-top: -12px !important;
+  margin-top: -12px !important;
+  margin-bottom: 0px !important;
 }
 
 #archives .date.day {
