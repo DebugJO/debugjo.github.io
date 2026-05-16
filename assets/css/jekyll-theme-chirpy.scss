@@ -552,6 +552,7 @@ main h4 {
     white-space: pre !important;  
     scrollbar-width: none !important; 
     -ms-overflow-style: none !important;
+    padding-bottom: 0rem !important;
 }
 
 .highlight pre::-webkit-scrollbar {
@@ -593,6 +594,7 @@ main h4 {
 
 .rouge-code {
   padding-left: 20px !important;
+  padding-top: 0px !important;
 }
 
 #search-results .content {
@@ -818,6 +820,10 @@ header h1+.post-meta {
 
 .code-header::before {
   background-color: #d6e5fa !important;
+}
+
+.code-header {
+  height: 1.7rem !important;
 }
 
 /************************************** Dark *****************************************/
