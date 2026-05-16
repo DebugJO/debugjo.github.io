@@ -826,6 +826,19 @@ header h1+.post-meta {
   height: 1.7rem !important;
 }
 
+#page-category ul>li::before, #page-tag ul>li::before {
+  background: none !important;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 0% !important;
+  display: block !important;
+  position: relative !important;
+  top: 0rem !important;
+  margin-right: .5rem !important;
+  content: "￭" !important;
+  color: #757575 !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
