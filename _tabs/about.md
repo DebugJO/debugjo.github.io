@@ -23,7 +23,7 @@ toc: true
 
 <i class="fa-solid fa-code"></i> **Language** : C#, Rust, Zig, C++, Go  
 <i class="fa-solid fa-code"></i> **Database** : Oracle, SQL Server, MariaDB, PostgreSQL, Firebird  
-<i class="fa-solid fa-code"></i> **Desktop**  : Avalonia, WPF, Qt, Electrobun, Blazor  
+<i class="fa-solid fa-code"></i> **Desktop**  : Avalonia, WPF, Qt, Tauri, Blazor  
 
 ---
 
