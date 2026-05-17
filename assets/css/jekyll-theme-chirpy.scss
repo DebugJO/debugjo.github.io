@@ -935,4 +935,10 @@ html[data-mode='dark'] {
   .code-header::before {
     background-color: #2d455a  !important;
   }
+
+  #page-category ul>li>a, 
+  #page-tag ul>li>a {
+    font-size: 16px !important;
+    color: #B0B0B0 !important;
+  }
 }
