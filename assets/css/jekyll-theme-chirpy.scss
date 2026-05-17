@@ -431,9 +431,14 @@ main h4 {
 }	
 
 @media (min-width: 1650px) {
-    search {
-        margin-right: calc(180px - .75rem) !important;
-    }
+  search {
+    /* margin-right: calc(180px - .75rem) !important; */
+    margin-right: 0px !important;
+  }
+}
+
+search {
+  margin-right: 0px !important;
 }
 
 .highlighter-rouge {
