@@ -12,7 +12,10 @@
   </article>
 {% endcapture %}
 
-{% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
+{% capture not_found %}
+  <p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>
+  <p class="mt-5"><a href="/gsearch">Google에서 추가 검색</a></p>
+{% endcapture %}
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
