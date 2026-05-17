@@ -115,7 +115,7 @@ kramdown:
     span:
       line_numbers: false
     block:
-      line_numbers: false
+      line_numbers: true
       guess_lang: true
       start_line: 1
   toc_levels: 2..5      
