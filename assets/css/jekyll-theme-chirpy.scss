@@ -4,6 +4,9 @@
 
 @use 'main{%- if jekyll.environment == "production" -%}.bundle{%- endif -%}';
 
+$font-family-base:  "Pretendard Variable", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Arial, SF Mono, Menlo, Monaco, monospace;
+$font-family-heading:  "Pretendard Variable", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Arial, SF Mono, Menlo, Monaco, monospace;
+
 @font-face {
   font-family: 'Pretendard Variable';
   src: url('https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/woff2/PretendardVariable.woff2') format('woff2-variations');
@@ -964,4 +967,13 @@ html[data-mode='dark'] {
   #archives a {
     color: #B0B0B0 !important;
   }
+}
+
+/******************** 전체 폰트 설정 ***************************************/
+
+// 파일 맨 최하단에 추가
+
+html, body {
+  --bs-font-sans-serif: "Pretendard Variable", "Malgun Gothic", "Noto Sans KR", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, system-ui, -apple-system, "Segoe UI", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  --bs-font-monospace: "Fira Code VF", "Source Sans Pro", "IBM Plex Mono", SF Mono, Menlo, Monaco, Consolas, monospace !important;
 }
