@@ -631,6 +631,7 @@ search {
 #archives a {
   font-family: 'Pretendard Variable', 'Malgun Gothic' !important;
   margin-left: 50px !important;
+  color: #34343C !important;
 }
 
 .categories .card {
@@ -939,6 +940,10 @@ html[data-mode='dark'] {
   #page-category ul>li>a, 
   #page-tag ul>li>a {
     font-size: 16px !important;
+    color: #B0B0B0 !important;
+  }
+
+  #archives a {
     color: #B0B0B0 !important;
   }
 }
