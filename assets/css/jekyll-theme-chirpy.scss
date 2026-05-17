@@ -847,16 +847,19 @@ header h1+.post-meta {
 .code-header button:not([timeout]):hover {
   height: 1.8rem !important;
   width: 1.8rem !important;
+  line-height: 0rem !important;
 }
 
 .code-header button [timeout] i {
   height: 1.8rem !important;
   width: 1.8rem !important;
+  line-height: 0rem !important;
 }
 
 .code-header button {
   height: 1.8rem !important;
   width: 1.8rem !important;
+  line-height: 0rem !important;
 }
 
 /************************************** Dark *****************************************/
