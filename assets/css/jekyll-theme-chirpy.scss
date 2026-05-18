@@ -640,10 +640,12 @@ search {
   font-family: 'Pretendard Variable', 'Malgun Gothic' !important;
   margin-left: 50px !important;
   color: #34343C !important;
+  font-size: 16px !important;
 }
 
 #archives a:hover {
   color: #0070d1 !important;
+  font-size: 16px !important;
 }
 
 .categories .card {
@@ -973,8 +975,20 @@ html[data-mode='dark'] {
     color: #B0B0B0 !important;
   }
 
+  #page-category ul>li>a:hover, 
+  #page-tag ul>li>a:hover {
+    font-size: 16px !important;
+    color: #0070d1 !important;
+  }
+
   #archives a {
     color: #B0B0B0 !important;
+    font-size: 16px !important;
+  }
+
+  #archives a:hover {
+    color: #0070d1 !important;
+    font-size: 16px !important;
   }
 }
 
