@@ -375,6 +375,11 @@ main h4 {
   color: #34343C !important;
 }
 
+#page-category ul>li>a:hover, 
+#page-tag ul>li>a:hover {
+  color: #0070d1 !important;
+}
+
 .MJX-TEX {
   font-family: 'D2Coding', MJXZERO, MJXTEX !important;
   font-size: 14px !important;
@@ -635,6 +640,10 @@ search {
   font-family: 'Pretendard Variable', 'Malgun Gothic' !important;
   margin-left: 50px !important;
   color: #34343C !important;
+}
+
+#archives a:hover {
+  color: #0070d1 !important;
 }
 
 .categories .card {
