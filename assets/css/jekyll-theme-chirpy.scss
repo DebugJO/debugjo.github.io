@@ -452,9 +452,17 @@ main h4 {
   }
 }
 
+@media (min-width: 768px) {
+  search {
+    margin-right: 16rem !important;
+  }
+}
+
+/*
 search {
   margin-right: 16rem !important;
 }
+*/
 
 .highlighter-rouge {
 	border: 1px solid #ececec !important;
