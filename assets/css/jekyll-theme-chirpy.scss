@@ -449,6 +449,12 @@ search {
   margin-right: 16rem !important;
 }
 
+@media (max-width: 768px) {
+  search {
+    margin-right: 0rem !important;
+  }
+}
+
 .highlighter-rouge {
 	border: 1px solid #ececec !important;
 	box-shadow: none !important;
