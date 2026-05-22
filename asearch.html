@@ -9,46 +9,75 @@ nav_exclude: true
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<!-- 유니크한 ID 사용 -->
-<input type="text" id="asearch-custom-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
-<div id="asearch-custom-results" style="margin-top: 20px;"></div>
+<!-- 기존 레이아웃과 완전히 분리된 ID를 사용합니다 -->
+<input type="text" id="asearch-isolated-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+<div id="asearch-isolated-results" style="margin-top: 20px;"></div>
 
 <script>
 (function() {
-  const input = document.getElementById('asearch-custom-input');
-  const results = document.getElementById('asearch-custom-results');
-  let data = [];
-
-  // 1. 데이터 로드 (독립적으로 실행)
-  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then(r => r.json())
-    .then(json => { data = json; console.log("데이터 로드 성공:", data.length); })
-    .catch(e => console.error("데이터 로드 실패:", e));
-
-  // 2. 이벤트 리스너 (DOM이 준비된 후)
-  input.addEventListener('input', (e) => {
-    const val = e.target.value.toLowerCase().trim();
-    if (val.length < 2) {
-      results.innerHTML = '';
+  // 스크립트가 로드되자마자 실행되어 기존 스크립트와 충돌하지 않도록 합니다.
+  const initIsolatedSearch = () => {
+    const input = document.getElementById('asearch-isolated-input');
+    const container = document.getElementById('asearch-isolated-results');
+    
+    if (!input || !container) {
+      console.error("검색창 요소를 찾을 수 없습니다.");
       return;
     }
 
-    const filtered = data.filter(item => 
-      (item.title && item.title.toLowerCase().includes(val)) || 
-      (item.content && item.content.toLowerCase().includes(val))
-    );
+    let searchData = [];
 
-    if (filtered.length === 0) {
-      results.innerHTML = '<p>검색 결과가 없습니다.</p>';
-      return;
-    }
+    // 데이터를 가져옵니다.
+    fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+      .then(response => response.json())
+      .then(data => {
+        searchData = data;
+        console.log("데이터 로드 완료. 총 개수:", searchData.length);
+      })
+      .catch(err => {
+        container.innerHTML = '<p>검색 데이터를 불러오는데 실패했습니다.</p>';
+      });
 
-    results.innerHTML = filtered.slice(0, 30).map(item => `
-      <article style="margin-bottom: 20px;">
-        <h2><a href="${item.url}">${item.title}</a></h2>
-        <p>${item.content.substring(0, 100)}...</p>
-      </article>
-    `).join('');
-  });
+    // 검색 로직 (입력할 때마다 실시간 필터링)
+    input.addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase().trim();
+
+      if (keyword.length < 2) {
+        container.innerHTML = '';
+        return;
+      }
+
+      const filtered = searchData.filter((item) => {
+        const title = item.title?.toLowerCase() || '';
+        const content = item.content?.toLowerCase() || '';
+        return title.includes(keyword) || content.includes(keyword);
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p>검색 결과가 없습니다.</p>';
+        return;
+      }
+
+      // 결과 렌더링
+      container.innerHTML = filtered.slice(0, 30).map((item) => `
+        <article class="px-1 px-sm-2 px-lg-4 px-xl-0" style="margin-bottom: 20px;">
+          <header>
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+              <a href="${item.url}">${item.title}</a>
+            </h2>
+          </header>
+          <p style="margin: 0;">${item.content.substring(0, 150)}...</p>
+        </article>
+      `).join('');
+    });
+  };
+
+  // 기존 스크립트가 DOMContentLoaded를 점유하고 있을 수 있으므로, 
+  // 페이지 로드 상태를 확인하여 초기화합니다.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIsolatedSearch);
+  } else {
+    initIsolatedSearch();
+  }
 })();
 </script>
