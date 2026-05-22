@@ -1,3 +1,8 @@
+<!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
 {% capture result_elem %}
   <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
     <header>
@@ -9,103 +14,139 @@
 
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
-<!-- Fuse.js 라이브러리 추가 -->
-<script src="https://jsdelivr.net"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-  const searchInput = document.getElementById('search-input');
-  const searchResults = document.getElementById('search-results');
-  let fuse = null;
+  const searchInput =
+    document.getElementById('search-input');
+
+  const searchResults =
+    document.getElementById('search-results');
+
+  let searchData = [];
 
   /**
-   * search.json preload 및 Fuse.js 초기화
+   * search.json preload
    */
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
     .then((response) => response.json())
     .then((data) => {
-      // Fuse.js 옵션 상세 설정
-      const options = {
-        keys: [
-          { name: 'title', weight: 0.7 },   // 제목에 가중치 높게 부여
-          { name: 'content', weight: 0.3 }  // 본문 검색 허용
-        ],
-        includeScore: true,
-        threshold: 0.4,       // 0.0(완벽일치) ~ 1.0(아무거나). 0.4가 한국어 오타 및 유사 매칭에 최적입니다.
-        ignoreLocation: true  // 단어 위치와 상관없이 문서 내 존재 여부 판별
-      };
-      
-      fuse = new Fuse(data, options);
+      searchData = data;
     })
     .catch((err) => {
       console.error('Search load error:', err);
+
       searchResults.innerHTML = `
-        <p class="mt-5">Search data load failed.</p>
+        <p class="mt-5">
+          Search data load failed.
+        </p>
       `;
     });
 
   /**
-   * search event listener
+   * search
    */
   searchInput.addEventListener('input', (e) => {
-    if (!fuse) return;
 
-    const keyword = e.target.value.trim();
+    const keyword =
+      e.target.value
+        .toLowerCase()
+        .trim();
+
+    const keywords = keyword.split(/\s+/);
 
     /**
-     * 2글자 제한 (유지)
+     * 2글자 제한
      */
     if (keyword.length < 2) {
+
       searchResults.innerHTML = '';
+
       return;
     }
 
     /**
-     * Fuse.js 유사(Fuzzy) 검색 실행
+     * filter
      */
-    const fuseResults = fuse.search(keyword);
+    const filtered =
+      searchData.filter((item) => {
+    
+        const title =
+          item.title
+            ?.toLowerCase() || '';
+    
+        const content =
+          item.content
+            ?.toLowerCase() || '';
 
+        /*
+        const categories =
+          item.categories
+            ?.toLowerCase() || '';
+    
+        const tags =
+          item.tags
+            ?.toLowerCase() || '';
+        */
+        
+        return keywords.every((word) => {
+          return (
+            title.includes(word) ||
+            content.includes(word) 
+            /* ||
+            categories.includes(word) ||
+            tags.includes(word)
+            */
+          );
+        });
+    });
     /**
-     * render (결과 없음 처리)
+     * render
      */
-    if (fuseResults.length === 0) {
+    if (filtered.length === 0) {
+
       searchResults.innerHTML = `
         <p class="mt-5">
-          {{ site.data.locales[include.lang].search.no_results }} 
-          <a href="/gsearch" style="font-size: 14px !important;">
-            <i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색
-          </a>
+          {{ site.data.locales[include.lang].search.no_results }} <a href="/gsearch" style="font-size: 14px !important;"><i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색</a>
         </p>
       `;
+
       return;
     }
 
     /**
-     * 최대 개수 제한 및 데이터 정제 (상위 30개)
+     * 최대 개수 제한
      */
-    const results = fuseResults.slice(0, 30);
+    const results =
+      filtered.slice(0, 30);
 
-    searchResults.innerHTML = results.map((result) => {
-      const item = result.item; // Fuse.js는 원래 데이터를 .item 내부에 보관합니다.
-      
-      return `
-        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-          <header>
-            <h2>
-              <a href="${item.url}">
-                ${item.title}
-              </a>
-            </h2>
-          </header>
-          <p>
-            ${item.content}
-          </p>
-        </article>
-      `;
-    }).join('');
+    searchResults.innerHTML =
+      results.map((item) => {
+
+        return `
+          <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+
+            <header>
+
+              <h2>
+                <a href="${item.url}">
+                  ${item.title}
+                </a>
+              </h2>
+              
+            </header>
+
+            <p>
+              ${item.content}
+            </p>
+
+          </article>
+        `;
+      }).join('');
+
   });
 
   searchInput.focus();
+
 });
 </script>
