@@ -19,149 +19,107 @@
   See: <https://github.com/christian-fei/Simple-Jekyll-Search>
 -->
 
-<!-- HTML 부분: 기존 #search-input 아래나 주변에 자동완성창 공간을 만들어 줍니다. -->
-<!-- 예시: <ul id="search-autocomplete" class="list-group position-absolute" style="z-index: 1000; width: 100%;"></ul> -->
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
   
-  // 1. 자동완성 목록을 표시할 요소를 하나 선택하거나 새로 만듭니다.
-  // (만약 HTML에 미리 만들어두지 않았다면 아래 주석을 풀고 자바스크립트로 동적 생성해도 됩니다)
-  let autocompleteResults = document.getElementById('search-autocomplete');
-  if (!autocompleteResults) {
-    autocompleteResults = document.createElement('ul');
-    autocompleteResults.id = 'search-autocomplete';
-    autocompleteResults.className = 'list-group position-absolute w-100';
-    autocompleteResults.style.zIndex = '1000';
-    searchInput.parentNode.appendChild(autocompleteResults);
-  }
+  // 1. 추천어 목록을 담을 엘리먼트를 동적으로 생성 (Topbar 전용)
+  const autoMenu = document.createElement('ul');
+  autoMenu.id = 'search-autocomplete';
+  autoMenu.style.cssText = 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--search-border-color);
+    border-radius: 0 0 10px 10px;
+    z-index: 9999;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: none;
+  ;
+  // 검색창 부모(보통 .search-wrapper)에 삽입
+  searchInput.parentNode.style.position = 'relative';
+  searchInput.parentNode.appendChild(autoMenu);
 
   let searchData = [];
 
-  /**
-   * search.json preload
-   */
+  // 데이터 로드
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then((response) => response.json())
-    .then((data) => {
-      searchData = data;
-    })
-    .catch((err) => {
-      console.error('Search load error:', err);
-      searchResults.innerHTML = `<p class="mt-5">Search data load failed.</p>`;
-    });
+    .then(response => response.json())
+    .then(data => { searchData = data; })
+    .catch(err => { console.error('Load error:', err); });
 
-  /**
-   * search & autocomplete input event
-   */
   searchInput.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
+    const keywords = keyword.split(/\s+/);
 
-    // 입력값이 2글자 미만이면 검색 결과와 자동완성창을 모두 비웁니다.
+    // 2글자 미만일 때 초기화
     if (keyword.length < 2) {
       searchResults.innerHTML = '';
-      autocompleteResults.innerHTML = '';
+      autoMenu.innerHTML = '';
+      autoMenu.style.display = 'none';
       return;
     }
 
-    const keywords = keyword.split(/\s+/);
-
-    /**
-     * [추가된 로직] 자동완성(Autocomplete) 추천어 필터링
-     * 매칭 조건: 입력한 검색어가 글 제목(title)의 '앞부분'에 매칭되거나 포함될 때 
-     */
-    const autocompleteFiltered = searchData.filter((item) => {
-      const title = item.title?.toLowerCase() || '';
-      // 입력된 단어들 중 하나라도 제목에 포함되어 있는지 확인
-      return keywords.every(word => title.includes(word));
-    });
-
-    // 💡 자동완성 추천어 렌더링 (최대 5~7개 정도가 적당합니다)
-    if (autocompleteFiltered.length > 0) {
-      autocompleteResults.innerHTML = autocompleteFiltered
-        .slice(0, 5) 
-        .map((item) => {
-          // 부트스트랩 클래스(list-group-item)를 활용한 스타일링 예시
-          return `
-            <li class="list-group-item list-group-item-action action-suggest-item" 
-                style="cursor: pointer;" 
-                data-url="${item.url}" 
-                data-title="${item.title}">
-              <i class="fa-solid fa-magnifying-glass me-2 text-muted" style="font-size: 12px;"></i>
-              <strong>${item.title}</strong>
-            </li>
-          `;
-        }).join('');
-    } else {
-      autocompleteResults.innerHTML = '';
-    }
-
-    /**
-     * 본문 전체 검색 및 기존 결과 렌더링 로직 (유지)
-     */
+    // 필터링 로직
     const filtered = searchData.filter((item) => {
       const title = item.title?.toLowerCase() || '';
       const content = item.content?.toLowerCase() || '';
-      
-      return keywords.every((word) => {
-        return (title.includes(word) || content.includes(word));
-      });
+      return keywords.every(word => title.includes(word) || content.includes(word));
     });
 
-    if (filtered.length === 0) {
-      searchResults.innerHTML = `
-        <p class="mt-5">
-          {{ site.data.locales[include.lang].search.no_results }} 
-          <a href="/gsearch" style="font-size: 14px !important;">
-            <i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색
+    /**
+     * [A] 구글 방식 자동완성 추천 (제목 위주)
+     */
+    const suggestions = filtered.slice(0, 8); // 상위 8개만 추천
+    if (suggestions.length > 0) {
+      autoMenu.innerHTML = suggestions.map(item => 
+        <li class="suggest-item" style="padding: 10px 15px; cursor: pointer; border-<bottom: 1px solid var(--main-border-color); font-size: 14px;">
+          <a href="${item.url}" style="text-decoration: none; color: var(--text-color); display: block;">
+            <i class="fa-solid fa-magnifying-glass me-2" style="font-size: 12px; opacity: 0.5;"></i>
+            ${item.title}
           </a>
-        </p>
-      `;
-      return;
+        </li>
+      ).join('');
+      autoMenu.style.display = 'block';
+    } else {
+      autoMenu.style.display = 'none';
     }
 
-    const results = filtered.slice(0, 30);
-    searchResults.innerHTML = results.map((item) => {
-      return `
-        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-          <header>
-            <h2><a href="${item.url}">${item.title}</a></h2>
-          </header>
+    /**
+     * [B] 기존 전체 페이지 리스트 렌더링 (유지)
+     */
+    if (filtered.length === 0) {
+      searchResults.innerHTML = <p class="mt-5">{{ site.data.locales[include.lang].search.no_results }} <a href="/gsearch" style="font-size: 14px !important;">Google PSE 추가 검색</a></p>;
+    } else {
+      searchResults.innerHTML = filtered.slice(0, 30).map(item => 
+        <article class="px-1 px-sm-2 px-lg-<4 px-xl-0">
+          <header><h2><a href="${item.url}">${item.title}</a></h2></header>
           <p>${item.content}</p>
         </article>
-      `;
-    }).join('');
-  });
-
-  /**
-   * [추가된 로직] 자동완성 아이템 클릭 시 바로 해당 페이지로 이동 또는 검색창 입력 채우기
-   */
-  autocompleteResults.addEventListener('click', (e) => {
-    const item = e.target.closest('.action-suggest-item');
-    if (item) {
-      const url = item.getAttribute('data-url');
-      // 선택 1: 클릭하자마자 바로 포스트 페이지로 이동 (추천)
-      window.location.href = url;
-      
-      // 선택 2: 클릭 시 검색창을 채우고 자동완성창을 닫고 싶다면 아래 주석을 사용하세요.
-      /*
-      searchInput.value = item.getAttribute('data-title');
-      autocompleteResults.innerHTML = '';
-      searchInput.dispatchEvent(new Event('input')); // 인풋 이벤트 강제 발생시켜 검색결과 갱신
-      */
+      ).join('');
     }
   });
 
-  // 사용자가 검색창 외에 다른 곳을 클릭하면 자동완성 창 닫기
+  // 추천어 외 영역 클릭 시 닫기
   document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target) && !autocompleteResults.contains(e.target)) {
-      autocompleteResults.innerHTML = '';
+    if (!searchInput.contains(e.target)) {
+      autoMenu.style.display = 'none';
     }
   });
-
-  searchInput.focus();
 });
 </script>
+스를 올렸을 때 색이 변하게 하고 싶다면 블로그 CSS에 이걸 추가해 주세요.
+```css
+.suggest-item:hover {
+  background-color: var(--search-tag-bg) !important;
+}
+.suggest-item a:hover {
+  color: var(--linkpy 다크모드/라이트모드에 자동으로 대응합니다.
+4.  **2자 제한 해결:** 기존에 원하셨던 대로-color) !important;
+}
