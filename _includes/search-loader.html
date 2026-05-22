@@ -24,18 +24,24 @@
   See: <https://github.com/christian-fei/Simple-Jekyll-Search>
 -->
 
+<!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
 <script>
+// 핵심: 데이터가 로드되면 무조건 전역 변수에 저장해서 다른 페이지와 공유
+window.searchData = window.searchData || [];
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-  
-  // 검색창이 없는 페이지에서는 에러 방지를 위해 종료
+
+  // 검색창 없는 페이지 에러 방지
   if (!searchInput) return;
 
-  // 기존 로직 유지 + 데이터 전역 공유
-  window.searchData = window.searchData || [];
-  let searchData = window.searchData;
+  let searchData = [];
 
   /**
    * search.json preload
@@ -44,16 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((response) => response.json())
     .then((data) => {
       searchData = data;
-      window.searchData = data; // 전역에 데이터 저장
+      window.searchData = data; // 이 부분이 핵심입니다.
     })
     .catch((err) => {
       console.error('Search load error:', err);
       if (searchResults) {
-        searchResults.innerHTML = `
-          <p class="mt-5">
-            Search data load failed.
-          </p>
-        `;
+        searchResults.innerHTML = '<p class="mt-5">Search data load failed.</p>';
       }
     });
 
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const keywords = keyword.split(/\s+/);
 
     /**
-     * 2글자 제한 (기존 로직 유지)
+     * 2글자 제한
      */
     if (keyword.length < 2) {
       if (searchResults) searchResults.innerHTML = '';
@@ -73,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * filter (기존 로직 유지: Title과 Content만 검색)
+     * filter
      */
-    const filtered = (window.searchData || searchData).filter((item) => {
+    const filtered = searchData.filter((item) => {
       const title = item.title?.toLowerCase() || '';
       const content = item.content?.toLowerCase() || '';
       
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * 최대 개수 제한 (30개)
+     * 최대 개수 제한
      */
     const results = filtered.slice(0, 30);
 
