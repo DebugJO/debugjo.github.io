@@ -9,21 +9,38 @@ nav_exclude: true
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 
 <style>
-  #docsearch-page {
-    margin-top: 20px;
-    width: 100%;
+  /* 검색창을 페이지 내에 고정하기 위한 핵심 스타일 */
+  .DocSearch-Container {
+    position: relative !important;
+    display: block !important;
+    background: transparent !important;
   }
-
-  .DocSearch-Container { position: relative !important; }
-  .DocSearch-Modal { 
-    max-width: 100% !important; 
-    box-shadow: none !important; 
+  
+  .DocSearch-Modal {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-shadow: none !important;
     border: 1px solid #d2d2d2 !important;
+    border-radius: 0 !important; /* 모달 느낌 제거 */
+    margin: 0 !important;
+    height: auto !important;
   }
 
+  /* 모달의 배경/오버레이 제거 */
+  .DocSearch-Container--active {
+    display: block !important;
+  }
+
+  /* 다크 모드 대응 */
   html[data-mode="dark"] .DocSearch-Modal {
     background-color: #1b1b1e !important;
     border: 1px solid #444 !important;
+  }
+  
+  /* 내부 검색 결과 영역 높이 확보 */
+  .DocSearch-Hits {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
   }
 </style>
 
@@ -42,6 +59,7 @@ nav_exclude: true
     debug: false
   });
 
+  // 페이지 로드 시 검색창에 포커스
   window.onload = function () {
     var checkSearch = setInterval(function () {
       var searchInput = document.querySelector(".DocSearch-Input");
