@@ -1,260 +1,182 @@
 ---
 layout: default
-title: "고급 검색"
+title: "Site Search"
 permalink: /asearch/
 nav_exclude: true
 ---
 
-<div
-  class="px-1 px-sm-2 px-lg-4 px-xl-0 mt-5"
-  style="position:relative;"
->
+<!-- 알고리아 InstantSearch 스타일시트 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
 
-  <input
-    type="text"
-    id="my-search-input"
-    placeholder="검색어를 입력하세요..."
-    autocomplete="off"
-    style="
-      width:100%;
-      padding:15px;
-      font-size:1.1rem;
-      border-radius:8px;
-      border:1px solid var(--search-border-color);
-      background:var(--card-bg);
-      color:var(--text-color);
-    "
-  >
-
-  <ul
-    id="search-autocomplete"
-    style="
-      position:absolute;
-      top:100%;
-      left:0;
-      width:100%;
-      background:var(--card-bg);
-      border:1px solid var(--search-border-color);
-      border-top:none;
-      border-radius:0 0 10px 10px;
-      z-index:9999;
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:none;
-      overflow:hidden;
-    "
-  ></ul>
-
-</div>
-
-<div id="main-results" class="mt-4"></div>
-
-<script>
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  const searchInput =
-    document.getElementById('my-search-input');
-
-  const searchResults =
-    document.getElementById('main-results');
-
-  const autoMenu =
-    document.getElementById('search-autocomplete');
-
-  let searchData = [];
-
-  /**
-   * search.json load
-   */
-  fetch('/assets/js/data/search.json')
-
-    .then(r => r.json())
-
-    .then(data => {
-
-      searchData = data;
-
-      console.log('search loaded:', searchData.length);
-    })
-
-    .catch(err => {
-
-      console.error(err);
-
-      searchResults.innerHTML = `
-        <p>search.json load failed</p>
-      `;
-    });
-
-  /**
-   * excerpt
-   */
-  function excerpt(text, len = 180) {
-
-    if (!text) return '';
-
-    return text
-
-      .replace(/<[^>]*>/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim()
-      .substring(0, len);
+<style>
+  /* 기본 레이아웃 설정 */
+  .asearch-container {
+    max-width: 100%;
+    margin-top: 20px;
+    font-family: "Pretendard Variable", "Malgun Gothic", sans-serif;
   }
 
-  /**
-   * search
-   */
-  searchInput.addEventListener('input', (e) => {
+  .asearch-top h1 {
+    font-size: 1.25rem !important;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-    const keyword =
-      e.target.value
-        .toLowerCase()
-        .trim();
+  /* 검색창 스타일 커스텀 */
+  .ais-SearchBox-input {
+    padding-left: 40px !important;
+    border-radius: 8px !important;
+    border: 1px solid #d2d2d2 !important;
+    background-color: #fff !important;
+    height: 45px !important;
+  }
 
-    autoMenu.style.display = 'none';
+  /* 검색 결과 리스트 스타일 */
+  .ais-Hits-list {
+    margin-top: 20px;
+  }
 
-    if (keyword.length < 2) {
+  .ais-Hits-item {
+    padding: 15px 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #eee !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
 
-      searchResults.innerHTML = '';
+  .search-hit-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0056b2;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+  }
 
-      return;
+  .search-hit-title:hover {
+    text-decoration: underline;
+  }
+
+  .search-hit-snippet {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    word-break: break-all;
+  }
+
+  .search-hit-url {
+    font-size: 12px;
+    color: #008000;
+    margin-top: 4px;
+  }
+
+  /* 페이지네이션 */
+  .ais-Pagination {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  /****************************************************** Dark Mode *****************************************************/
+  html[data-mode="dark"] {
+    .asearch-top h1 { color: #e0e0e0; }
+    
+    .ais-SearchBox-input {
+      background-color: #1b1b1e !important;
+      border: 1px solid #444 !important;
+      color: #b0b0b0 !important;
     }
 
-    const keywords =
-      keyword.split(/\s+/);
-
-    const filtered =
-      searchData.filter(item => {
-
-        const title =
-          (item.title || '').toLowerCase();
-
-        const content =
-          (item.content || '').toLowerCase();
-
-        return keywords.every(word => {
-
-          return (
-            title.includes(word) ||
-            content.includes(word)
-          );
-        });
-      });
-
-    /**
-     * autocomplete
-     */
-    const suggestions =
-      filtered.slice(0, 5);
-
-    if (suggestions.length > 0) {
-
-      autoMenu.innerHTML =
-        suggestions.map(item => `
-
-          <li
-            style="
-              border-bottom:1px solid var(--search-border-color);
-            "
-          >
-
-            <a
-              href="${item.url}"
-              style="
-                display:block;
-                padding:10px;
-                text-decoration:none;
-                color:var(--text-color);
-              "
-            >
-
-              <div
-                style="
-                  font-size:14px;
-                  font-weight:600;
-                  margin-bottom:4px;
-                "
-              >
-                ${item.title}
-              </div>
-
-              <div
-                style="
-                  font-size:12px;
-                  opacity:0.7;
-                "
-              >
-                ${excerpt(item.content, 60)}...
-              </div>
-
-            </a>
-
-          </li>
-
-        `).join('');
-
-      autoMenu.style.display = 'block';
+    .ais-Hits-item {
+      border-bottom: 1px solid #333 !important;
     }
 
-    /**
-     * no results
-     */
-    if (filtered.length === 0) {
-
-      searchResults.innerHTML = `
-        <p class="mt-5">
-          No results found.
-        </p>
-      `;
-
-      return;
+    .search-hit-title {
+      color: #73a4e6 !important;
     }
 
-    /**
-     * render
-     */
-    searchResults.innerHTML =
-      filtered.slice(0, 30).map(item => `
+    .search-hit-snippet {
+      color: #b0b0b0 !important;
+    }
 
-        <article class="mb-5">
+    .search-hit-url {
+      color: #5c8a5c !important;
+    }
 
-          <header>
+    .ais-Pagination-link {
+      background-color: #232323 !important;
+      border-color: #444 !important;
+      color: #b0b0b0 !important;
+    }
+    
+    .ais-Pagination-item--selected .ais-Pagination-link {
+      background-color: #73a4e6 !important;
+      color: #fff !important;
+    }
+  }
+</style>
 
-            <h2>
+<div class="asearch-container">
+  <div class="asearch-top">
+    <h1><i class="fa-solid fa-magnifying-glass"></i> Site Search</h1>
+  </div>
 
-              <a href="${item.url}">
-                ${item.title}
+  <!-- 알고리아 검색 위젯이 렌더링될 위치 -->
+  <div id="searchbox"></div>
+  <div id="hits"></div>
+  <div id="pagination"></div>
+</div>
+
+<!-- 알고리아 라이브러리 로드 -->
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
+
+<script>
+  // 1. 알고리아 클라이언트 설정
+  // 주의: Search-Only API Key를 사용하세요 (Admin Key 절대 금지)
+  const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+
+  const search = instantsearch({
+    indexName: 'devsight',
+    searchClient,
+    routing: true, // URL에 검색어 상태 유지
+  });
+
+  // 2. 검색창 위젯 추가
+  search.addWidgets([
+    instantsearch.widgets.searchBox({
+      container: '#searchbox',
+      placeholder: '검색어를 입력하세요...',
+      autofocus: true,
+    }),
+
+    // 3. 검색 결과 위젯 추가
+    instantsearch.widgets.hits({
+      container: '#hits',
+      templates: {
+        empty: '<div style="padding:20px;">검색 결과가 없습니다.</div>',
+        item(hit, { html, components }) {
+          return html`
+            <div>
+              <a href="${hit.url}" class="search-hit-title">
+                ${components.Highlight({ hit, attribute: 'hierarchy.lvl0' })}
               </a>
+              <div class="search-hit-snippet">
+                ${components.Snippet({ hit, attribute: 'content' })}
+              </div>
+              <div class="search-hit-url">${hit.url}</div>
+            </div>
+          `;
+        },
+      },
+    }),
 
-            </h2>
+    // 4. 페이지네이션 위젯 추가
+    instantsearch.widgets.pagination({
+      container: '#pagination',
+    }),
+  ]);
 
-          </header>
-
-          <p>
-            ${excerpt(item.content)}...
-          </p>
-
-        </article>
-
-      `).join('');
-  });
-
-  /**
-   * outside click
-   */
-  document.addEventListener('click', (e) => {
-
-    if (
-      !searchInput.contains(e.target) &&
-      !autoMenu.contains(e.target)
-    ) {
-
-      autoMenu.style.display = 'none';
-    }
-  });
-
-});
-
+  search.start();
 </script>
