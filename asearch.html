@@ -5,50 +5,40 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 기존 로더가 이 ID를 찾도록 똑같이 맞춥니다 -->
 <div class="gsearch-top">
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<input type="text" id="search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+<!-- ID를 기존 로더와 맞춥니다 -->
+<input type="text" id="search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px;" />
 <div id="search-results" style="margin-top: 20px;"></div>
 
-<!-- 님께서 "잘 돌아간다"고 하신 코드 그대로 복사 -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('search-input');
-  const searchResults = document.getElementById('search-results');
-  let searchData = [];
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
 
-  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then((response) => response.json())
-    .then((data) => { searchData = data; })
-    .catch((err) => { console.error('Search load error:', err); });
-
-  searchInput.addEventListener('input', (e) => {
+  input.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
-    const keywords = keyword.split(/\s+/);
-    if (keyword.length < 2) {
-      searchResults.innerHTML = '';
+    
+    // 1. 전역에 있는 데이터를 바로 사용
+    const data = window.searchData || []; 
+    
+    if (keyword.length < 2 || data.length === 0) {
+      results.innerHTML = '';
       return;
     }
 
-    const filtered = searchData.filter((item) => {
-      const title = item.title?.toLowerCase() || '';
-      const content = item.content?.toLowerCase() || '';
-      return keywords.every((word) => title.includes(word) || content.includes(word));
-    });
+    // 2. 필터링 로직
+    const filtered = data.filter(item => 
+      item.title?.toLowerCase().includes(keyword) || 
+      item.content?.toLowerCase().includes(keyword)
+    );
 
-    if (filtered.length === 0) {
-      searchResults.innerHTML = '<p class="mt-5">검색 결과가 없습니다.</p>';
-      return;
-    }
-
-    searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
-      <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-        <header>
-          <h2><a href="${item.url}">${item.title}</a></h2>
-        </header>
+    // 3. 렌더링
+    results.innerHTML = filtered.slice(0, 30).map(item => `
+      <article style="margin-bottom: 20px;">
+        <h2><a href="${item.url}">${item.title}</a></h2>
         <p>${item.content}</p>
       </article>
     `).join('');
