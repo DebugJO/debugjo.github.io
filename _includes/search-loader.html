@@ -19,52 +19,149 @@
   See: <https://github.com/christian-fei/Simple-Jekyll-Search>
 -->
 
-<script>
-// 1. 데이터를 전역에 저장 (페이지 이동해도 유지)
-window.mySearchData = window.mySearchData || [];
+<!-- HTML 부분: 기존 #search-input 아래나 주변에 자동완성창 공간을 만들어 줍니다. -->
+<!-- 예시: <ul id="search-autocomplete" class="list-group position-absolute" style="z-index: 1000; width: 100%;"></ul> -->
 
-function initSearch() {
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-  if (!searchInput) return;
-
-  // 2. 데이터가 없으면 Fetch
-  if (window.mySearchData.length === 0) {
-    fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-      .then(res => res.json())
-      .then(data => { window.mySearchData = data; });
+  
+  // 1. 자동완성 목록을 표시할 요소를 하나 선택하거나 새로 만듭니다.
+  // (만약 HTML에 미리 만들어두지 않았다면 아래 주석을 풀고 자바스크립트로 동적 생성해도 됩니다)
+  let autocompleteResults = document.getElementById('search-autocomplete');
+  if (!autocompleteResults) {
+    autocompleteResults = document.createElement('ul');
+    autocompleteResults.id = 'search-autocomplete';
+    autocompleteResults.className = 'list-group position-absolute w-100';
+    autocompleteResults.style.zIndex = '1000';
+    searchInput.parentNode.appendChild(autocompleteResults);
   }
 
-  // 3. 입력 이벤트 연결
+  let searchData = [];
+
+  /**
+   * search.json preload
+   */
+  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+    .then((response) => response.json())
+    .then((data) => {
+      searchData = data;
+    })
+    .catch((err) => {
+      console.error('Search load error:', err);
+      searchResults.innerHTML = `<p class="mt-5">Search data load failed.</p>`;
+    });
+
+  /**
+   * search & autocomplete input event
+   */
   searchInput.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
+
+    // 입력값이 2글자 미만이면 검색 결과와 자동완성창을 모두 비웁니다.
     if (keyword.length < 2) {
-      if (searchResults) searchResults.innerHTML = '';
+      searchResults.innerHTML = '';
+      autocompleteResults.innerHTML = '';
       return;
     }
 
     const keywords = keyword.split(/\s+/);
-    const filtered = window.mySearchData.filter((item) => {
+
+    /**
+     * [추가된 로직] 자동완성(Autocomplete) 추천어 필터링
+     * 매칭 조건: 입력한 검색어가 글 제목(title)의 '앞부분'에 매칭되거나 포함될 때 
+     */
+    const autocompleteFiltered = searchData.filter((item) => {
       const title = item.title?.toLowerCase() || '';
-      const content = item.content?.toLowerCase() || '';
-      return keywords.every(word => title.includes(word) || content.includes(word));
+      // 입력된 단어들 중 하나라도 제목에 포함되어 있는지 확인
+      return keywords.every(word => title.includes(word));
     });
 
-    if (searchResults) {
-      if (filtered.length === 0) {
-        searchResults.innerHTML = `<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }} <a href="/gsearch"><i class="fa-solid fa-magnifying-glass"></i> Google PSE 추가 검색</a></p>`;
-      } else {
-        searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
-          <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-            <header><h2><a href="${item.url}">${item.title}</a></h2></header>
-            <p>${item.content}</p>
-          </article>`).join('');
-      }
+    // 💡 자동완성 추천어 렌더링 (최대 5~7개 정도가 적당합니다)
+    if (autocompleteFiltered.length > 0) {
+      autocompleteResults.innerHTML = autocompleteFiltered
+        .slice(0, 5) 
+        .map((item) => {
+          // 부트스트랩 클래스(list-group-item)를 활용한 스타일링 예시
+          return `
+            <li class="list-group-item list-group-item-action action-suggest-item" 
+                style="cursor: pointer;" 
+                data-url="${item.url}" 
+                data-title="${item.title}">
+              <i class="fa-solid fa-magnifying-glass me-2 text-muted" style="font-size: 12px;"></i>
+              <strong>${item.title}</strong>
+            </li>
+          `;
+        }).join('');
+    } else {
+      autocompleteResults.innerHTML = '';
+    }
+
+    /**
+     * 본문 전체 검색 및 기존 결과 렌더링 로직 (유지)
+     */
+    const filtered = searchData.filter((item) => {
+      const title = item.title?.toLowerCase() || '';
+      const content = item.content?.toLowerCase() || '';
+      
+      return keywords.every((word) => {
+        return (title.includes(word) || content.includes(word));
+      });
+    });
+
+    if (filtered.length === 0) {
+      searchResults.innerHTML = `
+        <p class="mt-5">
+          {{ site.data.locales[include.lang].search.no_results }} 
+          <a href="/gsearch" style="font-size: 14px !important;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색
+          </a>
+        </p>
+      `;
+      return;
+    }
+
+    const results = filtered.slice(0, 30);
+    searchResults.innerHTML = results.map((item) => {
+      return `
+        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+          <header>
+            <h2><a href="${item.url}">${item.title}</a></h2>
+          </header>
+          <p>${item.content}</p>
+        </article>
+      `;
+    }).join('');
+  });
+
+  /**
+   * [추가된 로직] 자동완성 아이템 클릭 시 바로 해당 페이지로 이동 또는 검색창 입력 채우기
+   */
+  autocompleteResults.addEventListener('click', (e) => {
+    const item = e.target.closest('.action-suggest-item');
+    if (item) {
+      const url = item.getAttribute('data-url');
+      // 선택 1: 클릭하자마자 바로 포스트 페이지로 이동 (추천)
+      window.location.href = url;
+      
+      // 선택 2: 클릭 시 검색창을 채우고 자동완성창을 닫고 싶다면 아래 주석을 사용하세요.
+      /*
+      searchInput.value = item.getAttribute('data-title');
+      autocompleteResults.innerHTML = '';
+      searchInput.dispatchEvent(new Event('input')); // 인풋 이벤트 강제 발생시켜 검색결과 갱신
+      */
     }
   });
-}
 
-// 4. 최초 실행 및 Swup 페이지 전환 시 재연결
-document.addEventListener('DOMContentLoaded', initSearch);
-document.addEventListener('swup:contentReplace', initSearch);
+  // 사용자가 검색창 외에 다른 곳을 클릭하면 자동완성 창 닫기
+  document.addEventListener('click', (e) => {
+    if (!searchInput.contains(e.target) && !autocompleteResults.contains(e.target)) {
+      autocompleteResults.innerHTML = '';
+    }
+  });
+
+  searchInput.focus();
+});
 </script>
