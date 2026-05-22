@@ -9,54 +9,46 @@ nav_exclude: true
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<!-- 이 페이지 전용 ID를 부여합니다 (search-input이 아님!) -->
-<input type="text" id="asearch-page-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
-
-<!-- 이 페이지 전용 결과창 ID -->
-<div id="asearch-page-results" style="margin-top: 20px;"></div>
+<!-- 유니크한 ID 사용 -->
+<input type="text" id="asearch-custom-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+<div id="asearch-custom-results" style="margin-top: 20px;"></div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // 이 페이지의 독립된 ID만 정확히 타겟팅합니다.
-  const searchInput = document.getElementById('asearch-page-input');
-  const searchResults = document.getElementById('asearch-page-results');
-  let searchData = [];
+(function() {
+  const input = document.getElementById('asearch-custom-input');
+  const results = document.getElementById('asearch-custom-results');
+  let data = [];
 
-  // 데이터 로드
+  // 1. 데이터 로드 (독립적으로 실행)
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then((response) => response.json())
-    .then((data) => {
-      searchData = data;
-    });
+    .then(r => r.json())
+    .then(json => { data = json; console.log("데이터 로드 성공:", data.length); })
+    .catch(e => console.error("데이터 로드 실패:", e));
 
-  // 검색 로직
-  searchInput.addEventListener('input', (e) => {
-    const keyword = e.target.value.toLowerCase().trim();
-    if (keyword.length < 2) {
-      searchResults.innerHTML = '';
+  // 2. 이벤트 리스너 (DOM이 준비된 후)
+  input.addEventListener('input', (e) => {
+    const val = e.target.value.toLowerCase().trim();
+    if (val.length < 2) {
+      results.innerHTML = '';
       return;
     }
 
-    const filtered = searchData.filter((item) => {
-      const title = item.title?.toLowerCase() || '';
-      const content = item.content?.toLowerCase() || '';
-      return title.includes(keyword) || content.includes(keyword);
-    });
+    const filtered = data.filter(item => 
+      (item.title && item.title.toLowerCase().includes(val)) || 
+      (item.content && item.content.toLowerCase().includes(val))
+    );
 
     if (filtered.length === 0) {
-      searchResults.innerHTML = '<p>검색 결과가 없습니다.</p>';
+      results.innerHTML = '<p>검색 결과가 없습니다.</p>';
       return;
     }
 
-    // 결과 출력
-    searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
-      <article class="px-1 px-sm-2 px-lg-4 px-xl-0" style="margin-bottom: 20px;">
-        <header>
-          <h2><a href="${item.url}">${item.title}</a></h2>
-        </header>
-        <p>${item.content}</p>
+    results.innerHTML = filtered.slice(0, 30).map(item => `
+      <article style="margin-bottom: 20px;">
+        <h2><a href="${item.url}">${item.title}</a></h2>
+        <p>${item.content.substring(0, 100)}...</p>
       </article>
     `).join('');
   });
-});
+})();
 </script>
