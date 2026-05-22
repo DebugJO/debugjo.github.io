@@ -5,81 +5,74 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
+<!-- 1. 스타일 로드 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
-<style>
-  .asearch-container { padding: 20px; }
-  #debug-log { background: #333; color: #0f0; padding: 10px; font-family: monospace; font-size: 12px; margin-bottom: 10px; border-radius: 4px; }
-  #searchbox { margin-bottom: 20px; min-height: 50px; }
-</style>
 
-<div class="asearch-container">
-  <div id="debug-log">시스템 로그: 스크립트 로드 시작...</div>
-  <div id="searchbox"></div>
+<div class="asearch-container" style="padding: 20px;">
+  <h1 id="status-title">검색 엔진 준비 중...</h1>
+  
+  <!-- 위젯 박스 -->
+  <div id="searchbox" style="margin-bottom: 20px;"></div>
   <div id="hits"></div>
+  <div id="pagination"></div>
 </div>
 
-<!-- 라이브러리 로드 -->
+<!-- 2. 라이브러리 로드 -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
+<!-- 3. 실행 스크립트 (함수로 감싸지 않고 즉시 실행) -->
 <script>
-  // 즉시 실행 함수
-  (function() {
-    var logEl = document.getElementById('debug-log');
-    function writeLog(m) { 
-      logEl.innerText += "\n> " + m; 
-      console.log(m);
+  // 즉시 제목 변경해서 스크립트 작동 여부 확인
+  document.getElementById('status-title').innerText = "알고리아 검색";
+
+  function initSearch() {
+    if (typeof algoliasearch === 'undefined' || typeof instantsearch === 'undefined') {
+      setTimeout(initSearch, 200); // 로드 안됐으면 0.2초 후 다시 시도
+      return;
     }
 
-    writeLog("스크립트 엔진 가동...");
+    try {
+      const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+      const search = instantsearch({
+        indexName: 'devsight',
+        searchClient: searchClient,
+        routing: true
+      });
 
-    // 라이브러리가 로드될 때까지 최대 5초간 확인
-    var checkCount = 0;
-    var initInterval = setInterval(function() {
-      checkCount++;
-      
-      if (typeof algoliasearch !== 'undefined' && typeof instantsearch !== 'undefined') {
-        clearInterval(initInterval);
-        startAlgolia();
-      } else {
-        writeLog("라이브러리 대기 중... (" + checkCount + "/50)");
-        if (checkCount >= 50) {
-          clearInterval(initInterval);
-          writeLog("에러: 라이브러리 로드 실패 (CDN 연결 확인 필요)");
-        }
-      }
-    }, 100);
+      search.addWidgets([
+        instantsearch.widgets.searchBox({
+          container: '#searchbox',
+          placeholder: '검색어를 입력하세요',
+          autofocus: true
+        }),
+        instantsearch.widgets.hits({
+          container: '#hits',
+          templates: {
+            empty: '검색 결과가 없습니다.',
+            item: (hit, { html, components }) => html`
+              <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                <a href="${hit.url}" style="font-size: 18px; color: #0056b2; font-weight: bold; text-decoration: none;">
+                  ${components.Highlight({ hit, attribute: 'hierarchy.lvl0' })}
+                </a>
+                <div style="font-size: 14px; color: #444; margin-top: 5px;">
+                  ${components.Snippet({ hit, attribute: 'content' })}
+                </div>
+              </div>
+            `
+          }
+        }),
+        instantsearch.widgets.pagination({
+          container: '#pagination'
+        })
+      ]);
 
-    function startAlgolia() {
-      try {
-        writeLog("알고리아 초기화 시작...");
-        
-        const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
-        const search = instantsearch({
-          indexName: 'devsight',
-          searchClient: searchClient,
-          routing: true
-        });
-
-        search.addWidgets([
-          instantsearch.widgets.searchBox({
-            container: '#searchbox',
-            placeholder: '검색어를 입력하세요',
-          }),
-          instantsearch.widgets.hits({
-            container: '#hits',
-            templates: {
-              empty: '결과가 없습니다.',
-              item: '<div>검색 결과가 여기에 표시됩니다.</div>'
-            }
-          })
-        ]);
-
-        search.start();
-        writeLog("성공: 모든 위젯이 활성화되었습니다.");
-      } catch (e) {
-        writeLog("실행 에러: " + e.message);
-      }
+      search.start();
+    } catch (err) {
+      document.getElementById('status-title').innerText = "에러 발생: " + err.message;
     }
-  })();
+  }
+
+  // 즉시 실행 시도
+  initSearch();
 </script>
