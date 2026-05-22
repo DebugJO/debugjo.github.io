@@ -29,10 +29,10 @@ nav_exclude: true
 
     index.search(query).then(({ hits }) => {
       hitsContainer.innerHTML = hits.map(hit => {
-        // 데이터 경로를 hierarchy.lvl0으로 수정
-        const title = (hit.hierarchy && hit.hierarchy.lvl0) ? hit.hierarchy.lvl0 : '제목 없음';
+        // 제목을 찾기 위한 우선순위 설정 (데이터 구조가 다양할 수 있으므로 모두 확인)
+        const title = hit.lvl0 || (hit.hierarchy && hit.hierarchy.lvl0) || '제목 없음';
         const content = hit.content ? hit.content.substring(0, 150) + '...' : '';
-        
+
         return `
           <div class="gsc-webResult gsc-result" style="margin-bottom: 12px;">
             <a href="${hit.url}" style="color: #0056b2; font-size: 16px; font-weight: bold; text-decoration: none;">
