@@ -19,26 +19,23 @@
   See: <https://github.com/christian-fei/Simple-Jekyll-Search>
 -->
 
+<!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-
-  // 검색창이 없는 페이지에서는 자동 종료
+  
+  // 검색창이 없는 페이지에서는 에러 방지를 위해 종료
   if (!searchInput) return;
 
-  // 1. 자동완성을 위한 datalist 생성 및 연결
-  let dataList = document.getElementById('search-suggestions');
-  if (!dataList) {
-    dataList = document.createElement('datalist');
-    dataList.id = 'search-suggestions';
-    document.body.appendChild(dataList);
-  }
-  searchInput.setAttribute('list', 'search-suggestions');
-
-  // 2. 데이터 전역 공유 (window.searchData)
+  // 기존 로직 유지 + 데이터 전역 공유
   window.searchData = window.searchData || [];
+  let searchData = window.searchData;
 
   /**
    * search.json preload
@@ -46,72 +43,79 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
     .then((response) => response.json())
     .then((data) => {
-      window.searchData = data;
+      searchData = data;
+      window.searchData = data; // 전역에 데이터 저장
     })
     .catch((err) => {
       console.error('Search load error:', err);
       if (searchResults) {
-        searchResults.innerHTML = '<p class="mt-5">Search data load failed.</p>';
+        searchResults.innerHTML = `
+          <p class="mt-5">
+            Search data load failed.
+          </p>
+        `;
       }
     });
 
   /**
-   * search event listener
+   * search
    */
   searchInput.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
     const keywords = keyword.split(/\s+/);
-    const data = window.searchData;
 
-    // 데이터가 아직 로드되지 않았다면 종료
-    if (data.length === 0) return;
-
-    // A. 자동완성 목록 업데이트 (제목 기준 10개)
-    if (keyword.length >= 2) {
-      const suggestions = data.filter(item => item.title?.toLowerCase().includes(keyword));
-      dataList.innerHTML = suggestions.slice(0, 10)
-        .map(item => `<option value="${item.title}">`).join('');
-    } else {
-      dataList.innerHTML = '';
-    }
-
-    // B. 검색 결과 표시 (2글자 미만일 때 정리)
+    /**
+     * 2글자 제한 (기존 로직 유지)
+     */
     if (keyword.length < 2) {
       if (searchResults) searchResults.innerHTML = '';
       return;
     }
 
-    // C. 필터링 로직 (Title과 Content만 사용)
-    const filtered = data.filter((item) => {
+    /**
+     * filter (기존 로직 유지: Title과 Content만 검색)
+     */
+    const filtered = (window.searchData || searchData).filter((item) => {
       const title = item.title?.toLowerCase() || '';
       const content = item.content?.toLowerCase() || '';
       
       return keywords.every((word) => {
-        return title.includes(word) || content.includes(word);
+        return (title.includes(word) || content.includes(word));
       });
     });
 
-    // D. 결과 렌더링
-    if (searchResults) {
-      if (filtered.length === 0) {
-        searchResults.innerHTML = `
-          <p class="mt-5">
-            {{ site.data.locales[include.lang].search.no_results }} 
-            <a href="/gsearch" style="font-size: 14px !important;">
-              <i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색
-            </a>
-          </p>
-        `;
-      } else {
-        const results = filtered.slice(0, 30);
-        searchResults.innerHTML = results.map((item) => `
-          <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-            <header><h2><a href="${item.url}">${item.title}</a></h2></header>
-            <p>${item.content}</p>
-          </article>
-        `).join('');
-      }
+    /**
+     * render
+     */
+    if (!searchResults) return;
+
+    if (filtered.length === 0) {
+      searchResults.innerHTML = `
+        <p class="mt-5">
+          {{ site.data.locales[include.lang].search.no_results }} 
+          <a href="/gsearch" style="font-size: 14px !important;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색
+          </a>
+        </p>
+      `;
+      return;
     }
+
+    /**
+     * 최대 개수 제한 (30개)
+     */
+    const results = filtered.slice(0, 30);
+
+    searchResults.innerHTML = results.map((item) => {
+      return `
+        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+          <header>
+            <h2><a href="${item.url}">${item.title}</a></h2>
+          </header>
+          <p>${item.content}</p>
+        </article>
+      `;
+    }).join('');
   });
 
   searchInput.focus();
