@@ -11,6 +11,7 @@ nav_exclude: true
 
 <!-- 검색창 -->
 <input type="text" id="algolia-search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+
 <!-- 결과창 -->
 <div id="algolia-search-hits" style="margin-top: 20px;"></div>
 
@@ -18,25 +19,33 @@ nav_exclude: true
 <script>
   const client = algoliasearch('S64I9XLM7R', 'b4be7839927d23267756efbcf9397314');
   const index = client.initIndex('devsight');
+  
   const input = document.getElementById('algolia-search-input');
   const hitsContainer = document.getElementById('algolia-search-hits');
 
   input.addEventListener('input', function() {
     const query = input.value;
-    if (query.length < 2) { hitsContainer.innerHTML = ''; return; }
+    if (query.length < 2) { 
+      hitsContainer.innerHTML = ''; 
+      return; 
+    }
 
     index.search(query).then(({ hits }) => {
-      hitsContainer.innerHTML = hits.map(hit => `
-        <div class="gsc-webResult gsc-result" style="margin-bottom: 12px;">
-          <a href="${hit.url}" style="color: #0056b2; font-size: 16px; font-weight: bold; text-decoration: none;">
-            ${hit.lvl0 || '제목 없음'}
+      hitsContainer.innerHTML = hits.map(hit => {
+        const title = (hit.hierarchy && hit.hierarchy.lvl0) ? hit.hierarchy.lvl0 : (hit.lvl0 || '제목 없음');
+        const content = hit.content ? hit.content.substring(0, 150) + '...' : '';
 
-          </a>
-          <div class="gs-snippet" style="font-size: 14px; color: #444; margin-top: 4px;">
-            ${hit.content ? hit.content.substring(0, 150) + '...' : ''}
+        return `
+          <div class="gsc-webResult gsc-result" style="margin-bottom: 12px;">
+            <a href="${hit.url}" style="color: #0056b2; font-size: 16px; font-weight: bold; text-decoration: none;">
+              ${title}
+            </a>
+            <div class="gs-snippet" style="font-size: 14px; color: #444; margin-top: 4px;">
+              ${content}
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     });
   });
 </script>
