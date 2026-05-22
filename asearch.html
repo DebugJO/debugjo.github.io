@@ -5,49 +5,81 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 1. 스타일 (최소한) -->
+<!-- 1. 스타일 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
+<style>
+  .asearch-container { padding: 20px; font-family: sans-serif; }
+  #searchbox { margin-bottom: 20px; min-height: 50px; border: 1px solid #ccc; border-radius: 8px; padding: 5px; }
+  #hits { min-height: 200px; }
+  #debug-log { background: #f0f0f0; padding: 10px; font-size: 12px; color: red; margin-bottom: 20px; border: 1px solid #ddd; }
+</style>
 
-<div style="padding: 20px;">
-  <h2>알고리아 검색 테스트</h2>
-  
-  <!-- 이 박스들이 화면에 보여야 합니다 -->
-  <div id="searchbox" style="border: 2px solid red; padding: 10px; margin-bottom: 10px;"></div>
-  <div id="hits" style="border: 2px solid blue; padding: 10px;"></div>
+<div class="asearch-container">
+  <h2>검색 시스템 상태 체크</h2>
+  <!-- 상태 메시지를 보여줄 박스 -->
+  <div id="debug-log">상태: 자바스크립트 대기 중...</div>
+
+  <div id="searchbox"></div>
+  <div id="hits"></div>
+  <div id="pagination"></div>
 </div>
 
-<!-- 2. 라이브러리 로드 (순서 중요) -->
+<!-- 2. 라이브러리 로드 -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
-<!-- 3. 스크립트 -->
 <script>
-  // Jekyll과의 충돌을 피하기 위해 가장 단순한 방식으로 작성
-  window.onload = function() {
-    try {
-      const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
-      const search = instantsearch({
-        indexName: 'devsight',
-        searchClient: searchClient,
-      });
-
-      search.addWidgets([
-        instantsearch.widgets.searchBox({
-          container: '#searchbox',
-          placeholder: '여기에 입력이 가능한가요?',
-        }),
-        instantsearch.widgets.hits({
-          container: '#hits',
-          templates: {
-            item: '<div>결과가 여기에 표시됩니다.</div>'
-          }
-        })
-      ]);
-
-      search.start();
-      console.log("알고리아 시작 성공!");
-    } catch (e) {
-      console.error("알고리아 초기화 에러:", e);
+  (function() {
+    const log = document.getElementById('debug-log');
+    
+    function updateLog(msg) {
+      log.innerHTML += "<br> - " + msg;
+      console.log(msg);
     }
-  };
+
+    window.addEventListener('load', function() {
+      updateLog("페이지 로드 완료");
+
+      try {
+        // 라이브러리 로드 확인
+        if (typeof algoliasearch === 'undefined') {
+          updateLog("에러: algoliasearch 라이브러리가 로드되지 않았습니다.");
+          return;
+        }
+        if (typeof instantsearch === 'undefined') {
+          updateLog("에러: instantsearch 라이브러리가 로드되지 않았습니다.");
+          return;
+        }
+
+        updateLog("알고리아 라이브러리 확인됨");
+
+        const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+        const search = instantsearch({
+          indexName: 'devsight',
+          searchClient: searchClient,
+        });
+
+        search.addWidgets([
+          instantsearch.widgets.searchBox({
+            container: '#searchbox',
+            placeholder: '검색어를 입력해 보세요',
+          }),
+          instantsearch.widgets.hits({
+            container: '#hits',
+            templates: {
+              empty: '검색 결과가 없습니다.',
+              item: '<div>결과 항목 렌더링 중...</div>'
+            }
+          })
+        ]);
+
+        search.start();
+        updateLog("알고리아 검색 시작됨 (성공)");
+        log.style.color = "green";
+
+      } catch (e) {
+        updateLog("실행 중 에러 발생: " + e.message);
+      }
+    });
+  })();
 </script>
