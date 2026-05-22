@@ -5,74 +5,58 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- FlexSearch 라이브러리 추가 -->
-<script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.31/dist/flexsearch.bundle.min.js"></script>
-
 <div class="gsearch-top">
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<!-- 검색창 -->
-<input type="text" id="asearch-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
-
-<!-- 자동완성 및 결과창 -->
+<input type="text" id="asearch-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
 <div id="asearch-results" style="margin-top: 20px;"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('asearch-input');
   const resultsContainer = document.getElementById('asearch-results');
-  
-  // FlexSearch 인덱스 초기화 (제목+내용 인덱싱, 자동완성 최적화)
-  const index = new FlexSearch.Document({
-    document: {
-      id: "url",
-      index: ["title", "content"]
-    },
-    tokenize: "forward", // 앞글자부터 매칭하여 자동완성 지원
-    resolution: 9        // 검색 정확도/속도 밸런스
-  });
+  let searchData = [];
 
   // 데이터 로드
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
     .then(response => response.json())
-    .then(data => {
-      // 인덱스에 데이터 추가
-      data.forEach(item => index.add(item));
-      window.searchData = data; // 결과 렌더링을 위해 저장
-    });
+    .then(data => { searchData = data; });
 
   input.addEventListener('input', (e) => {
-    const keyword = e.target.value.trim();
+    const keyword = e.target.value.toLowerCase().trim();
     
+    // 2글자 미만은 무시
     if (keyword.length < 2) {
       resultsContainer.innerHTML = '';
       return;
     }
 
-    // 자동완성 검색 실행 (limit: 10개까지 추천)
-    index.search(keyword, { limit: 10 }).then(results => {
-      if (results.length === 0) {
-        resultsContainer.innerHTML = '<p>결과가 없습니다.</p>';
-        return;
-      }
-
-      // 검색된 URL들에 해당하는 실제 데이터 매칭
-      const matchedItems = results.map(url => window.searchData.find(item => item.url === url));
-
-      resultsContainer.innerHTML = matchedItems.map(item => `
-        <article style="border-bottom: 1px solid #eee; padding: 10px 0;">
-          <header>
-            <h2 style="font-size: 1.2rem; margin: 0;">
-              <a href="${item.url}">${item.title}</a>
-            </h2>
-          </header>
-          <p style="font-size: 0.9rem; color: #666; margin: 5px 0 0 0;">
-            ${item.content.substring(0, 100)}...
-          </p>
-        </article>
-      `).join('');
+    // 님께서 이미 잘 쓰고 계신 filter 로직을 개선
+    // 제목(title)에 키워드가 포함되면 최우선으로 보여줌
+    const filtered = searchData.filter(item => {
+      const title = item.title.toLowerCase();
+      const content = item.content.toLowerCase();
+      return title.includes(keyword) || content.includes(keyword);
     });
+
+    // 결과가 없을 때 처리
+    if (filtered.length === 0) {
+      resultsContainer.innerHTML = '<p>검색 결과가 없습니다.</p>';
+      return;
+    }
+
+    // 결과 렌더링 (최대 10개)
+    resultsContainer.innerHTML = filtered.slice(0, 10).map(item => `
+      <div style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+        <a href="${item.url}" style="font-size: 16px; font-weight: bold; color: #0056b2; text-decoration: none;">
+          ${item.title}
+        </a>
+        <p style="font-size: 14px; color: #555; margin: 5px 0 0 0;">
+          ${item.content.substring(0, 100)}...
+        </p>
+      </div>
+    `).join('');
   });
 });
 </script>
