@@ -5,81 +5,81 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 1. 스타일 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
 <style>
-  .asearch-container { padding: 20px; font-family: sans-serif; }
-  #searchbox { margin-bottom: 20px; min-height: 50px; border: 1px solid #ccc; border-radius: 8px; padding: 5px; }
-  #hits { min-height: 200px; }
-  #debug-log { background: #f0f0f0; padding: 10px; font-size: 12px; color: red; margin-bottom: 20px; border: 1px solid #ddd; }
+  .asearch-container { padding: 20px; }
+  #debug-log { background: #333; color: #0f0; padding: 10px; font-family: monospace; font-size: 12px; margin-bottom: 10px; border-radius: 4px; }
+  #searchbox { margin-bottom: 20px; min-height: 50px; }
 </style>
 
 <div class="asearch-container">
-  <h2>검색 시스템 상태 체크</h2>
-  <!-- 상태 메시지를 보여줄 박스 -->
-  <div id="debug-log">상태: 자바스크립트 대기 중...</div>
-
+  <div id="debug-log">시스템 로그: 스크립트 로드 시작...</div>
   <div id="searchbox"></div>
   <div id="hits"></div>
-  <div id="pagination"></div>
 </div>
 
-<!-- 2. 라이브러리 로드 -->
+<!-- 라이브러리 로드 -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
 <script>
+  // 즉시 실행 함수
   (function() {
-    const log = document.getElementById('debug-log');
-    
-    function updateLog(msg) {
-      log.innerHTML += "<br> - " + msg;
-      console.log(msg);
+    var logEl = document.getElementById('debug-log');
+    function writeLog(m) { 
+      logEl.innerText += "\n> " + m; 
+      console.log(m);
     }
 
-    window.addEventListener('load', function() {
-      updateLog("페이지 로드 완료");
+    writeLog("스크립트 엔진 가동...");
 
+    // 라이브러리가 로드될 때까지 최대 5초간 확인
+    var checkCount = 0;
+    var initInterval = setInterval(function() {
+      checkCount++;
+      
+      if (typeof algoliasearch !== 'undefined' && typeof instantsearch !== 'undefined') {
+        clearInterval(initInterval);
+        startAlgolia();
+      } else {
+        writeLog("라이브러리 대기 중... (" + checkCount + "/50)");
+        if (checkCount >= 50) {
+          clearInterval(initInterval);
+          writeLog("에러: 라이브러리 로드 실패 (CDN 연결 확인 필요)");
+        }
+      }
+    }, 100);
+
+    function startAlgolia() {
       try {
-        // 라이브러리 로드 확인
-        if (typeof algoliasearch === 'undefined') {
-          updateLog("에러: algoliasearch 라이브러리가 로드되지 않았습니다.");
-          return;
-        }
-        if (typeof instantsearch === 'undefined') {
-          updateLog("에러: instantsearch 라이브러리가 로드되지 않았습니다.");
-          return;
-        }
-
-        updateLog("알고리아 라이브러리 확인됨");
-
+        writeLog("알고리아 초기화 시작...");
+        
         const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
         const search = instantsearch({
           indexName: 'devsight',
           searchClient: searchClient,
+          routing: true
         });
 
         search.addWidgets([
           instantsearch.widgets.searchBox({
             container: '#searchbox',
-            placeholder: '검색어를 입력해 보세요',
+            placeholder: '검색어를 입력하세요',
           }),
           instantsearch.widgets.hits({
             container: '#hits',
             templates: {
-              empty: '검색 결과가 없습니다.',
-              item: '<div>결과 항목 렌더링 중...</div>'
+              empty: '결과가 없습니다.',
+              item: '<div>검색 결과가 여기에 표시됩니다.</div>'
             }
           })
         ]);
 
         search.start();
-        updateLog("알고리아 검색 시작됨 (성공)");
-        log.style.color = "green";
-
+        writeLog("성공: 모든 위젯이 활성화되었습니다.");
       } catch (e) {
-        updateLog("실행 중 에러 발생: " + e.message);
+        writeLog("실행 에러: " + e.message);
       }
-    });
+    }
   })();
 </script>
