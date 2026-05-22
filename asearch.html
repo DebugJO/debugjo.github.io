@@ -5,79 +5,53 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
+<!-- 기존 로더가 이 ID를 찾도록 똑같이 맞춥니다 -->
 <div class="gsearch-top">
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<!-- 기존 레이아웃과 완전히 분리된 ID를 사용합니다 -->
-<input type="text" id="asearch-isolated-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
-<div id="asearch-isolated-results" style="margin-top: 20px;"></div>
+<input type="text" id="search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+<div id="search-results" style="margin-top: 20px;"></div>
 
+<!-- 님께서 "잘 돌아간다"고 하신 코드 그대로 복사 -->
 <script>
-(function() {
-  // 스크립트가 로드되자마자 실행되어 기존 스크립트와 충돌하지 않도록 합니다.
-  const initIsolatedSearch = () => {
-    const input = document.getElementById('asearch-isolated-input');
-    const container = document.getElementById('asearch-isolated-results');
-    
-    if (!input || !container) {
-      console.error("검색창 요소를 찾을 수 없습니다.");
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  let searchData = [];
+
+  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+    .then((response) => response.json())
+    .then((data) => { searchData = data; })
+    .catch((err) => { console.error('Search load error:', err); });
+
+  searchInput.addEventListener('input', (e) => {
+    const keyword = e.target.value.toLowerCase().trim();
+    const keywords = keyword.split(/\s+/);
+    if (keyword.length < 2) {
+      searchResults.innerHTML = '';
       return;
     }
 
-    let searchData = [];
-
-    // 데이터를 가져옵니다.
-    fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-      .then(response => response.json())
-      .then(data => {
-        searchData = data;
-        console.log("데이터 로드 완료. 총 개수:", searchData.length);
-      })
-      .catch(err => {
-        container.innerHTML = '<p>검색 데이터를 불러오는데 실패했습니다.</p>';
-      });
-
-    // 검색 로직 (입력할 때마다 실시간 필터링)
-    input.addEventListener('input', (e) => {
-      const keyword = e.target.value.toLowerCase().trim();
-
-      if (keyword.length < 2) {
-        container.innerHTML = '';
-        return;
-      }
-
-      const filtered = searchData.filter((item) => {
-        const title = item.title?.toLowerCase() || '';
-        const content = item.content?.toLowerCase() || '';
-        return title.includes(keyword) || content.includes(keyword);
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = '<p>검색 결과가 없습니다.</p>';
-        return;
-      }
-
-      // 결과 렌더링
-      container.innerHTML = filtered.slice(0, 30).map((item) => `
-        <article class="px-1 px-sm-2 px-lg-4 px-xl-0" style="margin-bottom: 20px;">
-          <header>
-            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">
-              <a href="${item.url}">${item.title}</a>
-            </h2>
-          </header>
-          <p style="margin: 0;">${item.content.substring(0, 150)}...</p>
-        </article>
-      `).join('');
+    const filtered = searchData.filter((item) => {
+      const title = item.title?.toLowerCase() || '';
+      const content = item.content?.toLowerCase() || '';
+      return keywords.every((word) => title.includes(word) || content.includes(word));
     });
-  };
 
-  // 기존 스크립트가 DOMContentLoaded를 점유하고 있을 수 있으므로, 
-  // 페이지 로드 상태를 확인하여 초기화합니다.
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initIsolatedSearch);
-  } else {
-    initIsolatedSearch();
-  }
-})();
+    if (filtered.length === 0) {
+      searchResults.innerHTML = '<p class="mt-5">검색 결과가 없습니다.</p>';
+      return;
+    }
+
+    searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
+      <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+        <header>
+          <h2><a href="${item.url}">${item.title}</a></h2>
+        </header>
+        <p>${item.content}</p>
+      </article>
+    `).join('');
+  });
+});
 </script>
