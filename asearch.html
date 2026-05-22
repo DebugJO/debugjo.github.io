@@ -5,139 +5,49 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 1. 알고리아 스타일시트 -->
+<!-- 1. 스타일 (최소한) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
 
-<style>
-  .asearch-container {
-    max-width: 100%;
-    margin-top: 20px;
-    font-family: "Pretendard Variable", "Malgun Gothic", sans-serif;
-  }
-
-  /* 검색창 영역 강제 확보 */
-  #searchbox {
-    margin-bottom: 20px;
-    min-height: 50px;
-  }
-
-  /* 입력창 스타일 */
-  .ais-SearchBox-input {
-    border-radius: 8px !important;
-    border: 1px solid #ccc !important;
-    padding-left: 45px !important;
-    height: 48px !important;
-    background-color: #fff !important;
-    color: #333 !important;
-  }
-
-  /* 검색 결과 리스트 */
-  .ais-Hits-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .ais-Hits-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-    background: transparent !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-  }
-
-  .search-hit-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #0056b2;
-    text-decoration: none;
-  }
-
-  .search-hit-snippet {
-    font-size: 14px;
-    color: #444;
-    margin-top: 5px;
-    line-height: 1.5;
-  }
-
-  /* 다크 모드 대응 */
-  html[data-mode="dark"] .ais-SearchBox-input {
-    background-color: #1b1b1e !important;
-    border-color: #444 !important;
-    color: #eee !important;
-  }
-  html[data-mode="dark"] .search-hit-title { color: #73a4e6 !important; }
-  html[data-mode="dark"] .search-hit-snippet { color: #b0b0b0 !important; }
-  html[data-mode="dark"] .ais-Hits-item { border-bottom-color: #333; }
-</style>
-
-<div class="asearch-container">
-  <div class="asearch-top">
-    <h1><i class="fa-solid fa-magnifying-glass"></i> Site Search</h1>
-  </div>
-
-  <!-- 위젯이 렌더링될 실제 위치 -->
-  <div id="searchbox"></div>
-  <div id="hits"></div>
-  <div id="pagination"></div>
+<div style="padding: 20px;">
+  <h2>알고리아 검색 테스트</h2>
+  
+  <!-- 이 박스들이 화면에 보여야 합니다 -->
+  <div id="searchbox" style="border: 2px solid red; padding: 10px; margin-bottom: 10px;"></div>
+  <div id="hits" style="border: 2px solid blue; padding: 10px;"></div>
 </div>
 
-<!-- 2. 알고리아 필수 라이브러리 -->
+<!-- 2. 라이브러리 로드 (순서 중요) -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
-<!-- 3. Jekyll이 JavaScript 템플릿 문법(${...})을 건드리지 못하게 raw 태그로 감쌉니다. -->
-{% raw %}
+<!-- 3. 스크립트 -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 초기화 확인용 로그
-    console.log("Algolia Search Initializing...");
+  // Jekyll과의 충돌을 피하기 위해 가장 단순한 방식으로 작성
+  window.onload = function() {
+    try {
+      const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+      const search = instantsearch({
+        indexName: 'devsight',
+        searchClient: searchClient,
+      });
 
-    const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+      search.addWidgets([
+        instantsearch.widgets.searchBox({
+          container: '#searchbox',
+          placeholder: '여기에 입력이 가능한가요?',
+        }),
+        instantsearch.widgets.hits({
+          container: '#hits',
+          templates: {
+            item: '<div>결과가 여기에 표시됩니다.</div>'
+          }
+        })
+      ]);
 
-    const search = instantsearch({
-      indexName: 'devsight',
-      searchClient,
-      routing: true,
-    });
-
-    search.addWidgets([
-      // 검색창 위젯
-      instantsearch.widgets.searchBox({
-        container: '#searchbox',
-        placeholder: '검색어를 입력하세요...',
-        autofocus: true,
-      }),
-
-      // 결과창 위젯
-      instantsearch.widgets.hits({
-        container: '#hits',
-        templates: {
-          empty: '<div style="padding:20px;">검색 결과가 없습니다.</div>',
-          item(hit, { html, components }) {
-            return html`
-              <div>
-                <a href="${hit.url}" class="search-hit-title">
-                  ${components.Highlight({ hit, attribute: 'hierarchy.lvl0' })}
-                </a>
-                <div class="search-hit-snippet">
-                  ${components.Snippet({ hit, attribute: 'content' })}
-                </div>
-                <div style="font-size:12px; color:gray;">${hit.url}</div>
-              </div>
-            `;
-          },
-        },
-      }),
-
-      // 페이지네이션
-      instantsearch.widgets.pagination({
-        container: '#pagination',
-      }),
-    ]);
-
-    search.start();
-    console.log("Algolia Search Started!");
-  });
+      search.start();
+      console.log("알고리아 시작 성공!");
+    } catch (e) {
+      console.error("알고리아 초기화 에러:", e);
+    }
+  };
 </script>
-{% endraw %}
