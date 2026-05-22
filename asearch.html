@@ -9,53 +9,53 @@ nav_exclude: true
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<input type="text" id="asearch-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
-<div id="asearch-results" style="margin-top: 20px;"></div>
+<!-- 이 페이지 전용 ID를 부여합니다 (search-input이 아님!) -->
+<input type="text" id="asearch-page-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+
+<!-- 이 페이지 전용 결과창 ID -->
+<div id="asearch-page-results" style="margin-top: 20px;"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const input = document.getElementById('asearch-input');
-  const resultsContainer = document.getElementById('asearch-results');
+  // 이 페이지의 독립된 ID만 정확히 타겟팅합니다.
+  const searchInput = document.getElementById('asearch-page-input');
+  const searchResults = document.getElementById('asearch-page-results');
   let searchData = [];
 
   // 데이터 로드
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then(response => response.json())
-    .then(data => { searchData = data; });
+    .then((response) => response.json())
+    .then((data) => {
+      searchData = data;
+    });
 
-  input.addEventListener('input', (e) => {
+  // 검색 로직
+  searchInput.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
-    
-    // 2글자 미만은 무시
     if (keyword.length < 2) {
-      resultsContainer.innerHTML = '';
+      searchResults.innerHTML = '';
       return;
     }
 
-    // 님께서 이미 잘 쓰고 계신 filter 로직을 개선
-    // 제목(title)에 키워드가 포함되면 최우선으로 보여줌
-    const filtered = searchData.filter(item => {
-      const title = item.title.toLowerCase();
-      const content = item.content.toLowerCase();
+    const filtered = searchData.filter((item) => {
+      const title = item.title?.toLowerCase() || '';
+      const content = item.content?.toLowerCase() || '';
       return title.includes(keyword) || content.includes(keyword);
     });
 
-    // 결과가 없을 때 처리
     if (filtered.length === 0) {
-      resultsContainer.innerHTML = '<p>검색 결과가 없습니다.</p>';
+      searchResults.innerHTML = '<p>검색 결과가 없습니다.</p>';
       return;
     }
 
-    // 결과 렌더링 (최대 10개)
-    resultsContainer.innerHTML = filtered.slice(0, 10).map(item => `
-      <div style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-        <a href="${item.url}" style="font-size: 16px; font-weight: bold; color: #0056b2; text-decoration: none;">
-          ${item.title}
-        </a>
-        <p style="font-size: 14px; color: #555; margin: 5px 0 0 0;">
-          ${item.content.substring(0, 100)}...
-        </p>
-      </div>
+    // 결과 출력
+    searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
+      <article class="px-1 px-sm-2 px-lg-4 px-xl-0" style="margin-bottom: 20px;">
+        <header>
+          <h2><a href="${item.url}">${item.title}</a></h2>
+        </header>
+        <p>${item.content}</p>
+      </article>
     `).join('');
   });
 });
