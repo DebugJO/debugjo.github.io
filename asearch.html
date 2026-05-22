@@ -1,51 +1,43 @@
 ---
 layout: default
-title: "Algolia Search"
+title: "Search"
 permalink: /asearch/
 nav_exclude: true
 ---
+
+<!-- 1. 필요한 스타일과 스크립트 불러오기 (CDN) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
 
 <div class="gsearch-top">
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<!-- 검색창 -->
-<input type="text" id="algolia-search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+<!-- 2. 자동완성 적용할 입력창 -->
+<input type="text" id="autocomplete-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px;" />
 
-<!-- 결과창 -->
-<div id="algolia-search-hits" style="margin-top: 20px;"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
 <script>
-  const client = algoliasearch('S64I9XLM7R', 'b4be7839927d23267756efbcf9397314');
-  const index = client.initIndex('devsight');
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('autocomplete-input');
   
-  const input = document.getElementById('algolia-search-input');
-  const hitsContainer = document.getElementById('algolia-search-hits');
+  // 3. search.json에서 제목들을 추출하여 자동완성 목록으로 만들기
+  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+    .then(response => response.json())
+    .then(data => {
+      const titles = data.map(item => item.title);
+      
+      // 4. Awesomplete 자동완성 인스턴스 생성
+      const awesomplete = new Awesomplete(input, {
+        list: titles,
+        minChars: 2 // 2글자 이상 입력 시 자동완성 활성화
+      });
 
-  input.addEventListener('input', function() {
-    const query = input.value;
-    if (query.length < 2) { 
-      hitsContainer.innerHTML = ''; 
-      return; 
-    }
-
-    index.search(query).then(({ hits }) => {
-      hitsContainer.innerHTML = hits.map(hit => {
-        const title = (hit.hierarchy && hit.hierarchy.lvl0) ? hit.hierarchy.lvl0 : (hit.lvl0 || '제목 없음');
-        const content = hit.content ? hit.content.substring(0, 150) + '...' : '';
-
-        return `
-          <div class="gsc-webResult gsc-result" style="margin-bottom: 12px;">
-            <a href="${hit.url}" style="color: #0056b2; font-size: 16px; font-weight: bold; text-decoration: none;">
-              ${title}
-            </a>
-            <div class="gs-snippet" style="font-size: 14px; color: #444; margin-top: 4px;">
-              ${content}
-            </div>
-          </div>
-        `;
-      }).join('');
+      // 5. 선택했을 때 해당 URL로 이동
+      input.addEventListener('awesomplete-selectcomplete', (e) => {
+        const selectedTitle = e.text.value;
+        const target = data.find(item => item.title === selectedTitle);
+        if (target) window.location.href = target.url;
+      });
     });
-  });
+});
 </script>
