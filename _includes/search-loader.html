@@ -19,107 +19,68 @@
   See: <https://github.com/christian-fei/Simple-Jekyll-Search>
 -->
 
-<!--
-  Jekyll Simple Search loader
-  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
--->
-
-<!--
-  Jekyll Simple Search loader
-  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
--->
-
+<!-- search-loader.html -->
 <script>
-// 핵심: 데이터가 로드되면 무조건 전역 변수에 저장해서 다른 페이지와 공유
-window.searchData = window.searchData || [];
-
 document.addEventListener('DOMContentLoaded', () => {
-
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-
-  // 검색창 없는 페이지 에러 방지
+  
   if (!searchInput) return;
 
-  let searchData = [];
+  // 전역 변수 초기화 (이미 로드되어 있다면 재사용)
+  window.searchData = window.searchData || [];
 
-  /**
-   * search.json preload
-   */
-  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then((response) => response.json())
-    .then((data) => {
-      searchData = data;
-      window.searchData = data; // 이 부분이 핵심입니다.
-    })
-    .catch((err) => {
-      console.error('Search load error:', err);
-      if (searchResults) {
-        searchResults.innerHTML = '<p class="mt-5">Search data load failed.</p>';
-      }
-    });
+  // 데이터 로드 함수
+  const loadSearchData = () => {
+    if (window.searchData.length > 0) return; // 이미 있으면 패스
 
-  /**
-   * search
-   */
+    fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+      .then(res => res.json())
+      .then(data => {
+        window.searchData = data;
+      })
+      .catch(err => console.error('Search data load failed', err));
+  };
+
+  // 검색창에 포커스 되거나 입력할 때 데이터 로드 시도
+  searchInput.addEventListener('focus', loadSearchData, { once: true });
+
   searchInput.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
-    const keywords = keyword.split(/\s+/);
-
-    /**
-     * 2글자 제한
-     */
+    
+    // 1글자도 검색되게 하려면 여기서 < 1 로 수정하세요.
+    // 님의 기존 의도대로 2글자 제한을 유지했습니다.
     if (keyword.length < 2) {
       if (searchResults) searchResults.innerHTML = '';
       return;
     }
 
-    /**
-     * filter
-     */
-    const filtered = searchData.filter((item) => {
+    const keywords = keyword.split(/\s+/);
+    
+    // 전역 데이터 활용
+    const filtered = (window.searchData || []).filter((item) => {
       const title = item.title?.toLowerCase() || '';
       const content = item.content?.toLowerCase() || '';
-      
-      return keywords.every((word) => {
-        return (title.includes(word) || content.includes(word));
-      });
+      return keywords.every(word => title.includes(word) || content.includes(word));
     });
 
-    /**
-     * render
-     */
     if (!searchResults) return;
 
     if (filtered.length === 0) {
       searchResults.innerHTML = `
         <p class="mt-5">
-          {{ site.data.locales[include.lang].search.no_results }} 
-          <a href="/gsearch" style="font-size: 14px !important;">
-            <i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색
-          </a>
+          {{ site.data.locales[include.lang].search.no_results }}
         </p>
       `;
       return;
     }
 
-    /**
-     * 최대 개수 제한
-     */
-    const results = filtered.slice(0, 30);
-
-    searchResults.innerHTML = results.map((item) => {
-      return `
-        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-          <header>
-            <h2><a href="${item.url}">${item.title}</a></h2>
-          </header>
-          <p>${item.content}</p>
-        </article>
-      `;
-    }).join('');
+    searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
+      <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+        <header><h2><a href="${item.url}">${item.title}</a></h2></header>
+        <p>${item.content}</p>
+      </article>
+    `).join('');
   });
-
-  searchInput.focus();
 });
 </script>
