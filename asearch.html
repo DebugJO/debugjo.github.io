@@ -5,74 +5,82 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 1. 스타일 로드 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
 
-<div class="asearch-container" style="padding: 20px;">
-  <h1 id="status-title">검색 엔진 준비 중...</h1>
-  
-  <!-- 위젯 박스 -->
-  <div id="searchbox" style="margin-bottom: 20px;"></div>
+<div class="asearch-container" style="padding: 20px; min-height: 80vh;">
+  <h1 id="algolia-status">Site Search</h1>
+  <div id="searchbox" style="margin-bottom: 20px; min-height: 50px;"></div>
   <div id="hits"></div>
   <div id="pagination"></div>
 </div>
 
-<!-- 2. 라이브러리 로드 -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
-<!-- 3. 실행 스크립트 (함수로 감싸지 않고 즉시 실행) -->
+{% raw %}
 <script>
-  // 즉시 제목 변경해서 스크립트 작동 여부 확인
-  document.getElementById('status-title').innerText = "알고리아 검색";
+  // 이 함수가 실행되는지 확인하기 위해 즉시 제목을 바꿉니다.
+  (function init() {
+    var status = document.getElementById('algolia-status');
+    if (status) status.innerText = "Search Loading...";
 
-  function initSearch() {
-    if (typeof algoliasearch === 'undefined' || typeof instantsearch === 'undefined') {
-      setTimeout(initSearch, 200); // 로드 안됐으면 0.2초 후 다시 시도
-      return;
-    }
+    // 라이브러리 로드 대기 및 실행
+    var retryCount = 0;
+    var starter = setInterval(function() {
+      retryCount++;
+      if (typeof algoliasearch !== 'undefined' && typeof instantsearch !== 'undefined') {
+        clearInterval(starter);
+        runAlgolia();
+      } 
+      if (retryCount > 50) {
+        clearInterval(starter);
+        if (status) status.innerText = "Load Error (CDN)";
+      }
+    }, 100);
 
-    try {
-      const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
-      const search = instantsearch({
-        indexName: 'devsight',
-        searchClient: searchClient,
-        routing: true
-      });
+    function runAlgolia() {
+      try {
+        const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+        const search = instantsearch({
+          indexName: 'devsight',
+          searchClient: searchClient,
+          routing: true
+        });
 
-      search.addWidgets([
-        instantsearch.widgets.searchBox({
-          container: '#searchbox',
-          placeholder: '검색어를 입력하세요',
-          autofocus: true
-        }),
-        instantsearch.widgets.hits({
-          container: '#hits',
-          templates: {
-            empty: '검색 결과가 없습니다.',
-            item: (hit, { html, components }) => html`
-              <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                <a href="${hit.url}" style="font-size: 18px; color: #0056b2; font-weight: bold; text-decoration: none;">
-                  ${components.Highlight({ hit, attribute: 'hierarchy.lvl0' })}
-                </a>
-                <div style="font-size: 14px; color: #444; margin-top: 5px;">
-                  ${components.Snippet({ hit, attribute: 'content' })}
+        search.addWidgets([
+          instantsearch.widgets.searchBox({
+            container: '#searchbox',
+            placeholder: '검색어를 입력하세요',
+            autofocus: true
+          }),
+          instantsearch.widgets.hits({
+            container: '#hits',
+            templates: {
+              empty: '<div style="padding:20px;">검색 결과가 없습니다.</div>',
+              item: (hit, { html, components }) => html`
+                <div style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                  <a href="${hit.url}" style="font-size: 18px; color: #0056b2; font-weight: bold; text-decoration: none;">
+                    ${components.Highlight({ hit, attribute: 'hierarchy.lvl0' })}
+                  </a>
+                  <div style="font-size: 14px; color: #444; margin-top: 8px; line-height: 1.6;">
+                    ${components.Snippet({ hit, attribute: 'content' })}
+                  </div>
+                  <div style="font-size: 12px; color: #008000; margin-top: 5px;">${hit.url}</div>
                 </div>
-              </div>
-            `
-          }
-        }),
-        instantsearch.widgets.pagination({
-          container: '#pagination'
-        })
-      ]);
+              `
+            }
+          }),
+          instantsearch.widgets.pagination({
+            container: '#pagination'
+          })
+        ]);
 
-      search.start();
-    } catch (err) {
-      document.getElementById('status-title').innerText = "에러 발생: " + err.message;
+        search.start();
+        if (status) status.innerText = "Site Search";
+      } catch (e) {
+        if (status) status.innerText = "Error: " + e.message;
+      }
     }
-  }
-
-  // 즉시 실행 시도
-  initSearch();
+  })();
 </script>
+{% endraw %}
