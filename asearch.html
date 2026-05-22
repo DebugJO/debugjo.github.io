@@ -5,124 +5,366 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- FlexSearch 라이브러리 (최신 번들) -->
+<!-- FlexSearch -->
 <script src="https://cdn.jsdelivr.net/gh/nextapps-de/flexsearch@0.7.43/dist/flexsearch.bundle.js"></script>
 
-<div class="px-1 px-sm-2 px-lg-4 px-xl-0 mt-5">
-  <input type="text" id="my-search-input" placeholder="검색어를 입력하세요..." 
-         style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid var(--search-border-color); background: var(--card-bg); color: var(--text-color);">
-</div>
+<div class="px-1 px-sm-2 px-lg-4 px-xl-0 mt-5"
+     style="position: relative;">
 
-<ul id="search-autocomplete" style="position: absolute; width: calc(100% - 30px); background: var(--card-bg); border: 1px solid var(--search-border-color); border-radius: 0 0 10px 10px; z-index: 9999; list-style: none; padding: 0; margin: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: none;"></ul>
+  <input
+    type="text"
+    id="my-search-input"
+    placeholder="검색어를 입력하세요..."
+    autocomplete="off"
+    style="
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      border: 1px solid var(--search-border-color);
+      background: var(--card-bg);
+      color: var(--text-color);
+    "
+  >
+
+  <ul
+    id="search-autocomplete"
+    style="
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--search-border-color);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      z-index: 9999;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      display: none;
+      overflow: hidden;
+    "
+  ></ul>
+
+</div>
 
 <div id="main-results" class="mt-4"></div>
 
 <script>
-window.initSearchFunctionality = function() {
 
-  const searchInput = document.getElementById('my-search-input');
-  if (!searchInput) return;
+window.initSearchFunctionality = function () {
 
-  const searchResults = document.getElementById('main-results');
+  const searchInput =
+    document.getElementById('my-search-input');
 
-  let autoMenu = document.getElementById('search-autocomplete');
+  const searchResults =
+    document.getElementById('main-results');
 
-  if (autoMenu) autoMenu.remove();
+  const autoMenu =
+    document.getElementById('search-autocomplete');
 
-  autoMenu = document.createElement('ul');
+  if (!searchInput || !searchResults || !autoMenu) {
+    return;
+  }
 
-  autoMenu.id = 'search-autocomplete';
+  /**
+   * 중복 이벤트 방지
+   */
+  if (searchInput.dataset.initialized === 'true') {
+    return;
+  }
 
-  autoMenu.style.cssText = `
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: var(--card-bg);
-    border: 1px solid var(--search-border-color);
-    border-radius: 0 0 10px 10px;
-    z-index: 9999;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    display: none;
-  `;
-
-  searchInput.parentNode.style.position = 'relative';
-  searchInput.parentNode.appendChild(autoMenu);
+  searchInput.dataset.initialized = 'true';
 
   let searchData = [];
 
+  /**
+   * escape html
+   */
+  function escapeHtml(text) {
+
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  /**
+   * excerpt 생성
+   */
+  function createExcerpt(content, limit = 180) {
+
+    if (!content) return '';
+
+    return content
+
+      // html 제거
+      .replace(/<[^>]*>/g, ' ')
+
+      // markdown 제거
+      .replace(/[#>*`\[\]\(\)\-\!\|]/g, ' ')
+
+      // 코드블럭 제거
+      .replace(/```[\s\S]*?```/g, ' ')
+
+      // 여러 공백 정리
+      .replace(/\s+/g, ' ')
+
+      .trim()
+
+      .substring(0, limit);
+  }
+
+  /**
+   * search.json preload
+   */
   fetch('/assets/js/data/search.json')
-    .then(r => r.json())
-    .then(data => {
-      searchData = data;
+
+    .then((response) => {
+
+      if (!response.ok) {
+        throw new Error('search.json load failed');
+      }
+
+      return response.json();
+    })
+
+    .then((data) => {
+
+      searchData = data || [];
+    })
+
+    .catch((err) => {
+
+      console.error(err);
+
+      searchResults.innerHTML = `
+        <p class="mt-5">
+          Search data load failed.
+        </p>
+      `;
     });
 
-  const newSearchInput = searchInput.cloneNode(true);
+  /**
+   * 검색 이벤트
+   */
+  searchInput.addEventListener('input', (e) => {
 
-  searchInput.parentNode.replaceChild(newSearchInput, searchInput);
-
-  newSearchInput.addEventListener('input', (e) => {
-
-    const keyword = e.target.value.toLowerCase().trim();
+    const keyword =
+      e.target.value
+        .toLowerCase()
+        .trim();
 
     autoMenu.innerHTML = '';
     autoMenu.style.display = 'none';
 
+    /**
+     * 최소 길이
+     */
     if (keyword.length < 2) {
+
       searchResults.innerHTML = '';
+
       return;
     }
 
-    const filtered = searchData.filter(item =>
-      item.title?.toLowerCase().includes(keyword) ||
-      item.content?.toLowerCase().includes(keyword)
-    );
+    /**
+     * 다중 키워드
+     */
+    const keywords =
+      keyword.split(/\s+/);
 
-    const suggestions = filtered.slice(0, 5);
+    /**
+     * filter
+     */
+    const filtered =
+      searchData.filter((item) => {
+
+        const title =
+          item.title?.toLowerCase() || '';
+
+        const content =
+          item.content?.toLowerCase() || '';
+
+        return keywords.every((word) => {
+
+          return (
+            title.includes(word) ||
+            content.includes(word)
+          );
+        });
+      });
+
+    /**
+     * 자동완성
+     */
+    const suggestions =
+      filtered.slice(0, 5);
 
     if (suggestions.length > 0) {
 
-      autoMenu.innerHTML = suggestions.map(item => `
-        <li style="padding:10px; cursor:pointer; border-bottom:1px solid var(--search-border-color);">
-          <a href="${item.url}" style="text-decoration:none; color:var(--text-color); font-size:14px;">
-            ${item.title}
-          </a>
-        </li>
-      `).join('');
+      autoMenu.innerHTML =
+        suggestions.map((item) => {
+
+          const title =
+            escapeHtml(item.title || '');
+
+          const excerpt =
+            escapeHtml(
+              createExcerpt(item.content, 60)
+            );
+
+          return `
+            <li
+              style="
+                border-bottom: 1px solid var(--search-border-color);
+              "
+            >
+
+              <a
+                href="${item.url}"
+                style="
+                  display:block;
+                  padding:12px;
+                  text-decoration:none;
+                  color:var(--text-color);
+                "
+              >
+
+                <div
+                  style="
+                    font-size:14px;
+                    font-weight:600;
+                    margin-bottom:4px;
+                  "
+                >
+                  ${title}
+                </div>
+
+                <div
+                  style="
+                    font-size:12px;
+                    opacity:0.7;
+                    line-height:1.4;
+                  "
+                >
+                  ${excerpt}...
+                </div>
+
+              </a>
+
+            </li>
+          `;
+        }).join('');
 
       autoMenu.style.display = 'block';
     }
 
+    /**
+     * 결과 없음
+     */
     if (filtered.length === 0) {
 
-      searchResults.innerHTML = `<p class="mt-5">No results found.</p>`;
+      searchResults.innerHTML = `
+        <p class="mt-5">
+          No results found.
+        </p>
+      `;
 
-    } else {
-
-      searchResults.innerHTML = filtered.slice(0, 30).map(item => `
-        <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-          <header>
-            <h2><a href="${item.url}">${item.title}</a></h2>
-          </header>
-          <p>${item.content}</p>
-        </article>
-      `).join('');
+      return;
     }
+
+    /**
+     * 결과 렌더링
+     */
+    const results =
+      filtered.slice(0, 30);
+
+    searchResults.innerHTML =
+      results.map((item) => {
+
+        const title =
+          escapeHtml(item.title || '');
+
+        const excerpt =
+          escapeHtml(
+            createExcerpt(item.content)
+          );
+
+        return `
+          <article class="px-1 px-sm-2 px-lg-4 px-xl-0 mb-5">
+
+            <header>
+
+              <h2 style="margin-bottom:10px;">
+
+                <a href="${item.url}">
+                  ${title}
+                </a>
+
+              </h2>
+
+            </header>
+
+            <p
+              style="
+                line-height:1.7;
+                opacity:0.85;
+              "
+            >
+              ${excerpt}...
+            </p>
+
+          </article>
+        `;
+      }).join('');
   });
 
+  /**
+   * 외부 클릭 시 자동완성 닫기
+   */
   document.addEventListener('click', (e) => {
 
     if (
-      !newSearchInput.contains(e.target) &&
+      !searchInput.contains(e.target) &&
       !autoMenu.contains(e.target)
     ) {
+
       autoMenu.style.display = 'none';
     }
   });
+
+  /**
+   * focus 시 자동완성 재오픈
+   */
+  searchInput.addEventListener('focus', () => {
+
+    if (autoMenu.innerHTML.trim() !== '') {
+      autoMenu.style.display = 'block';
+    }
+  });
+
+  /**
+   * autofocus
+   */
+  searchInput.focus();
 };
 
+/**
+ * 최초 실행
+ */
 window.initSearchFunctionality();
+
+/**
+ * Swup 대응
+ */
+document.addEventListener('swup:contentReplaced', () => {
+
+  window.initSearchFunctionality();
+});
+
 </script>
