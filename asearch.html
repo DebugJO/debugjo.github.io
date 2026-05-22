@@ -5,39 +5,74 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 1. 필요한 스타일과 스크립트 불러오기 (CDN) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+<!-- FlexSearch 라이브러리 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.31/dist/flexsearch.bundle.min.js"></script>
 
 <div class="gsearch-top">
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<!-- 2. 자동완성 적용할 입력창 -->
-<input type="text" id="autocomplete-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px;" />
+<!-- 검색창 -->
+<input type="text" id="asearch-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+
+<!-- 자동완성 및 결과창 -->
+<div id="asearch-results" style="margin-top: 20px;"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const input = document.getElementById('autocomplete-input');
+  const input = document.getElementById('asearch-input');
+  const resultsContainer = document.getElementById('asearch-results');
   
-  // 3. search.json에서 제목들을 추출하여 자동완성 목록으로 만들기
+  // FlexSearch 인덱스 초기화 (제목+내용 인덱싱, 자동완성 최적화)
+  const index = new FlexSearch.Document({
+    document: {
+      id: "url",
+      index: ["title", "content"]
+    },
+    tokenize: "forward", // 앞글자부터 매칭하여 자동완성 지원
+    resolution: 9        // 검색 정확도/속도 밸런스
+  });
+
+  // 데이터 로드
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
     .then(response => response.json())
     .then(data => {
-      const titles = data.map(item => item.title);
-      
-      // 4. Awesomplete 자동완성 인스턴스 생성
-      const awesomplete = new Awesomplete(input, {
-        list: titles,
-        minChars: 2 // 2글자 이상 입력 시 자동완성 활성화
-      });
-
-      // 5. 선택했을 때 해당 URL로 이동
-      input.addEventListener('awesomplete-selectcomplete', (e) => {
-        const selectedTitle = e.text.value;
-        const target = data.find(item => item.title === selectedTitle);
-        if (target) window.location.href = target.url;
-      });
+      // 인덱스에 데이터 추가
+      data.forEach(item => index.add(item));
+      window.searchData = data; // 결과 렌더링을 위해 저장
     });
+
+  input.addEventListener('input', (e) => {
+    const keyword = e.target.value.trim();
+    
+    if (keyword.length < 2) {
+      resultsContainer.innerHTML = '';
+      return;
+    }
+
+    // 자동완성 검색 실행 (limit: 10개까지 추천)
+    index.search(keyword, { limit: 10 }).then(results => {
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<p>결과가 없습니다.</p>';
+        return;
+      }
+
+      // 검색된 URL들에 해당하는 실제 데이터 매칭
+      const matchedItems = results.map(url => window.searchData.find(item => item.url === url));
+
+      resultsContainer.innerHTML = matchedItems.map(item => `
+        <article style="border-bottom: 1px solid #eee; padding: 10px 0;">
+          <header>
+            <h2 style="font-size: 1.2rem; margin: 0;">
+              <a href="${item.url}">${item.title}</a>
+            </h2>
+          </header>
+          <p style="font-size: 0.9rem; color: #666; margin: 5px 0 0 0;">
+            ${item.content.substring(0, 100)}...
+          </p>
+        </article>
+      `).join('');
+    });
+  });
 });
 </script>
