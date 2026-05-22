@@ -19,68 +19,52 @@
   See: <https://github.com/christian-fei/Simple-Jekyll-Search>
 -->
 
-<!-- search-loader.html -->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+// 1. 데이터를 전역에 저장 (페이지 이동해도 유지)
+window.mySearchData = window.mySearchData || [];
+
+function initSearch() {
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-  
   if (!searchInput) return;
 
-  // 전역 변수 초기화 (이미 로드되어 있다면 재사용)
-  window.searchData = window.searchData || [];
-
-  // 데이터 로드 함수
-  const loadSearchData = () => {
-    if (window.searchData.length > 0) return; // 이미 있으면 패스
-
+  // 2. 데이터가 없으면 Fetch
+  if (window.mySearchData.length === 0) {
     fetch('{{ "/assets/js/data/search.json" | relative_url }}')
       .then(res => res.json())
-      .then(data => {
-        window.searchData = data;
-      })
-      .catch(err => console.error('Search data load failed', err));
-  };
+      .then(data => { window.mySearchData = data; });
+  }
 
-  // 검색창에 포커스 되거나 입력할 때 데이터 로드 시도
-  searchInput.addEventListener('focus', loadSearchData, { once: true });
-
+  // 3. 입력 이벤트 연결
   searchInput.addEventListener('input', (e) => {
     const keyword = e.target.value.toLowerCase().trim();
-    
-    // 1글자도 검색되게 하려면 여기서 < 1 로 수정하세요.
-    // 님의 기존 의도대로 2글자 제한을 유지했습니다.
     if (keyword.length < 2) {
       if (searchResults) searchResults.innerHTML = '';
       return;
     }
 
     const keywords = keyword.split(/\s+/);
-    
-    // 전역 데이터 활용
-    const filtered = (window.searchData || []).filter((item) => {
+    const filtered = window.mySearchData.filter((item) => {
       const title = item.title?.toLowerCase() || '';
       const content = item.content?.toLowerCase() || '';
       return keywords.every(word => title.includes(word) || content.includes(word));
     });
 
-    if (!searchResults) return;
-
-    if (filtered.length === 0) {
-      searchResults.innerHTML = `
-        <p class="mt-5">
-          {{ site.data.locales[include.lang].search.no_results }}
-        </p>
-      `;
-      return;
+    if (searchResults) {
+      if (filtered.length === 0) {
+        searchResults.innerHTML = `<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }} <a href="/gsearch"><i class="fa-solid fa-magnifying-glass"></i> Google PSE 추가 검색</a></p>`;
+      } else {
+        searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
+          <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
+            <header><h2><a href="${item.url}">${item.title}</a></h2></header>
+            <p>${item.content}</p>
+          </article>`).join('');
+      }
     }
-
-    searchResults.innerHTML = filtered.slice(0, 30).map((item) => `
-      <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-        <header><h2><a href="${item.url}">${item.title}</a></h2></header>
-        <p>${item.content}</p>
-      </article>
-    `).join('');
   });
-});
+}
+
+// 4. 최초 실행 및 Swup 페이지 전환 시 재연결
+document.addEventListener('DOMContentLoaded', initSearch);
+document.addEventListener('swup:contentReplace', initSearch);
 </script>
