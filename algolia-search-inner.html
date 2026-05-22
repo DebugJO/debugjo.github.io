@@ -1,0 +1,67 @@
+---
+layout: null
+permalink: /algolia-search-inner/
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Algolia Inner</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
+  <style>
+    body { margin: 0; padding: 10px; background: transparent; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .ais-SearchBox-input { border-radius: 8px !important; height: 48px !important; font-size: 16px !important; }
+    .search-item { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    .search-title { font-size: 18px; color: #0056b2; font-weight: bold; text-decoration: none; display: block; margin-bottom: 5px; }
+    .search-snippet { font-size: 14px; color: #444; line-height: 1.6; }
+    
+    /* 다크모드 대응 (부모창의 데이터 속성을 읽을 수 없으므로 기본 대비책) */
+    @media (prefers-color-scheme: dark) {
+      body { color: #eee; }
+      .ais-SearchBox-input { background: #1b1b1e !important; color: #eee !important; border-color: #444 !important; }
+      .search-title { color: #73a4e6 !important; }
+      .search-snippet { color: #b0b0b0 !important; }
+      .search-item { border-bottom-color: #333; }
+    }
+  </style>
+</head>
+<body>
+  <div id="searchbox"></div>
+  <div id="hits"></div>
+  <div id="pagination" style="margin-top: 20px; display: flex; justify-content: center;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
+  <script>
+    const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
+    const search = instantsearch({
+      indexName: 'devsight',
+      searchClient: searchClient,
+      routing: true
+    });
+
+    search.addWidgets([
+      instantsearch.widgets.searchBox({ 
+        container: '#searchbox', 
+        placeholder: '검색어를 입력하세요...',
+        autofocus: true 
+      }),
+      instantsearch.widgets.hits({
+        container: '#hits',
+        templates: {
+          empty: '<div style="padding:20px;">검색 결과가 없습니다.</div>',
+          item: function(hit) {
+            return '<div class="search-item">' +
+                   '<a href="' + hit.url + '" target="_parent" class="search-title">' + 
+                   (hit._highlightResult.hierarchy.lvl0 ? hit._highlightResult.hierarchy.lvl0.value : '제목 없음') + '</a>' +
+                   '<div class="search-snippet">' + (hit._snippetResult ? hit._snippetResult.content.value : '') + '</div>' +
+                   '</div>';
+          }
+        }
+      }),
+      instantsearch.widgets.pagination({ container: '#pagination' })
+    ]);
+    search.start();
+  </script>
+</body>
+</html>
