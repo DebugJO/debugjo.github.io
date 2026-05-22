@@ -1,0 +1,54 @@
+---
+layout: default
+title: "Algolia Search"
+permalink: /asearch/
+nav_exclude: true
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+
+<style>
+  #docsearch-page {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .DocSearch-Container { position: relative !important; }
+  .DocSearch-Modal { 
+    max-width: 100% !important; 
+    box-shadow: none !important; 
+    border: 1px solid #d2d2d2 !important;
+  }
+
+  html[data-mode="dark"] .DocSearch-Modal {
+    background-color: #1b1b1e !important;
+    border: 1px solid #444 !important;
+  }
+</style>
+
+<div class="gsearch-top">
+  <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
+</div>
+
+<div id="docsearch-page"></div>
+
+<script type="text/javascript">
+  docsearch({
+    appId: 'S64I9XLM7R',
+    apiKey: 'b4be7839927d23267756efbcf9397314',
+    indexName: 'devsight',
+    container: '#docsearch-page',
+    debug: false
+  });
+
+  window.onload = function () {
+    var checkSearch = setInterval(function () {
+      var searchInput = document.querySelector(".DocSearch-Input");
+      if (searchInput) {
+        searchInput.focus();
+        clearInterval(checkSearch);
+      }
+    }, 200);
+  };
+</script>
