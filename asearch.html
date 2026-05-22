@@ -9,11 +9,15 @@ nav_exclude: true
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
 
 <div class="asearch-container" style="padding: 20px;">
-  <h1 id="algolia-title">Site Search</h1>
+  <h1 id="algolia-status">Site Search</h1>
   
-  <!-- 위젯 박스 (테두리를 주어 영역 확인) -->
-  <div id="searchbox" style="margin-bottom: 20px; min-height: 50px; border: 1px solid #ddd;"></div>
-  <div id="hits" style="min-height: 100px; border: 1px solid #eee;"></div>
+  <!-- 상태 확인용 (스크립트가 실행되면 사라짐) -->
+  <div id="js-check" style="color: red; padding: 10px; border: 1px solid red;">
+    대기 중: 자바스크립트가 실행되지 않고 있습니다. (새로고침을 눌러보세요)
+  </div>
+
+  <div id="searchbox" style="margin-top: 20px; min-height: 50px;"></div>
+  <div id="hits"></div>
   <div id="pagination"></div>
 </div>
 
@@ -21,33 +25,23 @@ nav_exclude: true
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
-<!-- 3. 단계별 로깅 스크립트 -->
-{% raw %}
+<!-- 3. 실행부 (Jekyll 문법을 완전히 배제한 순수 JS) -->
 <script>
+  // [체크 1] 이 코드가 읽히는 순간 즉시 실행
   (function() {
-    console.log("Step 1: 스크립트 진입 완료");
+    var checkEl = document.getElementById('js-check');
+    if (checkEl) {
+      checkEl.style.color = "green";
+      checkEl.style.borderColor = "green";
+      checkEl.innerText = "확인: 자바스크립트 엔진 작동 중...";
+    }
 
-    function initAlgolia() {
-      console.log("Step 2: initAlgolia 함수 실행");
-
-      // 라이브러리 존재 여부 체크
-      if (typeof algoliasearch === 'undefined') {
-        console.error("Error: algoliasearch 라이브러리가 로드되지 않았습니다.");
+    function start() {
+      // 라이브러리 로드 확인
+      if (typeof algoliasearch === 'undefined' || typeof instantsearch === 'undefined') {
+        setTimeout(start, 200);
         return;
       }
-      if (typeof instantsearch === 'undefined') {
-        console.error("Error: instantsearch 라이브러리가 로드되지 않았습니다.");
-        return;
-      }
-      console.log("Step 3: 라이브러리 로드 확인됨");
-
-      // DOM 요소 존재 여부 체크
-      const container = document.getElementById('searchbox');
-      if (!container) {
-        console.error("Error: #searchbox 요소를 찾을 수 없습니다. (재시도 중...)");
-        return;
-      }
-      console.log("Step 4: DOM 요소 확인됨");
 
       try {
         const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
@@ -56,7 +50,6 @@ nav_exclude: true
           searchClient: searchClient,
           routing: true
         });
-        console.log("Step 5: 알고리아 클라이언트 생성 완료");
 
         search.addWidgets([
           instantsearch.widgets.searchBox({
@@ -67,36 +60,35 @@ nav_exclude: true
             container: '#hits',
             templates: {
               empty: '검색 결과가 없습니다.',
-              item: (hit, { html, components }) => html`
-                <div style="margin-bottom: 15px;">
-                  <a href="${hit.url}" style="font-weight:bold; color:#0056b2;">
-                    ${components.Highlight({ hit, attribute: 'hierarchy.lvl0' })}
-                  </a>
-                </div>`
+              item: function(hit) {
+                // Jekyll 충돌 방지를 위해 템플릿 리터럴 대신 문자열 결합 사용
+                return '<div style="margin-bottom:20px;">' +
+                       '<a href="' + hit.url + '" style="font-size:18px; font-weight:bold; color:#0056b2; text-decoration:none;">' + 
+                       (hit._highlightResult.hierarchy.lvl0.value || '제목 없음') + 
+                       '</a>' +
+                       '<div style="font-size:14px; color:#444; margin-top:5px;">' + 
+                       (hit._snippetResult ? hit._snippetResult.content.value : '') + 
+                       '</div>' +
+                       '</div>';
+              }
             }
+          }),
+          instantsearch.widgets.pagination({
+            container: '#pagination'
           })
         ]);
-        console.log("Step 6: 위젯 등록 완료");
 
         search.start();
-        console.log("Step 7: search.start() 실행 완료 - 이제 화면에 박스가 보여야 합니다.");
-        document.getElementById('algolia-title').innerText = "Algolia Search Active";
-
-      } catch (err) {
-        console.error("Step 8: 실행 중 에러 발생 ->", err);
+        
+        // 성공 시 체크박스 숨김
+        if (checkEl) checkEl.style.display = "none";
+        document.getElementById('algolia-status').innerText = "Algolia Search";
+        
+      } catch (e) {
+        if (checkEl) checkEl.innerText = "실행 에러: " + e.message;
       }
     }
 
-    // 구글 검색처럼 타이머를 사용하여 확실하게 실행
-    var checkInterval = setInterval(function() {
-      if (document.getElementById('searchbox')) {
-        clearInterval(checkInterval);
-        initAlgolia();
-      } else {
-        console.log("Waiting for DOM...");
-      }
-    }, 500);
-
+    start();
   })();
 </script>
-{% endraw %}
