@@ -5,55 +5,45 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<!-- 알고리아 InstantSearch 기본 스타일 -->
+<!-- 1. 알고리아 스타일시트 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
 
 <style>
-  /* 1. 기본 레이아웃 및 가시성 확보 */
   .asearch-container {
     max-width: 100%;
     margin-top: 20px;
     font-family: "Pretendard Variable", "Malgun Gothic", sans-serif;
-    min-height: 500px; /* 영역 확보 */
   }
 
-  .asearch-top h1 {
-    font-size: 1.25rem !important;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  /* 2. 검색창(SearchBox) 강제 스타일 - 안 보일 때를 대비 */
+  /* 검색창 영역 강제 확보 */
   #searchbox {
-    margin-bottom: 30px;
-    min-height: 45px;
-    display: block !important; /* 강제 표시 */
+    margin-bottom: 20px;
+    min-height: 50px;
   }
 
+  /* 입력창 스타일 */
   .ais-SearchBox-input {
-    padding-left: 45px !important;
     border-radius: 8px !important;
-    border: 1px solid #d2d2d2 !important;
-    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+    padding-left: 45px !important;
     height: 48px !important;
-    font-size: 16px !important;
-    width: 100%;
+    background-color: #fff !important;
+    color: #333 !important;
   }
 
-  /* 3. 검색 결과 스타일 */
+  /* 검색 결과 리스트 */
   .ais-Hits-list {
-    margin-top: 20px;
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   .ais-Hits-item {
-    padding: 15px 0 !important;
-    border-bottom: 1px solid #eee !important;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
     background: transparent !important;
     box-shadow: none !important;
+    margin: 0 !important;
   }
 
   .search-hit-title {
@@ -61,37 +51,24 @@ nav_exclude: true
     font-weight: 600;
     color: #0056b2;
     text-decoration: none;
-    display: block;
-    margin-bottom: 5px;
   }
 
   .search-hit-snippet {
     font-size: 14px;
     color: #444;
-    line-height: 1.6;
+    margin-top: 5px;
+    line-height: 1.5;
   }
 
-  .search-hit-url {
-    font-size: 12px;
-    color: #008000;
-    margin-top: 4px;
-  }
-
-  /* 4. 다크 모드 (표준 CSS 방식으로 수정) */
-  html[data-mode="dark"] .asearch-top h1 { color: #e0e0e0; }
+  /* 다크 모드 대응 */
   html[data-mode="dark"] .ais-SearchBox-input {
     background-color: #1b1b1e !important;
-    border: 1px solid #444 !important;
-    color: #b0b0b0 !important;
+    border-color: #444 !important;
+    color: #eee !important;
   }
-  html[data-mode="dark"] .ais-Hits-item { border-bottom: 1px solid #333 !important; }
   html[data-mode="dark"] .search-hit-title { color: #73a4e6 !important; }
   html[data-mode="dark"] .search-hit-snippet { color: #b0b0b0 !important; }
-  html[data-mode="dark"] .ais-Pagination-link {
-    background-color: #232323 !important;
-    border-color: #444 !important;
-    color: #b0b0b0 !important;
-  }
+  html[data-mode="dark"] .ais-Hits-item { border-bottom-color: #333; }
 </style>
 
 <div class="asearch-container">
@@ -99,19 +76,23 @@ nav_exclude: true
     <h1><i class="fa-solid fa-magnifying-glass"></i> Site Search</h1>
   </div>
 
-  <!-- 위젯이 들어갈 자리 -->
+  <!-- 위젯이 렌더링될 실제 위치 -->
   <div id="searchbox"></div>
   <div id="hits"></div>
   <div id="pagination"></div>
 </div>
 
-<!-- 스크립트 로드 -->
+<!-- 2. 알고리아 필수 라이브러리 -->
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.64.0/dist/instantsearch.production.min.js"></script>
 
+<!-- 3. Jekyll이 JavaScript 템플릿 문법(${...})을 건드리지 못하게 raw 태그로 감쌉니다. -->
+{% raw %}
 <script>
-  // 페이지 로드 후 실행되도록 보장
   document.addEventListener('DOMContentLoaded', function() {
+    // 초기화 확인용 로그
+    console.log("Algolia Search Initializing...");
+
     const searchClient = algoliasearch('S64I9XLM7R', 'e820337511c8d6fda47bd1c5c38cca0c');
 
     const search = instantsearch({
@@ -121,14 +102,14 @@ nav_exclude: true
     });
 
     search.addWidgets([
+      // 검색창 위젯
       instantsearch.widgets.searchBox({
         container: '#searchbox',
         placeholder: '검색어를 입력하세요...',
-        showReset: true,
-        showSubmit: true,
         autofocus: true,
       }),
 
+      // 결과창 위젯
       instantsearch.widgets.hits({
         container: '#hits',
         templates: {
@@ -142,18 +123,21 @@ nav_exclude: true
                 <div class="search-hit-snippet">
                   ${components.Snippet({ hit, attribute: 'content' })}
                 </div>
-                <div class="search-hit-url">${hit.url}</div>
+                <div style="font-size:12px; color:gray;">${hit.url}</div>
               </div>
             `;
           },
         },
       }),
 
+      // 페이지네이션
       instantsearch.widgets.pagination({
         container: '#pagination',
       }),
     ]);
 
     search.start();
+    console.log("Algolia Search Started!");
   });
 </script>
+{% endraw %}
