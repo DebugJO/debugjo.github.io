@@ -10,13 +10,14 @@ nav_exclude: true
 </div>
 
 <!-- 검색창 -->
-<input type="text" id="algolia-search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
+<input type="text" id="algolia-search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px; box-sizing: border-box;" />
 
 <!-- 결과창 -->
 <div id="algolia-search-hits" style="margin-top: 20px;"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
 <script>
+  // Algolia 클라이언트 설정
   const client = algoliasearch('S64I9XLM7R', 'b4be7839927d23267756efbcf9397314');
   const index = client.initIndex('devsight');
   
@@ -25,19 +26,42 @@ nav_exclude: true
 
   input.addEventListener('input', function() {
     const query = input.value;
-    if (query.length < 2) { hitsContainer.innerHTML = ''; return; }
+    if (query.length < 2) { 
+      hitsContainer.innerHTML = ''; 
+      return; 
+    }
 
+    // 검색 실행
     index.search(query).then(({ hits }) => {
-      hitsContainer.innerHTML = hits.map(hit => `
-        <div class="gsc-webResult gsc-result" style="margin-bottom: 12px;">
-          <a href="${hit.url}" style="color: #0056b2; font-size: 16px; font-weight: bold; text-decoration: none;">
-            ${hit.lvl0 || '제목 없음'}
-          </a>
-          <div class="gs-snippet" style="font-size: 14px; color: #444; margin-top: 4px;">
-            ${hit.content ? hit.content.substring(0, 150) + '...' : ''}
+      hitsContainer.innerHTML = hits.map(hit => {
+        // hierarchy가 존재하면 lvl0, 없으면 url을 제목으로 표시
+        const title = (hit.hierarchy && hit.hierarchy.lvl0) ? hit.hierarchy.lvl0 : '제목 없음';
+        
+        // 검색어 하이라이트 표시 (Algolia가 제공하는 하이라이트 활용)
+        const snippet = (hit._highlightResult && hit._highlightResult.content) 
+          ? hit._highlightResult.content.value 
+          : (hit.content ? hit.content.substring(0, 150) + '...' : '');
+
+        return `
+          <div class="gsc-webResult gsc-result" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            <a href="${hit.url}" style="color: #0056b2; font-size: 18px; font-weight: bold; text-decoration: none;">
+              ${title}
+            </a>
+            <div class="gs-snippet" style="font-size: 14px; color: #444; margin-top: 8px; line-height: 1.5;">
+              ${snippet}
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     });
   });
 </script>
+
+<style>
+  /* Algolia 하이라이트 텍스트 스타일 */
+  em {
+    background-color: yellow;
+    font-style: normal;
+    font-weight: bold;
+  }
+</style>
