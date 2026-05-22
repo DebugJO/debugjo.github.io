@@ -15,77 +15,52 @@ nav_exclude: true
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+(function() {
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-  
-  // [추가] 자동완성 UI 레이어 생성
-  const autoMenu = document.createElement('ul');
-  autoMenu.id = 'search-autocomplete';
-  autoMenu.style.cssText = 'position:absolute; top:100%; left:0; width:100%; background:var(--card-bg); border:1px solid var(--search-border-color); border-radius:0 0 10px 10px; z-index:9999; list-style:none; padding:0; margin:0; box-shadow:0 4px 10px rgba(0,0,0,0.2); display:none;';
-  searchInput.parentNode.style.position = 'relative';
-  searchInput.parentNode.appendChild(autoMenu);
-
   let searchData = [];
+
+  console.log("Search Script Initialized");
+
+  // 1. 데이터 로드 확인
   fetch('{{ "/assets/js/data/search.json" | relative_url }}')
-    .then((response) => response.json())
-    .then((data) => { searchData = data; })
-    .catch((err) => { console.error('Search load error:', err); });
+    .then(res => res.json())
+    .then(data => {
+      searchData = data;
+      console.log("Data loaded, items count:", searchData.length);
+    })
+    .catch(err => console.error("Fetch Error:", err));
 
-  searchInput.addEventListener('input', (e) => {
-    const keyword = e.target.value.toLowerCase().trim();
-    const keywords = keyword.split(/\s+/);
+  // 2. 이벤트 감지 확인
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      console.log("Input detected:", e.target.value);
+      
+      if (searchData.length === 0) {
+        console.warn("Search data not ready yet!");
+        return;
+      }
 
-    // [추가] 자동완성 레이어 초기화
-    autoMenu.innerHTML = '';
-    autoMenu.style.display = 'none';
+      const keyword = e.target.value.toLowerCase().trim();
+      if (keyword.length < 2) {
+        searchResults.innerHTML = '';
+        return;
+      }
 
-    if (keyword.length < 2) {
-      searchResults.innerHTML = '';
-      return;
-    }
+      // 필터링 및 렌더링 로직
+      const filtered = searchData.filter(item => 
+        item.title?.toLowerCase().includes(keyword) || 
+        item.content?.toLowerCase().includes(keyword)
+      );
 
-    const filtered = searchData.filter((item) => {
-      const title = item.title?.toLowerCase() || '';
-      const content = item.content?.toLowerCase() || '';
-      return keywords.every((word) => title.includes(word) || content.includes(word));
-    });
-
-    // [추가] 자동완성 UI 채우기
-    const suggestions = filtered.slice(0, 8);
-    if (suggestions.length > 0) {
-      autoMenu.innerHTML = suggestions.map(item => `
-        <li style="padding:10px 15px; cursor:pointer; border-bottom:1px solid var(--search-border-color);">
-          <a href="${item.url}" style="text-decoration:none; color:var(--text-color); font-size:14px;">${item.title}</a>
-        </li>
+      console.log("Filtered count:", filtered.length);
+      
+      searchResults.innerHTML = filtered.slice(0, 10).map(item => `
+        <article><h2><a href="${item.url}">${item.title}</a></h2></article>
       `).join('');
-      autoMenu.style.display = 'block';
-    }
-
-    // --- 기존 검색 결과 렌더링 시작 (건드리지 않음) ---
-    if (filtered.length === 0) {
-      searchResults.innerHTML = `
-        <p class="mt-5">
-          {{ site.data.locales[include.lang].search.no_results }} <a href="/gsearch" style="font-size: 14px !important;"><i class="fa-solid fa-magnifying-glass" style="font-size: 12px !important;"></i>Google PSE 추가 검색</a>
-        </p>
-      `;
-      return;
-    }
-
-    const results = filtered.slice(0, 30);
-    searchResults.innerHTML = results.map((item) => `
-      <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-        <header><h2><a href="${item.url}">${item.title}</a></h2></header>
-        <p>${item.content}</p>
-      </article>
-    `).join('');
-  });
-
-  searchInput.focus();
-  
-  // 추천어 외 클릭 시 닫기
-  document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target)) autoMenu.style.display = 'none';
-  });
-});
+    });
+  } else {
+    console.error("search-input not found!");
+  }
+})();
 </script>
