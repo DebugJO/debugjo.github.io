@@ -19,32 +19,55 @@ nav_exclude: true
 
 <script>
 window.initSearchFunctionality = function() {
-  const searchInput = document.getElementById('search-input');
+
+  const searchInput = document.getElementById('my-search-input');
   if (!searchInput) return;
 
-  const searchResults = document.getElementById('search-results');
-  
-  // 1. 자동완성 메뉴 초기화 (기존 요소가 있다면 삭제)
+  const searchResults = document.getElementById('main-results');
+
   let autoMenu = document.getElementById('search-autocomplete');
+
   if (autoMenu) autoMenu.remove();
-  
+
   autoMenu = document.createElement('ul');
+
   autoMenu.id = 'search-autocomplete';
-  autoMenu.style.cssText = 'position: absolute; top: 100%; left: 0; width: 100%; background: var(--card-bg); border: 1px solid var(--search-border-color); border-radius: 0 0 10px 10px; z-index: 9999; list-style: none; padding: 0; margin: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: none;';
+
+  autoMenu.style.cssText = `
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--search-border-color);
+    border-radius: 0 0 10px 10px;
+    z-index: 9999;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: none;
+  `;
+
   searchInput.parentNode.style.position = 'relative';
   searchInput.parentNode.appendChild(autoMenu);
 
   let searchData = [];
+
   fetch('/assets/js/data/search.json')
     .then(r => r.json())
-    .then(data => { searchData = data; });
+    .then(data => {
+      searchData = data;
+    });
 
-  // 2. 이벤트 리스너 재설정
   const newSearchInput = searchInput.cloneNode(true);
+
   searchInput.parentNode.replaceChild(newSearchInput, searchInput);
 
   newSearchInput.addEventListener('input', (e) => {
+
     const keyword = e.target.value.toLowerCase().trim();
+
     autoMenu.innerHTML = '';
     autoMenu.style.display = 'none';
 
@@ -53,39 +76,53 @@ window.initSearchFunctionality = function() {
       return;
     }
 
-    const filtered = searchData.filter(item => 
-      item.title?.toLowerCase().includes(keyword) || 
+    const filtered = searchData.filter(item =>
+      item.title?.toLowerCase().includes(keyword) ||
       item.content?.toLowerCase().includes(keyword)
     );
 
-    // [자동완성] 렌더링
     const suggestions = filtered.slice(0, 5);
+
     if (suggestions.length > 0) {
+
       autoMenu.innerHTML = suggestions.map(item => `
-        <li style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--search-border-color);">
-          <a href="${item.url}" style="text-decoration: none; color: var(--text-color); font-size: 14px;">${item.title}</a>
-        </li>`).join('');
+        <li style="padding:10px; cursor:pointer; border-bottom:1px solid var(--search-border-color);">
+          <a href="${item.url}" style="text-decoration:none; color:var(--text-color); font-size:14px;">
+            ${item.title}
+          </a>
+        </li>
+      `).join('');
+
       autoMenu.style.display = 'block';
     }
 
-    // [본문] 렌더링
     if (filtered.length === 0) {
+
       searchResults.innerHTML = `<p class="mt-5">No results found.</p>`;
+
     } else {
+
       searchResults.innerHTML = filtered.slice(0, 30).map(item => `
         <article class="px-1 px-sm-2 px-lg-4 px-xl-0">
-          <header><h2><a href="${item.url}">${item.title}</a></h2></header>
+          <header>
+            <h2><a href="${item.url}">${item.title}</a></h2>
+          </header>
           <p>${item.content}</p>
-        </article>`).join('');
+        </article>
+      `).join('');
     }
   });
 
-  // 외부 클릭 시 닫기
   document.addEventListener('click', (e) => {
-    if (!newSearchInput.contains(e.target)) autoMenu.style.display = 'none';
+
+    if (
+      !newSearchInput.contains(e.target) &&
+      !autoMenu.contains(e.target)
+    ) {
+      autoMenu.style.display = 'none';
+    }
   });
 };
 
-// 최초 실행 및 Swup 대응 실행
 window.initSearchFunctionality();
 </script>
