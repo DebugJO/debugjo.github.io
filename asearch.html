@@ -1,0 +1,46 @@
+---
+layout: default
+title: "고급 검색"
+permalink: /asearch/
+nav_exclude: true
+---
+
+<!-- 1. 스타일 및 라이브러리 로드 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.css">
+<script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script>
+
+<div class="px-1 px-sm-2 px-lg-4 px-xl-0 mt-5">
+  <input type="text" id="my-search-input" placeholder="검색어를 입력하세요 (구글 방식)..." 
+         style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid #ccc;">
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. 데이터 가져오기
+  fetch('{{ "/assets/js/data/search.json" | relative_url }}')
+    .then(res => res.json())
+    .then(data => {
+      
+      // 2. 자동완성 설정
+      autocomplete('#my-search-input', { hint: false, debug: true }, [
+        {
+          source: (query, callback) => {
+            // 검색 데이터 필터링
+            const matches = data.filter(item => 
+              item.title.toLowerCase().includes(query.toLowerCase())
+            );
+            callback(matches.slice(0, 7)); // 상위 7개만 제안
+          },
+          displayKey: 'title',
+          templates: {
+            suggestion: suggestion => `<div style="padding:10px;">${suggestion.title}</div>`
+          }
+        }
+      ]).on('autocomplete:selected', (event, suggestion) => {
+        // 선택 시 페이지 이동
+        window.location.href = suggestion.url;
+      });
+      
+    });
+});
+</script>
