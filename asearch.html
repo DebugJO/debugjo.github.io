@@ -5,68 +5,39 @@ permalink: /asearch/
 nav_exclude: true
 ---
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-
-<style>
-  /* 검색창을 페이지 내에 고정하기 위한 핵심 스타일 */
-  .DocSearch-Container {
-    position: relative !important;
-    display: block !important;
-    background: transparent !important;
-  }
-  
-  .DocSearch-Modal {
-    max-width: 100% !important;
-    width: 100% !important;
-    box-shadow: none !important;
-    border: 1px solid #d2d2d2 !important;
-    border-radius: 0 !important; /* 모달 느낌 제거 */
-    margin: 0 !important;
-    height: auto !important;
-  }
-
-  /* 모달의 배경/오버레이 제거 */
-  .DocSearch-Container--active {
-    display: block !important;
-  }
-
-  /* 다크 모드 대응 */
-  html[data-mode="dark"] .DocSearch-Modal {
-    background-color: #1b1b1e !important;
-    border: 1px solid #444 !important;
-  }
-  
-  /* 내부 검색 결과 영역 높이 확보 */
-  .DocSearch-Hits {
-    max-height: 70vh !important;
-    overflow-y: auto !important;
-  }
-</style>
-
 <div class="gsearch-top">
   <h1><i class="fa-solid fa-magnifying-glass"></i> Search</h1>
 </div>
 
-<div id="docsearch-page"></div>
+<!-- 검색창 -->
+<input type="text" id="algolia-search-input" class="gsc-input" placeholder="검색어를 입력하세요..." style="width: 100%; padding: 10px; border: 1px solid #d2d2d2; border-radius: 4px;" />
 
-<script type="text/javascript">
-  docsearch({
-    appId: 'S64I9XLM7R',
-    apiKey: 'b4be7839927d23267756efbcf9397314',
-    indexName: 'devsight',
-    container: '#docsearch-page',
-    debug: false
+<!-- 결과창 -->
+<div id="algolia-search-hits" style="margin-top: 20px;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script>
+  const client = algoliasearch('S64I9XLM7R', 'b4be7839927d23267756efbcf9397314');
+  const index = client.initIndex('devsight');
+  
+  const input = document.getElementById('algolia-search-input');
+  const hitsContainer = document.getElementById('algolia-search-hits');
+
+  input.addEventListener('input', function() {
+    const query = input.value;
+    if (query.length < 2) { hitsContainer.innerHTML = ''; return; }
+
+    index.search(query).then(({ hits }) => {
+      hitsContainer.innerHTML = hits.map(hit => `
+        <div class="gsc-webResult gsc-result" style="margin-bottom: 12px;">
+          <a href="${hit.url}" style="color: #0056b2; font-size: 16px; font-weight: bold; text-decoration: none;">
+            ${hit.lvl0 || '제목 없음'}
+          </a>
+          <div class="gs-snippet" style="font-size: 14px; color: #444; margin-top: 4px;">
+            ${hit.content ? hit.content.substring(0, 150) + '...' : ''}
+          </div>
+        </div>
+      `).join('');
+    });
   });
-
-  // 페이지 로드 시 검색창에 포커스
-  window.onload = function () {
-    var checkSearch = setInterval(function () {
-      var searchInput = document.querySelector(".DocSearch-Input");
-      if (searchInput) {
-        searchInput.focus();
-        clearInterval(checkSearch);
-      }
-    }, 200);
-  };
 </script>
