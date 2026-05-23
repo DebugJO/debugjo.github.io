@@ -415,9 +415,11 @@ main h4 {
 }
 
 @media (min-width: 1650px) {
-    #main-wrapper>.container {
-        max-width: 1450px !important;
-    }
+  #main-wrapper>.container {
+      max-width: 1450px !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;      
+  }
 }
 
 @media (min-width: 1650px) {
@@ -428,13 +430,13 @@ main h4 {
 
 @media (min-width: 1200px) {
     .col-xl-9 {
-        width: 58% !important;
+        width: 56% !important;
     }
 }
 
 @media (min-width: 1200px) {
     .col-xl-3 {
-        width: 42% !important;
+        width: 44% !important;
     }
 }	
 
