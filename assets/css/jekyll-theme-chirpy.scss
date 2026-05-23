@@ -897,6 +897,10 @@ header h1+.post-meta {
   border-left: 1px solid #EFEFEF;
 }
 
+#search-result-wrapper .content {
+  margin-top: 0rem !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
