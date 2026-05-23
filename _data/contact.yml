@@ -23,9 +23,14 @@
 #  url: 'https://debugjo.github.io/sitemap.xml'
 #  noblank: true 
 
-- type: google_site_search
-  icon: "fa-solid fa-magnifying-glass"
-  url: /gsearch
+#- type: google_site_search
+#  icon: "fa-solid fa-magnifying-glass"
+#  url: /gsearch
+#  noblank: true 
+
+- type: tistory 
+  icon: "fa-solid fa-t" 
+  url: 'https://mystory07092.tistory.com' 
   noblank: true 
   
 # Uncomment and complete the url below to enable more contact options
