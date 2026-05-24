@@ -905,6 +905,12 @@ header h1+.post-meta {
   margin-right: 2rem !important;
 }
 
+@media (max-width: 768px) {
+  #panel-wrapper div.d-flex.flex-wrap.mt-3.b-1.me-3 {
+    margin-right: 0rem !important;
+  }
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
