@@ -14,10 +14,10 @@ toc: true
 <i class="fa-solid fa-envelope"></i> msjo@devsight.kr  
 <i class="fa-solid fa-house"></i> <https://devsight.kr>  
 
-#### SNS(Social Network Service)
+#### Social Links (SNS)
 
-<i class="fa-brands fa-github"></i> <https://github.com/debugjo>  
-<i class="fa-brands fa-telegram"></i> @debug <https://t.me/debug>  
+<i class="fa-brands fa-github"></i> DebugJO <https://github.com/debugjo>  
+<i class="fa-brands fa-x-twitter"></i> @DebugJO <https://twitter.com/DebugJO>  
 
 #### Software Engineer / Developer
 
