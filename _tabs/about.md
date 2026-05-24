@@ -14,7 +14,7 @@ toc: true
 <i class="fa-solid fa-envelope"></i> msjo@devsight.kr  
 <i class="fa-solid fa-house"></i> <https://devsight.kr>  
 
-#### Social Links (SNS)
+#### Social Links
 
 <i class="fa-brands fa-github"></i> DebugJO <https://github.com/debugjo>  
 <i class="fa-brands fa-x-twitter"></i> @DebugJO <https://twitter.com/DebugJO>  
