@@ -913,6 +913,11 @@ header h1+.post-meta {
   }
 }
 
+#search-hints .post-tag {
+  margin-bottom: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
 /************************************** Dark *****************************************/
 
 html[data-mode='dark'] {
