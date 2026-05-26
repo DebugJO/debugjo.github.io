@@ -10,7 +10,7 @@ toc: true
 
 #### CONTACT
 
-<i class="fa-solid fa-address-book"></i> **MSJO**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea  
+<i class="fa-solid fa-address-book"></i> **MsJ**™(*DebugJO*) UTC+08:28, DaeHanMinGuk, Corea  
 <i class="fa-solid fa-envelope"></i> msjo@devsight.kr  
 <i class="fa-solid fa-house"></i> <https://devsight.kr>  
 
