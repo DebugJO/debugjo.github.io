@@ -1,0 +1,39 @@
+---
+layout: null
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>{{ site.lang | default: "ko" }}</language>
+    <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+    <generator>Jekyll v{{ jekyll.version }}</generator>
+    <ttl>100</ttl>
+    <managingEditor>{{ site.social.name | xml_escape }}</managingEditor>
+    <atom:link href="{{ "/feed.xml" | absolute_url }}" rel="self" type="application/rss+xml" />
+    
+    {% if site.feed_image %}
+    <image>
+      <title>{{ site.title | xml_escape }}</title>
+      <url>{{ site.feed_image | absolute_url }}</url>
+      <link>{{ site.url }}{{ site.baseurl }}/</link>
+    </image>
+    {% endif %}
+
+    {% for post in site.posts limit: 100 %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post.url | absolute_url }}</link>
+      <description>{{ post.content | xml_escape }}</description>
+      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+      <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+      {% for category in post.categories %}
+      <category>{{ category | xml_escape }}</category>
+      {% endfor %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
