@@ -9,7 +9,7 @@ permalink: /feed.xml
     <link>{{ site.url }}{{ site.baseurl }}/</link>
     <description>{{ site.description | xml_escape }}</description>
     <language>{{ site.lang | default: "ko" }}</language>
-    <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+    <pubDate>{{ post.last_modified_at | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
     <ttl>100</ttl>
     <managingEditor>{{ site.social.name | xml_escape }}</managingEditor>
@@ -28,7 +28,7 @@ permalink: /feed.xml
       <title>{{ post.title | xml_escape }}</title>
       <link>{{ post.url | absolute_url }}</link>
       <description>{{ post.content | xml_escape }}</description>
-      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+      <pubDate>{{ post.last_modified_at | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
       <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
       {% for category in post.categories %}
       <category>{{ category | xml_escape }}</category>
