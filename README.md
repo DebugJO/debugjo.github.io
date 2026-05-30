@@ -200,3 +200,14 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 [^footnote]: The footnote source
 [^fn-nth-2]: The 2nd footnote source
 ```
+
+```md
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}"><strong>{{ post.title }}</strong></a>
+      <span style="color: #666; font-size: 0.9em;"> - {{ post.last_modified_at | date: "%Y-%m-%d" }}</span>
+    </li>
+  {% endfor %}
+</ul>
+```
