@@ -43,7 +43,7 @@ permalink: /feed.xml
     {% endfor %}
   {% endif %}
 
-    <summary type="html">{% include post-summary.html max_length=500 %}</summary>
+    <summary type="html">{{ post.content | strip_html | truncate: 400 | xml_escape }}</summary>
     <content type="html">{{ post.content | xml_escape }}</content>
 
   </entry>
