@@ -28,11 +28,15 @@
 #  url: /gsearch
 #  noblank: true 
 
-- type: tistory 
-  icon: "fa-solid fa-t" 
-  url: 'https://mystory07092.tistory.com' 
-  noblank: true 
-  
+#- type: tistory 
+#  icon: "fa-solid fa-t" 
+#  url: 'https://mystory07092.tistory.com' 
+#  noblank: true 
+
+- type: rss
+  icon: "fa-solid fa-rss"
+  url: /feed.xml  
+
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
