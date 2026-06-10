@@ -168,7 +168,8 @@ exclude:
   - "*.config.js"
   - "package*.json"
   - backup
-
+  - .well-known
+  
 jekyll-archives:
   enabled: [categories, tags]
   layouts:
