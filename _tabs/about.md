@@ -18,6 +18,7 @@ toc: true
 
 <i class="fa-brands fa-github"></i> DebugJO <https://github.com/debugjo>  
 <i class="fa-brands fa-x-twitter"></i> @DebugJO <https://twitter.com/DebugJO>  
+<i class="fa-brands fa-bluesky"></i> @devsight.kr <https://bsky.app/profile/devsight.kr>  
 
 #### Software Engineer / Developer
 
