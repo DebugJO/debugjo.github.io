@@ -33,9 +33,13 @@
 #  url: 'https://mystory07092.tistory.com' 
 #  noblank: true 
 
-- type: rss
-  icon: "fa-solid fa-rss"
-  url: /feed.xml  
+#- type: rss
+#  icon: "fa-solid fa-rss"
+#  url: /feed.xml  
+
+- type: bluesky
+  icon: "fa-brands fa-bluesky"
+  url: 'https://bsky.app/profile/devsight.kr'  
 
 # Uncomment and complete the url below to enable more contact options
 #
